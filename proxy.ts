@@ -27,7 +27,10 @@ function isLikelyCustomDomain(host: string): boolean {
 
 // ─── Auth route constants ─────────────────────────────────────────────────────
 
-const PUBLIC_PATHS = ["/", "/login", "/register", "/c/", "/p/"];
+const PUBLIC_EXACT_PATHS = new Set([
+  "/", "/login", "/register", "/pricing", "/datenschutz", "/impressum",
+]);
+const PUBLIC_PREFIXES = ["/c/", "/p/", "/print/", "/team/", "/uploads/"];
 const AUTH_PATHS = ["/login", "/register"];
 const ADMIN_PATHS = ["/admin"];
 
@@ -84,7 +87,8 @@ export async function proxy(request: NextRequest) {
   }
 
   // ── Auth / route protection ───────────────────────────────────────────────
-  const isPublic = PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p));
+  const isPublic = PUBLIC_EXACT_PATHS.has(pathname) ||
+    PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
   const isAuth   = AUTH_PATHS.some((p) => pathname.startsWith(p));
   const isAdmin  = ADMIN_PATHS.some((p) => pathname.startsWith(p));
 
