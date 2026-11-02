@@ -255,8 +255,8 @@ export function SettingsClientPage({ user, org }: Props) {
                   {leadNotif === value && <div className="h-2 w-2 rounded-full bg-primary" />}
                 </div>
                 <div>
-                  <p className="text-sm font-medium">{label}</p>
-                  <p className="text-xs text-muted-foreground">{desc}</p>
+                  <p className="text-sm font-medium"><T text={label} /></p>
+                  <p className="text-xs text-muted-foreground"><T text={desc} /></p>
                 </div>
               </button>
             ))}
