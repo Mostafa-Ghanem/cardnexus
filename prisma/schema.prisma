@@ -430,3 +430,10 @@ model Invitation {
   @@index([token])
   @@index([email])
 }
+
+model RateLimitBucket {
+  id        String @id
+  count     Int    @default(0)
+  expiresAt Int
+  @@index([expiresAt])
+}
