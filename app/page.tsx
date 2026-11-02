@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { PLANS } from "@/lib/plans";
 import { FaqSection } from "./FaqSection";
+import { T } from "@/components/i18n/I18nProvider";
 
 const features = [
   { icon: Nfc,          title: "NFC-Ready",           desc: "Kontakt per Antippen teilen – einfach Smartphone halten, fertig." },
@@ -135,8 +136,8 @@ export default function LandingPage() {
             {steps.map(({ n, title, desc }) => (
               <div key={n} className="text-center">
                 <div className="h-12 w-12 rounded-full bg-gray-900 text-white flex items-center justify-center text-lg font-bold mx-auto mb-4">{n}</div>
-                <h3 className="font-semibold text-lg mb-2">{title}</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{desc}</p>
+                <h3 className="font-semibold text-lg mb-2"><T text={title} /></h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed"><T text={desc} /></p>
               </div>
             ))}
           </div>
@@ -156,8 +157,8 @@ export default function LandingPage() {
                 <div className="h-10 w-10 rounded-xl bg-gray-900 flex items-center justify-center mb-4">
                   <Icon className="h-5 w-5 text-white" />
                 </div>
-                <h3 className="font-semibold mb-1">{title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{desc}</p>
+                <h3 className="font-semibold mb-1"><T text={title} /></h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed"><T text={desc} /></p>
               </div>
             ))}
           </div>
@@ -186,7 +187,7 @@ export default function LandingPage() {
                       Empfohlen
                     </span>
                   )}
-                  <p className={`text-sm font-medium mb-1 ${featured ? "opacity-60" : "text-gray-500"}`}>{plan.description}</p>
+                  <p className={`text-sm font-medium mb-1 ${featured ? "opacity-60" : "text-gray-500"}`}><T text={plan.description} /></p>
                   <h3 className="text-2xl font-bold mb-1">{plan.name}</h3>
                   <div className="flex items-baseline gap-1 mb-6">
                     <span className="text-4xl font-bold">€{plan.monthlyPrice}</span>
