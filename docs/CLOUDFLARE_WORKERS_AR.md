@@ -17,7 +17,7 @@
 7. من Workers > Settings أضف `APP_URL`، `BETTER_AUTH_URL`، `NEXT_PUBLIC_APP_URL` مساوية لرابط worker الفعلي `https://...workers.dev` أو دومين تجريبي.
 8. أضف Secret `BETTER_AUTH_SECRET` عشوائيًا باستخدام `npx wrangler secret put BETTER_AUTH_SECRET`.
 9. للبريد أضف `BREVO_API_KEY` كـ Secret، و`EMAIL_FROM` كمرسل موثق، و`EMAIL_FROM_NAME` اختياريًا. بدونها لا تعمل إشعارات البريد.
-10. نفّذ `npm run build` ثم `npm run deploy` **للمشروع التجريبي فقط**.
+10. نفّذ `npm run deploy:dry-run` لفحص حزمة النشر، ثم `npm run deploy` **للمشروع التجريبي فقط**. أمر النشر يستخدم Cloudflare Vite Plugin مع `wrangler.jsonc`.
 11. افتح `/register` لإنشاء حساب شخصي، ثم امنحه `super_admin` يدويًا من قاعدة D1 الجديدة فقط، ثم سجل خروج/دخول.
 
 مثال ترقية مدير (غيّر الإيميل):
@@ -46,3 +46,10 @@ npx wrangler d1 execute cardnexus-d1 --remote --command "UPDATE user SET role = 
 https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/
 https://developers.cloudflare.com/d1/tutorials/d1-and-prisma-orm/
 https://vinext.dev/docs/deploying/cloudflare
+
+## اختبار تكامل تم اجتيازه داخل Workerd
+- إنشاء مستخدم جديد بـ Better Auth وتخزينه في D1.
+- إنشاء كارت عام عبر API ثم استرجاعه عبر slug.
+- ترقية مستخدم الاختبار داخل D1 مؤقتًا ثم حفظ Lead عن طريق API.
+- رفع صورة PNG إلى R2، ثم استرجاع نفس البايتات ومقارنتها.
+- ما سبق اختبار محلي ببيئة محاكية، **ليس إطلاقًا على حساب Cloudflare الحقيقي**.
