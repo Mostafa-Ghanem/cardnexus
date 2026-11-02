@@ -39,7 +39,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               >
                 <Icon className="h-3.5 w-3.5" />
-                {label}
+                <T text={label} />
               </Link>
             ))}
           </nav>
