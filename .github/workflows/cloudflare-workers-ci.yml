@@ -74,6 +74,31 @@ jobs:
           curl --fail --silent http://127.0.0.1:8787/login -o /dev/null
           curl --fail --silent http://127.0.0.1:8787/register -o /dev/null
           echo "Worker preview responded on /, /login, and /register."
+          # Exercise real D1-backed Better Auth and card routes in local workerd.
+          signup_status="$(curl -sS -o /tmp/nfc-signup.json -w '%{http_code}' \
+            -c /tmp/nfc-cookies.txt -X POST http://127.0.0.1:8787/api/auth/sign-up/email \
+            -H 'Content-Type: application/json' -H 'Origin: http://localhost:8787' \
+            -d '{"name":"Cloudflare CI","email":"cloudflare-ci@example.invalid","password":"CI-Cloudflare-LongPassword123!"}')"
+          if [ "$signup_status" != "200" ]; then
+            echo "signup HTTP $signup_status"
+            cat /tmp/nfc-signup.json
+            tail -n 80 /tmp/cardnexus-cloudflare-preview.log
+            exit 1
+          fi
+          cards_status="$(curl -sS -o /tmp/nfc-cards.json -w '%{http_code}' \
+            -b /tmp/nfc-cookies.txt -X POST http://127.0.0.1:8787/api/cards \
+            -H 'Content-Type: application/json' -H 'Origin: http://localhost:8787' \
+            -d '{"name":"Cloudflare CI NFC","firstName":"CI","lastName":"Visitor"}')"
+          if [ "$cards_status" != "201" ]; then
+            echo "card creation HTTP $cards_status"
+            cat /tmp/nfc-cards.json
+            tail -n 80 /tmp/cardnexus-cloudflare-preview.log
+            exit 1
+          fi
+          card_slug="$(node -e 'const j=require("/tmp/nfc-cards.json"); process.stdout.write(j.slug || "")')"
+          test -n "$card_slug"
+          curl --fail --silent "http://127.0.0.1:8787/api/cards/$card_slug" -o /tmp/nfc-public-card.json
+          echo "Workerd auth -> D1 user -> card -> public card API roundtrip passed."
       - name: Commit lockfile and generated migration to feature branch
         if: success() && github.event_name == 'push' && github.ref_name == 'feature/cloudflare-workers-d1'
         shell: bash
