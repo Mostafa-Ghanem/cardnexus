@@ -81,7 +81,7 @@ export default async function NfcPage() {
               className="flex items-center gap-2 text-sm text-primary hover:underline"
             >
               <ExternalLink className="h-3 w-3" />
-              {link.label}
+              <T text={link.label} />
             </a>
           ))}
         </div>
@@ -103,7 +103,7 @@ function Step({
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-1">
           <Icon className="h-4 w-4 text-muted-foreground" />
-          <p className="font-semibold text-sm">{title}</p>
+          <p className="font-semibold text-sm"><T text={title} /></p>
         </div>
         <div className="text-sm text-muted-foreground leading-relaxed">{children}</div>
       </div>
