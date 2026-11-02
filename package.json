@@ -17,7 +17,8 @@
     "i18n:extract": "node scripts/i18n/sync.mjs extract",
     "i18n:translate": "node scripts/i18n/translate.mjs",
     "i18n:apply": "node scripts/i18n/sync.mjs apply",
-    "i18n:review": "node scripts/i18n/sync.mjs review"
+    "i18n:review": "node scripts/i18n/sync.mjs review",
+    "i18n:attrs": "node scripts/i18n/attributes.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
