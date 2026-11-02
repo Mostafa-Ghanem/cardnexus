@@ -48,10 +48,12 @@ export const auth = betterAuth({
         type: "string",
         defaultValue: "member",
         required: false,
+        input: false,
       },
       organizationId: {
         type: "string",
         required: false,
+        input: false,
       },
       // Subscription plan — set by server/webhooks only, never by client
       plan: {
