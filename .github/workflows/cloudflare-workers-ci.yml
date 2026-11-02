@@ -1,0 +1,62 @@
+name: Cloudflare Workers D1 compatibility
+
+on:
+  push:
+    branches: ["feature/cloudflare-workers-d1"]
+  pull_request:
+    branches: ["develop/hostinger-saas"]
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-d1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      DATABASE_URL: file:./dev.db
+      BETTER_AUTH_SECRET: ci-secret-not-for-production-1234567890
+      BETTER_AUTH_URL: http://localhost:8787
+      APP_URL: http://localhost:8787
+      NEXT_PUBLIC_APP_URL: http://localhost:8787
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install and resolve Cloudflare toolchain
+        run: npm install --no-audit --no-fund
+      - name: Generate Prisma client and validate schema
+        run: |
+          npx prisma validate
+          npx prisma generate
+      - name: Generate D1 initial migration
+        run: npm run db:migration:generate
+      - name: Apply migration on isolated local D1
+        run: npx wrangler d1 migrations apply cardnexus-d1 --local
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npm run lint
+      - name: Build Cloudflare Worker using vinext
+        run: npm run build
+      - name: Commit lockfile and generated migration to feature branch
+        if: success() && github.event_name == 'push' && github.ref_name == 'feature/cloudflare-workers-d1'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json migrations/0001_init.sql
+          if ! git diff --staged --quiet; then
+            git commit -m "build(cloudflare): lock dependencies and add verified D1 schema [skip ci]"
+            git push origin HEAD:feature/cloudflare-workers-d1
+          fi
