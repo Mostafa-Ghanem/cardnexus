@@ -2,7 +2,7 @@
  * Native Cloudflare R2 binding; no S3 credentials, AWS signing or filesystem.
  * All objects remain in the private bucket and are streamed via /uploads.
  */
-import { env } from "cloudflare:workers";
+import { bindings as env } from "./cloudflare-bindings";
 
 const keyPattern = /^[a-zA-Z0-9_-]{1,140}\.(?:jpg|jpeg|png|webp|gif)$/;
 function imageKey(key: string) {
