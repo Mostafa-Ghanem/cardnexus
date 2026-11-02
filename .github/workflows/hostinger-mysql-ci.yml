@@ -89,4 +89,7 @@ jobs:
           fi
           curl --fail --silent http://127.0.0.1:3000/login --output /dev/null
           curl --fail --silent http://127.0.0.1:3000/register --output /dev/null
-          echo "Home, login and register pages responded successfully."
+          curl --fail --silent http://127.0.0.1:3000/pricing --output /dev/null
+          dashboard_code="$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/dashboard)"
+          test "$dashboard_code" = "307" || test "$dashboard_code" = "302"
+          echo "Public pages respond and unauthenticated dashboard is redirected."
