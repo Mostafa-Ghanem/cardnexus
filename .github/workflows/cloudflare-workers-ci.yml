@@ -99,6 +99,37 @@ jobs:
           test -n "$card_slug"
           curl --fail --silent "http://127.0.0.1:8787/api/cards/$card_slug" -o /tmp/nfc-public-card.json
           echo "Workerd auth -> D1 user -> card -> public card API roundtrip passed."
+          # Lead capture is available to Pro. Upgrade only the disposable CI
+          # user inside the local D1 binding before testing lead insertion.
+          npx wrangler d1 execute cardnexus-d1 --local --command "UPDATE user SET plan='pro' WHERE email='cloudflare-ci@example.invalid';"
+          card_id="$(node -e 'const j=require("/tmp/nfc-cards.json"); process.stdout.write(j.id || "")')"
+          lead_status="$(curl -sS -o /tmp/nfc-lead.json -w '%{http_code}' \
+            -X POST http://127.0.0.1:8787/api/leads \
+            -H 'Content-Type: application/json' \
+            -d "{\"cardId\":\"$card_id\",\"name\":\"Workerd Lead\",\"phone\":\"+201111111111\",\"email\":\"test@example.invalid\"}")"
+          if [ "$lead_status" != "200" ]; then
+            echo "lead capture HTTP $lead_status"
+            cat /tmp/nfc-lead.json
+            tail -n 100 /tmp/cardnexus-cloudflare-preview.log
+            exit 1
+          fi
+          grep -q '"success":true' /tmp/nfc-lead.json
+          # One-pixel PNG: exercises actual R2 put/get from an authenticated session.
+          printf '%s' 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/bdoAAAAASUVORK5CYII=' | base64 -d > /tmp/nfc-test.png
+          upload_status="$(curl -sS -o /tmp/nfc-upload.json -w '%{http_code}' \
+            -b /tmp/nfc-cookies.txt -X POST http://127.0.0.1:8787/api/upload \
+            -F 'file=@/tmp/nfc-test.png;type=image/png')"
+          if [ "$upload_status" != "200" ]; then
+            echo "R2 upload HTTP $upload_status"
+            cat /tmp/nfc-upload.json
+            tail -n 100 /tmp/cardnexus-cloudflare-preview.log
+            exit 1
+          fi
+          upload_url="$(node -e 'const j=require("/tmp/nfc-upload.json"); process.stdout.write(j.url || "")')"
+          test -n "$upload_url"
+          curl --fail --silent "http://127.0.0.1:8787$upload_url" -o /tmp/nfc-stored.png
+          cmp /tmp/nfc-stored.png /tmp/nfc-test.png
+          echo "Workerd lead capture and Cloudflare R2 image upload/download passed."
       - name: Commit lockfile and generated migration to feature branch
         if: success() && github.event_name == 'push' && github.ref_name == 'feature/cloudflare-workers-d1'
         shell: bash
