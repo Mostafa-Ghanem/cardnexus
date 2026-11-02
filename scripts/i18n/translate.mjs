@@ -1,102 +1,84 @@
 #!/usr/bin/env node
 /**
- * Idempotent GitHub Models translation of UI source strings only.
- * Needs an Actions GITHUB_TOKEN with models:read permission.
+ * Translate UI source strings to Saudi Arabic and English using Cloudflare Workers AI.
+ * Required for unattended runs (GitHub Actions secrets, never commit tokens):
+ * CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID.
+ * Uses strict JSON schema output; commits translations only after validation.
  */
 import fs from "node:fs";
-const source = JSON.parse(fs.readFileSync("messages/source.json", "utf8"));
-const token = process.env.GITHUB_TOKEN || process.env.GH_MODELS_TOKEN;
-const maximum = Math.min(500, Math.max(1, Number(process.env.MAX_TRANSLATIONS_PER_RUN || 160)));
-const model = process.env.GITHUB_MODEL || "openai/gpt-4.1-mini";
-const endpoint = "https://models.github.ai/inference/chat/completions";
-const ar = JSON.parse(fs.readFileSync("messages/ar-SA.json", "utf8"));
-const en = JSON.parse(fs.readFileSync("messages/en.json", "utf8"));
-const missing = source.filter(x => !ar[x.text] || !en[x.text]).slice(0, maximum);
-if (!missing.length) { console.log("All extracted strings translated."); process.exit(0); }
-if (!token) { console.error("GITHUB_TOKEN with models:read is required."); process.exit(1); }
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-function sanitize(original, value) {
-  if (typeof value !== "string") return null;
-  const translated = value.trim();
-  if (!translated || translated.length > Math.max(180, original.length * 5)) return null;
-  const markers = original.match(/\{\{[^}]+\}\}|\{\w+\}|%[sd]/g) || [];
-  if (markers.some(m => !translated.includes(m))) return null;
-  if (/<\/?[a-z][^>]*>/i.test(translated) && !/<\/?[a-z][^>]*>/i.test(original)) return null;
-  return translated;
+const source = JSON.parse(fs.readFileSync("messages/source.json","utf8"));
+const apiToken = process.env.CLOUDFLARE_API_TOKEN;
+const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
+const model = process.env.CLOUDFLARE_TRANSLATION_MODEL || "@cf/openai/gpt-oss-120b";
+const max = Math.min(500,Math.max(1,Number(process.env.MAX_TRANSLATIONS_PER_RUN||120)));
+if (!apiToken || !accountId) {
+  console.warn("Cloudflare AI translation skipped: provide CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in GitHub Actions Secrets.");
+  process.exit(0);
 }
-async function translate(locale, originals) {
-  const language = locale === "ar-SA"
-    ? "Professional Saudi Arabic (ar-SA), fluent formal business Arabic used in Saudi interfaces. Avoid Egyptian dialect. Keep NFC, QR, CRM and brand names."
-    : "Clear professional English (en), concise, consistent and accessible for UI.";
-  const messages = [
-    { role: "system", content:
-      "Translate user-facing UI copy from German (or existing English) into " + language +
-      " Return ONLY JSON with a translations array of strings in the same order. " +
-      "Preserve numbers, product names, URLs, tokens and formatting. " +
-      "Never invent legal or performance claims. Reword German-hosting/privacy compliance guarantees neutrally. " +
-      "Do not translate names, emails or sample contacts. No markdown." },
-    { role: "user", content: JSON.stringify({ locale, texts: originals }) },
-  ];
-  for (let attempt = 0; attempt < 4; attempt++) {
-    const response = await fetch("https://models.github.ai/inference/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token,
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json",
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-      body: JSON.stringify({ model, messages, temperature: 0.1, max_tokens: 7000, response_format: { type: "json_object" } }),
-      signal: AbortSignal.timeout(90000),
-    });
-    if (response.status === 429 || response.status >= 500) {
-      console.error("Retryable GitHub Models error", response.status, attempt + 1);
-      await sleep((attempt + 1) * 5000);
-      continue;
-    }
-    if (!response.ok) {
-      throw new Error("GitHub Models HTTP " + response.status + " " + (await response.text()).slice(0,250));
-    }
-    const result = await response.json();
-    const raw = result?.choices?.[0]?.message?.content;
-    if (!raw) throw new Error("Empty GitHub Models response");
-    const fence = String.fromCharCode(96).repeat(3);
-    const cleaned = raw.trim().startsWith(fence) ?
-      raw.trim().slice(raw.trim().indexOf("\n")+1).replace(new RegExp(fence + "\\s*$"),"") : raw;
-    let parsed;
-    try {
-      parsed = JSON.parse(cleaned);
-    } catch {
-      const start = cleaned.indexOf("{");
-      const end = cleaned.lastIndexOf("}");
-      if (start < 0 || end < start) throw new Error("Model did not return JSON; prefix=" + cleaned.slice(0, 60));
-      parsed = JSON.parse(cleaned.slice(start, end + 1));
-    }
-    if (!Array.isArray(parsed.translations) || parsed.translations.length !== originals.length) {
-      throw new Error("Array length mismatch: refused translation");
-    }
-    return parsed.translations.map((x,i) => sanitize(originals[i], x));
+const catalogs = {
+  "ar-SA": JSON.parse(fs.readFileSync("messages/ar-SA.json","utf8")),
+  "en": JSON.parse(fs.readFileSync("messages/en.json","utf8")),
+};
+const sleep = n => new Promise(resolve=>setTimeout(resolve,n));
+async function request(locale,texts){
+ const guide = locale==="ar-SA" ?
+  "Translate German digital business card SaaS UI into professional Saudi Arabic (Modern Standard Arabic). Karte means a digital BUSINESS CARD, never a map. Use natural localized B2B wording." :
+  "Translate German digital business card SaaS UI into fluent concise English for business users.";
+ const result = await fetch("https://api.cloudflare.com/client/v4/accounts/"+accountId+
+   "/ai/run/"+model,{
+   method:"POST",
+   headers:{Authorization:"Bearer "+apiToken,"Content-Type":"application/json"},
+   body:JSON.stringify({
+     messages:[
+       {role:"system",content:guide+" Return only a valid JSON object containing translations array in the exact input order and count. Preserve product names, numbers, URLs, Latin technical acronyms, HTML and interpolation tokens. Do not invent legal/compliance/server-location claims. Keep fragments as fragments."},
+       {role:"user",content:JSON.stringify({texts})},
+     ],
+     response_format:{type:"json_schema",json_schema:{
+       name:"ui_translations",strict:true,
+       schema:{type:"object",properties:{translations:{type:"array",items:{type:"string"}}},required:["translations"],additionalProperties:false},
+     }},
+     max_tokens:2800,temperature:0,
+   }),
+   signal:AbortSignal.timeout(90000),
+ });
+ const body=await result.text();
+ if(!result.ok)throw new Error("Cloudflare Workers AI HTTP "+result.status);
+ const decoded=JSON.parse(body);
+ if(!decoded.success)throw new Error("Cloudflare Workers AI returned an error");
+ let translation=decoded.result?.response??decoded.result?.choices?.[0]?.message?.content;
+ if(typeof translation==="string")translation=JSON.parse(translation);
+ if(!Array.isArray(translation?.translations) || translation.translations.length!==texts.length){
+  throw new Error("Translation JSON schema count mismatch; refusing output");
+ }
+ return translation.translations;
+}
+function valid(original,text){
+ if(typeof text!=="string"||!text.trim())return false;
+ if(text.length>Math.max(180,original.length*5))return false;
+ if(/[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/.test(text))return false;
+ const placeholders=original.match(/\{\{[^}]+\}\}|\{\w+\}|%[sd]/g)||[];
+ return placeholders.every(marker=>text.includes(marker));
+}
+const missing=source.filter(x=>!catalogs["ar-SA"][x.text] || !catalogs.en[x.text]).slice(0,max);
+let complete=0;
+for(const locale of ["ar-SA","en"]){
+ const dict=catalogs[locale];
+ const target=missing.map(x=>x.text).filter(text=>!dict[text]);
+ for(let i=0;i<target.length;i+=15){
+  const batch=target.slice(i,i+15);
+  let values;
+  try {values=await request(locale,batch);}
+  catch(error){
+   console.error(locale+" translation paused: "+String(error));
+   // Preserve successful batches. Coverage report identifies missing copy.
+   break;
   }
-  throw new Error("GitHub Models rate limit");
-}
-let count = 0;
-for (let idx=0; idx<missing.length; idx+=20) {
-  const chunk = missing.slice(idx,idx+20);
-  for (const [locale, catalog] of [["en",en],["ar-SA",ar]]) {
-    const sourceText = chunk.filter(x=>!catalog[x.text]).map(x=>x.text);
-    if (!sourceText.length) continue;
-    try {
-      const values = await translate(locale,sourceText);
-      values.forEach((text,i)=>{if(text){catalog[sourceText[i]]=text;count++;}});
-      fs.writeFileSync("messages/"+locale+".json",JSON.stringify(catalog,null,2)+"\n");
-      console.log(locale+" completed "+values.filter(Boolean).length+"/"+sourceText.length);
-    } catch (err) {
-      console.error("Translation paused: "+String(err));
-      console.error("Already translated entries remain saved for review. Rerun to continue.");
-      console.log("Catalog entries translated in this run: "+count);
-      process.exit(0);
-    }
-    await sleep(1300);
+  for(let j=0;j<batch.length;j++){
+   if(valid(batch[j],values[j])){dict[batch[j]]=values[j].trim();complete++;}
   }
+  fs.writeFileSync("messages/"+locale+".json",JSON.stringify(dict,null,2)+"\n");
+  console.log("Completed "+locale+" batch "+Math.min(i+15,target.length)+"/"+target.length);
+  await sleep(1000);
+ }
 }
-console.log("Catalog entries translated in this run: "+count);
+console.log("New translations in this run: "+complete);
