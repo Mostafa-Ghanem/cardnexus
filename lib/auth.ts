@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { twoFactor } from "better-auth/plugins";
 import { db } from "./db";
-import { env } from "cloudflare:workers";
+import { bindings as env } from "./cloudflare-bindings";
 
 // Hostinger can assign its own internal process port. Auth must expose the
 // actual HTTPS origin rather than a hard-coded localhost:3000 address.
