@@ -130,8 +130,8 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
                     : "border-border hover:border-muted-foreground"
                 )}
               >
-                <p className="font-medium text-sm">{s.label}</p>
-                <p className="text-xs text-muted-foreground mt-0.5">{s.desc}</p>
+                <p className="font-medium text-sm"><T text={s.label} /></p>
+                <p className="text-xs text-muted-foreground mt-0.5"><T text={s.desc} /></p>
               </button>
             ))}
           </div>
@@ -229,7 +229,7 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
               { label: "Betr.:",val: "Meine Nachricht" },
             ].map(({ label, val }) => (
               <div key={label} className="flex items-center gap-2 text-xs text-muted-foreground">
-                <span className="font-medium w-10">{label}</span>
+                <span className="font-medium w-10"><T text={label} /></span>
                 <span>{val}</span>
               </div>
             ))}
