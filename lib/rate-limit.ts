@@ -1,36 +1,21 @@
-/**
- * Lightweight in-memory token-bucket rate limiter.
- * NOT cluster-safe — fine for a single-node deployment, replaceable later
- * by Upstash/Redis without changing the call sites.
- *
- * Usage:
- *   const ok = rateLimit({ key: `lead:${ip}:${cardId}`, max: 5, windowMs: 60_000 });
- *   if (!ok) return NextResponse.json({ error: "rate limited" }, { status: 429 });
- */
+import { env } from "cloudflare:workers";
 
-interface Bucket { count: number; resetAt: number }
-
-const store = new Map<string, Bucket>();
-
-// Periodically prune expired buckets so the map doesn't grow unbounded.
-let lastSweep = Date.now();
-function maybeSweep(now: number) {
-  if (now - lastSweep < 60_000) return;
-  lastSweep = now;
-  for (const [k, v] of store) {
-    if (v.resetAt <= now) store.delete(k);
-  }
-}
-
-export function rateLimit(opts: { key: string; max: number; windowMs: number }): boolean {
-  const now = Date.now();
-  maybeSweep(now);
-  const cur = store.get(opts.key);
-  if (!cur || cur.resetAt <= now) {
-    store.set(opts.key, { count: 1, resetAt: now + opts.windowMs });
-    return true;
-  }
-  if (cur.count >= opts.max) return false;
-  cur.count += 1;
-  return true;
+// Per-isolate in-memory Maps do not enforce rate limits across Cloudflare
+// colos or restarts. A single atomic UPSERT/RETURNING enforces a shared limit.
+export async function rateLimit(opts: {
+  key: string;
+  max: number;
+  windowMs: number;
+}): Promise<boolean> {
+  const epoch = Math.floor(Date.now() / opts.windowMs);
+  const raw = new TextEncoder().encode(`${epoch}:${opts.key}`);
+  const digest = await crypto.subtle.digest("SHA-256", raw);
+  const key = Array.from(new Uint8Array(digest))
+    .map((v) => v.toString(16).padStart(2, "0")).join("");
+  const expiresAt = Math.ceil(((epoch + 1) * opts.windowMs) / 1000);
+  const row = await env.DB.prepare(
+    "INSERT INTO RateLimitBucket (id,count,expiresAt) VALUES (?,1,?) " +
+    "ON CONFLICT(id) DO UPDATE SET count=count+1 RETURNING count"
+  ).bind(key, expiresAt).first<{ count: number }>();
+  return !!row && row.count <= opts.max;
 }
