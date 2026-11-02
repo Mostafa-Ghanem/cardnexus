@@ -60,8 +60,8 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
                     <Lock className="h-2.5 w-2.5" /><T text={"Pro"} /></span>
                 )}
                 <div className="h-8 w-8 rounded-lg mb-2" style={{ backgroundColor: t.preview }} />
-                <p className="text-sm font-medium">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.description}</p>
+                <p className="text-sm font-medium"><T text={t.name} /></p>
+                <p className="text-xs text-muted-foreground"><T text={t.description} /></p>
               </button>
             );
           })}
@@ -134,8 +134,8 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
               className={`rounded-lg border-2 p-3 text-left transition-all ${
                 (card.cardBackground ?? "white") === b.value ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"
               }`}>
-              <p className="text-sm font-medium">{b.label}</p>
-              <p className="text-xs text-muted-foreground">{b.description}</p>
+              <p className="text-sm font-medium"><T text={b.label} /></p>
+              <p className="text-xs text-muted-foreground"><T text={b.description} /></p>
             </button>
           ))}
         </div>
@@ -173,7 +173,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
                   (card.fontFamily ?? "inter") === f.value ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"
                 } ${locked ? "opacity-50 cursor-not-allowed" : ""}`}>
                 <p className={`text-2xl mb-1 ${f.className}`}>{f.preview}</p>
-                <p className="text-xs font-medium">{f.label}</p>
+                <p className="text-xs font-medium"><T text={f.label} /></p>
               </button>
             );
           })}
@@ -195,8 +195,8 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
                 className={`w-full rounded-lg border-2 p-3 text-left transition-all ${
                   (card.layoutStyle ?? "standard") === l.value ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"
                 } ${locked ? "opacity-50 cursor-not-allowed" : ""}`}>
-                <p className="text-sm font-medium">{l.label}</p>
-                <p className="text-xs text-muted-foreground">{l.description}</p>
+                <p className="text-sm font-medium"><T text={l.label} /></p>
+                <p className="text-xs text-muted-foreground"><T text={l.description} /></p>
               </button>
             );
           })}
@@ -245,8 +245,8 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
               className={`w-full rounded-lg border-2 p-3 text-left transition-all ${
                 (card.socialStyle ?? "icons") === s.value ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"
               }`}>
-              <p className="text-sm font-medium">{s.label}</p>
-              <p className="text-xs text-muted-foreground">{s.description}</p>
+              <p className="text-sm font-medium"><T text={s.label} /></p>
+              <p className="text-xs text-muted-foreground"><T text={s.description} /></p>
             </button>
           ))}
         </div>
@@ -280,8 +280,8 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       ].map(({ key, label, desc }) => (
         <div key={key} className="flex items-center justify-between rounded-lg border border-border p-4">
           <div>
-            <p className="text-sm font-medium">{label}</p>
-            <p className="text-xs text-muted-foreground">{desc}</p>
+            <p className="text-sm font-medium"><T text={label} /></p>
+            <p className="text-xs text-muted-foreground"><T text={desc} /></p>
           </div>
           <Switch
             checked={card[key] as boolean ?? (key !== "showQrOnCard" && key !== "hideShareButton")}
