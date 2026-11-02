@@ -8,8 +8,35 @@ import type { CardData } from "@/types";
 import { X, Loader2, CheckCircle2, ChevronDown } from "lucide-react";
 import { normalizeDigits } from "@/lib/utils";
 import { Turnstile, turnstileSiteKey } from "@/components/ui/turnstile";
+import type { CardLang } from "@/lib/card-i18n";
 
 const STORAGE_KEY = "lead_visitor_v1";
+
+const TEXT = {
+  ar: {
+    needName: "من فضلك اكتب اسمك.", needContact: "أضف رقم الجوال أو البريد الإلكتروني حتى نتمكن من التواصل معك.",
+    badPhone: "رقم الجوال غير مكتمل.", waitCaptcha: "انتظر لحظة حتى يكتمل التحقق ثم أعد المحاولة.",
+    sendFailed: "تعذّر الإرسال، حاول مرة أخرى.", unexpected: "حدث خطأ غير متوقع.", tooMany: "",
+    owner: "صاحب البطاقة", title: "اترك بياناتك", subtitle: (n: string) => `سيتواصل معك ${n} في أقرب وقت`,
+    close: "إغلاق", thanks: "شكرًا لك!", delivered: (n: string) => `وصلت بياناتك إلى ${n}.`,
+    name: "الاسم *", namePh: "اسمك الكامل", phone: "رقم الجوال", phonePh: "05xxxxxxxx",
+    email: "البريد الإلكتروني", optional: "(اختياري)", message: "رسالة", messagePh: "اكتب رسالتك (اختياري)",
+    addMessage: "إضافة رسالة", sending: "جارٍ الإرسال…", send: "إرسال",
+    privacy: "بياناتك تصل لصاحب البطاقة فقط، ولن تُستخدم لأي غرض آخر.",
+  },
+  en: {
+    needName: "Please enter your name.", needContact: "Add your mobile number or email so we can reach you.",
+    badPhone: "The mobile number looks incomplete.", waitCaptcha: "Please wait for the verification to finish, then try again.",
+    sendFailed: "Could not send, please try again.", unexpected: "Something went wrong.", tooMany: "Too many requests, please try again later.",
+    owner: "the card owner", title: "Leave your details", subtitle: (n: string) => `${n} will get back to you soon`,
+    close: "Close", thanks: "Thank you!", delivered: (n: string) => `Your details were sent to ${n}.`,
+    name: "Name *", namePh: "Your full name", phone: "Mobile number", phonePh: "+1 555 123 4567",
+    email: "Email", optional: "(optional)", message: "Message", messagePh: "Write a message (optional)",
+    addMessage: "Add a message", sending: "Sending…", send: "Send",
+    privacy: "Your details go only to the card owner and are not used for anything else.",
+  },
+};
+
 
 interface Visitor { name: string; phone: string; email: string }
 
@@ -31,7 +58,8 @@ function saveVisitor(v: Visitor) {
  * autofill (name / tel / email), the visitor's details are remembered on their own
  * device so a second card takes one tap. Message is optional and collapsed.
  */
-export function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
+export function LeadModal({ card, onClose, lang = "ar" }: { card: CardData; onClose: () => void; lang?: CardLang }) {
+  const TX = TEXT[lang];
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "", website: "" });
   const [captcha, setCaptcha] = useState("");
   const [showMessage, setShowMessage] = useState(false);
@@ -58,10 +86,10 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
     const name = form.name.trim();
     const phone = normalizeDigits(form.phone).replace(/[^\d+]/g, "");
     const email = form.email.trim();
-    if (!name) { setError("من فضلك اكتب اسمك."); return; }
-    if (!phone && !email) { setError("أضف رقم الجوال أو البريد الإلكتروني حتى نتمكن من التواصل معك."); return; }
-    if (phone && phone.replace(/\D/g, "").length < 7) { setError("رقم الجوال غير مكتمل."); return; }
-    if (turnstileSiteKey && !captcha) { setError("انتظر لحظة حتى يكتمل التحقق ثم أعد المحاولة."); return; }
+    if (!name) { setError(TX.needName); return; }
+    if (!phone && !email) { setError(TX.needContact); return; }
+    if (phone && phone.replace(/\D/g, "").length < 7) { setError(TX.badPhone); return; }
+    if (turnstileSiteKey && !captcha) { setError(TX.waitCaptcha); return; }
     setError(null);
     setLoading(true);
     try {
@@ -72,24 +100,27 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
       });
       if (!res.ok) {
         const j = await res.json().catch(() => ({}));
-        throw new Error(j.error ?? "تعذّر الإرسال، حاول مرة أخرى.");
+        // Server messages are Arabic; English visitors get a local equivalent.
+        if (lang === "en") throw new Error(res.status === 429 ? TX.tooMany : TX.sendFailed);
+        throw new Error(j.error ?? TX.sendFailed);
       }
       saveVisitor({ name, phone, email });
       setSuccess(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "حدث خطأ غير متوقع.");
+      setError(err instanceof Error ? err.message : TX.unexpected);
     } finally {
       setLoading(false);
     }
   }
 
-  const ownerName = [card.firstName, card.lastName].filter(Boolean).join(" ") || "صاحب البطاقة";
+  const ownerName = [card.firstName, card.lastName].filter(Boolean).join(" ") || TX.owner;
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm sm:p-4"
       onClick={onClose}
       role="dialog"
+      dir={lang === "en" ? "ltr" : "rtl"}
       aria-modal="true"
       aria-labelledby="lead-title"
     >
@@ -100,12 +131,12 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
         <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-gray-300 dark:bg-gray-700 sm:hidden" />
         <div className="flex items-start justify-between mb-4 gap-3">
           <div>
-            <h3 id="lead-title" className="font-bold text-lg">اترك بياناتك</h3>
+            <h3 id="lead-title" className="font-bold text-lg">{TX.title}</h3>
             <p className="text-sm text-muted-foreground mt-0.5">
-              سيتواصل معك {ownerName} في أقرب وقت
+              {TX.subtitle(ownerName)}
             </p>
           </div>
-          <button type="button" onClick={onClose} aria-label="إغلاق" className="text-muted-foreground hover:text-foreground p-2 -m-1 rounded-lg hover:bg-accent transition-colors">
+          <button type="button" onClick={onClose} aria-label={TX.close} className="text-muted-foreground hover:text-foreground p-2 -m-1 rounded-lg hover:bg-accent transition-colors">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -113,14 +144,14 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
         {success ? (
           <div className="flex flex-col items-center py-6 text-center gap-3">
             <CheckCircle2 className="h-12 w-12" style={{ color: card.primaryColor }} />
-            <p className="font-semibold">شكرًا لك!</p>
-            <p className="text-sm text-muted-foreground">وصلت بياناتك إلى {ownerName}.</p>
-            <Button variant="outline" size="lg" className="mt-2 w-full" onClick={onClose}>إغلاق</Button>
+            <p className="font-semibold">{TX.thanks}</p>
+            <p className="text-sm text-muted-foreground">{TX.delivered(ownerName)}</p>
+            <Button variant="outline" size="lg" className="mt-2 w-full" onClick={onClose}>{TX.close}</Button>
           </div>
         ) : (
           <form onSubmit={submit} className="relative space-y-3" noValidate>
             <div>
-              <Label htmlFor="lead-name">الاسم *</Label>
+              <Label htmlFor="lead-name">{TX.name}</Label>
               <Input
                 ref={nameRef}
                 id="lead-name"
@@ -129,13 +160,13 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
                 enterKeyHint="next"
                 value={form.name}
                 onChange={(e) => set("name", e.target.value)}
-                placeholder="اسمك الكامل"
+                placeholder={TX.namePh}
                 className="mt-1 h-12 text-base"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="lead-phone">رقم الجوال</Label>
+              <Label htmlFor="lead-phone">{TX.phone}</Label>
               <Input
                 id="lead-phone"
                 name="tel"
@@ -145,12 +176,12 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
                 enterKeyHint="next"
                 value={form.phone}
                 onChange={(e) => set("phone", e.target.value)}
-                placeholder="05xxxxxxxx"
+                placeholder={TX.phonePh}
                 className="mt-1 h-12 text-base"
               />
             </div>
             <div>
-              <Label htmlFor="lead-email">البريد الإلكتروني <span className="text-muted-foreground font-normal">(اختياري)</span></Label>
+              <Label htmlFor="lead-email">{TX.email} <span className="text-muted-foreground font-normal">{TX.optional}</span></Label>
               <Input
                 id="lead-email"
                 name="email"
@@ -168,12 +199,12 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
 
             {showMessage ? (
               <div>
-                <Label htmlFor="lead-message">رسالة</Label>
+                <Label htmlFor="lead-message">{TX.message}</Label>
                 <textarea
                   id="lead-message"
                   value={form.message}
                   onChange={(e) => set("message", e.target.value)}
-                  placeholder="اكتب رسالتك (اختياري)"
+                  placeholder={TX.messagePh}
                   rows={3}
                   maxLength={500}
                   className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-none"
@@ -181,7 +212,7 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
               </div>
             ) : (
               <button type="button" onClick={() => setShowMessage(true)} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-                <ChevronDown className="h-4 w-4" /> إضافة رسالة
+                <ChevronDown className="h-4 w-4" /> {TX.addMessage}
               </button>
             )}
 
@@ -202,10 +233,10 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
               disabled={loading}
               style={{ backgroundColor: card.primaryColor }}
             >
-              {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> جارٍ الإرسال…</> : "إرسال"}
+              {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> {TX.sending}</> : TX.send}
             </Button>
             <p className="text-[11px] text-center text-muted-foreground">
-              بياناتك تصل لصاحب البطاقة فقط، ولن تُستخدم لأي غرض آخر.
+              {TX.privacy}
             </p>
           </form>
         )}

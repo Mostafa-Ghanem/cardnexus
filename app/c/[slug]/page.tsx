@@ -6,19 +6,21 @@ import type { CardData } from "@/types";
 import { PublicCardView } from "./client";
 import { CardPasswordGate } from "./PasswordGate";
 import { canUseFeature } from "@/lib/plans";
+import { localizeCard } from "@/lib/card-i18n";
 import { makeCardUnlockToken } from "@/lib/password-hash";
 import type { Metadata } from "next";
 
 interface Props {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ source?: string; expired?: string }>;
+  searchParams: Promise<{ source?: string; expired?: string; lang?: string }>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const { lang } = await searchParams;
   const card = await db.card.findUnique({
     where: { slug },
-    select: { firstName: true, lastName: true, title: true, company: true, isPublic: true, expiresAt: true, passwordHash: true },
+    select: { firstName: true, lastName: true, title: true, company: true, isPublic: true, expiresAt: true, passwordHash: true, translations: true },
   });
   if (!card) return { title: "البطاقة غير موجودة" };
 
@@ -27,10 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (card.expiresAt && card.expiresAt < new Date()) return { title: "البطاقة منتهية" };
   if (card.passwordHash) return { title: "بطاقة محمية" };
 
-  const name = `${card.firstName ?? ""} ${card.lastName ?? ""}`.trim();
+  const shown = localizeCard(card, lang === "en" ? "en" : "ar");
+  const name = `${shown.firstName ?? ""} ${shown.lastName ?? ""}`.trim();
   return {
-    title: `${name}${card.title ? ` – ${card.title}` : ""}`,
-    description: card.company ?? undefined,
+    title: `${name}${shown.title ? ` – ${shown.title}` : ""}`,
+    description: shown.company ?? undefined,
     openGraph: { title: name, type: "profile" },
   };
 }

@@ -82,6 +82,11 @@
   input[type="email"]::placeholder, input[type="tel"]::placeholder, input[type="url"]::placeholder {
     text-align: right;
   }
+  /* Inside English (LTR) sections, e.g. the English version of a card */
+  [dir="ltr"] input[type="email"], [dir="ltr"] input[type="tel"], [dir="ltr"] input[type="url"], [dir="ltr"] input[type="password"],
+  [dir="ltr"] input[type="email"]::placeholder, [dir="ltr"] input[type="tel"]::placeholder, [dir="ltr"] input[type="url"]::placeholder {
+    text-align: left;
+  }
 }
 
 /* Custom scrollbar */

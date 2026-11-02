@@ -12,6 +12,7 @@ import { CardPreview } from "./CardPreview";
 import { DesignTab } from "./editor/DesignTab";
 import type { CardData, CustomLink, DesignPolicy } from "@/types";
 import { EnglishTab } from "./editor/EnglishTab";
+import { localizeCard } from "@/lib/card-i18n";
 import { whatsappDigits } from "@/lib/utils";
 import { Plus, Trash2, Save, Eye, GripVertical } from "lucide-react";
 import { toast } from "@/components/ui/sonner";
@@ -70,6 +71,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
   const [error, setError]       = useState("");
   const [success, setSuccess]   = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [previewLang, setPreviewLang] = useState<"ar" | "en">("ar");
 
   function update<K extends keyof CardData>(key: K, value: CardData[K] | null) {
     setCard((prev) => ({ ...prev, [key]: value }));
@@ -140,7 +142,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       <div className="flex-1 min-w-0">
-        <Tabs defaultValue="profile">
+        <Tabs defaultValue="profile" onValueChange={(v) => setPreviewLang(v === "english" ? "en" : "ar")}>
           <TabsList className="mb-6 h-auto gap-1 w-full justify-start overflow-x-auto flex-nowrap sm:flex-wrap">
             <TabsTrigger value="profile">الملف</TabsTrigger>
             <TabsTrigger value="media">الصور</TabsTrigger>
@@ -410,7 +412,9 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
 
       <div className={`lg:w-80 lg:sticky lg:top-4 lg:self-start ${showPreview ? "" : "hidden lg:block"}`}>
         <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-4">معاينة مباشرة</p>
-        <CardPreview card={card} scale={0.85} />
+        <div dir={previewLang === "en" ? "ltr" : "rtl"}>
+          <CardPreview card={previewLang === "en" ? localizeCard(card, "en") : card} lang={previewLang} scale={0.85} />
+        </div>
       </div>
     </div>
   );

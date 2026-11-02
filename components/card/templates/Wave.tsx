@@ -1,9 +1,12 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, shadowClass, avatarBorderStyle } from "../CardPreview";
 import { SocialLinks } from "./SocialLinks";
 
-export function WaveTemplate({ card }: { card: Partial<CardData> }) {
+export function WaveTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color   = card.primaryColor ?? "#0ea5e9";
   const accent  = card.accentColor  ?? color;
   const font    = fontClass(card.fontFamily);
@@ -28,7 +31,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
         {/* Logo */}
         {card.logoUrl && (
           <div className="absolute top-4 end-4">
-            <img src={card.logoUrl} alt="Logo" className="h-7 w-auto max-w-[64px] object-contain opacity-85"
+            <img src={card.logoUrl} alt={L.logoAlt} className="h-7 w-auto max-w-[64px] object-contain opacity-85"
               style={{ filter: "brightness(0) invert(1)" }} />
           </div>
         )}
@@ -48,7 +51,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
 
       {/* Identity */}
       <div className="text-center px-6 pb-4">
-        <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || "اسمك"}</h1>
+        <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || L.yourName}</h1>
         {card.title && (
           <p className="text-sm font-semibold mt-0.5" style={{ color }}>{card.title}</p>
         )}
@@ -119,7 +122,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10" />
-            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
+            <p className="text-xs text-gray-400">{L.scan}</p>
           </div>
         )}
       </div>

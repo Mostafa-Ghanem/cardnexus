@@ -1,9 +1,12 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, shadowClass, avatarBorderStyle } from "../CardPreview";
 import { SocialLinks } from "./SocialLinks";
 
-export function ModernTemplate({ card }: { card: Partial<CardData> }) {
+export function ModernTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color   = card.primaryColor ?? "#0F172A";
   const accent  = card.accentColor  ?? color;
   const font    = fontClass(card.fontFamily);
@@ -26,7 +29,7 @@ export function ModernTemplate({ card }: { card: Partial<CardData> }) {
           <div className="absolute top-3 end-3">
             <img
               src={card.logoUrl}
-              alt="Logo"
+              alt={L.logoAlt}
               className="h-7 w-auto max-w-[64px] object-contain opacity-90"
               style={{ filter: "brightness(0) invert(1)" }}
             />
@@ -109,8 +112,8 @@ export function ModernTemplate({ card }: { card: Partial<CardData> }) {
       {/* QR */}
       {card.showQrOnCard && card.slug && (
         <div className="px-6 pb-4 flex items-center gap-3">
-          <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12" />
-          <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
+          <img src={`/api/qr/${card.slug}`} alt={L.qrAlt} className="h-12 w-12" />
+          <p className="text-xs text-gray-400">{L.scan}</p>
         </div>
       )}
     </div>

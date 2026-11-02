@@ -1,9 +1,12 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, shadowClass, avatarBorderStyle } from "../CardPreview";
 import { SocialLinks } from "./SocialLinks";
 
-export function NeonTemplate({ card }: { card: Partial<CardData> }) {
+export function NeonTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color   = card.primaryColor ?? "#22d3ee";
   const accent  = card.accentColor  ?? color;
   const font    = fontClass(card.fontFamily);
@@ -39,7 +42,7 @@ export function NeonTemplate({ card }: { card: Partial<CardData> }) {
           <div className={`mb-5 ${isCentered ? "flex justify-center" : ""}`}>
             <img
               src={card.logoUrl}
-              alt="Logo"
+              alt={L.logoAlt}
               className="h-7 w-auto max-w-[80px] object-contain"
               style={{ filter: `brightness(0) invert(1) drop-shadow(0 0 6px ${color})`, opacity: 0.8 }}
             />
@@ -123,9 +126,9 @@ export function NeonTemplate({ card }: { card: Partial<CardData> }) {
 
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12"
+            <img src={`/api/qr/${card.slug}`} alt={L.qrAlt} className="h-12 w-12"
               style={{ filter: `invert(1) sepia(1) saturate(5) hue-rotate(${color === "#22d3ee" ? "160deg" : "0deg"})`, opacity: 0.7 }} />
-            <p className="text-xs font-mono" style={{ color: `${color}50` }}>امسح_للبطاقة</p>
+            <p className="text-xs font-mono" style={{ color: `${color}50` }}>{L.scanMono}</p>
           </div>
         )}
       </div>

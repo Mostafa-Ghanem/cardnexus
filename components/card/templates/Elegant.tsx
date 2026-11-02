@@ -1,9 +1,12 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, shadowClass, avatarBorderStyle } from "../CardPreview";
 import { SocialLinks } from "./SocialLinks";
 
-export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
+export function ElegantTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color   = card.primaryColor ?? "#0F172A";
   const accent  = card.accentColor  ?? color;
   const font    = fontClass(card.fontFamily);
@@ -20,7 +23,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
       {/* Logo */}
       {card.logoUrl && (
         <div className="absolute top-5 end-5">
-          <img src={card.logoUrl} alt="Logo" className="h-7 w-auto max-w-[64px] object-contain opacity-70" />
+          <img src={card.logoUrl} alt={L.logoAlt} className="h-7 w-auto max-w-[64px] object-contain opacity-70" />
         </div>
       )}
 
@@ -37,7 +40,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
           </div>
           <div className="min-w-0">
             <h1 className="text-xl font-bold tracking-tight text-gray-900 leading-snug">
-              {name || "اسمك"}
+              {name || L.yourName}
             </h1>
             {card.title && (
               <p className="text-sm font-medium mt-0.5 tracking-wide" style={{ color }}>
@@ -75,7 +78,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors group">
               <Phone className="h-3.5 w-3.5 shrink-0 group-hover:scale-110 transition-transform" style={{ color: accent }} />
-              <span><bdi>{card.mobile}</bdi> (جوال)</span>
+              <span><bdi>{card.mobile}</bdi> {L.mobileSuffix}</span>
             </a>
           )}
           {card.email && (
@@ -116,7 +119,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10" />
-            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
+            <p className="text-xs text-gray-400">{L.scan}</p>
           </div>
         )}
       </div>

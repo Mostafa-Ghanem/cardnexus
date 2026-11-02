@@ -1,9 +1,12 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, shadowClass, avatarBorderStyle } from "../CardPreview";
 import { SocialLinks } from "./SocialLinks";
 
-export function BoldTemplate({ card }: { card: Partial<CardData> }) {
+export function BoldTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color   = card.primaryColor ?? "#0F172A";
   const accent  = card.accentColor  ?? color;
   const font    = fontClass(card.fontFamily);
@@ -26,7 +29,7 @@ export function BoldTemplate({ card }: { card: Partial<CardData> }) {
       >
         {/* Logo */}
         {card.logoUrl
-          ? <img src={card.logoUrl} alt="Logo" className="h-6 w-auto max-w-[64px] object-contain opacity-70 mb-2"
+          ? <img src={card.logoUrl} alt={L.logoAlt} className="h-6 w-auto max-w-[64px] object-contain opacity-70 mb-2"
               style={{ filter: "brightness(0) invert(1)" }} />
           : <div className="mb-2" />}
 
@@ -73,7 +76,7 @@ export function BoldTemplate({ card }: { card: Partial<CardData> }) {
             <p className="text-xs text-gray-300 mt-0.5">{card.department}</p>
           )}
           {!card.title && !card.company && (
-            <p className="text-sm font-semibold text-gray-300">المسمى الوظيفي</p>
+            <p className="text-sm font-semibold text-gray-300">{L.jobTitle}</p>
           )}
         </div>
 

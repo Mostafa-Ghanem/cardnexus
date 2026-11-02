@@ -1,9 +1,12 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin, Linkedin, Twitter, Instagram, Github, Youtube } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, radiusInnerClass, shadowClass, cardBgStyle, avatarBorderStyle } from "../CardPreview";
 import { SocialLinks } from "./SocialLinks";
 
-export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
+export function ClassicTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color  = card.primaryColor ?? "#0F172A";
   const accent = card.accentColor  ?? color;
   const layout      = card.layoutStyle ?? "standard";
@@ -30,7 +33,7 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
         <div className="absolute top-4 end-4 z-10">
           <img
             src={card.logoUrl}
-            alt="Logo"
+            alt={L.logoAlt}
             className="h-8 w-auto max-w-[72px] object-contain opacity-80"
           />
         </div>
@@ -49,7 +52,7 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
           </div>
 
           <div className={`min-w-0 ${isCentered ? "text-center" : ""}`}>
-            <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || "اسمك"}</h1>
+            <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || L.yourName}</h1>
             {card.title && (
               <p className="text-sm font-medium mt-0.5" style={{ color }}>{card.title}</p>
             )}
@@ -79,7 +82,7 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors">
               <ContactIcon icon={Phone} accent={accent} />
-              <bdi>{card.mobile}</bdi> (جوال)
+              <bdi>{card.mobile}</bdi> {L.mobileSuffix}
             </a>
           )}
           {card.email && (
@@ -125,8 +128,8 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
         {/* QR */}
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12" />
-            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
+            <img src={`/api/qr/${card.slug}`} alt={L.qrAlt} className="h-12 w-12" />
+            <p className="text-xs text-gray-400">{L.scan}</p>
           </div>
         )}
       </div>

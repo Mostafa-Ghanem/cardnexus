@@ -1,9 +1,12 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, shadowClass, avatarBorderStyle } from "../CardPreview";
 import { SocialLinks } from "./SocialLinks";
 
-export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
+export function CorporateTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color   = card.primaryColor ?? "#1e3a5f";
   const accent  = card.accentColor  ?? color;
   const font    = fontClass(card.fontFamily);
@@ -35,7 +38,7 @@ export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
             {card.logoUrl && (
               <img
                 src={card.logoUrl}
-                alt="Logo"
+                alt={L.logoAlt}
                 className="h-8 w-auto max-w-[72px] object-contain"
                 style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
               />
@@ -85,19 +88,19 @@ export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
         {/* Contact table */}
         <div className="space-y-0 divide-y divide-gray-50">
           {card.phone && (
-            <CorpRow icon={Phone} label="الهاتف" value={card.phone} href={`tel:${card.phone}`} color={color} />
+            <CorpRow icon={Phone} label={L.phone} value={card.phone} href={`tel:${card.phone}`} color={color} />
           )}
           {card.mobile && (
-            <CorpRow icon={Phone} label="الجوال" value={card.mobile} href={`tel:${card.mobile}`} color={color} />
+            <CorpRow icon={Phone} label={L.mobile} value={card.mobile} href={`tel:${card.mobile}`} color={color} />
           )}
           {card.email && (
-            <CorpRow icon={Mail} label="البريد الإلكتروني" value={card.email} href={`mailto:${card.email}`} color={color} />
+            <CorpRow icon={Mail} label={L.email} value={card.email} href={`mailto:${card.email}`} color={color} />
           )}
           {card.website && (
-            <CorpRow icon={Globe} label="الموقع" value={card.website.replace(/^https?:\/\//, "")} href={card.website} color={color} external />
+            <CorpRow icon={Globe} label={L.website} value={card.website.replace(/^https?:\/\//, "")} href={card.website} color={color} external />
           )}
           {card.address && (
-            <CorpRow icon={MapPin} label="العنوان" value={card.address} color={color} />
+            <CorpRow icon={MapPin} label={L.address} value={card.address} color={color} />
           )}
         </div>
 
@@ -117,8 +120,8 @@ export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
 
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 pt-5 border-t border-gray-100 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12" />
-            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
+            <img src={`/api/qr/${card.slug}`} alt={L.qrAlt} className="h-12 w-12" />
+            <p className="text-xs text-gray-400">{L.scan}</p>
           </div>
         )}
       </div>

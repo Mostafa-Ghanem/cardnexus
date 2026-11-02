@@ -16,10 +16,12 @@ const WALLET_ENABLED = process.env.NEXT_PUBLIC_WALLET_ENABLED === "true";
 const UI = {
   ar: { preparing: "جارٍ التجهيز…", save: "حفظ جهة الاتصال", whatsapp: "راسلني واتساب", book: "احجز موعدًا",
         lead: "اترك بياناتك للتواصل", copied: "تم النسخ!", share: "مشاركة", qr: "رمز QR",
-        shareWa: "شارك بواتساب", email: "البريد", wallet: "حفظ في المحفظة" },
+        shareWa: "شارك بواتساب", email: "البريد", wallet: "حفظ في المحفظة",
+        madeWith: "صُنعت بواسطة", close: "إغلاق", card: "بطاقة أعمال", myCard: "بطاقتي الرقمية", walletNA: "المحفظة غير متاحة حاليًا.", langGroup: "اللغة" },
   en: { preparing: "Preparing…", save: "Save contact", whatsapp: "Message me on WhatsApp", book: "Book a meeting",
         lead: "Leave your details", copied: "Copied!", share: "Share", qr: "QR code",
-        shareWa: "Share on WhatsApp", email: "Email", wallet: "Save to Wallet" },
+        shareWa: "Share on WhatsApp", email: "Email", wallet: "Save to Wallet",
+        madeWith: "Made with", close: "Close", card: "Business card", myCard: "My digital business card", walletNA: "Wallet is not available right now.", langGroup: "Language" },
 } as const;
 
 interface Props {
@@ -155,10 +157,10 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
         track(card.slug, "wallet_save");
       } else {
         const { error } = await res.json();
-        alert(error ?? "المحفظة غير متاحة حاليًا.");
+        alert(error ?? T.walletNA);
       }
     } catch {
-      alert("المحفظة غير متاحة حاليًا.");
+      alert(T.walletNA);
     } finally {
       setWalletLoading(false);
     }
@@ -166,20 +168,20 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
 
   function shareViaWhatsApp() {
     const url  = window.location.origin + `/c/${card.slug}`;
-    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "بطاقة أعمال";
+    const name = [shown.firstName, shown.lastName].filter(Boolean).join(" ") || T.card;
     window.open(`https://wa.me/?text=${encodeURIComponent(`${name} – ${url}`)}`, "_blank");
   }
 
   function shareViaEmail() {
     const url  = window.location.origin + `/c/${card.slug}`;
-    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "بطاقة أعمال";
-    window.location.href = `mailto:?subject=${encodeURIComponent(name)}&body=${encodeURIComponent(`بطاقتي الرقمية: ${url}`)}`;
+    const name = [shown.firstName, shown.lastName].filter(Boolean).join(" ") || T.card;
+    window.location.href = `mailto:?subject=${encodeURIComponent(name)}&body=${encodeURIComponent(`${T.myCard}: ${url}`)}`;
 
   }
 
   async function handleShare() {
     const url = window.location.origin + `/c/${card.slug}`;
-    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "بطاقة أعمال";
+    const name = [shown.firstName, shown.lastName].filter(Boolean).join(" ") || T.card;
 
     // Native share sheet (mobile / supported browsers)
     if (navigator.share) {
@@ -220,7 +222,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
       <div className="w-full max-w-sm">
         {bilingual && (
           <div className="mb-3 flex justify-center">
-            <div className="inline-flex rounded-full border border-border bg-white dark:bg-gray-900 p-1 text-xs font-medium" role="group" aria-label="اللغة">
+            <div className="inline-flex rounded-full border border-border bg-white dark:bg-gray-900 p-1 text-xs font-medium" role="group" aria-label={T.langGroup}>
               {(["ar", "en"] as const).map((l) => (
                 <button
                   key={l}
@@ -236,7 +238,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           </div>
         )}
         <div dir={lang === "en" ? "ltr" : "rtl"} lang={lang}>
-          <CardPreview card={shown} />
+          <CardPreview card={shown} lang={lang} />
         </div>
       </div>
 
@@ -335,8 +337,8 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold">رمز QR</h3>
-              <button onClick={() => setShowQR(false)} aria-label="إغلاق" className="text-muted-foreground hover:text-foreground p-1">
+              <h3 className="font-semibold">{T.qr}</h3>
+              <button onClick={() => setShowQR(false)} aria-label={T.close} className="text-muted-foreground hover:text-foreground p-1">
                 <X className="h-4 w-4" />
               </button>
             </div>
@@ -347,13 +349,13 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
 
       {/* Lead Capture Modal */}
       {showLead && showLeadForm && (
-        <LeadModal card={card} onClose={() => setShowLead(false)} />
+        <LeadModal card={shown} lang={lang} onClose={() => setShowLead(false)} />
       )}
 
       {/* Powered by — only for free plan */}
       {showBadge && (
-        <p className="mt-8 text-xs text-gray-400 dark:text-gray-500">
-          صُنعت بواسطة{" "}
+        <p className="mt-8 text-xs text-gray-400 dark:text-gray-500" dir={lang === "en" ? "ltr" : "rtl"}>
+          {T.madeWith}{" "}
           <a href="/" className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors font-medium">{appName}</a>
         </p>
       )}

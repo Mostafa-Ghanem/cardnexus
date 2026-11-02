@@ -1,4 +1,5 @@
 import type { CardData } from "@/types";
+import type { CardLang } from "@/lib/card-i18n";
 import { ClassicTemplate } from "./templates/Classic";
 import { ModernTemplate } from "./templates/Modern";
 import { MinimalTemplate } from "./templates/Minimal";
@@ -15,9 +16,11 @@ import { WaveTemplate } from "./templates/Wave";
 interface CardPreviewProps {
   card: Partial<CardData>;
   scale?: number;
+  /** Language of the fixed texts printed on the card. */
+  lang?: CardLang;
 }
 
-export function CardPreview({ card, scale = 1 }: CardPreviewProps) {
+export function CardPreview({ card, scale = 1, lang = "ar" }: CardPreviewProps) {
   const template = card.templateId ?? "classic";
 
   return (
@@ -27,18 +30,18 @@ export function CardPreview({ card, scale = 1 }: CardPreviewProps) {
         transformOrigin: "top center",
       }}
     >
-      {template === "classic"   && <ClassicTemplate   card={card} />}
-      {template === "modern"    && <ModernTemplate    card={card} />}
-      {template === "minimal"   && <MinimalTemplate   card={card} />}
-      {template === "dark"      && <DarkTemplate      card={card} />}
-      {template === "bold"      && <BoldTemplate      card={card} />}
-      {template === "glass"     && <GlassTemplate     card={card} />}
-      {template === "retro"     && <RetroTemplate     card={card} />}
-      {template === "neon"      && <NeonTemplate      card={card} />}
-      {template === "corporate" && <CorporateTemplate card={card} />}
-      {template === "elegant"   && <ElegantTemplate   card={card} />}
-      {template === "gradient"  && <GradientTemplate  card={card} />}
-      {template === "wave"      && <WaveTemplate      card={card} />}
+      {template === "classic"   && <ClassicTemplate   card={card} lang={lang} />}
+      {template === "modern"    && <ModernTemplate    card={card} lang={lang} />}
+      {template === "minimal"   && <MinimalTemplate   card={card} lang={lang} />}
+      {template === "dark"      && <DarkTemplate      card={card} lang={lang} />}
+      {template === "bold"      && <BoldTemplate      card={card} lang={lang} />}
+      {template === "glass"     && <GlassTemplate     card={card} lang={lang} />}
+      {template === "retro"     && <RetroTemplate     card={card} lang={lang} />}
+      {template === "neon"      && <NeonTemplate      card={card} lang={lang} />}
+      {template === "corporate" && <CorporateTemplate card={card} lang={lang} />}
+      {template === "elegant"   && <ElegantTemplate   card={card} lang={lang} />}
+      {template === "gradient"  && <GradientTemplate  card={card} lang={lang} />}
+      {template === "wave"      && <WaveTemplate      card={card} lang={lang} />}
     </div>
   );
 }

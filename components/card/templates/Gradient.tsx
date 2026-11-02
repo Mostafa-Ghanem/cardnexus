@@ -1,3 +1,5 @@
+import { CARD_LABELS } from "@/lib/card-labels";
+import type { CardLang } from "@/lib/card-i18n";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, shadowClass, avatarBorderStyle } from "../CardPreview";
@@ -12,7 +14,8 @@ function darken(hex: string, amount = 0.35): string {
   return `#${[r, g, b].map((v) => Math.round(v).toString(16).padStart(2, "0")).join("")}`;
 }
 
-export function GradientTemplate({ card }: { card: Partial<CardData> }) {
+export function GradientTemplate({ card, lang = "ar" }: { card: Partial<CardData>; lang?: CardLang }) {
+  const L = CARD_LABELS[lang];
   const color   = card.primaryColor ?? "#7c3aed";
   const accent  = card.accentColor  ?? darken(color, 0.2);
   const font    = fontClass(card.fontFamily);
@@ -34,7 +37,7 @@ export function GradientTemplate({ card }: { card: Partial<CardData> }) {
       {/* Logo */}
       {card.logoUrl && (
         <div className="absolute top-5 end-5 z-10">
-          <img src={card.logoUrl} alt="Logo" className="h-7 w-auto max-w-[64px] object-contain opacity-80"
+          <img src={card.logoUrl} alt={L.logoAlt} className="h-7 w-auto max-w-[64px] object-contain opacity-80"
             style={{ filter: "brightness(0) invert(1)" }} />
         </div>
       )}
@@ -54,7 +57,7 @@ export function GradientTemplate({ card }: { card: Partial<CardData> }) {
 
         {/* Name / title */}
         <div className="text-center mb-6">
-          <h1 className="text-xl font-bold tracking-tight drop-shadow-sm">{name || "اسمك"}</h1>
+          <h1 className="text-xl font-bold tracking-tight drop-shadow-sm">{name || L.yourName}</h1>
           {card.title && <p className="text-sm font-medium mt-1 text-white/80">{card.title}</p>}
           {card.company && <p className="text-xs mt-0.5 text-white/60 uppercase tracking-wider">{card.company}</p>}
           {card.bio && <p className="text-xs mt-3 text-white/70 leading-relaxed">{card.bio}</p>}
@@ -116,7 +119,7 @@ export function GradientTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10 rounded opacity-90" />
-            <p className="text-xs text-white/50">امسح لفتح البطاقة الرقمية</p>
+            <p className="text-xs text-white/50">{L.scan}</p>
           </div>
         )}
       </div>
