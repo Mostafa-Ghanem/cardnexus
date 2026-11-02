@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { AdminUsersClient } from "./client";
 
-export const metadata = { title: "Benutzer verwalten" };
+export const metadata = { title: "إدارة المستخدمين" };
 
 export default async function AdminUsersPage({
   searchParams,
@@ -37,11 +37,11 @@ export default async function AdminUsersPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Alle Benutzer</h1>
+        <h1 className="text-2xl font-bold">كل المستخدمين</h1>
         <p className="text-muted-foreground mt-1">
           {search
-            ? `${users.length} Treffer für „${search}" (${total} gesamt)`
-            : `${total} Benutzer auf der Plattform`}
+            ? `${users.length} نتيجة لـ «${search}» (من ${total})`
+            : `${total} مستخدم على المنصة`}
         </p>
       </div>
       <AdminUsersClient

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { SignatureClient } from "./client";
 import type { CardData } from "@/types";
 
-export const metadata = { title: "E-Mail-Signatur" };
+export const metadata = { title: "توقيع البريد" };
 
 export default async function SignaturePage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -27,9 +27,9 @@ export default async function SignaturePage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-2xl font-bold">E-Mail-Signatur</h1>
+        <h1 className="text-2xl font-bold">توقيع البريد الإلكتروني</h1>
         <p className="text-muted-foreground mt-1">
-          Kopiere deinen HTML-Code direkt in Outlook, Gmail oder Apple Mail.
+          انسخ كود HTML مباشرة إلى Outlook أو Gmail أو Apple Mail.
         </p>
       </div>
       <SignatureClient card={cards[0]} allCards={cards} />

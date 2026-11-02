@@ -33,7 +33,7 @@ export function GradientTemplate({ card }: { card: Partial<CardData> }) {
 
       {/* Logo */}
       {card.logoUrl && (
-        <div className="absolute top-5 right-5 z-10">
+        <div className="absolute top-5 end-5 z-10">
           <img src={card.logoUrl} alt="Logo" className="h-7 w-auto max-w-[64px] object-contain opacity-80"
             style={{ filter: "brightness(0) invert(1)" }} />
         </div>
@@ -54,7 +54,7 @@ export function GradientTemplate({ card }: { card: Partial<CardData> }) {
 
         {/* Name / title */}
         <div className="text-center mb-6">
-          <h1 className="text-xl font-bold tracking-tight drop-shadow-sm">{name || "Dein Name"}</h1>
+          <h1 className="text-xl font-bold tracking-tight drop-shadow-sm">{name || "اسمك"}</h1>
           {card.title && <p className="text-sm font-medium mt-1 text-white/80">{card.title}</p>}
           {card.company && <p className="text-xs mt-0.5 text-white/60 uppercase tracking-wider">{card.company}</p>}
           {card.bio && <p className="text-xs mt-3 text-white/70 leading-relaxed">{card.bio}</p>}
@@ -66,28 +66,28 @@ export function GradientTemplate({ card }: { card: Partial<CardData> }) {
             <a href={`tel:${card.phone}`}
               className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/10">
               <Phone className="h-3.5 w-3.5 shrink-0 text-white/60" />
-              {card.phone}
+              <bdi>{card.phone}</bdi>
             </a>
           )}
           {card.mobile && (
             <a href={`tel:${card.mobile}`}
               className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/10">
               <Phone className="h-3.5 w-3.5 shrink-0 text-white/60" />
-              {card.mobile}
+              <bdi>{card.mobile}</bdi>
             </a>
           )}
           {card.email && (
             <a href={`mailto:${card.email}`}
               className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/10">
               <Mail className="h-3.5 w-3.5 shrink-0 text-white/60" />
-              <span className="truncate">{card.email}</span>
+              <span className="truncate"><bdi>{card.email}</bdi></span>
             </a>
           )}
           {card.website && (
             <a href={card.website} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/10">
               <Globe className="h-3.5 w-3.5 shrink-0 text-white/60" />
-              <span className="truncate">{card.website.replace(/^https?:\/\//, "")}</span>
+              <span className="truncate"><bdi>{card.website.replace(/^https?:\/\//, "")}</bdi></span>
             </a>
           )}
           {card.address && (
@@ -116,7 +116,7 @@ export function GradientTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10 rounded opacity-90" />
-            <p className="text-xs text-white/50">Scan für digitale Karte</p>
+            <p className="text-xs text-white/50">امسح لفتح البطاقة الرقمية</p>
           </div>
         )}
       </div>

@@ -44,9 +44,9 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
       const res = await fetch("/api/cards", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: "Neue Karte" }),
+        body: JSON.stringify({ name: "بطاقة جديدة" }),
       });
-      if (!res.ok) throw new Error("Fehler beim Erstellen");
+      if (!res.ok) throw new Error("تعذّر الإنشاء");
       const card = await res.json();
       router.push(`/card?card=${card.id}`);
       router.refresh();
@@ -60,7 +60,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
     setLoading("clone");
     try {
       const res = await fetch(`/api/cards/clone/${activeCardId}`, { method: "POST" });
-      if (!res.ok) throw new Error("Fehler beim Klonen");
+      if (!res.ok) throw new Error("تعذّر النسخ");
       const card = await res.json();
       router.push(`/card?card=${card.id}`);
       router.refresh();
@@ -71,10 +71,10 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
 
   async function deleteCard(id: string) {
     if (cards.length <= 1) {
-      alert("Letzte Karte kann nicht gelöscht werden.");
+      alert("لا يمكن حذف آخر بطاقة.");
       return;
     }
-    if (!confirm("Karte wirklich unwiderruflich löschen?")) return;
+    if (!confirm("هل تريد حذف البطاقة نهائيًا؟")) return;
     setLoading(`del-${id}`);
     try {
       const res = await fetch("/api/cards", {
@@ -82,7 +82,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
-      if (!res.ok) throw new Error("Fehler");
+      if (!res.ok) throw new Error("حدث خطأ");
       // If we deleted the active card, route to remaining default
       const remaining = cards.find((c) => c.id !== id);
       if (id === activeCardId && remaining) {
@@ -129,11 +129,11 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
             onClick={() => setOpen((v) => !v)}
             className="gap-1.5"
           >
-            {activeCard?.name ?? "Karte wählen"}
+            {activeCard?.name ?? "اختر بطاقة"}
             <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
           </Button>
           {open && (
-            <div className="absolute right-0 top-full mt-1 z-[200] bg-popover border border-border rounded-lg shadow-md min-w-72 py-1">
+            <div className="absolute end-0 top-full mt-1 z-[200] bg-popover border border-border rounded-lg shadow-md min-w-72 py-1">
               {cards.map((c) => (
                 <div
                   key={c.id}
@@ -165,7 +165,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
                       <button
                         type="button"
                         onClick={() => selectCard(c.id)}
-                        className="flex-1 text-left flex items-center gap-1.5"
+                        className="flex-1 text-start flex items-center gap-1.5"
                       >
                         <span className={c.id === activeCardId ? "font-medium" : ""}>{c.name}</span>
                         {c.isDefault && (
@@ -175,7 +175,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
                       <Button
                         size="sm" variant="ghost" className="h-7 w-7 p-0"
                         onClick={() => { setRenameId(c.id); setRenameValue(c.name ?? ""); }}
-                        title="Umbenennen"
+                        title="إعادة تسمية"
                       >
                         <Pencil className="h-3.5 w-3.5" />
                       </Button>
@@ -184,7 +184,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
                           size="sm" variant="ghost" className="h-7 w-7 p-0"
                           onClick={() => setDefault(c.id)}
                           disabled={loading === `def-${c.id}`}
-                          title="Als Standard"
+                          title="تعيين كافتراضية"
                         >
                           <Star className="h-3.5 w-3.5" />
                         </Button>
@@ -194,7 +194,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
                           size="sm" variant="ghost" className="h-7 w-7 p-0"
                           onClick={() => deleteCard(c.id)}
                           disabled={loading === `del-${c.id}`}
-                          title="Löschen"
+                          title="حذف"
                         >
                           <Trash2 className="h-3.5 w-3.5 text-destructive" />
                         </Button>
@@ -218,7 +218,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
           className="gap-1.5"
         >
           <Plus className="h-3.5 w-3.5" />
-          {loading === "new" ? "Wird erstellt…" : "Neue Karte"}
+          {loading === "new" ? "جارٍ الإنشاء…" : "بطاقة جديدة"}
         </Button>
       )}
 
@@ -232,7 +232,7 @@ export function CardSwitcher({ cards, activeCardId, maxCards = Infinity }: CardS
           className="gap-1.5"
         >
           <Copy className="h-3.5 w-3.5" />
-          {loading === "clone" ? "Wird geklont…" : "Klonen"}
+          {loading === "clone" ? "جارٍ النسخ…" : "نسخ البطاقة"}
         </Button>
       )}
     </div>

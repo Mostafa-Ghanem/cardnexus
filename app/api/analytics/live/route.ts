@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     select: { totalViews: true },
   });
 
-  if (!card) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!card) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   return NextResponse.json({ totalViews: card.totalViews }, {
     headers: { "Cache-Control": "no-store" },

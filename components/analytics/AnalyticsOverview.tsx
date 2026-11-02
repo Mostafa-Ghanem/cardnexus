@@ -30,7 +30,7 @@ function StatCard({ label, value, icon: Icon }: { label: string; value: number; 
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-muted-foreground">{label}</p>
-            <p className="text-2xl font-bold mt-1">{value.toLocaleString("de-DE")}</p>
+            <p className="text-2xl font-bold mt-1">{value.toLocaleString("ar-u-nu-latn")}</p>
           </div>
           <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
             <Icon className="h-5 w-5 text-muted-foreground" />
@@ -73,7 +73,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
   if (!data) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <p className="text-muted-foreground">Noch keine Karte erstellt.</p>
+        <p className="text-muted-foreground">لم تنشئ بطاقة بعد.</p>
       </div>
     );
   }
@@ -91,7 +91,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                 days === d ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"
               }`}
             >
-              {d === 365 ? "1 Jahr" : `${d} Tage`}
+              {d === 365 ? "سنة" : `${d} يومًا`}
             </button>
           ))}
         </div>
@@ -100,7 +100,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
             value={cardId}
             onChange={(e) => setCardId(e.target.value)}
             className="rounded-md border border-input bg-background px-3 py-1.5 text-sm"
-            aria-label="Karte auswählen"
+            aria-label="اختر البطاقة"
           >
             {cards.map((c) => (
               <option key={c.id} value={c.id}>{c.name}</option>
@@ -111,17 +111,17 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
 
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-        <StatCard label="Aufrufe gesamt" value={data.totalViews} icon={Eye} />
-        <StatCard label="vCard Downloads" value={data.vcardDownloads} icon={Download} />
-        <StatCard label="QR-Scans" value={data.qrScans} icon={QrCode} />
-        <StatCard label="Link-Klicks" value={data.linkClicks} icon={MousePointer} />
-        <StatCard label="Wallet Saves" value={data.walletSaves ?? 0} icon={Wallet} />
+        <StatCard label="إجمالي الزيارات" value={data.totalViews} icon={Eye} />
+        <StatCard label="تنزيلات جهة الاتصال" value={data.vcardDownloads} icon={Download} />
+        <StatCard label="مسح QR" value={data.qrScans} icon={QrCode} />
+        <StatCard label="نقرات الروابط" value={data.linkClicks} icon={MousePointer} />
+        <StatCard label="الحفظ في المحفظة" value={data.walletSaves ?? 0} icon={Wallet} />
       </div>
 
       {/* Views chart */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Aufrufe ({days === 365 ? "1 Jahr" : `${days} Tage`})</CardTitle>
+          <CardTitle className="text-base">الزيارات ({days === 365 ? "سنة" : `${days} يومًا`})</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={220}>
@@ -137,7 +137,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
               <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
               <Tooltip
                 contentStyle={{ borderRadius: 8, fontSize: 12 }}
-                labelFormatter={(v) => new Date(v).toLocaleDateString("de-DE")}
+                labelFormatter={(v) => new Date(v).toLocaleDateString("ar-u-nu-latn")}
               />
               <Area type="monotone" dataKey="count" stroke="#0F172A" strokeWidth={2} fill="url(#viewGrad)" />
             </AreaChart>
@@ -163,11 +163,11 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
       <div className="grid md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Geräte</CardTitle>
+            <CardTitle className="text-base">الأجهزة</CardTitle>
           </CardHeader>
           <CardContent>
             {data.deviceSplit.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Daten</p>
+              <p className="text-sm text-muted-foreground">لا توجد بيانات بعد</p>
             ) : (
               <div className="flex items-center gap-6">
                 <PieChart width={120} height={120}>
@@ -182,7 +182,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                     <div key={d.device} className="flex items-center gap-2 text-sm">
                       <div className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: DEVICE_COLORS[i % DEVICE_COLORS.length] }} />
                       <span className="capitalize text-foreground">{d.device}</span>
-                      <span className="text-muted-foreground ml-auto">{d.count}</span>
+                      <span className="text-muted-foreground ms-auto">{d.count}</span>
                     </div>
                   ))}
                 </div>
@@ -193,11 +193,11 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Quellen</CardTitle>
+            <CardTitle className="text-base">المصادر</CardTitle>
           </CardHeader>
           <CardContent>
             {data.topSources.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Daten</p>
+              <p className="text-sm text-muted-foreground">لا توجد بيانات بعد</p>
             ) : (
               <div className="space-y-3">
                 {data.topSources.map((s, i) => (
@@ -213,7 +213,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                         }}
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground w-8 text-right">{s.count}</span>
+                    <span className="text-sm text-muted-foreground w-8 text-end">{s.count}</span>
                   </div>
                 ))}
               </div>
@@ -229,8 +229,8 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
             <div className="flex items-start gap-3">
               <ExternalLink className="h-5 w-5 text-muted-foreground mt-0.5" />
               <div>
-                <CardTitle className="text-base">Meistgeklickte Links</CardTitle>
-                <CardDescription>Top-10 Custom-Links und Social-Links nach Klickzahl.</CardDescription>
+                <CardTitle className="text-base">الروابط الأكثر نقرًا</CardTitle>
+                <CardDescription>أعلى 10 روابط مخصصة وروابط تواصل حسب عدد النقرات.</CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -240,7 +240,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                 const max = data.topLinks[0]?.count ?? 1;
                 return (
                   <div key={l.label} className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground w-4 text-right tabular-nums">{i + 1}</span>
+                    <span className="text-xs text-muted-foreground w-4 text-end tabular-nums">{i + 1}</span>
                     <span className="text-sm flex-1 truncate">{l.label}</span>
                     <div className="w-24 bg-muted rounded-full h-1.5 overflow-hidden">
                       <div
@@ -248,7 +248,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                         style={{ width: `${(l.count / max) * 100}%` }}
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground w-8 text-right tabular-nums">{l.count}</span>
+                    <span className="text-sm text-muted-foreground w-8 text-end tabular-nums">{l.count}</span>
                   </div>
                 );
               })}
@@ -263,12 +263,12 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
           <div className="flex items-start gap-3">
             <Megaphone className="h-5 w-5 text-muted-foreground mt-0.5" />
             <div>
-              <CardTitle className="text-base">UTM-Kampagnen</CardTitle>
+              <CardTitle className="text-base">حملات UTM</CardTitle>
               <CardDescription>
-                Aufrufe gruppiert nach <code className="text-xs">utm_campaign</code>,
-                <code className="text-xs ml-1">utm_source</code> und
-                <code className="text-xs ml-1">utm_medium</code>. Jeder Link mit
-                UTM-Parametern erscheint hier — auch ohne eigenen Kampagnen-Eintrag.
+                الزيارات مجمّعة حسب <code className="text-xs">utm_campaign</code>,
+                <code className="text-xs ms-1">utm_source</code> و
+                <code className="text-xs ms-1">utm_medium</code>. أي رابط فيه
+                معاملات UTM يظهر هنا حتى بدون حملة مسجلة.
               </CardDescription>
             </div>
           </div>
@@ -276,17 +276,17 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
         <CardContent>
           {data.utmCampaigns.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              Noch keine UTM-getaggten Aufrufe in diesem Zeitraum.
+              لا توجد زيارات بمعاملات UTM في هذه الفترة.
             </p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-muted-foreground">
-                    <th className="pb-2 font-medium">Kampagne</th>
-                    <th className="pb-2 font-medium">Quelle</th>
-                    <th className="pb-2 font-medium">Medium</th>
-                    <th className="pb-2 font-medium text-right">Aufrufe</th>
+                  <tr className="border-b border-border text-start text-xs uppercase tracking-wide text-muted-foreground">
+                    <th className="pb-2 font-medium">الحملة</th>
+                    <th className="pb-2 font-medium">المصدر</th>
+                    <th className="pb-2 font-medium">الوسيط</th>
+                    <th className="pb-2 font-medium text-end">الزيارات</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -295,7 +295,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                       <td className="py-2 font-medium">{c.campaign}</td>
                       <td className="py-2 text-muted-foreground">{c.source ?? "—"}</td>
                       <td className="py-2 text-muted-foreground">{c.medium ?? "—"}</td>
-                      <td className="py-2 text-right tabular-nums">{c.count.toLocaleString("de-DE")}</td>
+                      <td className="py-2 text-end tabular-nums">{c.count.toLocaleString("ar-u-nu-latn")}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -312,10 +312,10 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
             <div className="flex items-start gap-3">
               <LinkIcon className="h-5 w-5 text-muted-foreground mt-0.5" />
               <div>
-                <CardTitle className="text-base">Benutzerdefinierte Kampagnen</CardTitle>
+                <CardTitle className="text-base">حملات مخصصة</CardTitle>
                 <CardDescription>
-                  Friendly-URLs unter <code className="text-xs">/p/&lt;slug&gt;</code>, hier mit
-                  Klicks aus dem Redirect-Counter.
+                  روابط مختصرة على <code className="text-xs">/p/&lt;slug&gt;</code>، مع
+                  عدد النقرات من عداد التحويل.
                 </CardDescription>
               </div>
             </div>
@@ -331,9 +331,9 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                       <p className="text-xs text-muted-foreground font-mono truncate">/p/{c.urlSlug}</p>
                     </div>
                     {expired && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">abgelaufen</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">منتهية</span>
                     )}
-                    <span className="tabular-nums font-semibold">{c.views.toLocaleString("de-DE")}</span>
+                    <span className="tabular-nums font-semibold">{c.views.toLocaleString("ar-u-nu-latn")}</span>
                   </li>
                 );
               })}

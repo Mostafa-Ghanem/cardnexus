@@ -41,20 +41,20 @@ async function createInvite(
 
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
 
   if (!canManageUsers(role) || !orgId) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const org = await db.organization.findUnique({
     where: { id: orgId },
     select: { name: true },
   });
-  if (!org) return NextResponse.json({ error: "Org not found" }, { status: 404 });
+  if (!org) return NextResponse.json({ error: "المؤسسة غير موجودة" }, { status: 404 });
 
   const reqHeaders = await headers();
   const host = reqHeaders.get("x-forwarded-host") ?? reqHeaders.get("host") ?? "localhost:3000";
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
   if (contentType.includes("multipart/form-data")) {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
-    if (!file) return NextResponse.json({ error: "No file provided" }, { status: 400 });
+    if (!file) return NextResponse.json({ error: "لم يتم إرفاق ملف" }, { status: 400 });
 
     const text = await file.text();
     emails = text
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
       .filter((e) => e.includes("@"));
 
     if (emails.length > 50) {
-      return NextResponse.json({ error: "Max 50 Einladungen pro Anfrage" }, { status: 400 });
+      return NextResponse.json({ error: "الحد الأقصى 50 دعوة في المرة الواحدة" }, { status: 400 });
     }
   } else {
     const body = await request.json();
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
   // SECURITY: team_leader may only invite members.
   if (role === "team_leader" && inviteRole !== "member") {
     return NextResponse.json(
-      { error: "Team-Leader können nur Mitglieder einladen" },
+      { error: "قائد الفريق يمكنه دعوة الأعضاء فقط" },
       { status: 403 }
     );
   }
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
       if (result.skipped) skipped++;
       else sent++;
     } catch (err) {
-      errors.push(`${email}: ${err instanceof Error ? err.message : "Fehler"}`);
+      errors.push(`${email}: ${err instanceof Error ? err.message : "حدث خطأ"}`);
     }
   }
 

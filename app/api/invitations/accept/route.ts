@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const { token } = await request.json();
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   });
 
   if (!invitation || invitation.expiresAt < new Date() || invitation.acceptedAt) {
-    return NextResponse.json({ error: "Einladung ungültig oder abgelaufen" }, { status: 410 });
+    return NextResponse.json({ error: "الدعوة غير صالحة أو منتهية" }, { status: 410 });
   }
 
   // SECURITY: an invitation token is bound to a specific email address.
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     (session.user.email ?? "").toLowerCase().trim()
   ) {
     return NextResponse.json(
-      { error: "Diese Einladung ist an eine andere E-Mail-Adresse gerichtet." },
+      { error: "هذه الدعوة موجهة لبريد إلكتروني آخر." },
       { status: 403 }
     );
   }

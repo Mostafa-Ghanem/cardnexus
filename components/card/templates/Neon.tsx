@@ -123,9 +123,9 @@ export function NeonTemplate({ card }: { card: Partial<CardData> }) {
 
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12"
+            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12"
               style={{ filter: `invert(1) sepia(1) saturate(5) hue-rotate(${color === "#22d3ee" ? "160deg" : "0deg"})`, opacity: 0.7 }} />
-            <p className="text-xs font-mono" style={{ color: `${color}50` }}>SCAN_FOR_CARD</p>
+            <p className="text-xs font-mono" style={{ color: `${color}50` }}>امسح_للبطاقة</p>
           </div>
         )}
       </div>
@@ -149,7 +149,7 @@ function NeonRow({
       >
         <Icon className="h-3.5 w-3.5" style={{ color }} />
       </div>
-      <span className="text-xs font-mono text-white/60 group-hover:text-white/90 transition-colors truncate">{value}</span>
+      <span className="text-xs font-mono text-white/60 group-hover:text-white/90 transition-colors truncate"><bdi>{value}</bdi></span>
     </div>
   );
   if (href) {

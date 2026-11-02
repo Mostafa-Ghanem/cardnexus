@@ -15,11 +15,12 @@ export function csvField(v: unknown): string {
   return s;
 }
 
-/** Build a CSV string from a header row + array of value arrays. */
+/** Build a CSV string from a header row + array of value arrays.
+ *  Starts with a UTF-8 BOM so Excel shows Arabic text correctly. */
 export function buildCsv(header: string[], rows: unknown[][]): string {
   const lines = [header.map(csvField).join(",")];
   for (const row of rows) {
     lines.push(row.map(csvField).join(","));
   }
-  return lines.join("\n");
+  return "\uFEFF" + lines.join("\n");
 }

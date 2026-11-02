@@ -124,7 +124,7 @@ export function SettingsClientPage({ user, org }: Props) {
       body: JSON.stringify({ email: newEmail }),
     });
     const data = await res.json();
-    if (!res.ok) { setEmailError(data.error ?? "Fehler"); }
+    if (!res.ok) { setEmailError(data.error ?? "حدث خطأ"); }
     else { setEmailSaved(true); setTimeout(() => setEmailSaved(false), 3000); setNewEmail(""); }
     setEmailSaving(false);
   }
@@ -158,15 +158,15 @@ export function SettingsClientPage({ user, org }: Props) {
   return (
     <div className="space-y-8 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-bold">Einstellungen</h1>
-        <p className="text-muted-foreground mt-1">Account und Organisations-Einstellungen</p>
+        <h1 className="text-2xl font-bold">الإعدادات</h1>
+        <p className="text-muted-foreground mt-1">إعدادات الحساب والمؤسسة</p>
       </div>
 
       {/* Account */}
       <Card>
         <CardHeader>
-          <CardTitle>Account</CardTitle>
-          <CardDescription>Deine persönlichen Informationen</CardDescription>
+          <CardTitle>الحساب</CardTitle>
+          <CardDescription>معلوماتك الشخصية</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-3">
@@ -174,11 +174,11 @@ export function SettingsClientPage({ user, org }: Props) {
               <p className="font-medium">{user.name}</p>
               <p className="text-sm text-muted-foreground">{user.email}</p>
             </div>
-            <Badge className="ml-auto" variant="secondary">{getRoleLabel(user.role)}</Badge>
+            <Badge className="ms-auto" variant="secondary">{getRoleLabel(user.role)}</Badge>
           </div>
           <div className="border-t border-border pt-4 mt-4 space-y-4">
             <div className="space-y-2">
-              <p className="text-sm font-medium">Name ändern</p>
+              <p className="text-sm font-medium">تغيير الاسم</p>
               <div className="flex gap-2">
                 <Input
                   value={newName}
@@ -188,12 +188,12 @@ export function SettingsClientPage({ user, org }: Props) {
                   onKeyDown={(e) => e.key === "Enter" && saveName()}
                 />
                 <Button size="sm" onClick={saveName} disabled={nameSaving || !newName.trim()}>
-                  {nameSaving ? "…" : nameSaved ? "✓" : "Speichern"}
+                  {nameSaving ? "…" : nameSaved ? "✓" : "حفظ"}
                 </Button>
               </div>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium">E-Mail-Adresse ändern</p>
+              <p className="text-sm font-medium">تغيير البريد الإلكتروني</p>
               <div className="flex gap-2">
                 <Input
                   type="email"
@@ -204,7 +204,7 @@ export function SettingsClientPage({ user, org }: Props) {
                   onKeyDown={(e) => e.key === "Enter" && saveEmail()}
                 />
                 <Button size="sm" onClick={saveEmail} disabled={emailSaving || !newEmail}>
-                  {emailSaving ? "…" : emailSaved ? "✓" : "Speichern"}
+                  {emailSaving ? "…" : emailSaved ? "✓" : "حفظ"}
                 </Button>
               </div>
               {emailError && <p className="text-xs text-destructive">{emailError}</p>}
@@ -224,18 +224,18 @@ export function SettingsClientPage({ user, org }: Props) {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Bell className="h-5 w-5 text-muted-foreground" />
-            <CardTitle className="text-base">Lead-Benachrichtigungen</CardTitle>
-            {notifSaved && <Badge variant="outline" className="ml-auto text-green-600 border-green-300">Gespeichert</Badge>}
-            {notifSaving && <Badge variant="outline" className="ml-auto">Wird gespeichert…</Badge>}
+            <CardTitle className="text-base">تنبيهات العملاء المحتملين</CardTitle>
+            {notifSaved && <Badge variant="outline" className="ms-auto text-green-600 border-green-300">تم الحفظ</Badge>}
+            {notifSaving && <Badge variant="outline" className="ms-auto">جارٍ الحفظ…</Badge>}
           </div>
-          <CardDescription>Wie möchtest du benachrichtigt werden, wenn jemand auf deiner Karte Kontakt hinterlässt?</CardDescription>
+          <CardDescription>كيف تريد أن نبلغك عندما يترك أحد بياناته على بطاقتك؟</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
             {([
-              { value: "off",     label: "Keine Benachrichtigungen",    desc: "Leads werden nur im Dashboard gespeichert." },
-              { value: "instant", label: "Sofort",                      desc: "Du bekommst bei jedem neuen Lead eine E-Mail." },
-              { value: "daily",   label: "Tägliche Zusammenfassung",    desc: "Einmal täglich – nur wenn neue Leads vorliegen." },
+              { value: "off",     label: "بدون تنبيهات",    desc: "تُحفظ البيانات في لوحة التحكم فقط." },
+              { value: "instant", label: "فوري",                      desc: "يصلك بريد مع كل عميل محتمل جديد." },
+              { value: "daily",   label: "ملخص يومي",    desc: "مرة يوميًا، فقط عند وجود جديد." },
             ] as const).map(({ value, label, desc }) => (
               <button
                 key={value}
@@ -311,7 +311,7 @@ export function SettingsClientPage({ user, org }: Props) {
           />
           <Button onClick={saveOrgSettings} disabled={saving}>
             <Save className="h-4 w-4" />
-            {saved ? "Gespeichert!" : saving ? "Wird gespeichert…" : "Einstellungen speichern"}
+            {saved ? "تم الحفظ!" : saving ? "جارٍ الحفظ…" : "حفظ الإعدادات"}
           </Button>
         </>
       )}
@@ -322,9 +322,9 @@ export function SettingsClientPage({ user, org }: Props) {
           <div className="flex items-center gap-2">
             <Wallet className="h-5 w-5 text-muted-foreground" />
             <CardTitle className="text-base">Apple & Google Wallet</CardTitle>
-            <Badge variant="outline" className="ml-auto">Demnächst</Badge>
+            <Badge variant="outline" className="ms-auto">قريبًا</Badge>
           </div>
-          <CardDescription>Karten direkt in Apple Wallet oder Google Wallet speichern. Diese Funktion wird bald verfügbar sein.</CardDescription>
+          <CardDescription>حفظ البطاقات مباشرة في Apple Wallet أو Google Wallet. هذه الميزة ستتوفر قريبًا.</CardDescription>
         </CardHeader>
       </Card>
     </div>

@@ -23,7 +23,7 @@ export function ModernTemplate({ card }: { card: Partial<CardData> }) {
 
         {/* Logo on header */}
         {card.logoUrl && (
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-3 end-3">
             <img
               src={card.logoUrl}
               alt="Logo"
@@ -61,25 +61,25 @@ export function ModernTemplate({ card }: { card: Partial<CardData> }) {
         {card.phone && (
           <a href={`tel:${card.phone}`} className="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
             <Phone className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            <span className="text-sm text-gray-700">{card.phone}</span>
+            <span className="text-sm text-gray-700"><bdi>{card.phone}</bdi></span>
           </a>
         )}
         {card.mobile && (
           <a href={`tel:${card.mobile}`} className="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
             <Phone className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            <span className="text-sm text-gray-700">{card.mobile}</span>
+            <span className="text-sm text-gray-700"><bdi>{card.mobile}</bdi></span>
           </a>
         )}
         {card.email && (
           <a href={`mailto:${card.email}`} className="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
             <Mail className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            <span className="text-sm text-gray-700">{card.email}</span>
+            <span className="text-sm text-gray-700"><bdi>{card.email}</bdi></span>
           </a>
         )}
         {card.website && (
           <a href={card.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
             <Globe className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            <span className="text-sm text-gray-700">{card.website.replace(/^https?:\/\//, "")}</span>
+            <span className="text-sm text-gray-700"><bdi>{card.website.replace(/^https?:\/\//, "")}</bdi></span>
           </a>
         )}
         {card.address && (
@@ -109,8 +109,8 @@ export function ModernTemplate({ card }: { card: Partial<CardData> }) {
       {/* QR */}
       {card.showQrOnCard && card.slug && (
         <div className="px-6 pb-4 flex items-center gap-3">
-          <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12" />
-          <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+          <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12" />
+          <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
         </div>
       )}
     </div>

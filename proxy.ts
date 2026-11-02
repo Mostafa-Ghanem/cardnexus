@@ -29,6 +29,8 @@ function isLikelyCustomDomain(host: string): boolean {
 
 const PUBLIC_EXACT_PATHS = new Set([
   "/", "/login", "/register", "/pricing", "/datenschutz", "/impressum",
+  // Must stay reachable while logged out: password reset and the 2FA step.
+  "/forgot-password", "/reset-password", "/login/2fa",
 ]);
 const PUBLIC_PREFIXES = ["/c/", "/p/", "/print/", "/team/", "/uploads/"];
 const AUTH_PATHS = ["/login", "/register"];
@@ -66,7 +68,7 @@ export async function proxy(request: NextRequest) {
       "anon";
     if (!rateLimit({ key: `auth:${ip}`, max: 10, windowMs: 60_000 })) {
       return new NextResponse(
-        JSON.stringify({ error: "Zu viele Anmeldeversuche. Bitte in 1 Minute erneut versuchen." }),
+        JSON.stringify({ error: "محاولات دخول كثيرة. حاول مرة أخرى بعد دقيقة." }),
         { status: 429, headers: { "Content-Type": "application/json", "Retry-After": "60" } }
       );
     }

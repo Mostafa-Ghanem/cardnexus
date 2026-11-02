@@ -7,6 +7,7 @@ import {
   Settings, LogOut, Shield, UserCheck, Mail,
   Megaphone, Nfc, Zap, Code2,
 } from "lucide-react";
+import { BrandMark } from "./BrandMark";
 import { cn } from "@/lib/utils";
 import { signOut } from "@/lib/auth-client";
 
@@ -17,28 +18,28 @@ interface NavSection {
 
 const sections: NavSection[] = [
   {
-    label: "Workspace",
+    label: "مساحة العمل",
     items: [
-      { href: "/dashboard", label: "Dashboard",   icon: LayoutDashboard },
-      { href: "/card",      label: "Meine Karte", icon: CreditCard },
-      { href: "/card/signature", label: "Signatur", icon: Mail, indented: true },
+      { href: "/dashboard", label: "لوحة التحكم",   icon: LayoutDashboard },
+      { href: "/card",      label: "بطاقتي", icon: CreditCard },
+      { href: "/card/signature", label: "توقيع البريد", icon: Mail, indented: true },
     ],
   },
   {
-    label: "Wachstum",
+    label: "النمو",
     items: [
-      { href: "/leads",     label: "Leads",       icon: UserCheck },
-      { href: "/campaigns", label: "Kampagnen",   icon: Megaphone },
-      { href: "/analytics", label: "Analytics",   icon: BarChart2 },
+      { href: "/leads",     label: "العملاء المحتملون",       icon: UserCheck },
+      { href: "/campaigns", label: "الحملات",   icon: Megaphone },
+      { href: "/analytics", label: "الإحصائيات",   icon: BarChart2 },
     ],
   },
   {
-    label: "Organisation",
+    label: "المؤسسة",
     items: [
-      { href: "/team",      label: "Team",          icon: Users },
+      { href: "/team",      label: "الفريق",          icon: Users },
       { href: "/nfc",       label: "NFC",           icon: Nfc },
-      { href: "/widget",    label: "Widget",        icon: Code2 },
-      { href: "/settings",  label: "Einstellungen", icon: Settings },
+      { href: "/widget",    label: "تضمين البطاقة",        icon: Code2 },
+      { href: "/settings",  label: "الإعدادات", icon: Settings },
     ],
   },
 ];
@@ -53,7 +54,7 @@ interface SidebarProps {
 }
 
 export function SidebarNav({
-  userRole, orgName, appName = "CardNexus", logoUrl, onNavigate, className,
+  userRole, orgName, appName = "كارت نكسس", logoUrl, onNavigate, className,
 }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -69,18 +70,10 @@ export function SidebarNav({
   }
 
   return (
-    <aside className={cn("flex h-full w-60 flex-col border-r border-border bg-card", className)}>
+    <aside className={cn("flex h-full w-60 flex-col border-e border-border bg-card", className)}>
       {/* Logo */}
       <div className="flex h-16 items-center gap-2 border-b border-border px-6 shrink-0">
-        {logoUrl ? (
-          <img src={logoUrl} alt={appName} className="h-8 w-8 rounded-lg object-cover" />
-        ) : (
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground shrink-0">
-            <span className="text-xs font-bold text-background">
-              {appName.slice(0, 2).toUpperCase()}
-            </span>
-          </div>
-        )}
+        <BrandMark name={appName} logoUrl={logoUrl} />
         <span className="font-semibold text-sm truncate">{appName}</span>
       </div>
 
@@ -92,7 +85,7 @@ export function SidebarNav({
       )}
 
       {/* Navigation */}
-      <nav aria-label="Hauptnavigation" className="flex-1 space-y-4 p-3 overflow-y-auto">
+      <nav aria-label="القائمة الرئيسية" className="flex-1 space-y-4 p-3 overflow-y-auto">
         {sections.map((section) => (
           <div key={section.label}>
             <p className="px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70 mb-1">
@@ -112,7 +105,7 @@ export function SidebarNav({
                       active
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:bg-accent hover:text-foreground",
-                      indented && "pl-8"
+                      indented && "ps-8"
                     )}
                   >
                     <Icon className="h-4 w-4 shrink-0" />
@@ -135,7 +128,7 @@ export function SidebarNav({
           )}
         >
           <Zap className="h-4 w-4 shrink-0" />
-          Upgrade
+          ترقية الباقة
         </Link>
 
         {userRole === "super_admin" && (
@@ -150,7 +143,7 @@ export function SidebarNav({
             )}
           >
             <Shield className="h-4 w-4 shrink-0" />
-            Super Admin
+            مدير المنصة
           </Link>
         )}
       </nav>
@@ -162,7 +155,7 @@ export function SidebarNav({
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
         >
           <LogOut className="h-4 w-4 shrink-0" />
-          Abmelden
+          تسجيل الخروج
         </button>
       </div>
     </aside>

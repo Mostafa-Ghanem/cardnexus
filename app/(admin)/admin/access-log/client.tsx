@@ -3,11 +3,11 @@
 import { useRouter, usePathname } from "next/navigation";
 
 const EVENT_LABELS: Record<string, { label: string; color: string }> = {
-  view:           { label: "Aufruf",     color: "bg-blue-100 text-blue-700" },
-  vcard_download: { label: "vCard",      color: "bg-green-100 text-green-700" },
-  qr_scan:        { label: "QR-Scan",    color: "bg-purple-100 text-purple-700" },
-  link_click:     { label: "Link-Klick", color: "bg-amber-100 text-amber-700" },
-  wallet_save:    { label: "Wallet",     color: "bg-pink-100 text-pink-700" },
+  view:           { label: "زيارة",     color: "bg-blue-100 text-blue-700" },
+  vcard_download: { label: "تنزيل جهة الاتصال",      color: "bg-green-100 text-green-700" },
+  qr_scan:        { label: "مسح QR",    color: "bg-purple-100 text-purple-700" },
+  link_click:     { label: "نقرة رابط", color: "bg-amber-100 text-amber-700" },
+  wallet_save:    { label: "المحفظة",     color: "bg-pink-100 text-pink-700" },
 };
 
 interface Entry {
@@ -57,9 +57,9 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Access Log</h1>
+        <h1 className="text-2xl font-bold">سجل الوصول</h1>
         <p className="text-muted-foreground mt-1">
-          {total.toLocaleString("de-DE")} Einträge
+          {total.toLocaleString("en-US")} سجل
         </p>
       </div>
 
@@ -70,7 +70,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
           onChange={(e) => applyFilter("event", e.target.value)}
           className="rounded-md border border-input bg-background px-3 py-1.5 text-sm"
         >
-          <option value="">Alle Events</option>
+          <option value="">كل الأحداث</option>
           {Object.entries(EVENT_LABELS).map(([k, v]) => (
             <option key={k} value={k}>{v.label}</option>
           ))}
@@ -81,7 +81,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
           onChange={(e) => applyFilter("cardSlug", e.target.value)}
           className="rounded-md border border-input bg-background px-3 py-1.5 text-sm"
         >
-          <option value="">Alle Karten</option>
+          <option value="">كل البطاقات</option>
           {cards.map((c) => (
             <option key={c.slug} value={c.slug}>{c.name ?? c.slug} ({c.slug})</option>
           ))}
@@ -92,11 +92,11 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
           onChange={(e) => applyFilter("days", e.target.value)}
           className="rounded-md border border-input bg-background px-3 py-1.5 text-sm"
         >
-          <option value="">Alle Zeit</option>
-          <option value="1">Letzte 24h</option>
-          <option value="7">Letzte 7 Tage</option>
-          <option value="30">Letzte 30 Tage</option>
-          <option value="90">Letzte 90 Tage</option>
+          <option value="">كل الأوقات</option>
+          <option value="1">آخر 24 ساعة</option>
+          <option value="7">آخر 7 أيام</option>
+          <option value="30">آخر 30 يومًا</option>
+          <option value="90">آخر 90 يومًا</option>
         </select>
       </div>
 
@@ -104,23 +104,23 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
       <div className="overflow-x-auto rounded-xl border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="border-b border-border">
-            <tr className="text-left text-xs uppercase tracking-wide text-muted-foreground">
-              <th className="px-4 py-3 font-medium">Zeit</th>
-              <th className="px-4 py-3 font-medium">Event</th>
-              <th className="px-4 py-3 font-medium">Karte</th>
+            <tr className="text-start text-xs uppercase tracking-wide text-muted-foreground">
+              <th className="px-4 py-3 font-medium">الوقت</th>
+              <th className="px-4 py-3 font-medium">الحدث</th>
+              <th className="px-4 py-3 font-medium">البطاقة</th>
               <th className="px-4 py-3 font-medium">IP</th>
-              <th className="px-4 py-3 font-medium">Land / Stadt</th>
-              <th className="px-4 py-3 font-medium">Gerät</th>
-              <th className="px-4 py-3 font-medium">Browser / OS</th>
-              <th className="px-4 py-3 font-medium">Referrer</th>
-              <th className="px-4 py-3 font-medium">Quelle / UTM</th>
+              <th className="px-4 py-3 font-medium">الدولة / المدينة</th>
+              <th className="px-4 py-3 font-medium">الجهاز</th>
+              <th className="px-4 py-3 font-medium">المتصفح / النظام</th>
+              <th className="px-4 py-3 font-medium">المصدر المحيل</th>
+              <th className="px-4 py-3 font-medium">المصدر / UTM</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
             {entries.length === 0 && (
               <tr>
                 <td colSpan={9} className="px-4 py-8 text-center text-muted-foreground">
-                  Keine Einträge gefunden.
+                  لا توجد سجلات.
                 </td>
               </tr>
             )}
@@ -129,7 +129,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
               return (
                 <tr key={e.id} className="hover:bg-muted/30 transition-colors">
                   <td className="px-4 py-2.5 font-mono text-xs text-muted-foreground whitespace-nowrap">
-                    {new Date(e.createdAt).toLocaleString("de-DE", {
+                    {new Date(e.createdAt).toLocaleString("ar-u-nu-latn", {
                       day: "2-digit", month: "2-digit", year: "numeric",
                       hour: "2-digit", minute: "2-digit", second: "2-digit",
                     })}
@@ -139,7 +139,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
                       {ev?.label ?? e.event}
                     </span>
                     {e.linkLabel && (
-                      <span className="ml-1.5 text-xs text-muted-foreground truncate max-w-[120px] inline-block">{e.linkLabel}</span>
+                      <span className="ms-1.5 text-xs text-muted-foreground truncate max-w-[120px] inline-block">{e.linkLabel}</span>
                     )}
                   </td>
                   <td className="px-4 py-2.5 font-mono text-xs">{e.cardSlug}</td>
@@ -158,7 +158,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
                   <td className="px-4 py-2.5 text-xs text-muted-foreground truncate max-w-[140px]">{e.referrer ?? "—"}</td>
                   <td className="px-4 py-2.5 text-xs text-muted-foreground">
                     {e.source && <span className="capitalize">{e.source}</span>}
-                    {e.utmCampaign && <span className="ml-1 text-purple-600">[{e.utmCampaign}]</span>}
+                    {e.utmCampaign && <span className="ms-1 text-purple-600">[{e.utmCampaign}]</span>}
                     {!e.source && !e.utmCampaign && "—"}
                   </td>
                 </tr>
@@ -172,7 +172,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
       {totalPages > 1 && (
         <div className="flex items-center justify-between text-sm">
           <span className="text-muted-foreground">
-            Seite {page} von {totalPages}
+            صفحة {page} من {totalPages}
           </span>
           <div className="flex gap-2">
             {page > 1 && (
@@ -180,7 +180,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
                 onClick={() => applyFilter("page", String(page - 1))}
                 className="px-3 py-1.5 rounded-lg border border-border hover:bg-muted transition-colors"
               >
-                ← Zurück
+                → السابق
               </button>
             )}
             {page < totalPages && (
@@ -188,7 +188,7 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
                 onClick={() => applyFilter("page", String(page + 1))}
                 className="px-3 py-1.5 rounded-lg border border-border hover:bg-muted transition-colors"
               >
-                Weiter →
+                التالي ←
               </button>
             )}
           </div>

@@ -35,8 +35,8 @@ export default function TwoFactorChallengePage() {
     if (res.error) {
       setError(
         mode === "totp"
-          ? "Code ist falsch oder abgelaufen."
-          : "Backup-Code ist ungültig oder bereits verwendet."
+          ? "الرمز غير صحيح أو منتهي الصلاحية."
+          : "رمز الاسترداد غير صالح أو مستخدم من قبل."
       );
       setLoading(false);
       return;
@@ -49,18 +49,18 @@ export default function TwoFactorChallengePage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Zwei-Faktor-Authentifizierung</CardTitle>
+        <CardTitle>التحقق بخطوتين</CardTitle>
         <CardDescription>
           {mode === "totp"
-            ? "Gib den 6-stelligen Code aus deiner Authenticator-App ein."
-            : "Gib einen deiner gespeicherten Backup-Codes ein."}
+            ? "أدخل الرمز المكوّن من 6 أرقام من تطبيق المصادقة."
+            : "أدخل أحد رموز الاسترداد المحفوظة لديك."}
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
             <Label htmlFor="code">
-              {mode === "totp" ? "6-stelliger Code" : "Backup-Code"}
+              {mode === "totp" ? "رمز من 6 أرقام" : "رمز الاسترداد"}
             </Label>
             <Input
               id="code"
@@ -84,14 +84,14 @@ export default function TwoFactorChallengePage() {
               onChange={(e) => setTrustDevice(e.target.checked)}
               className="h-4 w-4 rounded border-input"
             />
-            Diesem Gerät 30 Tage vertrauen
+            الوثوق بهذا الجهاز لمدة 30 يومًا
           </label>
 
           {error && <p className="text-sm text-destructive" role="alert">{error}</p>}
         </CardContent>
         <CardFooter className="flex flex-col gap-3">
           <Button type="submit" className="w-full" disabled={loading || code.length === 0}>
-            {loading ? "Prüfen…" : "Bestätigen"}
+            {loading ? "جارٍ التحقق…" : "تأكيد"}
           </Button>
           <button
             type="button"
@@ -103,11 +103,11 @@ export default function TwoFactorChallengePage() {
             }}
           >
             {mode === "totp"
-              ? "Stattdessen Backup-Code verwenden"
-              : "Zurück zur Authenticator-App"}
+              ? "استخدم رمز استرداد بدلًا من ذلك"
+              : "العودة لتطبيق المصادقة"}
           </button>
           <p className="text-xs text-muted-foreground text-center">
-            <Link href="/login" className="hover:underline">Zurück zum Login</Link>
+            <Link href="/login" className="hover:underline">العودة لتسجيل الدخول</Link>
           </p>
         </CardFooter>
       </form>

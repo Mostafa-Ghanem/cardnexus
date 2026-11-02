@@ -41,14 +41,14 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
   }
 
   function exportCsv() {
-    const header = "Name,E-Mail,Telefon,Nachricht,Datum";
+    const header = "الاسم,البريد الإلكتروني,الجوال,الرسالة,التاريخ";
     const rows = leads.map((l) =>
       [
         `"${l.name}"`,
         `"${l.email ?? ""}"`,
         `"${l.phone ?? ""}"`,
         `"${(l.message ?? "").replace(/"/g, '""')}"`,
-        new Date(l.createdAt).toLocaleDateString("de-DE"),
+        new Date(l.createdAt).toLocaleDateString("ar-u-nu-latn"),
       ].join(",")
     );
     const csv = [header, ...rows].join("\n");
@@ -65,12 +65,12 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center gap-3">
         <CreditCard className="h-12 w-12 text-muted-foreground/40" />
-        <p className="font-semibold text-muted-foreground">Noch keine Karte erstellt</p>
+        <p className="font-semibold text-muted-foreground">لم تنشئ بطاقة بعد</p>
         <p className="text-sm text-muted-foreground">
-          Erstelle zuerst deine Visitenkarte, um Leads zu sammeln.
+          أنشئ بطاقتك أولًا لتبدأ في جمع العملاء المحتملين.
         </p>
         <Button asChild variant="outline" className="mt-2">
-          <a href="/card">Karte erstellen</a>
+          <a href="/card">إنشاء بطاقة</a>
         </Button>
       </div>
     );
@@ -84,15 +84,15 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
           <UserCheck className="h-4 w-4 text-primary" />
           <span className="font-semibold text-sm">{leads.length}</span>
           <span className="text-sm text-muted-foreground">
-            {leads.length === 1 ? "Lead" : "Leads"}
+            {leads.length === 1 ? "عميل محتمل" : "عملاء محتملون"}
           </span>
         </div>
 
         <div className="flex-1 min-w-[200px] relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Suchen…"
-            className="pl-9"
+            placeholder="بحث…"
+            className="ps-9"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -101,7 +101,7 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
         {leads.length > 0 && (
           <Button variant="outline" size="sm" onClick={exportCsv}>
             <Download className="h-4 w-4" />
-            CSV Export
+            تصدير CSV
           </Button>
         )}
       </div>
@@ -110,13 +110,13 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
       {leads.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center gap-3 border-2 border-dashed rounded-2xl">
           <UserCheck className="h-12 w-12 text-muted-foreground/40" />
-          <p className="font-semibold text-muted-foreground">Noch keine Leads</p>
+          <p className="font-semibold text-muted-foreground">لا يوجد عملاء محتملون بعد</p>
           <p className="text-sm text-muted-foreground max-w-xs">
-            Wenn jemand auf deiner Karte auf „Kontakt hinterlassen" tippt, erscheint er hier.
+            عندما يضغط أحد على «اترك بياناتك للتواصل» في بطاقتك سيظهر هنا.
           </p>
         </div>
       ) : filtered.length === 0 ? (
-        <p className="text-center text-muted-foreground py-12">Keine Ergebnisse für „{query}"</p>
+        <p className="text-center text-muted-foreground py-12">لا توجد نتائج لـ «{query}»</p>
       ) : (
         <div className="space-y-3">
           {filtered.map((lead) => (
@@ -153,23 +153,33 @@ function LeadCard({
         <div className="flex items-start justify-between gap-2 flex-wrap">
           <p className="font-semibold text-sm">{lead.name}</p>
           <span className="text-xs text-muted-foreground whitespace-nowrap">
-            {date.toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" })}{" "}
-            {date.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })}
+            {date.toLocaleDateString("ar-u-nu-latn", { day: "2-digit", month: "short", year: "numeric" })}{" "}
+            {date.toLocaleTimeString("ar-u-nu-latn", { hour: "2-digit", minute: "2-digit" })}
           </span>
         </div>
 
         <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5">
           {lead.email && (
-            <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <a href={`mailto:${lead.email}`} dir="ltr" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
               <Mail className="h-3 w-3" />
               {lead.email}
             </a>
           )}
           {lead.phone && (
-            <a href={`tel:${lead.phone}`} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
-              <Phone className="h-3 w-3" />
-              {lead.phone}
-            </a>
+            <>
+              <a href={`tel:${lead.phone}`} dir="ltr" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
+                <Phone className="h-3 w-3" />
+                {lead.phone}
+              </a>
+              <a
+                href={`https://wa.me/${lead.phone.replace(/\D/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-medium text-emerald-600 hover:underline"
+              >
+                واتساب
+              </a>
+            </>
           )}
         </div>
 
@@ -180,7 +190,7 @@ function LeadCard({
               onClick={() => setShowFull((v) => !v)}
             >
               <MessageSquare className="h-3 w-3" />
-              {showFull ? "Nachricht verbergen" : "Nachricht anzeigen"}
+              {showFull ? "إخفاء الرسالة" : "عرض الرسالة"}
             </button>
             {showFull && (
               <p className="mt-1.5 text-sm bg-muted rounded-lg px-3 py-2 text-muted-foreground leading-relaxed">
@@ -196,7 +206,7 @@ function LeadCard({
         onClick={onDelete}
         disabled={deleting}
         className="text-muted-foreground hover:text-destructive transition-colors p-1 rounded hover:bg-destructive/10 shrink-0"
-        title="Lead löschen"
+        title="حذف"
       >
         <Trash2 className="h-4 w-4" />
       </button>

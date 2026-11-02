@@ -1,3 +1,4 @@
+import { getPlatformSettings } from "@/lib/platform";
 import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
@@ -19,12 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     where: { slug },
     select: { firstName: true, lastName: true, title: true, company: true, isPublic: true, expiresAt: true, passwordHash: true },
   });
-  if (!card) return { title: "Karte nicht gefunden" };
+  if (!card) return { title: "البطاقة غير موجودة" };
 
   // Don't leak names of expired or non-public cards in metadata.
-  if (!card.isPublic) return { title: "Karte nicht verfügbar" };
-  if (card.expiresAt && card.expiresAt < new Date()) return { title: "Karte abgelaufen" };
-  if (card.passwordHash) return { title: "Geschützte Karte" };
+  if (!card.isPublic) return { title: "البطاقة غير متاحة" };
+  if (card.expiresAt && card.expiresAt < new Date()) return { title: "البطاقة منتهية" };
+  if (card.passwordHash) return { title: "بطاقة محمية" };
 
   const name = `${card.firstName ?? ""} ${card.lastName ?? ""}`.trim();
   return {
@@ -75,8 +76,8 @@ export default async function PublicCardPage({ params, searchParams }: Props) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50 dark:bg-gray-950">
         <div className="max-w-sm text-center space-y-2">
-          <h1 className="text-2xl font-semibold">Karte abgelaufen</h1>
-          <p className="text-muted-foreground">Diese Karte ist nicht mehr verfügbar.</p>
+          <h1 className="text-2xl font-semibold">انتهت صلاحية البطاقة</h1>
+          <p className="text-muted-foreground">هذه البطاقة لم تعد متاحة.</p>
         </div>
       </div>
     );
@@ -99,5 +100,5 @@ export default async function PublicCardPage({ params, searchParams }: Props) {
   const whiteLabel   = canUseFeature("whiteLabel",   ownerPlan, ownerExpiry);
   const showLeadForm = canUseFeature("leadCapture",  ownerPlan, ownerExpiry);
 
-  return <PublicCardView card={card} source={source} showBadge={!whiteLabel} showLeadForm={showLeadForm} />;
+  return <PublicCardView card={card} source={source} showBadge={!whiteLabel} showLeadForm={showLeadForm} appName={(await getPlatformSettings()).appName} />;
 }

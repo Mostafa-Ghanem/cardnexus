@@ -29,7 +29,7 @@ function RegisterForm() {
     const result = await signUp.email({ name, email, password });
 
     if (result.error) {
-      setError(result.error.message ?? "Registrierung fehlgeschlagen.");
+      setError(result.error.message ?? "تعذّر إنشاء الحساب. تأكد من البيانات وحاول مرة أخرى.");
       setLoading(false);
       return;
     }
@@ -52,20 +52,20 @@ function RegisterForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Account erstellen</CardTitle>
+        <CardTitle>إنشاء حساب</CardTitle>
         <CardDescription>
           {inviteToken
-            ? "Du wurdest eingeladen. Erstelle deinen Account."
-            : "Starte kostenlos mit deiner digitalen Visitenkarte."}
+            ? "تمت دعوتك للانضمام. أنشئ حسابك للمتابعة."
+            : "ابدأ مجانًا مع بطاقتك الرقمية."}
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">الاسم</Label>
             <Input
               id="name"
-              placeholder="Max Mustermann"
+              placeholder="الاسم الكامل"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -73,11 +73,11 @@ function RegisterForm() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="email">E-Mail</Label>
+            <Label htmlFor="email">البريد الإلكتروني</Label>
             <Input
               id="email"
               type="email"
-              placeholder="max@example.com"
+              placeholder="name@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -85,11 +85,11 @@ function RegisterForm() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="password">Passwort</Label>
+            <Label htmlFor="password">كلمة المرور</Label>
             <Input
               id="password"
               type="password"
-              placeholder="Mindestens 8 Zeichen"
+              placeholder="8 أحرف على الأقل"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -101,12 +101,12 @@ function RegisterForm() {
         </CardContent>
         <CardFooter className="flex flex-col gap-3">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Wird erstellt…" : "Account erstellen"}
+            {loading ? "جارٍ إنشاء الحساب…" : "إنشاء حساب"}
           </Button>
           <p className="text-sm text-muted-foreground text-center">
-            Bereits registriert?{" "}
+            لديك حساب بالفعل؟{" "}
             <Link href="/login" className="text-foreground font-medium hover:underline">
-              Anmelden
+              تسجيل الدخول
             </Link>
           </p>
         </CardFooter>

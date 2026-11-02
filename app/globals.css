@@ -13,8 +13,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
+    /* Brand teal (#0F766E) — tuned for the Arabic launch */
+    --primary: 175 77% 26%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222 47% 11%;
@@ -30,7 +31,7 @@
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 222 47% 11%;
+    --ring: 175 77% 26%;
 
     --radius: 0.75rem;
   }
@@ -70,7 +71,16 @@
   * { @apply border-border; }
   body {
     @apply bg-background text-foreground;
+    font-family: "IBM Plex Sans Arabic", "Inter", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  /* Emails, phones and URLs read left-to-right even inside the RTL layout */
+  input[type="email"], input[type="tel"], input[type="url"], input[type="password"] {
+    direction: ltr;
+    text-align: right;
+  }
+  input[type="email"]::placeholder, input[type="tel"]::placeholder, input[type="url"]::placeholder {
+    text-align: right;
   }
 }
 

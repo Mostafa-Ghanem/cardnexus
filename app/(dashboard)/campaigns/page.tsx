@@ -6,7 +6,7 @@ import { CampaignsClient } from "./client";
 import { UpgradePrompt } from "@/components/plan/UpgradePrompt";
 import type { Campaign } from "@/types";
 
-export const metadata = { title: "Kampagnen" };
+export const metadata = { title: "الحملات" };
 
 export default async function CampaignsPage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -39,15 +39,15 @@ export default async function CampaignsPage() {
   return (
     <div className="max-w-4xl space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">UTM-Kampagnen</h1>
+        <h1 className="text-2xl font-bold">حملات UTM</h1>
         <p className="text-muted-foreground mt-1">
-          Erstelle individuelle Links fur Events, Messen oder Kampagnen &mdash; mit separater Klick-Statistik.
+          أنشئ روابط خاصة للفعاليات والمعارض والحملات &mdash; مع إحصائيات نقرات منفصلة.
         </p>
       </div>
 
       {!hasCampaigns ? (
         <UpgradePrompt
-          feature="UTM-Kampagnen & Event-Links sind ab dem Pro-Plan verfugbar"
+          feature="حملات UTM وروابط الفعاليات متاحة بدءًا من باقة Pro"
           requiredPlan="pro"
         />
       ) : (

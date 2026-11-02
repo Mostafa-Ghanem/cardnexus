@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { generateVCard, vCardFileName } from "@/lib/vcard";
+import { generateVCard, vCardFileName, vCardContentDisposition } from "@/lib/vcard";
 import type { CardData } from "@/types";
 
 export async function GET(
@@ -15,7 +15,7 @@ export async function GET(
   });
 
   if (!card || !card.isPublic) {
-    return NextResponse.json({ error: "Nicht gefunden" }, { status: 404 });
+    return NextResponse.json({ error: "غير موجود" }, { status: 404 });
   }
 
   // Track download
@@ -34,7 +34,7 @@ export async function GET(
   return new NextResponse(vcf, {
     headers: {
       "Content-Type": "text/vcard; charset=utf-8",
-      "Content-Disposition": `attachment; filename="${filename}"`,
+      "Content-Disposition": vCardContentDisposition(filename),
     },
   });
 }

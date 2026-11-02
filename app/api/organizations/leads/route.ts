@@ -7,13 +7,13 @@ import { buildCsv } from "@/lib/csv";
 
 export async function GET(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
 
   if (!canManageOrganization(role) || !orgId) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const url = new URL(request.url);
@@ -42,12 +42,12 @@ export async function GET(request: NextRequest) {
     });
 
     const csv = buildCsv(
-      ["Datum", "Name", "E-Mail", "Telefon", "Nachricht", "Karte", "Mitglied"],
+      ["التاريخ", "الاسم", "البريد الإلكتروني", "الهاتف", "الرسالة", "البطاقة", "عضو"],
       leads.map((l) => {
         const card = cardMap.get(l.cardId);
         const memberName = card ? (userNameMap.get(card.userId) ?? "") : "";
         return [
-          l.createdAt.toLocaleDateString("de-DE"),
+          l.createdAt.toLocaleDateString("ar-u-nu-latn"),
           l.name, l.email, l.phone, l.message,
           card?.name ?? "", memberName,
         ];

@@ -35,11 +35,11 @@ export function UpgradePrompt({ feature, requiredPlan = "pro", compact }: Props)
       <div>
         <p className="font-semibold text-sm">{feature}</p>
         <p className="text-xs text-muted-foreground mt-1">
-          Verfügbar ab dem {PLAN_LABELS[requiredPlan]}-Plan
+          متاحة بدءًا من باقة {PLAN_LABELS[requiredPlan]}
         </p>
       </div>
       <Button asChild size="sm">
-        <Link href="/upgrade">Jetzt upgraden</Link>
+        <Link href="/upgrade">الترقية الآن</Link>
       </Button>
     </div>
   );

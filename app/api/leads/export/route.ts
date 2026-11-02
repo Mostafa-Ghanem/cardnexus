@@ -6,7 +6,7 @@ import { buildCsv } from "@/lib/csv";
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const cards = await db.card.findMany({
     where: { userId: session.user.id },
@@ -22,9 +22,9 @@ export async function GET() {
   });
 
   const csv = buildCsv(
-    ["Datum", "Name", "E-Mail", "Telefon", "Nachricht", "Karte"],
+    ["التاريخ", "الاسم", "البريد الإلكتروني", "الهاتف", "الرسالة", "البطاقة"],
     leads.map((l) => [
-      l.createdAt.toLocaleDateString("de-DE"),
+      l.createdAt.toLocaleDateString("ar-u-nu-latn"),
       l.name,
       l.email,
       l.phone,

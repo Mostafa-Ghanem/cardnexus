@@ -24,7 +24,7 @@ export default function LoginPage() {
     const result = await signIn.email({ email, password });
 
     if (result.error) {
-      setError("E-Mail oder Passwort falsch.");
+      setError("البريد الإلكتروني أو كلمة المرور غير صحيحة.");
       setLoading(false);
       return;
     }
@@ -41,17 +41,17 @@ export default function LoginPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Willkommen zurück</CardTitle>
-        <CardDescription>Melde dich mit deinem Account an.</CardDescription>
+        <CardTitle>مرحبًا بعودتك</CardTitle>
+        <CardDescription>سجّل الدخول إلى حسابك.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="email">E-Mail</Label>
+            <Label htmlFor="email">البريد الإلكتروني</Label>
             <Input
               id="email"
               type="email"
-              placeholder="max@example.com"
+              placeholder="name@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -59,7 +59,7 @@ export default function LoginPage() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="password">Passwort</Label>
+            <Label htmlFor="password">كلمة المرور</Label>
             <Input
               id="password"
               type="password"
@@ -73,18 +73,18 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter className="flex flex-col gap-3">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Anmelden…" : "Anmelden"}
+            {loading ? "جارٍ الدخول…" : "تسجيل الدخول"}
           </Button>
           <Link
             href="/forgot-password"
             className="text-xs text-muted-foreground hover:text-foreground hover:underline text-center"
           >
-            Passwort vergessen?
+            نسيت كلمة المرور؟
           </Link>
           <p className="text-sm text-muted-foreground text-center">
-            Noch kein Account?{" "}
+            ليس لديك حساب؟{" "}
             <Link href="/register" className="text-foreground font-medium hover:underline">
-              Registrieren
+              إنشاء حساب
             </Link>
           </p>
         </CardFooter>

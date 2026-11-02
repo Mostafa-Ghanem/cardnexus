@@ -46,12 +46,12 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         body: JSON.stringify(payload),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(typeof json.error === "string" ? json.error : "Fehler");
+      if (!res.ok) throw new Error(typeof json.error === "string" ? json.error : "حدث خطأ");
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Fehler");
+      setError(e instanceof Error ? e.message : "حدث خطأ");
     } finally {
       setSaving(false);
     }
@@ -60,9 +60,9 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
   return (
     <div className="space-y-8 max-w-2xl">
       <div>
-        <h1 className="text-2xl font-bold">Plattform-Einstellungen</h1>
+        <h1 className="text-2xl font-bold">إعدادات المنصة</h1>
         <p className="text-muted-foreground mt-1">
-          Name, URL, Favicon und Branding der gesamten Anwendung
+          الاسم والرابط والأيقونة والهوية للتطبيق بالكامل
         </p>
       </div>
 
@@ -71,24 +71,24 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Type className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Anwendungsname</CardTitle>
+            <CardTitle className="text-base">اسم التطبيق</CardTitle>
           </div>
           <CardDescription>
-            Wird in Browser-Tab, Sidebar, E-Mails und überall als Produktname angezeigt.
+            يظهر في عنوان المتصفح والقائمة والبريد وكل مكان كاسم للمنتج.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-1.5">
-            <Label htmlFor="appName">Name</Label>
+            <Label htmlFor="appName">الاسم</Label>
             <Input
               id="appName"
               value={s.appName}
               onChange={(e) => update("appName", e.target.value)}
-              placeholder="CardNexus"
+              placeholder="اسم المنصة"
               maxLength={64}
             />
             <p className="text-xs text-muted-foreground">
-              Vorschau Browser-Tab: <span className="font-mono">{s.appName} – Digitale Visitenkarten</span>
+              معاينة عنوان المتصفح: <span className="font-mono">{s.appName} – بطاقات أعمال رقمية</span>
             </p>
           </div>
         </CardContent>
@@ -99,10 +99,10 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Globe className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Anwendungs-URL</CardTitle>
+            <CardTitle className="text-base">رابط التطبيق</CardTitle>
           </div>
           <CardDescription>
-            Basis-URL der Anwendung. Wird in QR-Codes, vCards und Einladungslinks verwendet.
+            الرابط الأساسي للتطبيق، يُستخدم في رموز QR وجهات الاتصال وروابط الدعوات.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -112,11 +112,11 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               id="appUrl"
               value={s.appUrl}
               onChange={(e) => update("appUrl", e.target.value)}
-              placeholder="https://meinedomain.de"
+              placeholder="https://yourdomain.com"
               type="url"
             />
             <p className="text-xs text-muted-foreground">
-              Beispiel-Karten-URL: <span className="font-mono">{s.appUrl.replace(/\/$/, "")}/c/max-mustermann</span>
+              مثال لرابط بطاقة: <span className="font-mono">{s.appUrl.replace(/\/$/, "")}/c/ahmed-hassan</span>
             </p>
           </div>
         </CardContent>
@@ -127,15 +127,15 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Image className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Favicon & Logo</CardTitle>
+            <CardTitle className="text-base">الأيقونة والشعار</CardTitle>
           </div>
           <CardDescription>
-            Favicon erscheint im Browser-Tab. Logo erscheint in der Sidebar statt der Initialen.
+            الأيقونة تظهر في عنوان المتصفح، والشعار يظهر في القائمة والصفحة الرئيسية بدل الحرف الأول.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label>Favicon</Label>
+            <Label>الأيقونة (Favicon)</Label>
             <p className="text-xs text-muted-foreground">
               Empfohlen: quadratisch, mind. 32×32 px (PNG, ICO, SVG).
             </p>
@@ -143,13 +143,13 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               <ImageUpload
                 value={s.faviconUrl}
                 onChange={(url) => update("faviconUrl", url)}
-                label="Favicon hochladen"
+                label="رفع الأيقونة"
                 shape="square"
               />
               {s.faviconUrl && (
                 <div className="flex items-center gap-3 p-3 rounded-lg border border-border bg-muted/30">
                   <div className="text-xs text-muted-foreground">
-                    <p className="font-medium text-foreground mb-1">Vorschau</p>
+                    <p className="font-medium text-foreground mb-1">معاينة</p>
                     <div className="flex items-center gap-2">
                       <img src={s.faviconUrl} alt="Favicon" className="h-4 w-4 object-cover" />
                       <span className="font-mono">{s.appName}</span>
@@ -161,14 +161,14 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
           </div>
 
           <div className="space-y-2">
-            <Label>Sidebar-Logo</Label>
+            <Label>الشعار</Label>
             <p className="text-xs text-muted-foreground">
-              Ersetzt die Buchstaben-Initialen in der Sidebar. Empfohlen: quadratisch, 64×64 px.
+              يحل محل الحرف الأول من الاسم. يُفضل مربع 64×64 بكسل.
             </p>
             <ImageUpload
               value={s.logoUrl}
               onChange={(url) => update("logoUrl", url)}
-              label="Logo hochladen"
+              label="رفع الشعار"
               shape="square"
             />
           </div>
@@ -180,27 +180,27 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Palette className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Sonstiges</CardTitle>
+            <CardTitle className="text-base">أخرى</CardTitle>
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="supportEmail">Support-E-Mail</Label>
+            <Label htmlFor="supportEmail">بريد الدعم</Label>
             <Input
               id="supportEmail"
               value={s.supportEmail ?? ""}
               onChange={(e) => update("supportEmail", e.target.value || null)}
-              placeholder="support@meinedomain.de"
+              placeholder="support@yourdomain.com"
               type="email"
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="footerText">Footer-Text</Label>
+            <Label htmlFor="footerText">نص التذييل</Label>
             <Input
               id="footerText"
               value={s.footerText ?? ""}
               onChange={(e) => update("footerText", e.target.value || null)}
-              placeholder="© 2025 Meine Firma. Alle Rechte vorbehalten."
+              placeholder="صُنع للعالم العربي"
               maxLength={200}
             />
           </div>
@@ -212,10 +212,10 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Globe className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Custom Domains</CardTitle>
+            <CardTitle className="text-base">دومينات مخصصة</CardTitle>
           </div>
           <CardDescription>
-            Diese Domains können Nutzer und Organisationen für ihre Karten auswählen.
+            يمكن للمستخدمين والمؤسسات اختيار هذه الدومينات لبطاقاتهم.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -224,13 +224,13 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               <span key={d} className="flex items-center gap-1 bg-muted px-2.5 py-1 rounded-full text-sm">
                 {d}
                 <button type="button" onClick={() => setDomains(domains.filter((x) => x !== d))}
-                  className="text-muted-foreground hover:text-destructive transition-colors ml-1">
+                  className="text-muted-foreground hover:text-destructive transition-colors ms-1">
                   <X className="h-3.5 w-3.5" />
                 </button>
               </span>
             ))}
             {domains.length === 0 && (
-              <p className="text-sm text-muted-foreground">Noch keine Domains hinzugefügt.</p>
+              <p className="text-sm text-muted-foreground">لم تتم إضافة دومينات بعد.</p>
             )}
           </div>
           <div className="flex gap-2">
@@ -238,11 +238,11 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               value={newDomain}
               onChange={(e) => setNewDomain(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addDomain()}
-              placeholder="karte.meinefirma.de"
+              placeholder="card.yourcompany.com"
               className="flex-1"
             />
             <Button type="button" variant="outline" size="sm" onClick={addDomain}>
-              <Plus className="h-4 w-4" /> Hinzufügen
+              <Plus className="h-4 w-4" /> إضافة
             </Button>
           </div>
         </CardContent>
@@ -258,14 +258,14 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
       <div className="flex items-center gap-3">
         <Button onClick={save} disabled={saving}>
           {saved ? (
-            <><Check className="h-4 w-4" /> Gespeichert</>
+            <><Check className="h-4 w-4" /> تم الحفظ</>
           ) : (
-            <><Save className="h-4 w-4" /> {saving ? "Wird gespeichert…" : "Einstellungen speichern"}</>
+            <><Save className="h-4 w-4" /> {saving ? "جارٍ الحفظ…" : "حفظ الإعدادات"}</>
           )}
         </Button>
         {saved && (
           <p className="text-sm text-muted-foreground">
-            Änderungen aktiv — Browser-Tab neu laden zum Prüfen
+            التغييرات مفعّلة، أعد تحميل الصفحة للتأكد
           </p>
         )}
       </div>

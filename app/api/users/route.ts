@@ -18,7 +18,7 @@ const updateSchema = z.object({
 
 export async function GET(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
@@ -50,11 +50,11 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   if (!canManageOrganization(role)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const body = await request.json();
@@ -67,14 +67,14 @@ export async function PATCH(request: NextRequest) {
 
   // Only super_admins can change plans, assign super_admin role, or ban users
   if (!isSuperAdmin(role)) {
-    if (data.role === "super_admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    if (data.plan !== undefined) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    if (data.bannedAt !== undefined) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (data.role === "super_admin") return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
+    if (data.plan !== undefined) return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
+    if (data.bannedAt !== undefined) return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     // company_admin must not be able to grant company_admin to others (only super_admin can).
-    if (data.role === "company_admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (data.role === "company_admin") return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     // company_admin cannot move users between orgs.
     if (data.organizationId !== undefined) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     }
   }
 
@@ -86,13 +86,13 @@ export async function PATCH(request: NextRequest) {
       where: { id: userId },
       select: { organizationId: true, role: true },
     });
-    if (!target) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    if (!target) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
     if (target.organizationId !== orgId) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     }
     // Cannot demote/modify a super_admin.
     if (target.role === "super_admin") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     }
   }
 
@@ -128,16 +128,16 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   if (!canManageOrganization(role)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const { userId } = await request.json();
   if (userId === session.user.id) {
-    return NextResponse.json({ error: "Cannot delete yourself" }, { status: 400 });
+    return NextResponse.json({ error: "لا يمكنك حذف حسابك من هنا" }, { status: 400 });
   }
 
   // SECURITY: company_admin only allowed to delete users from THEIR org.
@@ -147,12 +147,12 @@ export async function DELETE(request: NextRequest) {
       where: { id: userId },
       select: { organizationId: true, role: true },
     });
-    if (!target) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    if (!target) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
     if (target.organizationId !== orgId) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     }
     if (target.role === "super_admin") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     }
   }
 

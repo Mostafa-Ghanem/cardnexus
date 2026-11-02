@@ -7,7 +7,7 @@ import { z } from "zod";
 const createSchema = z.object({
   name: z.string().min(1).max(100),
   url: z.string().url().refine((u) => u.startsWith("https://"), {
-    message: "URL must start with https://",
+    message: "يجب أن يبدأ الرابط بـ https://",
   }),
   events: z.array(z.string()).min(1),
   secret: z.string().optional(),
@@ -19,7 +19,7 @@ const updateSchema = z.object({
   url: z
     .string()
     .url()
-    .refine((u) => u.startsWith("https://"), { message: "URL must start with https://" })
+    .refine((u) => u.startsWith("https://"), { message: "يجب أن يبدأ الرابط بـ https://" })
     .optional(),
   events: z.array(z.string()).optional(),
   secret: z.string().optional().nullable(),
@@ -28,7 +28,7 @@ const updateSchema = z.object({
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const webhooks = await db.webhook.findMany({
     where: { userId: session.user.id },
@@ -41,11 +41,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const count = await db.webhook.count({ where: { userId: session.user.id } });
   if (count >= 10) {
-    return NextResponse.json({ error: "Max 10 webhooks erlaubt" }, { status: 400 });
+    return NextResponse.json({ error: "الحد الأقصى 10 Webhooks" }, { status: 400 });
   }
 
   const body = await request.json();
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const body = await request.json();
   const parsed = updateSchema.safeParse(body);
@@ -80,7 +80,7 @@ export async function PATCH(request: NextRequest) {
   const { id, events, ...rest } = parsed.data;
 
   const existing = await db.webhook.findFirst({ where: { id, userId: session.user.id } });
-  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!existing) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   const webhook = await db.webhook.update({
     where: { id },
@@ -95,11 +95,11 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const { id } = await request.json();
   const existing = await db.webhook.findFirst({ where: { id, userId: session.user.id } });
-  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!existing) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   await db.webhook.delete({ where: { id } });
   return NextResponse.json({ ok: true });

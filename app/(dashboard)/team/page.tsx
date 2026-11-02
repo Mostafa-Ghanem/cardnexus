@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Users, Zap, LayoutDashboard, Building2, SnowflakeIcon } from "lucide-react";
 import { CreateOrgForm } from "./CreateOrgForm";
 
-export const metadata = { title: "Team" };
+export const metadata = { title: "الفريق" };
 
 export default async function TeamPage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -24,10 +24,10 @@ export default async function TeamPage() {
           <LayoutDashboard className="h-8 w-8 text-muted-foreground" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Nutzerverwaltung</h1>
+          <h1 className="text-2xl font-bold">إدارة المستخدمين</h1>
           <p className="text-muted-foreground max-w-sm">
-            Als Super-Admin verwaltest du alle Nutzer und Organisationen im Admin-Panel.
-            Das Team-Tab ist für Nutzer innerhalb einer Organisation gedacht.
+            بصفتك مدير المنصة، تدير كل المستخدمين والمؤسسات من لوحة الإدارة.
+            تبويب الفريق مخصص للمستخدمين داخل مؤسسة.
           </p>
         </div>
         <Link
@@ -35,7 +35,7 @@ export default async function TeamPage() {
           className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           <Users className="h-4 w-4" />
-          Zum Admin-Panel
+          إلى لوحة الإدارة
         </Link>
       </div>
     );
@@ -65,16 +65,16 @@ export default async function TeamPage() {
           <SnowflakeIcon className="h-8 w-8 text-amber-600" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Organisation eingefroren</h1>
+          <h1 className="text-2xl font-bold">المؤسسة مجمّدة</h1>
           <p className="text-muted-foreground max-w-sm">
             {isAdmin
-              ? <>Der Business-Plan für <strong>{frozenOrg.name}</strong> ist abgelaufen. Alle Daten sind erhalten — buche den Plan erneut um die Organisation sofort wieder zu aktivieren.</>
-              : <>Die Organisation <strong>{frozenOrg.name}</strong> ist derzeit eingefroren. Bitte wende dich an deinen Administrator.</>
+              ? <>انتهت باقة Business لمؤسسة <strong>{frozenOrg.name}</strong>. كل البيانات محفوظة، جدّد الباقة لإعادة تفعيل المؤسسة فورًا.</>
+              : <>المؤسسة <strong>{frozenOrg.name}</strong> مجمّدة حاليًا. تواصل مع مدير المؤسسة.</>
             }
           </p>
           {frozenOrg.frozenAt && (
             <p className="text-xs text-muted-foreground">
-              Eingefroren seit {new Date(frozenOrg.frozenAt).toLocaleDateString("de-DE")}
+              Eingefroren seit {new Date(frozenOrg.frozenAt).toLocaleDateString("ar-u-nu-latn")}
             </p>
           )}
         </div>
@@ -84,7 +84,7 @@ export default async function TeamPage() {
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             <Zap className="h-4 w-4" />
-            Business-Plan buchen
+            اشترك في باقة Business
           </Link>
         )}
       </div>
@@ -98,10 +98,10 @@ export default async function TeamPage() {
           <Users className="h-8 w-8 text-muted-foreground" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Team-Verzeichnis</h1>
+          <h1 className="text-2xl font-bold">دليل الفريق</h1>
           <p className="text-muted-foreground max-w-sm">
-            Das Team-Verzeichnis ist ab dem <strong>Business-Plan</strong> verfügbar.
-            Verwalte Mitglieder, versende Einladungen und behalte den Überblick über dein Team.
+            دليل الفريق متاح في باقة <strong>Business</strong>.
+            أدر الأعضاء، وأرسل الدعوات، وتابع فريقك من مكان واحد.
           </p>
         </div>
         <Link
@@ -109,7 +109,7 @@ export default async function TeamPage() {
           className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           <Zap className="h-4 w-4" />
-          Auf Business upgraden
+          الترقية إلى Business
         </Link>
       </div>
     );
@@ -123,10 +123,10 @@ export default async function TeamPage() {
           <Building2 className="h-8 w-8 text-primary" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Erstelle deine Organisation</h1>
+          <h1 className="text-2xl font-bold">أنشئ مؤسستك</h1>
           <p className="text-muted-foreground">
-            Gib deiner Organisation einen Namen, lade Mitglieder ein und lege
-            Design-Vorgaben für alle Visitenkarten fest.
+            سمِّ مؤسستك، وادعُ الأعضاء، وحدد
+            قواعد التصميم لكل البطاقات.
           </p>
         </div>
         <CreateOrgForm />

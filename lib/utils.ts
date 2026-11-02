@@ -16,7 +16,7 @@ export function slugify(text: string): string {
 }
 
 export function formatDate(date: Date | string): string {
-  return new Intl.DateTimeFormat("de-DE", {
+  return new Intl.DateTimeFormat("ar-u-nu-latn", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -34,10 +34,10 @@ export function getInitials(name: string): string {
 
 export function getRoleLabel(role: string): string {
   const labels: Record<string, string> = {
-    super_admin: "Super Admin",
-    company_admin: "Admin",
-    team_leader: "Team Leader",
-    member: "Mitglied",
+    super_admin: "مدير المنصة",
+    company_admin: "مدير",
+    team_leader: "قائد فريق",
+    member: "عضو",
   };
   return labels[role] ?? role;
 }
@@ -58,4 +58,11 @@ export function getDeviceType(userAgent: string): string {
   if (/mobile/i.test(userAgent)) return "mobile";
   if (/tablet|ipad/i.test(userAgent)) return "tablet";
   return "desktop";
+}
+
+/** Convert Arabic-Indic (٠-٩) and Eastern Arabic/Persian (۰-۹) digits to ASCII digits. */
+export function normalizeDigits(value: string): string {
+  return value
+    .replace(/[٠-٩]/g, (d) => String(d.charCodeAt(0) - 0x0660))
+    .replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 0x06f0));
 }

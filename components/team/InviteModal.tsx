@@ -31,11 +31,11 @@ export function InviteModal({ onInvited }: InviteModalProps) {
         body: JSON.stringify({ email, role }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Fehler");
+      if (!res.ok) throw new Error(json.error ?? "حدث خطأ");
       setInviteUrl(json.inviteUrl);
       onInvited?.();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Fehler");
+      setError(e instanceof Error ? e.message : "حدث خطأ");
     } finally {
       setLoading(false);
     }
@@ -60,48 +60,48 @@ export function InviteModal({ onInvited }: InviteModalProps) {
       <DialogTrigger asChild>
         <Button>
           <UserPlus className="h-4 w-4" />
-          Einladen
+          دعوة
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Benutzer einladen</DialogTitle>
+          <DialogTitle>دعوة مستخدم</DialogTitle>
         </DialogHeader>
 
         {!inviteUrl ? (
           <div className="space-y-4">
             <div className="space-y-1.5">
-              <Label>E-Mail-Adresse</Label>
+              <Label>البريد الإلكتروني</Label>
               <Input
                 type="email"
-                placeholder="max@example.com"
+                placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleInvite()}
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Rolle</Label>
+              <Label>الدور</Label>
               <Select value={role} onValueChange={setRole}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="team_leader">Team Leader</SelectItem>
-                  <SelectItem value="member">Mitglied</SelectItem>
+                  <SelectItem value="team_leader">قائد فريق</SelectItem>
+                  <SelectItem value="member">عضو</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button onClick={handleInvite} disabled={!email || loading} className="w-full">
-              {loading ? "Wird eingeladen…" : "Einladung erstellen"}
+              {loading ? "جارٍ الإرسال…" : "إنشاء الدعوة"}
             </Button>
           </div>
         ) : (
           <div className="space-y-4">
             <div className="rounded-lg bg-muted p-4 text-center">
-              <p className="text-sm font-medium text-foreground mb-1">Einladung erstellt!</p>
-              <p className="text-xs text-muted-foreground">Link an {email} senden (gültig 7 Tage)</p>
+              <p className="text-sm font-medium text-foreground mb-1">تم إنشاء الدعوة!</p>
+              <p className="text-xs text-muted-foreground">أرسل الرابط إلى {email} (صالح 7 أيام)</p>
             </div>
             <div className="flex gap-2">
               <Input value={inviteUrl} readOnly className="font-mono text-xs" />
@@ -110,7 +110,7 @@ export function InviteModal({ onInvited }: InviteModalProps) {
               </Button>
             </div>
             <Button variant="outline" onClick={reset} className="w-full">
-              Weitere einladen
+              دعوة شخص آخر
             </Button>
           </div>
         )}

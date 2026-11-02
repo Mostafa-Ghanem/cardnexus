@@ -95,14 +95,14 @@ const CardPatch = z.object({
   cardDomain:          z.string().max(200).optional().nullable(),
 
   // slug change (creates an alias for the old slug)
-  slug: z.string().min(2).max(120).regex(/^[a-z0-9-]+$/, "Nur Kleinbuchstaben, Ziffern und Bindestriche").optional(),
+  slug: z.string().min(2).max(120).regex(/^[a-z0-9-]+$/, "أحرف إنجليزية صغيرة وأرقام وشرطة (-) فقط").optional(),
 });
 
 /* ─── Routes ───────────────────────────────────────────────────────────── */
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const cards = await db.card.findMany({
     where: { userId: session.user.id },
@@ -117,10 +117,10 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const parsed = CardCreate.safeParse(await req.json().catch(() => ({})));
-  if (!parsed.success) return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+  if (!parsed.success) return NextResponse.json({ error: "البيانات غير صحيحة" }, { status: 400 });
   const body = parsed.data;
 
   // Enforce per-plan card limit
@@ -133,7 +133,7 @@ export async function POST(req: NextRequest) {
   const existingCount = await db.card.count({ where: { userId: session.user.id } });
   if (existingCount >= maxCards) {
     return NextResponse.json(
-      { error: `Dein Plan erlaubt maximal ${maxCards} Karte${maxCards === 1 ? "" : "n"}. Upgrade für mehr.` },
+      { error: `باقتك تسمح بحد أقصى ${maxCards} بطاقة. قم بالترقية للمزيد.` },
       { status: 403 }
     );
   }
@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
   // violations (P2002). This is race-condition-safe — no gap between check
   // and insert where a concurrent request could claim the same slug.
   const base = [body.firstName, body.lastName].filter(Boolean).join("-").toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "karte";
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "card";
 
   let card: Awaited<ReturnType<typeof db.card.create>> | null = null;
   for (let attempt = 0; attempt < 5; attempt++) {
@@ -152,13 +152,13 @@ export async function POST(req: NextRequest) {
         data: {
           userId:       session.user.id,
           slug:         `${base}-${nanoid(6)}`,
-          name:         body.name ?? "Meine Karte",
+          name:         body.name ?? "بطاقتي",
           isDefault,
           isPublic:     body.isPublic ?? true,
           firstName:    body.firstName ?? "",
           lastName:     body.lastName ?? "",
           templateId:   body.templateId ?? "classic",
-          primaryColor: body.primaryColor ?? "#0F172A",
+          primaryColor: body.primaryColor ?? "#0F766E",
           fontFamily:   body.fontFamily ?? "inter",
           layoutStyle:  body.layoutStyle ?? "standard",
           customLinks:  "[]",
@@ -174,7 +174,7 @@ export async function POST(req: NextRequest) {
     }
   }
   if (!card) {
-    return NextResponse.json({ error: "Slug-Konflikt — bitte erneut versuchen." }, { status: 500 });
+    return NextResponse.json({ error: "تعارض في رابط البطاقة، حاول مرة أخرى." }, { status: 500 });
   }
 
   return NextResponse.json({ ...card, customLinks: [] }, { status: 201 });
@@ -182,22 +182,22 @@ export async function POST(req: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const parsed = CardPatch.safeParse(await req.json().catch(() => ({})));
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid input", details: parsed.error.flatten() }, { status: 400 });
+    return NextResponse.json({ error: "البيانات غير صحيحة", details: parsed.error.flatten() }, { status: 400 });
   }
   const { id, customLinks, password, slug: newSlug, ...rest } = parsed.data;
 
   // Ownership check
   const existing = await db.card.findFirst({ where: { id, userId: session.user.id } });
-  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!existing) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   // Slug change: validate uniqueness and create alias for old slug
   if (newSlug && newSlug !== existing.slug) {
     const taken = await db.card.findUnique({ where: { slug: newSlug } });
-    if (taken) return NextResponse.json({ error: "Dieser Slug ist bereits vergeben." }, { status: 409 });
+    if (taken) return NextResponse.json({ error: "هذا الرابط مستخدم بالفعل." }, { status: 409 });
     // Save alias so the old URL keeps working
     await db.cardSlugAlias.upsert({
       where: { oldSlug: existing.slug },
@@ -266,18 +266,18 @@ export async function PATCH(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const body = z.object({ id: z.string().min(1) }).safeParse(await req.json().catch(() => ({})));
-  if (!body.success) return NextResponse.json({ error: "Card ID required" }, { status: 400 });
+  if (!body.success) return NextResponse.json({ error: "معرّف البطاقة مطلوب" }, { status: 400 });
   const { id } = body.data;
 
   const card = await db.card.findFirst({ where: { id, userId: session.user.id } });
-  if (!card) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!card) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   // Cannot delete the only card
   const count = await db.card.count({ where: { userId: session.user.id } });
-  if (count <= 1) return NextResponse.json({ error: "Letzte Karte kann nicht gelöscht werden" }, { status: 400 });
+  if (count <= 1) return NextResponse.json({ error: "لا يمكن حذف آخر بطاقة" }, { status: 400 });
 
   await db.card.delete({ where: { id } });
 

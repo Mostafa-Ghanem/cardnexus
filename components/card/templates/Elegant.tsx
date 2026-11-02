@@ -15,16 +15,16 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
   return (
     <div className={`relative w-full max-w-sm bg-white rounded-2xl ${shadow} overflow-hidden ${font}`}>
       {/* Decorative left border strip */}
-      <div className="absolute left-0 top-0 bottom-0 w-1" style={{ backgroundColor: color }} />
+      <div className="absolute start-0 top-0 bottom-0 w-1" style={{ backgroundColor: color }} />
 
       {/* Logo */}
       {card.logoUrl && (
-        <div className="absolute top-5 right-5">
+        <div className="absolute top-5 end-5">
           <img src={card.logoUrl} alt="Logo" className="h-7 w-auto max-w-[64px] object-contain opacity-70" />
         </div>
       )}
 
-      <div className="pl-8 pr-6 pt-8 pb-6">
+      <div className="ps-8 pe-6 pt-8 pb-6">
         {/* Avatar + identity */}
         <div className="flex items-center gap-5 mb-7">
           <div
@@ -37,7 +37,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
           </div>
           <div className="min-w-0">
             <h1 className="text-xl font-bold tracking-tight text-gray-900 leading-snug">
-              {name || "Dein Name"}
+              {name || "اسمك"}
             </h1>
             {card.title && (
               <p className="text-sm font-medium mt-0.5 tracking-wide" style={{ color }}>
@@ -69,25 +69,25 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
           {card.phone && (
             <a href={`tel:${card.phone}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors group">
               <Phone className="h-3.5 w-3.5 shrink-0 group-hover:scale-110 transition-transform" style={{ color: accent }} />
-              <span>{card.phone}</span>
+              <span><bdi>{card.phone}</bdi></span>
             </a>
           )}
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors group">
               <Phone className="h-3.5 w-3.5 shrink-0 group-hover:scale-110 transition-transform" style={{ color: accent }} />
-              <span>{card.mobile} (Mobil)</span>
+              <span><bdi>{card.mobile}</bdi> (جوال)</span>
             </a>
           )}
           {card.email && (
             <a href={`mailto:${card.email}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors group">
               <Mail className="h-3.5 w-3.5 shrink-0 group-hover:scale-110 transition-transform" style={{ color: accent }} />
-              <span className="truncate">{card.email}</span>
+              <span className="truncate"><bdi>{card.email}</bdi></span>
             </a>
           )}
           {card.website && (
             <a href={card.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors group">
               <Globe className="h-3.5 w-3.5 shrink-0 group-hover:scale-110 transition-transform" style={{ color: accent }} />
-              <span className="truncate">{card.website.replace(/^https?:\/\//, "")}</span>
+              <span className="truncate"><bdi>{card.website.replace(/^https?:\/\//, "")}</bdi></span>
             </a>
           )}
           {card.address && (
@@ -116,7 +116,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
           </div>
         )}
       </div>

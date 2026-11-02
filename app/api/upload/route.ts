@@ -27,38 +27,38 @@ function matchesSignature(data: Buffer, mime: AllowedMime) {
 
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
   if (!isR2Configured()) {
-    return NextResponse.json({ error: "Image storage is not configured" }, { status: 503 });
+    return NextResponse.json({ error: "تخزين الصور غير مُعدّ بعد" }, { status: 503 });
   }
 
   try {
     const formData = await request.formData();
     const file = formData.get("file");
     if (!(file instanceof File)) {
-      return NextResponse.json({ error: "No file provided" }, { status: 400 });
+      return NextResponse.json({ error: "لم يتم إرفاق ملف" }, { status: 400 });
     }
     if (!ALLOWED_TYPES.includes(file.type as AllowedMime)) {
-      return NextResponse.json({ error: "Unsupported image format" }, { status: 400 });
+      return NextResponse.json({ error: "صيغة الصورة غير مدعومة (JPG أو PNG أو WebP)" }, { status: 400 });
     }
     if (file.size < 1 || file.size > MAX_SIZE) {
-      return NextResponse.json({ error: "Maximum image size is 5MB" }, { status: 400 });
+      return NextResponse.json({ error: "الحد الأقصى لحجم الصورة 5 ميجابايت" }, { status: 400 });
     }
     const mime = file.type as AllowedMime;
     const body = Buffer.from(await file.arrayBuffer());
     if (!matchesSignature(body, mime)) {
-      return NextResponse.json({ error: "Invalid image data" }, { status: 400 });
+      return NextResponse.json({ error: "بيانات الصورة غير صالحة" }, { status: 400 });
     }
 
     const alreadyUploaded = await countUserImages(session.user.id);
     if (alreadyUploaded >= MAX_UPLOADS_PER_USER) {
-      return NextResponse.json({ error: "Maximum of 20 images per user" }, { status: 400 });
+      return NextResponse.json({ error: "الحد الأقصى 20 صورة لكل مستخدم" }, { status: 400 });
     }
     const name = `${session.user.id}-${nanoid(16)}.${MIME_TO_EXT[mime]}`;
     await putImage(name, body, mime);
     return NextResponse.json({ url: `/uploads/${name}` });
   } catch (error) {
     console.error("Image upload failed:", error);
-    return NextResponse.json({ error: "Image upload failed" }, { status: 502 });
+    return NextResponse.json({ error: "فشل رفع الصورة" }, { status: 502 });
   }
 }

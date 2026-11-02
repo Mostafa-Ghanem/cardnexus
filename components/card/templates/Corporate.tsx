@@ -45,7 +45,7 @@ export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
 
         {/* Diagonal cut */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-8"
+          className="absolute bottom-0 start-0 end-0 h-8"
           style={{
             background: "white",
             clipPath: "polygon(0 100%, 100% 100%, 100% 0)",
@@ -85,19 +85,19 @@ export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
         {/* Contact table */}
         <div className="space-y-0 divide-y divide-gray-50">
           {card.phone && (
-            <CorpRow icon={Phone} label="Telefon" value={card.phone} href={`tel:${card.phone}`} color={color} />
+            <CorpRow icon={Phone} label="الهاتف" value={card.phone} href={`tel:${card.phone}`} color={color} />
           )}
           {card.mobile && (
-            <CorpRow icon={Phone} label="Mobil" value={card.mobile} href={`tel:${card.mobile}`} color={color} />
+            <CorpRow icon={Phone} label="الجوال" value={card.mobile} href={`tel:${card.mobile}`} color={color} />
           )}
           {card.email && (
-            <CorpRow icon={Mail} label="E-Mail" value={card.email} href={`mailto:${card.email}`} color={color} />
+            <CorpRow icon={Mail} label="البريد الإلكتروني" value={card.email} href={`mailto:${card.email}`} color={color} />
           )}
           {card.website && (
-            <CorpRow icon={Globe} label="Web" value={card.website.replace(/^https?:\/\//, "")} href={card.website} color={color} external />
+            <CorpRow icon={Globe} label="الموقع" value={card.website.replace(/^https?:\/\//, "")} href={card.website} color={color} external />
           )}
           {card.address && (
-            <CorpRow icon={MapPin} label="Adresse" value={card.address} color={color} />
+            <CorpRow icon={MapPin} label="العنوان" value={card.address} color={color} />
           )}
         </div>
 
@@ -117,8 +117,8 @@ export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
 
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 pt-5 border-t border-gray-100 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12" />
+            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
           </div>
         )}
       </div>
@@ -140,7 +140,7 @@ function CorpRow({
       <Icon className="h-3.5 w-3.5 mt-0.5 shrink-0" style={{ color }} />
       <div className="min-w-0">
         <p className="text-[9px] font-bold tracking-widest uppercase text-gray-400 leading-none mb-0.5">{label}</p>
-        <p className="text-xs text-gray-700 group-hover:text-gray-900 transition-colors truncate">{value}</p>
+        <p className="text-xs text-gray-700 group-hover:text-gray-900 transition-colors truncate"><bdi>{value}</bdi></p>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ interface ImageUploadProps {
 export function ImageUpload({
   value,
   onChange,
-  label = "Bild hochladen",
+  label = "رفع صورة",
   shape = "square",
   className,
 }: ImageUploadProps) {
@@ -34,10 +34,10 @@ export function ImageUpload({
       form.append("file", file);
       const res = await fetch("/api/upload", { method: "POST", body: form });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Upload fehlgeschlagen");
+      if (!res.ok) throw new Error(json.error ?? "فشل الرفع");
       onChange(json.url);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Fehler");
+      setError(e instanceof Error ? e.message : "حدث خطأ");
     } finally {
       setUploading(false);
     }
@@ -96,7 +96,7 @@ export function ImageUpload({
         {/* Remove button */}
         {value && !uploading && (
           <button
-            className="absolute top-1 right-1 h-5 w-5 rounded-full bg-black/60 flex items-center justify-center hover:bg-black/80 transition-colors"
+            className="absolute top-1 end-1 h-5 w-5 rounded-full bg-black/60 flex items-center justify-center hover:bg-black/80 transition-colors"
             onClick={(e) => { e.stopPropagation(); onChange(null); }}
           >
             <X className="h-3 w-3 text-white" />
@@ -122,7 +122,7 @@ export function ImageUpload({
         disabled={uploading}
       >
         {uploading ? (
-          <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Wird hochgeladen…</>
+          <><Loader2 className="h-3.5 w-3.5 animate-spin" /> جارٍ الرفع…</>
         ) : (
           <><Upload className="h-3.5 w-3.5" /> {label}</>
         )}
@@ -131,7 +131,7 @@ export function ImageUpload({
       {/* URL input alternative */}
       <div className="flex gap-1">
         <Input
-          placeholder="oder URL einfügen…"
+          placeholder="أو الصق رابط الصورة…"
           value={urlInput}
           onChange={(e) => setUrlInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleUrlApply()}

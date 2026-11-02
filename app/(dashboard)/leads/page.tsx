@@ -4,20 +4,21 @@ import { db } from "@/lib/db";
 import { LeadsClient } from "./client";
 import type { Lead } from "@/types";
 
-export const metadata = { title: "Leads" };
+export const metadata = { title: "العملاء المحتملون" };
 
 export default async function LeadsPage() {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session!.user as { id: string };
 
-  const card = await db.card.findFirst({
-    where: { userId: user.id, isDefault: true },
-    select: { id: true, slug: true },
+  const cards = await db.card.findMany({
+    where: { userId: user.id },
+    select: { id: true },
   });
+  const cardIds = cards.map((c) => c.id);
 
-  const leads: Lead[] = card
+  const leads: Lead[] = cardIds.length
     ? (await db.lead.findMany({
-        where: { cardId: card.id },
+        where: { cardId: { in: cardIds } },
         orderBy: { createdAt: "desc" },
         take: 500,
       })).map((l) => ({ ...l, createdAt: l.createdAt.toISOString() }))
@@ -26,12 +27,12 @@ export default async function LeadsPage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-2xl font-bold">Leads</h1>
+        <h1 className="text-2xl font-bold">العملاء المحتملون</h1>
         <p className="text-muted-foreground mt-1">
-          Personen, die ihren Kontakt auf deiner Karte hinterlassen haben.
+          الأشخاص الذين تركوا بياناتهم على بطاقتك.
         </p>
       </div>
-      <LeadsClient leads={leads} hasCard={!!card} />
+      <LeadsClient leads={leads} hasCard={cardIds.length > 0} />
     </div>
   );
 }

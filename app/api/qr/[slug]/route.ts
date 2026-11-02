@@ -14,7 +14,7 @@ export async function GET(
   });
 
   if (!card || !card.isPublic) {
-    return NextResponse.json({ error: "Nicht gefunden" }, { status: 404 });
+    return NextResponse.json({ error: "غير موجود" }, { status: 404 });
   }
 
   const url = new URL(request.url);

@@ -53,7 +53,7 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
         <button
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
           className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-          aria-label="Theme wechseln"
+          aria-label="تبديل المظهر"
         >
           {resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>
@@ -65,13 +65,13 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
             className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ExternalLink className="h-4 w-4" />
-            Karte ansehen
+            عرض البطاقة
           </Link>
         )}
 
         <DropdownMenu>
           <DropdownMenuTrigger
-            aria-label="Benutzermenü"
+            aria-label="قائمة المستخدم"
             className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
                 <AvatarImage src={user.image ?? undefined} />
                 <AvatarFallback className="text-xs">{getInitials(user.name)}</AvatarFallback>
               </Avatar>
-              <div className="hidden md:block text-left">
+              <div className="hidden md:block text-start">
                 <p className="text-sm font-medium leading-none">{user.name}</p>
                 <p className="text-xs text-muted-foreground">{getRoleLabel(user.role ?? "member")}</p>
               </div>
@@ -97,16 +97,16 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/settings">Einstellungen</Link>
+              <Link href="/settings">الإعدادات</Link>
             </DropdownMenuItem>
             {cardSlug && (
               <DropdownMenuItem asChild>
-                <Link href={`/c/${cardSlug}`} target="_blank">Karte ansehen</Link>
+                <Link href={`/c/${cardSlug}`} target="_blank">عرض البطاقة</Link>
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
-              Abmelden
+              تسجيل الخروج
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

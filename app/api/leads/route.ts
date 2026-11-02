@@ -6,14 +6,15 @@ import { rateLimit } from "@/lib/rate-limit";
 import { clientIp } from "@/lib/client-ip";
 import { canUseFeature, effectivePlan } from "@/lib/plans";
 import { z } from "zod";
+import { normalizeDigits } from "@/lib/utils";
 
 const schema = z.object({
   cardId:  z.string().min(1),
-  name:    z.string().min(1).max(100),
-  email:   z.string().email().optional().or(z.literal("")),
-  phone:   z.string().max(50).optional(),
+  name:    z.string().trim().min(1).max(100),
+  email:   z.string().trim().email().optional().or(z.literal("")),
+  phone:   z.string().max(50).optional().transform((v) => (v ? normalizeDigits(v).replace(/[^\d+]/g, "") : v)),
   message: z.string().max(500).optional(),
-});
+}).refine((d) => !!d.email || !!d.phone, { message: "phone_or_email_required" });
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,18 +30,18 @@ export async function POST(req: NextRequest) {
     });
 
     if (!card || !card.isPublic) {
-      return NextResponse.json({ error: "Karte nicht gefunden" }, { status: 404 });
+      return NextResponse.json({ error: "البطاقة غير موجودة" }, { status: 404 });
     }
 
     const ownerPlan = effectivePlan(card.user.plan ?? "free", card.user.planExpiresAt);
     if (!canUseFeature("leadCapture", ownerPlan)) {
-      return NextResponse.json({ error: "Nicht verfügbar" }, { status: 403 });
+      return NextResponse.json({ error: "هذه الخدمة غير متاحة لهذه البطاقة" }, { status: 403 });
     }
 
     const ip = clientIp(req);
     if (!rateLimit({ key: `lead:${ip}:${data.cardId}`, max: 3, windowMs: 60 * 60_000 })) {
       return NextResponse.json(
-        { error: "Zu viele Anfragen — bitte später erneut versuchen." },
+        { error: "طلبات كثيرة، حاول مرة أخرى لاحقًا." },
         { status: 429 }
       );
     }
@@ -76,9 +77,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, id: lead.id });
   } catch (err) {
     if (err instanceof z.ZodError) {
-      return NextResponse.json({ error: "Ungültige Eingabe", details: err.flatten() }, { status: 400 });
+      return NextResponse.json({ error: "البيانات غير صحيحة. أضف الاسم ورقم الجوال أو البريد الإلكتروني الصحيح.", details: err.flatten() }, { status: 400 });
     }
     console.error("[leads POST]", err);
-    return NextResponse.json({ error: "Serverfehler" }, { status: 500 });
+    return NextResponse.json({ error: "خطأ في الخادم" }, { status: 500 });
   }
 }

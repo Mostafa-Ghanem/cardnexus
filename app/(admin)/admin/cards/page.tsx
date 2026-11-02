@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials, formatDate } from "@/lib/utils";
 import { Pencil, Eye, Globe, EyeOff } from "lucide-react";
 
-export const metadata = { title: "Karten verwalten" };
+export const metadata = { title: "إدارة البطاقات" };
 
 export default async function AdminCardsPage() {
   const cards = await db.card.findMany({
@@ -20,20 +20,20 @@ export default async function AdminCardsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Alle Karten</h1>
-        <p className="text-muted-foreground mt-1">{cards.length} Karten auf der Plattform</p>
+        <h1 className="text-2xl font-bold">كل البطاقات</h1>
+        <p className="text-muted-foreground mt-1">{cards.length} بطاقة على المنصة</p>
       </div>
 
       <div className="rounded-xl border border-border overflow-hidden bg-white dark:bg-gray-900">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/40">
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Inhaber</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Slug / URL</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Template</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Aufrufe</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Zuletzt geändert</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Status</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground">المالك</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground">الرابط</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">القالب</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">الزيارات</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">آخر تعديل</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground">الحالة</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -71,7 +71,7 @@ export default async function AdminCardsPage() {
                   </Badge>
                 </td>
                 <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">
-                  {card.totalViews.toLocaleString("de-DE")}
+                  {card.totalViews.toLocaleString("ar-u-nu-latn")}
                 </td>
                 <td className="px-4 py-3 text-muted-foreground text-xs hidden lg:table-cell">
                   {formatDate(card.updatedAt.toISOString())}
@@ -79,17 +79,17 @@ export default async function AdminCardsPage() {
                 <td className="px-4 py-3">
                   {card.isPublic ? (
                     <span className="inline-flex items-center gap-1 text-xs text-emerald-600">
-                      <Globe className="h-3 w-3" /> Öffentlich
+                      <Globe className="h-3 w-3" /> عامة
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                      <EyeOff className="h-3 w-3" /> Privat
+                      <EyeOff className="h-3 w-3" /> خاصة
                     </span>
                   )}
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-2">
-                    <Button asChild variant="ghost" size="icon" className="h-7 w-7" title="Karte ansehen">
+                    <Button asChild variant="ghost" size="icon" className="h-7 w-7" title="عرض البطاقة">
                       <Link href={`/c/${card.slug}`} target="_blank">
                         <Eye className="h-3.5 w-3.5" />
                       </Link>
@@ -97,7 +97,7 @@ export default async function AdminCardsPage() {
                     <Button asChild variant="outline" size="sm" className="h-7 gap-1 text-xs">
                       <Link href={`/admin/cards/${card.slug}`}>
                         <Pencil className="h-3 w-3" />
-                        Bearbeiten
+                        تعديل
                       </Link>
                     </Button>
                   </div>
@@ -109,7 +109,7 @@ export default async function AdminCardsPage() {
 
         {cards.length === 0 && (
           <div className="px-4 py-12 text-center text-muted-foreground text-sm">
-            Noch keine Karten erstellt.
+            لا توجد بطاقات بعد.
           </div>
         )}
       </div>

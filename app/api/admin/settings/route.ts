@@ -20,7 +20,7 @@ export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
   const role = (session?.user as { role?: string })?.role;
   if (!session || role !== "super_admin") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const settings = await db.platformSettings.upsert({
@@ -36,13 +36,13 @@ export async function PATCH(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
   const role = (session?.user as { role?: string })?.role;
   if (!session || role !== "super_admin") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const body = await request.json();
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
-    const msg = Object.values(parsed.error.flatten().fieldErrors).flat()[0] ?? "Ungültige Daten";
+    const msg = Object.values(parsed.error.flatten().fieldErrors).flat()[0] ?? "البيانات غير صحيحة";
     return NextResponse.json({ error: msg }, { status: 400 });
   }
 

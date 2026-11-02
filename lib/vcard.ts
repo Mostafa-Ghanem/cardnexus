@@ -23,7 +23,7 @@ function esc(value: string): string {
 /** Map free-text gender to vCard 4.0 GENDER value */
 function mapGender(g: string): string {
   const lower = g.toLowerCase();
-  if (lower === "m" || lower === "männlich" || lower === "male") return "M";
+  if (lower === "m" || lower === "ذكر" || lower === "männlich" || lower === "male") return "M";
   if (lower === "f" || lower === "w" || lower === "weiblich" || lower === "female") return "F";
   if (lower === "o" || lower === "divers" || lower === "other" || lower === "non-binary") return "O";
   if (lower === "n" || lower === "none" || lower === "keine angabe") return "N";
@@ -35,7 +35,7 @@ function mapGender(g: string): string {
 export function generateVCard(card: CardData): string {
   const first = card.firstName ?? "";
   const last  = card.lastName  ?? "";
-  const fullName = `${first} ${last}`.trim() || card.email || "Kontakt";
+  const fullName = `${first} ${last}`.trim() || card.email || "جهة اتصال";
 
   const add = (line: string) => lines.push(fold(line));
 
@@ -88,6 +88,14 @@ export function generateVCard(card: CardData): string {
 export function vCardFileName(card: CardData): string {
   const first = card.firstName ?? "";
   const last  = card.lastName  ?? "";
-  const name  = `${first}-${last}`.replace(/^-|-$|--+/g, "-").toLowerCase() || "kontakt";
+  const name  = `${first}-${last}`.trim().replace(/\s+/g, "-").replace(/^-+|-+$/g, "").replace(/--+/g, "-").toLowerCase() || "contact";
   return `${name}.vcf`;
+}
+
+/** Content-Disposition value that is safe for non-ASCII (e.g. Arabic) names:
+ *  ASCII fallback in `filename`, the real name in RFC 5987 `filename*`. */
+export function vCardContentDisposition(filename: string): string {
+  const ascii = filename.replace(/[^\x20-\x7E]/g, "").replace(/["\\]/g, "").replace(/^[-.]+/, "") || "contact.vcf";
+  const safeAscii = ascii.endsWith(".vcf") && ascii.length > 4 ? ascii : "contact.vcf";
+  return `attachment; filename="${safeAscii}"; filename*=UTF-8''${encodeURIComponent(filename)}`;
 }

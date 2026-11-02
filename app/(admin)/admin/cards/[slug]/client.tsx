@@ -31,7 +31,7 @@ export function AdminCardEditClient({ card }: Props) {
       />
 
       <div className="border-t border-border pt-8">
-        <h2 className="text-lg font-semibold mb-4">QR-Code</h2>
+        <h2 className="text-lg font-semibold mb-4">رمز QR</h2>
         <QRCodeDisplay slug={card.slug} color={card.primaryColor} />
       </div>
     </div>

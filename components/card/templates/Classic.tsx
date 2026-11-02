@@ -27,7 +27,7 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
 
       {/* Logo */}
       {card.logoUrl && (
-        <div className="absolute top-4 right-4 z-10">
+        <div className="absolute top-4 end-4 z-10">
           <img
             src={card.logoUrl}
             alt="Logo"
@@ -49,7 +49,7 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
           </div>
 
           <div className={`min-w-0 ${isCentered ? "text-center" : ""}`}>
-            <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || "Dein Name"}</h1>
+            <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || "اسمك"}</h1>
             {card.title && (
               <p className="text-sm font-medium mt-0.5" style={{ color }}>{card.title}</p>
             )}
@@ -73,25 +73,25 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
           {card.phone && (
             <a href={`tel:${card.phone}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors">
               <ContactIcon icon={Phone} accent={accent} />
-              {card.phone}
+              <bdi>{card.phone}</bdi>
             </a>
           )}
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors">
               <ContactIcon icon={Phone} accent={accent} />
-              {card.mobile} (Mobil)
+              <bdi>{card.mobile}</bdi> (جوال)
             </a>
           )}
           {card.email && (
             <a href={`mailto:${card.email}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors">
               <ContactIcon icon={Mail} accent={accent} />
-              {card.email}
+              <bdi>{card.email}</bdi>
             </a>
           )}
           {card.website && (
             <a href={card.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors">
               <ContactIcon icon={Globe} accent={accent} />
-              {card.website.replace(/^https?:\/\//, "")}
+              <bdi>{card.website.replace(/^https?:\/\//, "")}</bdi>
             </a>
           )}
           {card.address && (
@@ -125,8 +125,8 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
         {/* QR */}
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12" />
+            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
           </div>
         )}
       </div>

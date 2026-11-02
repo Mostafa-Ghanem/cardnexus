@@ -63,9 +63,9 @@ export default async function DashboardPage() {
     <div className="space-y-8">
       {/* Greeting */}
       <div>
-        <h1 className="text-2xl font-bold text-foreground">Hallo, {firstName} 👋</h1>
+        <h1 className="text-2xl font-bold text-foreground">أهلًا {firstName} 👋</h1>
         <p className="text-muted-foreground mt-1">
-          {cards.length > 0 ? `Du hast ${cards.length} Karte${cards.length > 1 ? "n" : ""}.` : "Erstelle jetzt deine erste digitale Visitenkarte."}
+          {cards.length > 0 ? `لديك ${cards.length} ${cards.length > 1 ? "بطاقات" : "بطاقة"}.` : "أنشئ الآن أول بطاقة رقمية لك."}
         </p>
       </div>
 
@@ -75,12 +75,12 @@ export default async function DashboardPage() {
           <div className="mx-auto h-12 w-12 rounded-full bg-muted flex items-center justify-center mb-4">
             <Plus className="h-6 w-6 text-muted-foreground" />
           </div>
-          <h2 className="text-lg font-semibold mb-2">Keine Karte vorhanden</h2>
-          <p className="text-sm text-muted-foreground mb-6">Erstelle jetzt deine digitale Visitenkarte in wenigen Minuten.</p>
+          <h2 className="text-lg font-semibold mb-2">لا توجد بطاقة بعد</h2>
+          <p className="text-sm text-muted-foreground mb-6">أنشئ بطاقتك الرقمية في دقائق.</p>
           <Button asChild>
             <Link href="/card">
-              Karte erstellen
-              <ArrowRight className="h-4 w-4" />
+              إنشاء بطاقة
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </Button>
         </div>
@@ -90,11 +90,11 @@ export default async function DashboardPage() {
       {cards.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-semibold">Deine Karten</h2>
+            <h2 className="text-base font-semibold">بطاقاتك</h2>
             <Button asChild variant="outline" size="sm">
               <Link href="/card">
                 <Plus className="h-4 w-4" />
-                Neue Karte
+                بطاقة جديدة
               </Link>
             </Button>
           </div>
@@ -119,29 +119,29 @@ export default async function DashboardPage() {
                     <div className="flex items-center gap-2">
                       <span className="font-medium truncate">{c.name ?? c.slug}</span>
                       {c.isDefault && (
-                        <Badge variant="outline" className="text-xs shrink-0">Standard</Badge>
+                        <Badge variant="outline" className="text-xs shrink-0">الافتراضية</Badge>
                       )}
                       <Badge variant={c.isPublic ? "success" : "outline"} className="text-xs shrink-0">
-                        {c.isPublic ? "Öffentlich" : "Privat"}
+                        {c.isPublic ? "عامة" : "خاصة"}
                       </Badge>
                     </div>
                     <p className="text-xs text-muted-foreground mt-0.5">/c/{c.slug}</p>
                   </div>
 
                   {/* Sparkline — 7 days */}
-                  <div className="hidden md:block shrink-0" title="Aufrufe letzte 7 Tage">
+                  <div className="hidden md:block shrink-0" title="الزيارات آخر 7 أيام">
                     <CardSparkline data={sparkData} color={c.primaryColor ?? "#0F172A"} />
                   </div>
 
                   {/* Stats */}
                   <div className="hidden sm:flex items-center gap-6 text-sm text-muted-foreground shrink-0">
-                    <div className="flex items-center gap-1.5" title="Aufrufe gesamt">
+                    <div className="flex items-center gap-1.5" title="إجمالي الزيارات">
                       <Eye className="h-3.5 w-3.5" />
-                      <span className="font-medium text-foreground">{c.totalViews.toLocaleString("de-DE")}</span>
+                      <span className="font-medium text-foreground">{c.totalViews.toLocaleString("ar-u-nu-latn")}</span>
                     </div>
-                    <div className="flex items-center gap-1.5" title="Aufrufe letzte 30 Tage">
+                    <div className="flex items-center gap-1.5" title="الزيارات آخر 30 يومًا">
                       <MousePointer className="h-3.5 w-3.5" />
-                      <span>{recentCount.toLocaleString("de-DE")} <span className="text-xs">/ 30d</span></span>
+                      <span>{recentCount.toLocaleString("ar-u-nu-latn")} <span className="text-xs">/ 30d</span></span>
                     </div>
                   </div>
 
@@ -150,18 +150,18 @@ export default async function DashboardPage() {
                     <Link
                       href={`/card?card=${c.id}`}
                       className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
-                      title="Karte bearbeiten"
+                      title="تعديل البطاقة"
                     >
                       <Pencil className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">Bearbeiten</span>
+                      <span className="hidden sm:inline">تعديل</span>
                     </Link>
                     <Link
                       href={`/analytics?cardId=${c.id}`}
                       className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
-                      title="Analytics ansehen"
+                      title="عرض الإحصائيات"
                     >
                       <BarChart2 className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">Analytics</span>
+                      <span className="hidden sm:inline">الإحصائيات</span>
                     </Link>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ export default async function DashboardPage() {
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Karte teilen</CardTitle>
+              <CardTitle className="text-base">مشاركة البطاقة</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               {/* Prefer custom domain, then app URL derived from request headers */}
@@ -187,7 +187,7 @@ export default async function DashboardPage() {
                   </div>
                   <div className="flex gap-2">
                     <Button asChild variant="outline" size="sm" className="flex-1">
-                      <Link href={cardUrl} target="_blank">Öffnen</Link>
+                      <Link href={cardUrl} target="_blank">فتح</Link>
                     </Button>
                     <Button asChild variant="outline" size="sm" className="flex-1">
                       <Link href={`/api/vcard/${defaultCard.slug}`}>vCard</Link>
@@ -204,7 +204,7 @@ export default async function DashboardPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Live-Aufrufe</CardTitle>
+              <CardTitle className="text-base">الزيارات المباشرة</CardTitle>
             </CardHeader>
             <CardContent className="pt-2">
               <LiveViews initialViews={defaultCard.totalViews} cardSlug={defaultCard.slug} />

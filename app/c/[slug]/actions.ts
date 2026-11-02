@@ -16,12 +16,12 @@ export async function unlockCard(
     where: { slug },
     select: { passwordHash: true, isPublic: true, expiresAt: true },
   });
-  if (!card || !card.isPublic) return { ok: false, error: "Karte nicht gefunden" };
-  if (card.expiresAt && card.expiresAt < new Date()) return { ok: false, error: "Karte abgelaufen" };
+  if (!card || !card.isPublic) return { ok: false, error: "البطاقة غير موجودة" };
+  if (card.expiresAt && card.expiresAt < new Date()) return { ok: false, error: "انتهت صلاحية البطاقة" };
   if (!card.passwordHash) return { ok: true };
 
   if (!verifyPassword(password, card.passwordHash)) {
-    return { ok: false, error: "Falsches Passwort" };
+    return { ok: false, error: "كلمة المرور غير صحيحة" };
   }
 
   // Store an HMAC-signed token, not the raw hash — prevents forging the cookie

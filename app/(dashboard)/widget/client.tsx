@@ -27,7 +27,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
   const cardUrl = selectedSlug ? `${baseUrl}/c/${selectedSlug}` : "";
 
   const iframeCode = selectedSlug
-    ? `<iframe\n  src="${cardUrl}"\n  width="${width}"\n  height="${height}"\n  frameborder="0"\n  style="border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.1);"\n  title="Digitale Visitenkarte"\n  loading="lazy"\n></iframe>`
+    ? `<iframe\n  src="${cardUrl}"\n  width="${width}"\n  height="${height}"\n  frameborder="0"\n  style="border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.1);"\n  title="بطاقة أعمال رقمية"\n  loading="lazy"\n></iframe>`
     : "";
 
   async function copy(text: string, key: "iframe" | "link") {
@@ -41,17 +41,17 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
       <div>
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Code2 className="h-6 w-6" />
-          Karte einbetten
+          تضمين البطاقة
         </h1>
         <p className="text-muted-foreground mt-1">
-          Bette deine digitale Karte per iFrame direkt auf deiner Website ein.
+          اعرض بطاقتك الرقمية داخل موقعك عبر iFrame.
         </p>
       </div>
 
       <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
         {/* Card selector */}
         <div>
-          <Label htmlFor="card-select">Karte auswählen</Label>
+          <Label htmlFor="card-select">اختر البطاقة</Label>
           {canSelectMultiple && cards.length > 1 ? (
             <select
               id="card-select"
@@ -75,11 +75,11 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
           {!canSelectMultiple && (
             <p className="mt-2 text-xs text-muted-foreground flex items-center gap-1.5">
               <Zap className="h-3 w-3 text-amber-500" />
-              Mehrere Karten ab{" "}
+              تعدد البطاقات متاح بدءًا من باقة{" "}
               <Link href="/upgrade" className="text-primary underline underline-offset-2">
                 Pro
               </Link>
-              {" "}verfügbar.
+              .
             </p>
           )}
         </div>
@@ -87,11 +87,11 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
         {/* Dimensions */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="width">Breite (px)</Label>
+            <Label htmlFor="width">العرض (px)</Label>
             <Input id="width" value={width} onChange={(e) => setWidth(e.target.value)} className="mt-1" />
           </div>
           <div>
-            <Label htmlFor="height">Höhe (px)</Label>
+            <Label htmlFor="height">الارتفاع (px)</Label>
             <Input id="height" value={height} onChange={(e) => setHeight(e.target.value)} className="mt-1" />
           </div>
         </div>
@@ -100,7 +100,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
       {selectedSlug && (
         <>
           <div className="space-y-2">
-            <p className="text-sm font-medium">Direktlink</p>
+            <p className="text-sm font-medium">رابط مباشر</p>
             <div className="flex items-center gap-2">
               <code className="flex-1 text-xs bg-muted rounded-lg px-3 py-2 truncate">{cardUrl}</code>
               <Button size="sm" variant="outline" onClick={() => copy(cardUrl, "link")}>
@@ -110,12 +110,12 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm font-medium">iFrame-Code</p>
+            <p className="text-sm font-medium">كود iFrame</p>
             <div className="relative">
               <pre className="text-xs bg-muted rounded-xl p-4 overflow-x-auto whitespace-pre leading-relaxed">{iframeCode}</pre>
               <Button
                 size="sm" variant="outline"
-                className="absolute top-2 right-2"
+                className="absolute top-2 end-2"
                 onClick={() => copy(iframeCode, "iframe")}
               >
                 {copied === "iframe" ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
@@ -124,7 +124,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm font-medium">Vorschau</p>
+            <p className="text-sm font-medium">معاينة</p>
             <div className="flex justify-center bg-muted rounded-2xl p-6">
               <iframe
                 src={cardUrl}
@@ -132,7 +132,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
                 height={Math.min(parseInt(height) || 700, 700)}
                 frameBorder={0}
                 style={{ borderRadius: 16, boxShadow: "0 4px 24px rgba(0,0,0,0.1)" }}
-                title="Vorschau"
+                title="معاينة"
                 loading="lazy"
               />
             </div>
@@ -142,7 +142,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
 
       {!selectedSlug && (
         <div className="rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground text-sm">
-          Keine Karte gefunden. Erstelle zuerst eine Karte.
+          لا توجد بطاقة. أنشئ بطاقة أولًا.
         </div>
       )}
     </div>

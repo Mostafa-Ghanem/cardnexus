@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import { CardPreview } from "@/components/card/CardPreview";
 import { QRCodeDisplay } from "@/components/card/QRCodeDisplay";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import type { CardData } from "@/types";
-import { Download, Share2, QrCode, Wallet, X, Loader2, UserPlus, CheckCircle2, CalendarDays, Mail, MessageCircle } from "lucide-react";
+import { Download, Share2, QrCode, Wallet, X, Loader2, UserPlus, CalendarDays, Mail, MessageCircle } from "lucide-react";
+import { LeadModal } from "./LeadModal";
+
+const WALLET_ENABLED = process.env.NEXT_PUBLIC_WALLET_ENABLED === "true";
 
 interface Props {
   card: CardData;
   source?: string;
   showBadge?: boolean;
   showLeadForm?: boolean;
+  appName?: string;
 }
 
 interface TrackOpts {
@@ -44,7 +46,7 @@ function readUtmFromUrl(): { utmSource?: string; utmMedium?: string; utmCampaign
   };
 }
 
-export function PublicCardView({ card, source, showBadge = true, showLeadForm = false }: Props) {
+export function PublicCardView({ card, source, showBadge = true, showLeadForm = false, appName = "كارت نكسس" }: Props) {
   const [showQR, setShowQR] = useState(false);
   const [showLead, setShowLead] = useState(false);
   const [shared, setShared] = useState(false);
@@ -67,7 +69,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
     setDownloading(true);
     try {
       const res = await fetch(`/api/vcard/${card.slug}`);
-      if (!res.ok) throw new Error("Fehler beim Download");
+      if (!res.ok) throw new Error("تعذّر التنزيل");
 
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
@@ -75,8 +77,9 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
       a.href = url;
 
       const cd = res.headers.get("content-disposition") ?? "";
-      const match = cd.match(/filename="?([^"]+)"?/);
-      a.download = match?.[1] ?? "kontakt.vcf";
+      const utf8 = cd.match(/filename\*=UTF-8''([^;]+)/i);
+      const plain = cd.match(/filename="?([^";]+)"?/);
+      a.download = utf8 ? decodeURIComponent(utf8[1]) : plain?.[1] ?? "contact.vcf";
 
       document.body.appendChild(a);
       a.click();
@@ -117,10 +120,10 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
         track(card.slug, "wallet_save");
       } else {
         const { error } = await res.json();
-        alert(error ?? "Wallet nicht verfügbar.");
+        alert(error ?? "المحفظة غير متاحة حاليًا.");
       }
     } catch {
-      alert("Wallet nicht verfügbar.");
+      alert("المحفظة غير متاحة حاليًا.");
     } finally {
       setWalletLoading(false);
     }
@@ -128,20 +131,20 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
 
   function shareViaWhatsApp() {
     const url  = window.location.origin + `/c/${card.slug}`;
-    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "Visitenkarte";
+    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "بطاقة أعمال";
     window.open(`https://wa.me/?text=${encodeURIComponent(`${name} – ${url}`)}`, "_blank");
   }
 
   function shareViaEmail() {
     const url  = window.location.origin + `/c/${card.slug}`;
-    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "Visitenkarte";
-    window.location.href = `mailto:?subject=${encodeURIComponent(name)}&body=${encodeURIComponent(`Meine digitale Visitenkarte: ${url}`)}`;
+    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "بطاقة أعمال";
+    window.location.href = `mailto:?subject=${encodeURIComponent(name)}&body=${encodeURIComponent(`بطاقتي الرقمية: ${url}`)}`;
 
   }
 
   async function handleShare() {
     const url = window.location.origin + `/c/${card.slug}`;
-    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "Visitenkarte";
+    const name = [card.firstName, card.lastName].filter(Boolean).join(" ") || "بطاقة أعمال";
 
     // Native share sheet (mobile / supported browsers)
     if (navigator.share) {
@@ -177,7 +180,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center py-8 px-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center py-6 sm:py-8 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
       {/* Card */}
       <div className="w-full max-w-sm">
         <CardPreview card={card} />
@@ -193,8 +196,8 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           style={{ backgroundColor: card.primaryColor, borderColor: card.primaryColor }}
         >
           {downloading
-            ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird vorbereitet…</>
-            : <><Download className="h-4 w-4" /> Kontakt speichern</>
+            ? <><Loader2 className="h-4 w-4 animate-spin" /> جارٍ التجهيز…</>
+            : <><Download className="h-4 w-4" /> حفظ جهة الاتصال</>
           }
         </Button>
 
@@ -202,15 +205,21 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           <Button asChild className="w-full" size="lg" style={{ backgroundColor: card.primaryColor }}>
             <a href={card.bookingUrl} target="_blank" rel="noopener noreferrer">
               <CalendarDays className="h-4 w-4" />
-              Termin buchen
+              احجز موعدًا
             </a>
           </Button>
         )}
 
         {showLeadForm && (
-          <Button variant="outline" className="w-full" size="lg" onClick={() => setShowLead(true)}>
+          <Button
+            variant="outline"
+            className="w-full font-semibold border-2"
+            size="lg"
+            onClick={() => setShowLead(true)}
+            style={{ borderColor: card.primaryColor, color: card.primaryColor }}
+          >
             <UserPlus className="h-4 w-4" />
-            Kontakt hinterlassen
+            اترك بياناتك للتواصل
           </Button>
         )}
 
@@ -218,12 +227,12 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           {!card.hideShareButton && (
             <Button variant="outline" onClick={handleShare}>
               <Share2 className="h-4 w-4" />
-              {shared ? "Kopiert!" : "Teilen"}
+              {shared ? "تم النسخ!" : "مشاركة"}
             </Button>
           )}
           <Button variant="outline" onClick={() => setShowQR(!showQR)}>
             <QrCode className="h-4 w-4" />
-            QR-Code
+            رمز QR
           </Button>
         </div>
 
@@ -235,17 +244,19 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
             </Button>
             <Button variant="outline" onClick={shareViaEmail}>
               <Mail className="h-4 w-4" />
-              E-Mail
+              البريد
             </Button>
           </div>
         )}
 
+        {WALLET_ENABLED && (
         <Button variant="outline" className="w-full" onClick={saveToWallet} disabled={walletLoading}>
           {walletLoading
-            ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird geladen…</>
-            : <><Wallet className="h-4 w-4" /> In Wallet speichern</>
+            ? <><Loader2 className="h-4 w-4 animate-spin" /> جارٍ التحميل…</>
+            : <><Wallet className="h-4 w-4" /> حفظ في المحفظة</>
           }
         </Button>
+        )}
       </div>
 
       {/* QR overlay */}
@@ -259,8 +270,8 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold">QR-Code</h3>
-              <button onClick={() => setShowQR(false)} className="text-muted-foreground hover:text-foreground">
+              <h3 className="font-semibold">رمز QR</h3>
+              <button onClick={() => setShowQR(false)} aria-label="إغلاق" className="text-muted-foreground hover:text-foreground p-1">
                 <X className="h-4 w-4" />
               </button>
             </div>
@@ -277,144 +288,10 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
       {/* Powered by — only for free plan */}
       {showBadge && (
         <p className="mt-8 text-xs text-gray-400 dark:text-gray-500">
-          Erstellt mit{" "}
-          <a href="/" className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors font-medium">CardNexus</a>
+          صُنعت بواسطة{" "}
+          <a href="/" className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors font-medium">{appName}</a>
         </p>
       )}
-    </div>
-  );
-}
-
-// ── Lead Capture Modal ──────────────────────────────────────────────────────
-
-function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  function set(field: string, value: string) {
-    setForm((f) => ({ ...f, [field]: value }));
-  }
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!form.name.trim()) { setError("Name ist erforderlich."); return; }
-    setError(null);
-    setLoading(true);
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cardId: card.id, ...form }),
-      });
-      if (!res.ok) {
-        const j = await res.json();
-        throw new Error(j.error ?? "Fehler beim Senden");
-      }
-      setSuccess(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Unbekannter Fehler");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const ownerName = [card.firstName, card.lastName].filter(Boolean).join(" ") || "diese Person";
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-full max-w-sm shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between mb-5">
-          <div>
-            <h3 className="font-bold text-lg">Kontakt hinterlassen</h3>
-            <p className="text-sm text-muted-foreground mt-0.5">
-              {ownerName} erhält deine Daten
-            </p>
-          </div>
-          <button onClick={onClose} className="text-muted-foreground hover:text-foreground p-1 rounded-lg hover:bg-accent transition-colors">
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-
-        {success ? (
-          <div className="flex flex-col items-center py-6 text-center gap-3">
-            <CheckCircle2 className="h-12 w-12" style={{ color: card.primaryColor }} />
-            <p className="font-semibold">Vielen Dank!</p>
-            <p className="text-sm text-muted-foreground">
-              {ownerName} wurde benachrichtigt.
-            </p>
-            <Button variant="outline" className="mt-2" onClick={onClose}>Schließen</Button>
-          </div>
-        ) : (
-          <form onSubmit={submit} className="space-y-4">
-            <div>
-              <Label htmlFor="lead-name">Name *</Label>
-              <Input
-                id="lead-name"
-                value={form.name}
-                onChange={(e) => set("name", e.target.value)}
-                placeholder="Dein Name"
-                className="mt-1"
-                required
-              />
-            </div>
-            <div>
-              <Label htmlFor="lead-email">E-Mail</Label>
-              <Input
-                id="lead-email"
-                type="email"
-                value={form.email}
-                onChange={(e) => set("email", e.target.value)}
-                placeholder="deine@email.de"
-                className="mt-1"
-              />
-            </div>
-            <div>
-              <Label htmlFor="lead-phone">Telefon</Label>
-              <Input
-                id="lead-phone"
-                type="tel"
-                value={form.phone}
-                onChange={(e) => set("phone", e.target.value)}
-                placeholder="+49 ..."
-                className="mt-1"
-              />
-            </div>
-            <div>
-              <Label htmlFor="lead-message">Nachricht</Label>
-              <textarea
-                id="lead-message"
-                value={form.message}
-                onChange={(e) => set("message", e.target.value)}
-                placeholder="Optionale Nachricht..."
-                rows={3}
-                className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-none"
-              />
-            </div>
-
-            {error && <p className="text-sm text-destructive">{error}</p>}
-
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={loading}
-              style={{ backgroundColor: card.primaryColor }}
-            >
-              {loading
-                ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird gesendet…</>
-                : "Kontakt senden"}
-            </Button>
-          </form>
-        )}
-      </div>
     </div>
   );
 }

@@ -6,14 +6,14 @@ import { nanoid } from "nanoid";
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   let user = await db.user.findUnique({
     where: { id: session.user.id },
     select: { id: true, referralCode: true },
   });
 
-  if (!user) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!user) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   // Create referral code if missing
   if (!user.referralCode) {

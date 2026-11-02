@@ -19,12 +19,12 @@ export function MobileNav(props: Props) {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         className="lg:hidden flex h-9 w-9 items-center justify-center rounded-md border border-border hover:bg-accent"
-        aria-label="Navigation öffnen"
+        aria-label="فتح القائمة"
       >
         <Menu className="h-5 w-5" />
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-72">
-        <SheetTitle className="sr-only">Hauptnavigation</SheetTitle>
+      <SheetContent side="right" className="p-0 w-72">
+        <SheetTitle className="sr-only">القائمة الرئيسية</SheetTitle>
         <SidebarNav {...props} onNavigate={() => setOpen(false)} />
       </SheetContent>
     </Sheet>

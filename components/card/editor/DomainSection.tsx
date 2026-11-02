@@ -16,9 +16,9 @@ export function DomainSection({ card, update, allowedDomains, canCustomDomain }:
 
   return (
     <section className="space-y-3">
-      <Label className="text-base">Karten-Domain</Label>
+      <Label className="text-base">دومين البطاقة</Label>
       <p className="text-xs text-muted-foreground">
-        Unter welcher Domain soll deine Karte erreichbar sein?
+        على أي دومين تريد أن تفتح بطاقتك؟
       </p>
       <div className="space-y-2">
         <button type="button"
@@ -26,7 +26,7 @@ export function DomainSection({ card, update, allowedDomains, canCustomDomain }:
           className={`w-full rounded-lg border-2 p-3 text-left text-sm transition-all ${
             !card.cardDomain ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"
           }`}>
-          Standard (Plattform-Domain)
+          الافتراضي (دومين المنصة)
         </button>
         {allowedDomains?.map((d) => (
           <button key={d} type="button"
@@ -39,11 +39,11 @@ export function DomainSection({ card, update, allowedDomains, canCustomDomain }:
         ))}
         {canCustomDomain && (
           <div className="space-y-1.5">
-            <p className="text-xs text-muted-foreground font-medium">Eigene Domain (Pro)</p>
+            <p className="text-xs text-muted-foreground font-medium">دومين خاص (Pro)</p>
             <Input
               value={card.cardDomain && !allowedDomains?.includes(card.cardDomain) ? card.cardDomain : ""}
               onChange={(e) => update("cardDomain", (e.target.value as CardData["cardDomain"]) || null)}
-              placeholder="meine-domain.de"
+              placeholder="my-domain.com"
             />
           </div>
         )}

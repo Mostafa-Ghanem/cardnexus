@@ -39,11 +39,11 @@ export function buildPlainText(card: CardData): string {
   const name = `${card.firstName ?? ""} ${card.lastName ?? ""}`.trim();
   const header = [name, [card.title, card.company].filter(Boolean).join(" | ")].filter(Boolean);
   const contact = [
-    card.phone   && `Tel:    ${card.phone}`,
-    card.mobile  && `Mobil:  ${card.mobile}`,
-    card.email   && `E-Mail: ${card.email}`,
-    card.website && `Web:    ${card.website}`,
-    card.address && `Adr:    ${card.address}`,
+    card.phone   && `هاتف:   ${card.phone}`,
+    card.mobile  && `جوال:   ${card.mobile}`,
+    card.email   && `بريد:   ${card.email}`,
+    card.website && `موقع:   ${card.website}`,
+    card.address && `عنوان:  ${card.address}`,
   ].filter(Boolean) as string[];
   return [...header, "", ...contact].join("\n");
 }

@@ -35,7 +35,7 @@ const updateSchema = createSchema.partial().extend({
 
 export async function GET(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
@@ -70,7 +70,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const userId  = session.user.id;
   const role    = (session.user as { role?: string }).role ?? "member";
@@ -84,10 +84,10 @@ export async function POST(request: NextRequest) {
     });
     const plan = effectivePlan(dbUser?.plan ?? "free", dbUser?.planExpiresAt);
     if (!canUseFeature("teamDirectory", plan)) {
-      return NextResponse.json({ error: "Business-Plan erforderlich" }, { status: 403 });
+      return NextResponse.json({ error: "تتطلب باقة Business" }, { status: 403 });
     }
     if (userOrgId) {
-      return NextResponse.json({ error: "Du bist bereits Mitglied einer Organisation" }, { status: 400 });
+      return NextResponse.json({ error: "أنت عضو بالفعل في مؤسسة" }, { status: 400 });
     }
   }
 
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
 
   const existing = await db.organization.findUnique({ where: { slug }, select: { id: true } });
   if (existing) {
-    return NextResponse.json({ error: "Dieses URL-Kürzel ist bereits vergeben" }, { status: 409 });
+    return NextResponse.json({ error: "هذا الرابط المختصر مستخدم بالفعل" }, { status: 409 });
   }
 
   const org = await db.organization.create({
@@ -128,14 +128,14 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const sessionOrgId = (session.user as { organizationId?: string }).organizationId;
   const superAdmin = isSuperAdmin(role);
 
   if (!superAdmin && !canManageOrganization(role)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const body = await request.json();
@@ -147,7 +147,7 @@ export async function PATCH(request: NextRequest) {
   // super_admin can target any org by passing `id`; others can only edit their own org
   const targetOrgId = superAdmin ? (parsed.data.id ?? sessionOrgId) : sessionOrgId;
   if (!targetOrgId) {
-    return NextResponse.json({ error: "Organisation nicht gefunden" }, { status: 404 });
+    return NextResponse.json({ error: "المؤسسة غير موجودة" }, { status: 404 });
   }
 
   const { settings, id: _id, ...orgData } = parsed.data;
@@ -166,13 +166,13 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
-  if (!isSuperAdmin(role)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!isSuperAdmin(role)) return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
 
   const { id } = await request.json();
-  if (!id) return NextResponse.json({ error: "id erforderlich" }, { status: 400 });
+  if (!id) return NextResponse.json({ error: "المعرّف مطلوب" }, { status: 400 });
 
   // Unassign all members before deleting (don't delete the users themselves)
   await db.user.updateMany({

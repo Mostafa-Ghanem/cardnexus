@@ -12,7 +12,7 @@ interface ImportResult {
 }
 
 const EXAMPLE_CSV = `firstname,lastname,email,title,company,phone,mobile,department
-Max,Mustermann,max@firma.de,Senior Developer,Firma GmbH,+49 89 1234567,+49 170 1234567,Engineering
+Ahmed,Hassan,ahmed@company.com,Sales Manager,Company LLC,+966 11 1234567,+966 50 1234567,Sales
 Erika,Musterfrau,erika@firma.de,Projektmanagerin,Firma GmbH,,+49 171 9876543,Management`;
 
 export function ImportClient() {
@@ -25,7 +25,7 @@ export function ImportClient() {
 
   function handleFile(f: File) {
     if (!f.name.endsWith(".csv")) {
-      setError("Bitte eine CSV-Datei hochladen.");
+      setError("من فضلك ارفع ملف CSV.");
       return;
     }
     setFile(f);
@@ -43,10 +43,10 @@ export function ImportClient() {
       fd.append("file", file);
       const res = await fetch("/api/bulk-import", { method: "POST", body: fd });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Fehler beim Import");
+      if (!res.ok) throw new Error(json.error ?? "تعذّر الاستيراد");
       setResults(json.results);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Unbekannter Fehler");
+      setError(e instanceof Error ? e.message : "حدث خطأ غير متوقع");
     } finally {
       setLoading(false);
     }
@@ -56,7 +56,7 @@ export function ImportClient() {
     const blob = new Blob([EXAMPLE_CSV], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url; a.download = "import-vorlage.csv";
+    a.href = url; a.download = "import-template.csv";
     document.body.appendChild(a); a.click();
     document.body.removeChild(a); URL.revokeObjectURL(url);
   }
@@ -75,21 +75,21 @@ export function ImportClient() {
       <div className="rounded-xl border border-border bg-muted/30 p-5 space-y-3">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-medium text-sm">CSV-Format</p>
+            <p className="font-medium text-sm">صيغة ملف CSV</p>
             <p className="text-xs text-muted-foreground mt-1">
-              Pflichtfelder: <code className="bg-muted px-1 rounded">firstname</code> (oder <code className="bg-muted px-1 rounded">vorname</code>),{" "}
-              <code className="bg-muted px-1 rounded">email</code>. Optionale Felder:{" "}
+              الحقول المطلوبة: <code className="bg-muted px-1 rounded">firstname</code> (أو <code className="bg-muted px-1 rounded">vorname</code>),{" "}
+              <code className="bg-muted px-1 rounded">email</code>. حقول اختيارية:{" "}
               <code className="bg-muted px-1 rounded">lastname</code>, <code className="bg-muted px-1 rounded">title</code>,{" "}
               <code className="bg-muted px-1 rounded">company</code>, <code className="bg-muted px-1 rounded">phone</code>,{" "}
               <code className="bg-muted px-1 rounded">mobile</code>, <code className="bg-muted px-1 rounded">department</code>.
             </p>
             <p className="text-xs text-muted-foreground mt-1">
-              Der Import aktualisiert bestehende Mitglieder (gleiche E-Mail in der Org). Neue E-Mails werden als „nicht gefunden" markiert — nutze dafür Einladungen.
+              الاستيراد يحدّث الأعضاء الحاليين (نفس البريد داخل المؤسسة). البريد الجديد يظهر كـ «غير موجود»، استخدم الدعوات لإضافته.
             </p>
           </div>
           <Button variant="outline" size="sm" onClick={downloadExample} className="shrink-0">
             <Download className="h-3.5 w-3.5" />
-            Vorlage
+            نموذج
           </Button>
         </div>
         <pre className="text-[10px] font-mono bg-muted rounded-lg p-3 overflow-x-auto text-muted-foreground leading-relaxed">
@@ -124,7 +124,7 @@ export function ImportClient() {
         ) : (
           <div className="flex flex-col items-center gap-2 text-muted-foreground">
             <Upload className="h-10 w-10" />
-            <p className="font-medium text-sm">CSV-Datei hierher ziehen oder klicken</p>
+            <p className="font-medium text-sm">اسحب ملف CSV هنا أو اضغط للاختيار</p>
           </div>
         )}
       </div>
@@ -139,8 +139,8 @@ export function ImportClient() {
       {file && !results && (
         <Button onClick={upload} disabled={loading} className="w-full" size="lg">
           {loading
-            ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird importiert…</>
-            : <><Upload className="h-4 w-4" /> Import starten</>}
+            ? <><Loader2 className="h-4 w-4 animate-spin" /> جارٍ الاستيراد…</>
+            : <><Upload className="h-4 w-4" /> بدء الاستيراد</>}
         </Button>
       )}
 
@@ -149,9 +149,9 @@ export function ImportClient() {
         <div className="space-y-4">
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: "Erstellt",    value: counts.created, color: "text-emerald-700 bg-emerald-50 border-emerald-200" },
-              { label: "Aktualisiert", value: counts.updated, color: "text-blue-700 bg-blue-50 border-blue-200" },
-              { label: "Übersprungen", value: counts.skipped, color: "text-amber-700 bg-amber-50 border-amber-200" },
+              { label: "تم الإنشاء",    value: counts.created, color: "text-emerald-700 bg-emerald-50 border-emerald-200" },
+              { label: "تم التحديث", value: counts.updated, color: "text-blue-700 bg-blue-50 border-blue-200" },
+              { label: "تم التخطي", value: counts.skipped, color: "text-amber-700 bg-amber-50 border-amber-200" },
             ].map(({ label, value, color }) => (
               <div key={label} className={`rounded-xl border p-4 text-center ${color}`}>
                 <p className="text-2xl font-bold">{value}</p>
@@ -164,9 +164,9 @@ export function ImportClient() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/40">
-                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground">E-Mail</th>
-                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground">Status</th>
-                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground">Hinweis</th>
+                  <th className="text-start px-4 py-2.5 font-medium text-muted-foreground">البريد الإلكتروني</th>
+                  <th className="text-start px-4 py-2.5 font-medium text-muted-foreground">الحالة</th>
+                  <th className="text-start px-4 py-2.5 font-medium text-muted-foreground">ملاحظة</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -180,7 +180,7 @@ export function ImportClient() {
                         "bg-amber-100 text-amber-700"
                       }`}>
                         {r.status === "created" && <CheckCircle2 className="h-3 w-3" />}
-                        {r.status === "created" ? "Erstellt" : r.status === "updated" ? "Aktualisiert" : "Übersprungen"}
+                        {r.status === "created" ? "تم الإنشاء" : r.status === "updated" ? "تم التحديث" : "تم التخطي"}
                       </span>
                     </td>
                     <td className="px-4 py-2.5 text-xs text-muted-foreground">{r.error ?? "—"}</td>
@@ -191,7 +191,7 @@ export function ImportClient() {
           </div>
 
           <Button variant="outline" className="w-full" onClick={() => { setFile(null); setResults(null); if (fileRef.current) fileRef.current.value = ""; }}>
-            Weiteren Import starten
+            استيراد ملف آخر
           </Button>
         </div>
       )}

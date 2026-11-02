@@ -7,7 +7,7 @@ import { effectivePlan, getPlanFeatures } from "@/lib/plans";
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const { id } = await params;
 
@@ -18,13 +18,13 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     db.card.count({ where: { userId: session.user.id } }),
   ]);
 
-  if (!source) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!source) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   const plan = effectivePlan(dbUser?.plan ?? "free", dbUser?.planExpiresAt);
   const { maxCards } = getPlanFeatures(plan);
   if (existingCount >= maxCards) {
     return NextResponse.json(
-      { error: `Dein Plan erlaubt maximal ${maxCards} Karte${maxCards === 1 ? "" : "n"}.` },
+      { error: `باقتك تسمح بحد أقصى ${maxCards} بطاقة.` },
       { status: 403 }
     );
   }
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     data: {
       ...data,
       slug,
-      name: `${source.name} (Kopie)`,
+      name: `${source.name} (نسخة)`,
       isDefault: false,
       totalViews: 0,
     } as Parameters<typeof db.card.create>[0]["data"],

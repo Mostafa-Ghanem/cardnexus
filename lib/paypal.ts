@@ -78,8 +78,8 @@ export async function createSubscription(opts: {
       plan_id:   opts.planId,
       custom_id: `${opts.userId}|${opts.plan}`, // we read this in the webhook
       application_context: {
-        brand_name:  "CardNexus",
-        locale:      "de-DE",
+        brand_name:  process.env.NEXT_PUBLIC_APP_NAME ?? "CardNexus",
+        locale:      "ar-u-nu-latn",
         shipping_preference: "NO_SHIPPING",
         user_action: "SUBSCRIBE_NOW",
         payment_method: {

@@ -13,10 +13,10 @@ const patchSchema = z.object({
 
 export async function PATCH(req: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const body = patchSchema.safeParse(await req.json());
-  if (!body.success) return NextResponse.json({ error: "Ungültige Eingabe" }, { status: 400 });
+  if (!body.success) return NextResponse.json({ error: "البيانات غير صحيحة" }, { status: 400 });
 
   const { name, email, leadNotification } = body.data;
   const updates: Record<string, unknown> = {};
@@ -58,7 +58,7 @@ export async function PATCH(req: NextRequest) {
  */
 export async function DELETE() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const me = await db.user.findUnique({
     where: { id: session.user.id },
@@ -66,7 +66,7 @@ export async function DELETE() {
   });
   if (me?.role === "super_admin") {
     return NextResponse.json(
-      { error: "Super-Admin kann nicht gelöscht werden. Rolle vorher entfernen." },
+      { error: "لا يمكن حذف مدير المنصة. أزل الدور أولًا." },
       { status: 400 }
     );
   }

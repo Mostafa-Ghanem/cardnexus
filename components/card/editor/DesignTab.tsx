@@ -27,7 +27,7 @@ interface Props {
 function LockedBadge() {
   return (
     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-      <Lock className="h-3 w-3" /> Vom Admin gesperrt
+      <Lock className="h-3 w-3" /> مقفل من المدير
     </span>
   );
 }
@@ -40,7 +40,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Template */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Template</Label>
+          <Label className="text-base">القالب</Label>
           {!policy.allowTemplateChange && <LockedBadge />}
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -55,7 +55,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
                   card.templateId === t.id ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"
                 } ${locked ? "opacity-50 cursor-not-allowed" : ""}`}>
                 {planLocked && (
-                  <span className="absolute top-2 right-2 text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-medium flex items-center gap-0.5">
+                  <span className="absolute top-2 end-2 text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-medium flex items-center gap-0.5">
                     <Lock className="h-2.5 w-2.5" /> Pro
                   </span>
                 )}
@@ -71,14 +71,14 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Primary color */}
       <section className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Primärfarbe</Label>
+          <Label className="text-base">اللون الأساسي</Label>
           {!policy.allowColorChange && <LockedBadge />}
         </div>
         {policy.allowColorChange ? (
           <>
             {hasBrandColors && (
               <div className="space-y-1.5">
-                <p className="text-xs text-muted-foreground">Markenfarben der Organisation</p>
+                <p className="text-xs text-muted-foreground">ألوان هوية المؤسسة</p>
                 <div className="flex flex-wrap gap-2">
                   {policy.brandColors.map((c) => (
                     <button key={c} type="button" title={c} onClick={() => update("primaryColor", c)}
@@ -109,24 +109,24 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Accent color */}
       <section className="space-y-2">
-        <Label className="text-base">Akzentfarbe <span className="text-xs font-normal text-muted-foreground">(optional)</span></Label>
-        <p className="text-xs text-muted-foreground">Zweite Farbe für Icons, Links und Buttons</p>
+        <Label className="text-base">اللون المميز <span className="text-xs font-normal text-muted-foreground">(اختياري)</span></Label>
+        <p className="text-xs text-muted-foreground">لون ثانٍ للأيقونات والروابط والأزرار</p>
         <div className="flex items-center gap-3">
           <input type="color" value={card.accentColor ?? card.primaryColor ?? "#0F172A"}
             onChange={(e) => update("accentColor", e.target.value)}
             className="h-10 w-16 rounded-md border border-input cursor-pointer" />
           <Input value={card.accentColor ?? ""} onChange={(e) => update("accentColor", e.target.value || null)}
-            className="font-mono w-32" placeholder="wie Primär" maxLength={7} />
+            className="font-mono w-32" placeholder="مثل الأساسي" maxLength={7} />
           {card.accentColor && (
             <Button type="button" variant="ghost" size="sm" onClick={() => update("accentColor", null)}
-              className="text-muted-foreground">Zurücksetzen</Button>
+              className="text-muted-foreground">إعادة تعيين</Button>
           )}
         </div>
       </section>
 
       {/* Background */}
       <section className="space-y-3">
-        <Label className="text-base">Hintergrund</Label>
+        <Label className="text-base">الخلفية</Label>
         <div className="grid grid-cols-3 gap-2">
           {BG_OPTIONS.map((b) => (
             <button key={b.value} type="button"
@@ -143,7 +143,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Shadow */}
       <section className="space-y-3">
-        <Label className="text-base">Kartenschatten</Label>
+        <Label className="text-base">ظل البطاقة</Label>
         <div className="flex gap-2 flex-wrap">
           {SHADOW_OPTIONS.map((s) => (
             <button key={s.value} type="button"
@@ -160,7 +160,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Font */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Schriftart</Label>
+          <Label className="text-base">الخط</Label>
           {!policy.allowFontChange && <LockedBadge />}
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -183,7 +183,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Layout */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Layout</Label>
+          <Label className="text-base">التخطيط</Label>
           {!policy.allowLayoutChange && <LockedBadge />}
         </div>
         <div className="space-y-2">
@@ -205,7 +205,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Rounded */}
       <section className="space-y-3">
-        <Label className="text-base">Eckenradius</Label>
+        <Label className="text-base">استدارة الزوايا</Label>
         <div className="flex gap-2">
           {ROUNDED_OPTIONS.map((r) => (
             <button key={r.value} type="button"
@@ -221,7 +221,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Avatar border */}
       <section className="space-y-3">
-        <Label className="text-base">Avatar-Rahmen</Label>
+        <Label className="text-base">إطار الصورة</Label>
         <div className="flex gap-2">
           {AVATAR_BORDER_OPTIONS.map((a) => (
             <button key={a.value} type="button"
@@ -237,7 +237,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Social style */}
       <section className="space-y-3">
-        <Label className="text-base">Social-Stil</Label>
+        <Label className="text-base">نمط روابط التواصل</Label>
         <div className="space-y-2">
           {SOCIAL_STYLE_OPTIONS.map((s) => (
             <button key={s.value} type="button"
@@ -256,27 +256,27 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       <section className="space-y-3 rounded-xl border border-border p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium">Firmenlogo</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Erscheint klein auf der Karte (oben rechts)</p>
+            <p className="text-sm font-medium">شعار الشركة</p>
+            <p className="text-xs text-muted-foreground mt-0.5">يظهر صغيرًا في أعلى البطاقة</p>
           </div>
           {!policy.canEditLogo && <LockedBadge />}
         </div>
         {policy.canEditLogo ? (
           <ImageUpload value={card.logoUrl} onChange={(url) => update("logoUrl", url)}
-            label="Logo hochladen" shape="wide" className="h-20" />
+            label="رفع الشعار" shape="wide" className="h-20" />
         ) : (
           card.logoUrl
-            ? <img src={card.logoUrl} alt="Logo" className="h-10 w-auto max-w-[120px] object-contain opacity-60" />
-            : <p className="text-xs text-muted-foreground">Kein Logo gesetzt</p>
+            ? <img src={card.logoUrl} alt="الشعار" className="h-10 w-auto max-w-[120px] object-contain opacity-60" />
+            : <p className="text-xs text-muted-foreground">لا يوجد شعار</p>
         )}
       </section>
 
       {/* Toggles */}
       {[
-        { key: "showQrOnCard" as const,        label: "QR-Code auf Karte zeigen",         desc: "Kleiner QR-Code direkt auf der Visitenkarte" },
-        { key: "isPublic" as const,            label: "Karte öffentlich",                 desc: "Karte für alle sichtbar" },
-        { key: "showInTeamDirectory" as const, label: "Im Team-Verzeichnis anzeigen",     desc: "Profil im öffentlichen Verzeichnis deiner Organisation sichtbar" },
-        { key: "hideShareButton" as const,     label: "Teilen-Button ausblenden",         desc: "Kein Teilen-Button auf der öffentlichen Kartenansicht" },
+        { key: "showQrOnCard" as const,        label: "إظهار رمز QR على البطاقة",         desc: "رمز QR صغير على البطاقة نفسها" },
+        { key: "isPublic" as const,            label: "بطاقة عامة",                 desc: "البطاقة ظاهرة للجميع" },
+        { key: "showInTeamDirectory" as const, label: "إظهار في دليل الفريق",     desc: "يظهر ملفك في الدليل العام لمؤسستك" },
+        { key: "hideShareButton" as const,     label: "إخفاء زر المشاركة",         desc: "بدون زر مشاركة في صفحة البطاقة العامة" },
       ].map(({ key, label, desc }) => (
         <div key={key} className="flex items-center justify-between rounded-lg border border-border p-4">
           <div>

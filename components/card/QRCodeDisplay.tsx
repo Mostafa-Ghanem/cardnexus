@@ -32,7 +32,7 @@ export function QRCodeDisplay({ slug, color = "#000000", size = 200 }: QRCodeDis
       <div className="rounded-xl border border-border p-3 bg-white dark:bg-gray-900">
         <img
           src={src}
-          alt="QR Code"
+          alt="رمز QR"
           width={size}
           height={size}
           className="rounded-lg"
@@ -40,7 +40,7 @@ export function QRCodeDisplay({ slug, color = "#000000", size = 200 }: QRCodeDis
       </div>
       <Button variant="outline" size="sm" onClick={downloadQR}>
         <Download className="h-4 w-4" />
-        QR-Code herunterladen
+        تنزيل رمز QR
       </Button>
     </div>
   );

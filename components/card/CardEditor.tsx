@@ -50,7 +50,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
   const defaultCard: Partial<CardData> = {
     firstName: "", lastName: "",
     templateId:     (policy.defaults.template as CardData["templateId"]) ?? "classic",
-    primaryColor:   "#0F172A",
+    primaryColor:   "#0F766E",
     accentColor:    policy.defaults.accentColor,
     fontFamily:     policy.defaults.fontFamily ?? "inter",
     layoutStyle:    policy.defaults.layoutStyle ?? "standard",
@@ -105,17 +105,31 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
         body: JSON.stringify(payload),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(typeof json.error === "string" ? json.error : "Fehler beim Speichern");
+      if (!res.ok) throw new Error(typeof json.error === "string" ? json.error : "تعذّر الحفظ");
+      // POST only creates the card shell (name, template, colour). Persist every
+      // other field the user already filled in (title, phone, email, links…).
+      if (isNew && json.id && !saveEndpoint) {
+        const { slug: _slug, id: _id, ...fields } = card as Partial<CardData> & { id?: string };
+        const patch = await fetch("/api/cards", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...fields, id: json.id }),
+        });
+        if (!patch.ok) {
+          const pj = await patch.json().catch(() => ({}));
+          throw new Error(typeof pj.error === "string" ? pj.error : "تعذّر حفظ بيانات البطاقة");
+        }
+      }
       // On new card creation, navigate to the card page with the new card selected
       if (isNew && json.id) {
         router.push(`/card?card=${json.id}`);
       }
       setSuccess(true);
-      toast.success("Karte gespeichert");
+      toast.success("تم حفظ البطاقة");
       setTimeout(() => setSuccess(false), 3000);
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Unbekannter Fehler");
+      setError(e instanceof Error ? e.message : "حدث خطأ غير متوقع");
     } finally {
       setSaving(false);
     }
@@ -125,77 +139,77 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
     <div className="flex flex-col lg:flex-row gap-8">
       <div className="flex-1 min-w-0">
         <Tabs defaultValue="profile">
-          <TabsList className="mb-6 flex-wrap h-auto gap-1">
-            <TabsTrigger value="profile">Profil</TabsTrigger>
-            <TabsTrigger value="media">Bilder</TabsTrigger>
-            <TabsTrigger value="contact">Kontakt</TabsTrigger>
-            <TabsTrigger value="social">Social</TabsTrigger>
-            <TabsTrigger value="design">Design</TabsTrigger>
-            <TabsTrigger value="links">Links</TabsTrigger>
+          <TabsList className="mb-6 h-auto gap-1 w-full justify-start overflow-x-auto flex-nowrap sm:flex-wrap">
+            <TabsTrigger value="profile">الملف</TabsTrigger>
+            <TabsTrigger value="media">الصور</TabsTrigger>
+            <TabsTrigger value="contact">التواصل</TabsTrigger>
+            <TabsTrigger value="social">السوشيال</TabsTrigger>
+            <TabsTrigger value="design">التصميم</TabsTrigger>
+            <TabsTrigger value="links">الروابط</TabsTrigger>
           </TabsList>
 
           {/* Profile */}
           <TabsContent value="profile" className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Vorname</Label>
-                <Input value={card.firstName ?? ""} onChange={(e) => update("firstName", e.target.value || null)} placeholder="Max" />
+                <Label>الاسم الأول</Label>
+                <Input value={card.firstName ?? ""} onChange={(e) => update("firstName", e.target.value || null)} placeholder="أحمد" autoComplete="given-name" />
               </div>
               <div className="space-y-1.5">
-                <Label>Nachname</Label>
-                <Input value={card.lastName ?? ""} onChange={(e) => update("lastName", e.target.value || null)} placeholder="Mustermann" />
-              </div>
-            </div>
-            <div className="space-y-1.5">
-              <Label>Berufsbezeichnung</Label>
-              <Input value={card.title ?? ""} onChange={(e) => update("title", e.target.value || null)} placeholder="Senior Developer" />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <Label>Unternehmen</Label>
-                <Input value={card.company ?? ""} onChange={(e) => update("company", e.target.value || null)} placeholder="ACME GmbH" />
-              </div>
-              <div className="space-y-1.5">
-                <Label>Abteilung</Label>
-                <Input value={card.department ?? ""} onChange={(e) => update("department", e.target.value || null)} placeholder="Engineering" />
+                <Label>اسم العائلة</Label>
+                <Input value={card.lastName ?? ""} onChange={(e) => update("lastName", e.target.value || null)} placeholder="حسن" autoComplete="family-name" />
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label>Kurzbeschreibung</Label>
+              <Label>المسمى الوظيفي</Label>
+              <Input value={card.title ?? ""} onChange={(e) => update("title", e.target.value || null)} placeholder="مدير المبيعات" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>الشركة</Label>
+                <Input value={card.company ?? ""} onChange={(e) => update("company", e.target.value || null)} placeholder="اسم الشركة" />
+              </div>
+              <div className="space-y-1.5">
+                <Label>القسم</Label>
+                <Input value={card.department ?? ""} onChange={(e) => update("department", e.target.value || null)} placeholder="المبيعات" />
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <Label>نبذة مختصرة</Label>
               <Textarea value={card.bio ?? ""} onChange={(e) => update("bio", e.target.value || null)}
-                placeholder="Kurze Beschreibung über dich…" maxLength={500} />
-              <p className="text-xs text-muted-foreground text-right">{(card.bio ?? "").length}/500</p>
+                placeholder="نبذة قصيرة عنك…" maxLength={500} />
+              <p className="text-xs text-muted-foreground text-end">{(card.bio ?? "").length}/500</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Pronomen</Label>
-                <Input value={card.pronouns ?? ""} onChange={(e) => update("pronouns", e.target.value || null)} placeholder="er/ihm, she/her…" />
+                <Label>صيغة المخاطبة</Label>
+                <Input value={card.pronouns ?? ""} onChange={(e) => update("pronouns", e.target.value || null)} placeholder="أ. / م. / د." />
               </div>
               <div className="space-y-1.5">
-                <Label>Geschlecht <span className="text-xs font-normal text-muted-foreground">(vCard)</span></Label>
+                <Label>الجنس <span className="text-xs font-normal text-muted-foreground">(vCard)</span></Label>
                 <select
                   value={card.gender ?? ""}
                   onChange={(e) => update("gender", e.target.value || null)}
                   className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 >
-                  <option value="">— keine Angabe —</option>
-                  <option value="m">Männlich</option>
-                  <option value="w">Weiblich</option>
-                  <option value="divers">Divers</option>
-                  <option value="n">Keine Angabe</option>
+                  <option value="">— بدون تحديد —</option>
+                  <option value="m">ذكر</option>
+                  <option value="w">أنثى</option>
+                  <option value="divers">آخر</option>
+                  <option value="n">أفضل عدم التحديد</option>
                 </select>
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Label>Geburtstag</Label>
+              <Label>تاريخ الميلاد</Label>
               <Input value={card.birthday ?? ""} onChange={(e) => update("birthday", e.target.value || null)} type="date" />
             </div>
 
             {!isNew && card.slug && (
               <div className="space-y-1.5 pt-2 border-t border-border">
-                <Label htmlFor="slug-field">Karten-URL (Slug)</Label>
+                <Label htmlFor="slug-field">رابط البطاقة (Slug)</Label>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground shrink-0">/c/</span>
                   <Input
@@ -203,11 +217,11 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                     value={card.slug}
                     onChange={(e) => update("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/--+/g, "-"))}
                     className="font-mono"
-                    placeholder="mein-slug"
+                    placeholder="my-name"
                   />
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Der alte Link wird automatisch weitergeleitet. Speichere die Karte um die Änderung zu übernehmen.
+                  الرابط القديم سيتحول تلقائيًا للجديد. احفظ البطاقة لتطبيق التغيير.
                 </p>
               </div>
             )}
@@ -216,49 +230,49 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
           {/* Media */}
           <TabsContent value="media" className="space-y-6">
             <div className="space-y-2">
-              <Label>Avatar</Label>
-              <p className="text-xs text-muted-foreground">Profilbild. Empfohlen: quadratisch, mind. 200×200 px.</p>
-              <ImageUpload value={card.avatarUrl} onChange={(url) => update("avatarUrl", url)} label="Avatar hochladen" shape="circle" />
+              <Label>الصورة الشخصية</Label>
+              <p className="text-xs text-muted-foreground">يُفضل صورة مربعة 200×200 بكسل على الأقل.</p>
+              <ImageUpload value={card.avatarUrl} onChange={(url) => update("avatarUrl", url)} label="رفع الصورة" shape="circle" />
             </div>
             <div className="space-y-2">
-              <Label>Cover-Bild</Label>
-              <p className="text-xs text-muted-foreground">Hintergrundbild für das Modern-Template. Empfohlen: 800×300 px.</p>
-              <ImageUpload value={card.coverUrl} onChange={(url) => update("coverUrl", url)} label="Cover hochladen" shape="wide" className="h-28" />
+              <Label>صورة الغلاف</Label>
+              <p className="text-xs text-muted-foreground">صورة خلفية لقالب Modern. يُفضل 800×300 بكسل.</p>
+              <ImageUpload value={card.coverUrl} onChange={(url) => update("coverUrl", url)} label="رفع الغلاف" shape="wide" className="h-28" />
             </div>
           </TabsContent>
 
           {/* Contact */}
           <TabsContent value="contact" className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Telefon (Büro)</Label>
-                <Input value={card.phone ?? ""} onChange={(e) => update("phone", e.target.value || null)} placeholder="+49 89 1234567" type="tel" />
+                <Label>هاتف المكتب</Label>
+                <Input value={card.phone ?? ""} onChange={(e) => update("phone", e.target.value || null)} placeholder="+966 11 123 4567" type="tel" inputMode="tel" autoComplete="tel-national" />
               </div>
               <div className="space-y-1.5">
-                <Label>Mobil</Label>
-                <Input value={card.mobile ?? ""} onChange={(e) => update("mobile", e.target.value || null)} placeholder="+49 170 1234567" type="tel" />
+                <Label>الجوال</Label>
+                <Input value={card.mobile ?? ""} onChange={(e) => update("mobile", e.target.value || null)} placeholder="+966 50 123 4567" type="tel" inputMode="tel" autoComplete="tel" />
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label>Fax</Label>
-              <Input value={card.fax ?? ""} onChange={(e) => update("fax", e.target.value || null)} placeholder="+49 89 1234568" type="tel" />
+              <Label>فاكس</Label>
+              <Input value={card.fax ?? ""} onChange={(e) => update("fax", e.target.value || null)} placeholder="+966 11 123 4568" type="tel" inputMode="tel" />
             </div>
             <div className="space-y-1.5">
-              <Label>E-Mail</Label>
-              <Input value={card.email ?? ""} onChange={(e) => update("email", e.target.value || null)} placeholder="max@example.com" type="email" />
+              <Label>البريد الإلكتروني</Label>
+              <Input value={card.email ?? ""} onChange={(e) => update("email", e.target.value || null)} placeholder="name@example.com" type="email" inputMode="email" autoComplete="email" />
             </div>
             <div className="space-y-1.5">
-              <Label>Website</Label>
-              <Input value={card.website ?? ""} onChange={(e) => update("website", e.target.value || null)} placeholder="https://example.com" type="url" />
+              <Label>الموقع الإلكتروني</Label>
+              <Input value={card.website ?? ""} onChange={(e) => update("website", e.target.value || null)} placeholder="https://example.com" type="url" inputMode="url" autoComplete="url" />
             </div>
             <div className="space-y-1.5">
-              <Label>Adresse</Label>
-              <Input value={card.address ?? ""} onChange={(e) => update("address", e.target.value || null)} placeholder="Musterstraße 1, 80331 München" />
+              <Label>العنوان</Label>
+              <Input value={card.address ?? ""} onChange={(e) => update("address", e.target.value || null)} placeholder="الشارع، الحي، المدينة" />
             </div>
             <div className="space-y-1.5">
-              <Label>Terminbuchungs-Link <span className="text-xs font-normal text-muted-foreground">(Pro)</span></Label>
+              <Label>رابط حجز المواعيد <span className="text-xs font-normal text-muted-foreground">(Pro)</span></Label>
               <Input value={card.bookingUrl ?? ""} onChange={(e) => update("bookingUrl", e.target.value || null)} placeholder="https://calendly.com/..." type="url" />
-              <p className="text-xs text-muted-foreground">Wird als Button auf deiner Karte angezeigt.</p>
+              <p className="text-xs text-muted-foreground">يظهر كزر على بطاقتك.</p>
             </div>
           </TabsContent>
 
@@ -284,8 +298,8 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
           {/* Custom Links — reorderable via drag handle */}
           <TabsContent value="links" className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              Eigene Links werden als Buttons auf der Karte angezeigt (max. 5).
-              Ziehe am Griff <GripVertical className="inline h-3.5 w-3.5 align-text-bottom" />, um die Reihenfolge zu ändern.
+              الروابط المخصصة تظهر كأزرار على البطاقة (حتى 5).
+              اسحب من المقبض <GripVertical className="inline h-3.5 w-3.5 align-text-bottom" /> لتغيير الترتيب.
             </p>
             <ul className="space-y-2">
               {(card.customLinks ?? []).map((link, i) => (
@@ -306,26 +320,26 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                 >
                   <button
                     type="button"
-                    aria-label={`Link ${i + 1} verschieben`}
-                    className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground p-1 -ml-1"
-                    title="Ziehen zum Sortieren"
+                    aria-label={`تحريك الرابط ${i + 1}`}
+                    className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground p-1 -ms-1"
+                    title="اسحب للترتيب"
                     tabIndex={-1}
                   >
                     <GripVertical className="h-4 w-4" />
                   </button>
                   <Input
-                    placeholder="Label"
+                    placeholder="اسم الرابط"
                     value={link.label}
                     onChange={(e) => updateLink(i, "label", e.target.value)}
                     className="w-32"
-                    aria-label={`Link ${i + 1} Label`}
+                    aria-label={`اسم الرابط ${i + 1}`}
                   />
                   <Input
                     placeholder="https://…"
                     value={link.url}
                     onChange={(e) => updateLink(i, "url", e.target.value)}
                     type="url"
-                    aria-label={`Link ${i + 1} URL`}
+                    aria-label={`عنوان الرابط ${i + 1}`}
                   />
                   <div className="flex flex-col">
                     <button
@@ -333,20 +347,20 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                       onClick={() => moveLink(i, i - 1)}
                       disabled={i === 0}
                       className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-30 px-1 leading-3"
-                      aria-label="Nach oben"
+                      aria-label="لأعلى"
                     >▲</button>
                     <button
                       type="button"
                       onClick={() => moveLink(i, i + 1)}
                       disabled={i === (card.customLinks?.length ?? 0) - 1}
                       className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-30 px-1 leading-3"
-                      aria-label="Nach unten"
+                      aria-label="لأسفل"
                     >▼</button>
                   </div>
                   <Button
                     type="button" variant="ghost" size="icon"
                     onClick={() => removeLink(i)}
-                    aria-label={`Link ${i + 1} entfernen`}
+                    aria-label={`حذف الرابط ${i + 1}`}
                   >
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
@@ -355,7 +369,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             </ul>
             {(card.customLinks ?? []).length < 5 && (
               <Button type="button" variant="outline" size="sm" onClick={addLink}>
-                <Plus className="h-4 w-4" /> Link hinzufügen
+                <Plus className="h-4 w-4" /> إضافة رابط
               </Button>
             )}
           </TabsContent>
@@ -365,22 +379,22 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
           <p className="mt-4 rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive border border-destructive/20">{error}</p>
         )}
         {success && (
-          <p className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700 border border-emerald-200">Gespeichert ✓</p>
+          <p className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700 border border-emerald-200">تم الحفظ ✓</p>
         )}
 
-        <div className="flex items-center gap-3 mt-6 pt-6 border-t border-border">
-          <Button type="button" onClick={save} disabled={saving}>
+        <div className="sticky bottom-0 z-10 -mx-4 px-4 py-3 bg-background/95 backdrop-blur border-t border-border flex items-center gap-3 mt-6 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:static lg:mx-0 lg:px-0 lg:pt-6 lg:bg-transparent">
+          <Button type="button" onClick={save} disabled={saving} className="flex-1 lg:flex-none">
             <Save className="h-4 w-4" />
-            {saving ? "Wird gespeichert…" : "Speichern"}
+            {saving ? "جارٍ الحفظ…" : "حفظ"}
           </Button>
           <Button type="button" variant="outline" onClick={() => setShowPreview(!showPreview)} className="lg:hidden">
-            <Eye className="h-4 w-4" /> Vorschau
+            <Eye className="h-4 w-4" /> {showPreview ? "إخفاء المعاينة" : "معاينة"}
           </Button>
         </div>
       </div>
 
       <div className={`lg:w-80 lg:sticky lg:top-4 lg:self-start ${showPreview ? "" : "hidden lg:block"}`}>
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-4">Live-Vorschau</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-4">معاينة مباشرة</p>
         <CardPreview card={card} scale={0.85} />
       </div>
     </div>

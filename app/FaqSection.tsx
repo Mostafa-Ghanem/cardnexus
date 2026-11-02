@@ -5,36 +5,36 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "Ist CardNexus wirklich kostenlos?",
-    a: "Ja. Der Free-Plan ist dauerhaft kostenlos und enthält eine vollständige digitale Visitenkarte mit QR-Code, vCard-Download und Lead Capture. Ohne Kreditkarte.",
+    q: "هل الخدمة مجانية فعلًا؟",
+    a: "نعم. الباقة المجانية دائمة وتشمل بطاقة رقمية كاملة مع رمز QR وتنزيل جهة الاتصال (vCard) وجمع بيانات العملاء المحتملين، بدون بطاقة ائتمان.",
   },
   {
-    q: "Brauche ich eine App um meine Karte zu teilen?",
-    a: "Nein. Deine Karte ist eine normale Webseite und öffnet sich in jedem Browser. Besucher benötigen keine App. Für NFC-Tags wird eine einmalige Schreib-App benötigt, danach funktioniert es ohne alles.",
+    q: "هل أحتاج تطبيقًا لمشاركة بطاقتي؟",
+    a: "لا. بطاقتك صفحة ويب عادية تفتح على أي متصفح، والزائر لا يحتاج أي تطبيق. لبطاقات NFC تحتاج تطبيق كتابة مرة واحدة فقط، وبعدها تعمل بدون أي شيء.",
   },
   {
-    q: "Wie funktioniert NFC?",
-    a: "Du beschreibst einen günstigen NFC-Tag (ca. 0,50–2 €) einmalig mit deiner Karten-URL. Hält jemand sein Smartphone an den Tag, öffnet sich deine digitale Karte sofort – bei iPhone ab iPhone 7, bei Android ab Version 4.4.",
+    q: "كيف تعمل بطاقة NFC؟",
+    a: "تكتب رابط بطاقتك مرة واحدة على ملصق أو بطاقة NFC رخيصة. عندما يقرّب أحد جواله منها تفتح بطاقتك الرقمية فورًا، على iPhone 7 وما بعده وعلى معظم أجهزة Android.",
   },
   {
-    q: "Kann ich CardNexus für mein Team einsetzen?",
-    a: "Ja. Mit dem Business-Plan verwaltest du beliebig viele Mitglieder, vergibst Rollen, importierst per CSV und setzt ein einheitliches Firmendesign für alle Karten.",
+    q: "هل أقدر أستخدم المنصة لفريق عملي؟",
+    a: "نعم. باقة Business تتيح لك إدارة عدد غير محدود من الأعضاء، وتوزيع الأدوار، والاستيراد من ملف CSV، وتوحيد تصميم البطاقات لكل الشركة.",
   },
   {
-    q: "Was passiert wenn mein Plan ausläuft?",
-    a: "Dein Account wird auf den Free-Plan zurückgestuft. Deine Karte bleibt aktiv, Pro/Business-Features wie Whitelabel oder Kampagnen sind nicht mehr nutzbar bis du verlängerst.",
+    q: "ماذا يحدث عند انتهاء اشتراكي؟",
+    a: "يتحول حسابك إلى الباقة المجانية. تبقى بطاقتك تعمل، لكن مزايا Pro وBusiness مثل إزالة الشارة والحملات تتوقف حتى تجدد الاشتراك.",
   },
   {
-    q: "Wie kündige ich?",
-    a: "Schreib uns einfach eine E-Mail. Es gibt keine Mindestlaufzeit – du kannst monatlich kündigen.",
+    q: "كيف ألغي الاشتراك؟",
+    a: "راسلنا بالبريد في أي وقت. لا توجد مدة التزام، وتقدر تلغي شهريًا.",
   },
   {
-    q: "Sind meine Daten sicher?",
-    a: "Ja. Server und Datenbank liegen in Deutschland. Wir verwenden keine Tracking-Cookies von Drittanbietern und sind vollständig DSGVO-konform.",
+    q: "هل بياناتي وبيانات عملائي آمنة؟",
+    a: "نعم. الاتصال مشفّر بالكامل، ولا نستخدم ملفات تتبع إعلانية من أطراف خارجية، ولا نبيع أو نشارك بياناتك أو بيانات عملائك مع أي جهة.",
   },
   {
-    q: "Kann ich meine eigene Domain verwenden?",
-    a: "Ab dem Pro-Plan ja. Du kannst deine Karte unter deiner eigenen Domain (z.B. karte.meinefirma.de) erreichbar machen.",
+    q: "هل أقدر أستخدم دومين خاص؟",
+    a: "نعم، بدءًا من باقة Pro. تقدر تخلي بطاقتك تفتح على دومينك الخاص (مثل card.yourcompany.com).",
   },
 ];
 
@@ -47,9 +47,9 @@ export function FaqSection() {
         <div key={i}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            className="w-full flex items-center justify-between px-6 py-5 text-start hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
-            <span className="font-medium text-gray-900 dark:text-gray-100 pr-4">{faq.q}</span>
+            <span className="font-medium text-gray-900 dark:text-gray-100 pe-4">{faq.q}</span>
             <ChevronDown
               className={`h-5 w-5 text-gray-400 shrink-0 transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}
             />

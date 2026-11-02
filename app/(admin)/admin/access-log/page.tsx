@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { AccessLogClient } from "./client";
 
-export const metadata = { title: "Access Log" };
+export const metadata = { title: "سجل الوصول" };
 
 const PAGE_SIZE = 50;
 

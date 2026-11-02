@@ -7,11 +7,11 @@ export async function POST(req: NextRequest) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "");
 
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const user = session.user as { stripeCustomerId?: string };
   if (!user.stripeCustomerId) {
-    return NextResponse.json({ error: "Kein Stripe-Account" }, { status: 400 });
+    return NextResponse.json({ error: "لا يوجد اشتراك مرتبط" }, { status: 400 });
   }
 
   const hdrs = await headers();

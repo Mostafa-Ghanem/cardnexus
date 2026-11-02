@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { SettingsClientPage } from "./client";
 
-export const metadata = { title: "Einstellungen" };
+export const metadata = { title: "الإعدادات" };
 
 export default async function SettingsPage() {
   const session = await auth.api.getSession({ headers: await headers() });

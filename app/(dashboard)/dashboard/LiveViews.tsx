@@ -36,9 +36,9 @@ export function LiveViews({ initialViews, cardSlug }: Props) {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <p className="text-sm text-muted-foreground">Aufrufe gesamt</p>
+        <p className="text-sm text-muted-foreground">إجمالي الزيارات</p>
         <p className={`text-3xl font-bold mt-1 transition-colors duration-300 ${pulse ? "text-green-600" : ""}`}>
-          {views.toLocaleString("de-DE")}
+          {views.toLocaleString("ar-u-nu-latn")}
         </p>
       </div>
       <div className={`h-10 w-10 rounded-full bg-muted flex items-center justify-center transition-all duration-300 ${pulse ? "ring-2 ring-green-400" : ""}`}>

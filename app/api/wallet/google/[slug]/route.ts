@@ -14,7 +14,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ slu
     },
   });
 
-  if (!card) return NextResponse.json({ error: "Nicht gefunden" }, { status: 404 });
+  if (!card) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   const hdrs  = await headers();
   const host  = hdrs.get("x-forwarded-host") ?? hdrs.get("host") ?? "localhost:3000";
@@ -40,6 +40,6 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ slu
       return NextResponse.json({ error: err.message }, { status: 503 });
     }
     console.error("[wallet/google]", err);
-    return NextResponse.json({ error: "Serverfehler" }, { status: 500 });
+    return NextResponse.json({ error: "خطأ في الخادم" }, { status: 500 });
   }
 }

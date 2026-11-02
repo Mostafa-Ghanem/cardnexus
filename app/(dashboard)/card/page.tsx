@@ -12,7 +12,7 @@ import type { CardData } from "@/types";
 import Link from "next/link";
 import { BarChart2 } from "lucide-react";
 
-export const metadata = { title: "Meine Karte" };
+export const metadata = { title: "بطاقتي" };
 
 export default async function CardPage({
   searchParams,
@@ -76,11 +76,11 @@ export default async function CardPage({
     <div className="space-y-8 max-w-5xl">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold">Meine Karte</h1>
+          <h1 className="text-2xl font-bold">بطاقتي</h1>
           <p className="text-muted-foreground mt-1">
             {activeCard
-              ? "Bearbeite deine digitale Visitenkarte."
-              : "Erstelle jetzt deine Karte."}
+              ? "عدّل بطاقتك الرقمية."
+              : "أنشئ بطاقتك الآن."}
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export default async function CardPage({
               className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
             >
               <BarChart2 className="h-4 w-4" />
-              Analytics
+              الإحصائيات
             </Link>
           )}
           {cards.length > 0 && (
@@ -120,7 +120,7 @@ export default async function CardPage({
 
       {activeCard && (
         <div className="border-t border-border pt-8">
-          <h2 className="text-lg font-semibold mb-4">QR-Code</h2>
+          <h2 className="text-lg font-semibold mb-4">رمز QR</h2>
           <QRCodeDisplay slug={activeCard.slug} color={activeCard.primaryColor} />
         </div>
       )}

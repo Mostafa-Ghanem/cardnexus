@@ -14,13 +14,13 @@ const inviteSchema = z.object({
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
 
   if (!canManageUsers(role) || !orgId) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const invitations = await db.invitation.findMany({
@@ -34,13 +34,13 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
 
   if (!canManageUsers(role) || !orgId) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const body = await request.json();
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
   // company_admin or team_leader roles — only company_admin/super_admin may.
   if (role === "team_leader" && parsed.data.role !== "member") {
     return NextResponse.json(
-      { error: "Team-Leader können nur Mitglieder einladen" },
+      { error: "قائد الفريق يمكنه دعوة الأعضاء فقط" },
       { status: 403 }
     );
   }
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
     where: { email: parsed.data.email, organizationId: orgId, acceptedAt: null },
   });
   if (existing) {
-    return NextResponse.json({ error: "Einladung bereits gesendet" }, { status: 409 });
+    return NextResponse.json({ error: "تم إرسال الدعوة من قبل" }, { status: 409 });
   }
 
   const token = nanoid(32);
@@ -100,12 +100,12 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
   if (!canManageUsers(role) || !orgId) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
   }
 
   const { id } = await request.json();
@@ -115,7 +115,7 @@ export async function DELETE(request: NextRequest) {
     where: { id, organizationId: orgId },
   });
   if (result.count === 0) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+    return NextResponse.json({ error: "غير موجود" }, { status: 404 });
   }
   return NextResponse.json({ ok: true });
 }

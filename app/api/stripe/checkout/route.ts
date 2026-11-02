@@ -13,13 +13,13 @@ export async function POST(req: NextRequest) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "");
 
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const user = session.user as { id: string; email: string; name?: string; stripeCustomerId?: string };
   const { plan } = await req.json() as { plan: string };
 
   const priceId = PRICE_IDS[plan];
-  if (!priceId) return NextResponse.json({ error: "Unbekannter Plan" }, { status: 400 });
+  if (!priceId) return NextResponse.json({ error: "باقة غير معروفة" }, { status: 400 });
 
   const hdrs = await headers();
   const host  = hdrs.get("x-forwarded-host") ?? hdrs.get("host") ?? "localhost:3000";

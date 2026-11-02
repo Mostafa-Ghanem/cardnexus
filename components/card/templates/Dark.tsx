@@ -67,26 +67,26 @@ export function DarkTemplate({ card }: { card: Partial<CardData> }) {
           {card.phone && (
             <a href={`tel:${card.phone}`} className="flex items-center gap-3 group">
               <DarkIcon icon={Phone} accent={accent} />
-              <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{card.phone}</span>
+              <span className="text-sm text-gray-300 group-hover:text-white transition-colors"><bdi>{card.phone}</bdi></span>
             </a>
           )}
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 group">
               <DarkIcon icon={Phone} accent={accent} />
-              <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{card.mobile}</span>
+              <span className="text-sm text-gray-300 group-hover:text-white transition-colors"><bdi>{card.mobile}</bdi></span>
             </a>
           )}
           {card.email && (
             <a href={`mailto:${card.email}`} className="flex items-center gap-3 group">
               <DarkIcon icon={Mail} accent={accent} />
-              <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{card.email}</span>
+              <span className="text-sm text-gray-300 group-hover:text-white transition-colors"><bdi>{card.email}</bdi></span>
             </a>
           )}
           {card.website && (
             <a href={card.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
               <DarkIcon icon={Globe} accent={accent} />
               <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
-                {card.website.replace(/^https?:\/\//, "")}
+                <bdi>{card.website.replace(/^https?:\/\//, "")}</bdi>
               </span>
             </a>
           )}
@@ -114,8 +114,8 @@ export function DarkTemplate({ card }: { card: Partial<CardData> }) {
 
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12 invert opacity-70" />
-            <p className="text-xs text-gray-500">Scan für digitale Karte</p>
+            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12 invert opacity-70" />
+            <p className="text-xs text-gray-500">امسح لفتح البطاقة الرقمية</p>
           </div>
         )}
       </div>

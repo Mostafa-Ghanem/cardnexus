@@ -18,11 +18,11 @@ export default async function PrintPage({ params }: Props) {
   const isPro = ["pro", "business"].includes(raw.user?.plan ?? "free");
 
   return (
-    <html>
+    <html lang="ar" dir="rtl">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>{card.firstName} {card.lastName} – Visitenkarte</title>
+        <title>{card.firstName} {card.lastName} – بطاقة أعمال</title>
         <style>{`
           @page {
             size: 85mm 54mm;
@@ -66,15 +66,15 @@ export default async function PrintPage({ params }: Props) {
       </head>
       <body>
         <div className="no-print">
-          <button onClick={() => window.print()} className="primary">Drucken / Als PDF speichern</button>
-          <button onClick={() => window.close()}>Schliessen</button>
+          <button onClick={() => window.print()} className="primary">طباعة / حفظ PDF</button>
+          <button onClick={() => window.close()}>إغلاق</button>
         </div>
         <div className="card-wrap">
           <CardPreview card={card} />
         </div>
         {!isPro && (
           <p style={{ marginTop: 12, fontSize: 10, color: '#9ca3af', textAlign: 'center' }}>
-            Erstellt mit CardNexus · cardnexus.app
+            صُنعت بواسطة منصة بطاقات الأعمال الرقمية
           </p>
         )}
       </body>

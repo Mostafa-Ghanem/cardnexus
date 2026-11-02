@@ -42,12 +42,12 @@ function PasswordCard() {
     });
 
     if (res.error) {
-      toast.error("Passwort konnte nicht geändert werden", {
-        description: "Aktuelles Passwort falsch oder neues Passwort zu schwach.",
+      toast.error("تعذّر تغيير كلمة المرور", {
+        description: "كلمة المرور الحالية غير صحيحة أو الجديدة ضعيفة.",
       });
     } else {
-      toast.success("Passwort geändert", {
-        description: "Andere Sessions wurden abgemeldet.",
+      toast.success("تم تغيير كلمة المرور", {
+        description: "تم تسجيل الخروج من الأجهزة الأخرى.",
       });
       setCurrent("");
       setNext("");
@@ -61,9 +61,9 @@ function PasswordCard() {
         <div className="flex items-start gap-3">
           <Lock className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div>
-            <CardTitle className="text-base">Passwort ändern</CardTitle>
+            <CardTitle className="text-base">تغيير كلمة المرور</CardTitle>
             <CardDescription>
-              Setze ein neues Passwort. Andere aktive Sessions werden abgemeldet.
+              عيّن كلمة مرور جديدة. سيتم تسجيل الخروج من الأجهزة الأخرى.
             </CardDescription>
           </div>
         </div>
@@ -71,7 +71,7 @@ function PasswordCard() {
       <CardContent>
         <form onSubmit={submit} className="space-y-3 max-w-sm">
           <div className="space-y-1.5">
-            <Label htmlFor="current-pw">Aktuelles Passwort</Label>
+            <Label htmlFor="current-pw">كلمة المرور الحالية</Label>
             <Input
               id="current-pw"
               type="password"
@@ -82,7 +82,7 @@ function PasswordCard() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="new-pw">Neues Passwort</Label>
+            <Label htmlFor="new-pw">كلمة المرور الجديدة</Label>
             <Input
               id="new-pw"
               type="password"
@@ -95,7 +95,7 @@ function PasswordCard() {
           </div>
           <Button type="submit" size="sm" disabled={busy || !current || next.length < 8}>
             {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-            Passwort ändern
+            تغيير كلمة المرور
           </Button>
         </form>
       </CardContent>
@@ -112,7 +112,7 @@ function DataExportCard() {
     setBusy(true);
     try {
       const res = await fetch("/api/account/export");
-      if (!res.ok) throw new Error("Export fehlgeschlagen");
+      if (!res.ok) throw new Error("فشل التصدير");
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -122,9 +122,9 @@ function DataExportCard() {
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
-      toast.success("Export gestartet");
+      toast.success("بدأ التصدير");
     } catch {
-      toast.error("Export fehlgeschlagen");
+      toast.error("فشل التصدير");
     } finally {
       setBusy(false);
     }
@@ -136,9 +136,9 @@ function DataExportCard() {
         <div className="flex items-start gap-3">
           <Download className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div>
-            <CardTitle className="text-base">Daten exportieren</CardTitle>
+            <CardTitle className="text-base">تصدير البيانات</CardTitle>
             <CardDescription>
-              Lade alle deine personenbezogenen Daten als JSON herunter (DSGVO Art. 15 &amp; 20).
+              نزّل كل بياناتك الشخصية كملف JSON.
             </CardDescription>
           </div>
         </div>
@@ -146,7 +146,7 @@ function DataExportCard() {
       <CardContent>
         <Button variant="outline" size="sm" onClick={downloadExport} disabled={busy}>
           {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
-          Daten als JSON herunterladen
+          تنزيل البيانات (JSON)
         </Button>
       </CardContent>
     </Card>
@@ -158,14 +158,14 @@ function DataExportCard() {
 function DeleteAccountCard() {
   const [confirm, setConfirm] = useState("");
   const [busy, setBusy] = useState(false);
-  const REQUIRED = "LÖSCHEN";
+  const REQUIRED = "حذف";
 
   async function performDelete() {
     setBusy(true);
     const res = await fetch("/api/account", { method: "DELETE" });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      toast.error("Löschen fehlgeschlagen", { description: data.error });
+      toast.error("فشل الحذف", { description: data.error });
       setBusy(false);
       return;
     }
@@ -179,10 +179,10 @@ function DeleteAccountCard() {
         <div className="flex items-start gap-3">
           <Trash2 className="h-5 w-5 text-destructive mt-0.5" />
           <div>
-            <CardTitle className="text-base text-destructive">Account löschen</CardTitle>
+            <CardTitle className="text-base text-destructive">حذف الحساب</CardTitle>
             <CardDescription>
-              Entfernt deinen Account und alle zugehörigen Daten unwiderruflich
-              (Karten, Leads, Webhooks, API-Keys).
+              يحذف حسابك وكل بياناته نهائيًا
+              (البطاقات، العملاء المحتملون، Webhooks، مفاتيح API).
             </CardDescription>
           </div>
         </div>
@@ -192,21 +192,21 @@ function DeleteAccountCard() {
           <AlertDialogTrigger asChild>
             <Button variant="destructive" size="sm">
               <Trash2 className="h-4 w-4" />
-              Account endgültig löschen
+              حذف الحساب نهائيًا
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Account wirklich löschen?</AlertDialogTitle>
+              <AlertDialogTitle>هل تريد حذف الحساب فعلًا؟</AlertDialogTitle>
               <AlertDialogDescription>
-                Diese Aktion kann <strong>nicht rückgängig</strong> gemacht werden. Alle
-                deine Karten, Leads, Analytics, Webhooks und API-Keys werden
-                unwiderruflich gelöscht.
+                هذا الإجراء <strong>لا يمكن التراجع عنه</strong>. سيتم حذف كل
+                بطاقاتك والعملاء المحتملين والإحصائيات وWebhooks ومفاتيح API
+                بشكل نهائي.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <div className="space-y-1.5">
               <Label htmlFor="confirm">
-                Tippe <code className="px-1 py-0.5 rounded bg-muted text-xs">{REQUIRED}</code> zur Bestätigung
+                اكتب <code className="px-1 py-0.5 rounded bg-muted text-xs">{REQUIRED}</code> للتأكيد
               </Label>
               <Input
                 id="confirm"
@@ -217,14 +217,14 @@ function DeleteAccountCard() {
               />
             </div>
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={() => setConfirm("")}>Abbrechen</AlertDialogCancel>
+              <AlertDialogCancel onClick={() => setConfirm("")}>إلغاء</AlertDialogCancel>
               <AlertDialogAction
                 disabled={busy || confirm !== REQUIRED}
                 onClick={(e) => { e.preventDefault(); void performDelete(); }}
                 className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               >
-                {busy && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
-                Endgültig löschen
+                {busy && <Loader2 className="h-4 w-4 animate-spin me-1" />}
+                حذف نهائي
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

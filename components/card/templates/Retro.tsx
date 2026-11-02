@@ -93,19 +93,19 @@ export function RetroTemplate({ card }: { card: Partial<CardData> }) {
         {/* Contact — two-column grid style */}
         <div className="space-y-2.5">
           {card.phone && (
-            <RetroRow icon={Phone} label="Tel" value={card.phone} href={`tel:${card.phone}`} color={color} />
+            <RetroRow icon={Phone} label="هاتف" value={card.phone} href={`tel:${card.phone}`} color={color} />
           )}
           {card.mobile && (
-            <RetroRow icon={Phone} label="Mob" value={card.mobile} href={`tel:${card.mobile}`} color={color} />
+            <RetroRow icon={Phone} label="جوال" value={card.mobile} href={`tel:${card.mobile}`} color={color} />
           )}
           {card.email && (
-            <RetroRow icon={Mail} label="Mail" value={card.email} href={`mailto:${card.email}`} color={color} />
+            <RetroRow icon={Mail} label="بريد" value={card.email} href={`mailto:${card.email}`} color={color} />
           )}
           {card.website && (
-            <RetroRow icon={Globe} label="Web" value={card.website.replace(/^https?:\/\//, "")} href={card.website} color={color} external />
+            <RetroRow icon={Globe} label="موقع" value={card.website.replace(/^https?:\/\//, "")} href={card.website} color={color} external />
           )}
           {card.address && (
-            <RetroRow icon={MapPin} label="Adr" value={card.address} color={color} />
+            <RetroRow icon={MapPin} label="عنوان" value={card.address} color={color} />
           )}
         </div>
 
@@ -125,7 +125,7 @@ export function RetroTemplate({ card }: { card: Partial<CardData> }) {
 
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex justify-center">
-            <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-14 w-14 opacity-50" />
+            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-14 w-14 opacity-50" />
           </div>
         )}
       </div>
@@ -162,7 +162,7 @@ function RetroRow({
         {label}
       </span>
       <div className="h-3 w-px" style={{ backgroundColor: `${color}30` }} />
-      <span className="text-xs text-stone-600 hover:text-stone-900 transition-colors">{value}</span>
+      <span className="text-xs text-stone-600 hover:text-stone-900 transition-colors"><bdi>{value}</bdi></span>
     </div>
   );
   if (href) {

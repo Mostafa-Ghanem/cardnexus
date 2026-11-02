@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { effectivePlan, getPlanFeatures } from "@/lib/plans";
 import { WidgetClient } from "./client";
 
-export const metadata = { title: "Widget – CardNexus" };
+export const metadata = { title: "تضمين البطاقة" };
 
 export default async function WidgetPage() {
   const session = await auth.api.getSession({ headers: await headers() });

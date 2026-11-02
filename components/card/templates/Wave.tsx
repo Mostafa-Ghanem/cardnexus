@@ -19,7 +19,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
         <svg
           viewBox="0 0 400 80"
           preserveAspectRatio="none"
-          className="absolute bottom-0 left-0 w-full h-20"
+          className="absolute bottom-0 start-0 w-full h-20"
           style={{ fill: "#ffffff" }}
         >
           <path d="M0,40 C100,80 300,0 400,40 L400,80 L0,80 Z" />
@@ -27,7 +27,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
 
         {/* Logo */}
         {card.logoUrl && (
-          <div className="absolute top-4 right-4">
+          <div className="absolute top-4 end-4">
             <img src={card.logoUrl} alt="Logo" className="h-7 w-auto max-w-[64px] object-contain opacity-85"
               style={{ filter: "brightness(0) invert(1)" }} />
           </div>
@@ -48,7 +48,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
 
       {/* Identity */}
       <div className="text-center px-6 pb-4">
-        <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || "Dein Name"}</h1>
+        <h1 className="text-xl font-bold text-gray-900 leading-tight">{name || "اسمك"}</h1>
         {card.title && (
           <p className="text-sm font-semibold mt-0.5" style={{ color }}>{card.title}</p>
         )}
@@ -69,28 +69,28 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
           <a href={`tel:${card.phone}`}
             className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
             <Phone className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            {card.phone}
+            <bdi>{card.phone}</bdi>
           </a>
         )}
         {card.mobile && (
           <a href={`tel:${card.mobile}`}
             className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
             <Phone className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            {card.mobile}
+            <bdi>{card.mobile}</bdi>
           </a>
         )}
         {card.email && (
           <a href={`mailto:${card.email}`}
             className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
             <Mail className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            <span className="truncate">{card.email}</span>
+            <span className="truncate"><bdi>{card.email}</bdi></span>
           </a>
         )}
         {card.website && (
           <a href={card.website} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
             <Globe className="h-4 w-4 shrink-0" style={{ color: accent }} />
-            <span className="truncate">{card.website.replace(/^https?:\/\//, "")}</span>
+            <span className="truncate"><bdi>{card.website.replace(/^https?:\/\//, "")}</bdi></span>
           </a>
         )}
         {card.address && (
@@ -119,7 +119,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <p className="text-xs text-gray-400">امسح لفتح البطاقة الرقمية</p>
           </div>
         )}
       </div>

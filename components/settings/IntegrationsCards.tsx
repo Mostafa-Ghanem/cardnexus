@@ -50,12 +50,12 @@ export function WebhooksCard() {
     });
     if (!res.ok) {
       const d = await res.json().catch(() => ({}));
-      const msg = typeof d.error === "string" ? d.error : "URL muss mit https:// beginnen";
+      const msg = typeof d.error === "string" ? d.error : "يجب أن يبدأ الرابط بـ https://";
       setErr(msg);
-      toast.error("Webhook konnte nicht angelegt werden", { description: msg });
+      toast.error("تعذّر إنشاء Webhook", { description: msg });
     } else {
       setShowForm(false); setName(""); setUrl("");
-      toast.success("Webhook angelegt");
+      toast.success("تم إنشاء Webhook");
       await load();
     }
     setBusy(false);
@@ -71,13 +71,13 @@ export function WebhooksCard() {
   }
 
   async function remove(id: string) {
-    if (!confirm("Webhook wirklich löschen?")) return;
+    if (!confirm("هل تريد حذف Webhook؟")) return;
     const res = await fetch("/api/webhooks", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
-    if (res.ok) toast.success("Webhook gelöscht");
+    if (res.ok) toast.success("تم حذف Webhook");
     await load();
   }
 
@@ -89,13 +89,13 @@ export function WebhooksCard() {
           <div className="flex-1">
             <CardTitle className="text-base">Webhooks</CardTitle>
             <CardDescription>
-              Erhalte HTTP-POSTs in Echtzeit, wenn neue Leads über deine Karten kommen.
-              Signatur via <code className="text-xs">X-FreddieCard-Signature</code> (HMAC-SHA256).
+              استقبل طلبات HTTP POST فورًا عند وصول عملاء محتملين جدد من بطاقاتك.
+              التوقيع عبر <code className="text-xs">X-FreddieCard-Signature</code> (HMAC-SHA256).
             </CardDescription>
           </div>
           <Button variant="outline" size="sm" onClick={() => setShowForm((v) => !v)}>
             <Plus className="h-4 w-4" />
-            Neu
+            جديد
           </Button>
         </div>
       </CardHeader>
@@ -104,11 +104,11 @@ export function WebhooksCard() {
           <form onSubmit={create} className="rounded-lg border border-border p-4 space-y-3 bg-muted/30">
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <Label htmlFor="wh-name">Name</Label>
-                <Input id="wh-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="z.B. Slack Notifier" />
+                <Label htmlFor="wh-name">الاسم</Label>
+                <Input id="wh-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="مثال: تنبيهات Slack" />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="wh-url">Endpoint-URL</Label>
+                <Label htmlFor="wh-url">رابط الاستقبال (Endpoint)</Label>
                 <Input id="wh-url" required type="url" placeholder="https://…" value={url} onChange={(e) => setUrl(e.target.value)} />
               </div>
             </div>
@@ -116,19 +116,19 @@ export function WebhooksCard() {
             <div className="flex gap-2">
               <Button type="submit" size="sm" disabled={busy}>
                 {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-                Anlegen
+                إنشاء
               </Button>
               <Button type="button" size="sm" variant="ghost" onClick={() => setShowForm(false)}>
-                Abbrechen
+                إلغاء
               </Button>
             </div>
           </form>
         )}
 
         {loading ? (
-          <div className="text-sm text-muted-foreground">Lädt…</div>
+          <div className="text-sm text-muted-foreground">جارٍ التحميل…</div>
         ) : items.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Noch keine Webhooks angelegt.</p>
+          <p className="text-sm text-muted-foreground">لا توجد Webhooks بعد.</p>
         ) : (
           <ul className="divide-y divide-border rounded-lg border border-border">
             {items.map((w) => (
@@ -137,9 +137,9 @@ export function WebhooksCard() {
                   <div className="flex items-center gap-2">
                     <span className="font-medium truncate">{w.name}</span>
                     {w.active ? (
-                      <Badge variant="success" className="text-xs">Aktiv</Badge>
+                      <Badge variant="success" className="text-xs">نشط</Badge>
                     ) : (
-                      <Badge variant="secondary" className="text-xs">Pausiert</Badge>
+                      <Badge variant="secondary" className="text-xs">متوقف مؤقتًا</Badge>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground truncate">{w.url}</p>
@@ -198,22 +198,22 @@ export function ApiKeysCard() {
       setRevealed(data.data);
       setName("");
       setShowForm(false);
-      toast.success("API-Key erstellt", { description: "Notiere ihn — er wird nicht erneut angezeigt." });
+      toast.success("تم إنشاء مفتاح API", { description: "احفظه الآن، لن يظهر مرة أخرى." });
       await load();
     } else {
-      toast.error("Konnte API-Key nicht erstellen");
+      toast.error("تعذّر إنشاء مفتاح API");
     }
     setBusy(false);
   }
 
   async function remove(id: string) {
-    if (!confirm("API-Key wirklich widerrufen?")) return;
+    if (!confirm("هل تريد إلغاء مفتاح API؟")) return;
     const res = await fetch("/api/api-keys", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
-    if (res.ok) toast.success("API-Key widerrufen");
+    if (res.ok) toast.success("تم إلغاء مفتاح API");
     await load();
   }
 
@@ -230,15 +230,15 @@ export function ApiKeysCard() {
         <div className="flex items-start gap-3">
           <KeyRound className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div className="flex-1">
-            <CardTitle className="text-base">API-Keys</CardTitle>
+            <CardTitle className="text-base">مفاتيح API</CardTitle>
             <CardDescription>
-              Authentifiziere externe Skripte über die HTTP-API. Keys sind nur bei der
-              Erstellung sichtbar.
+              استخدم المفاتيح لربط أنظمة خارجية عبر HTTP API. المفتاح يظهر مرة واحدة فقط
+              عند إنشائه.
             </CardDescription>
           </div>
           <Button variant="outline" size="sm" onClick={() => setShowForm((v) => !v)}>
             <Plus className="h-4 w-4" />
-            Neu
+            جديد
           </Button>
         </div>
       </CardHeader>
@@ -246,15 +246,15 @@ export function ApiKeysCard() {
         {showForm && (
           <form onSubmit={create} className="rounded-lg border border-border p-4 bg-muted/30 flex gap-2 items-end">
             <div className="flex-1 space-y-1.5">
-              <Label htmlFor="ak-name">Name</Label>
-              <Input id="ak-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="z.B. CI Pipeline" />
+              <Label htmlFor="ak-name">الاسم</Label>
+              <Input id="ak-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="مثال: نظام CRM" />
             </div>
             <Button type="submit" size="sm" disabled={busy}>
               {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-              Anlegen
+              إنشاء
             </Button>
             <Button type="button" size="sm" variant="ghost" onClick={() => setShowForm(false)}>
-              Abbrechen
+              إلغاء
             </Button>
           </form>
         )}
@@ -262,7 +262,7 @@ export function ApiKeysCard() {
         {revealed?.key && (
           <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 space-y-2">
             <p className="text-sm font-semibold text-amber-900">
-              Notiere diesen Key jetzt — er wird nicht erneut angezeigt:
+              احفظ هذا المفتاح الآن، لن يظهر مرة أخرى:
             </p>
             <div className="flex gap-2 items-center">
               <code className="flex-1 rounded bg-white dark:bg-gray-900 px-3 py-2 font-mono text-sm break-all border border-amber-200">
@@ -270,19 +270,19 @@ export function ApiKeysCard() {
               </code>
               <Button type="button" size="sm" variant="outline" onClick={copyKey}>
                 {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                {copied ? "Kopiert" : "Kopieren"}
+                {copied ? "تم النسخ" : "نسخ"}
               </Button>
             </div>
             <Button type="button" size="sm" variant="ghost" onClick={() => setRevealed(null)}>
-              Schließen
+              إغلاق
             </Button>
           </div>
         )}
 
         {loading ? (
-          <div className="text-sm text-muted-foreground">Lädt…</div>
+          <div className="text-sm text-muted-foreground">جارٍ التحميل…</div>
         ) : items.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Noch keine API-Keys angelegt.</p>
+          <p className="text-sm text-muted-foreground">لا توجد مفاتيح API بعد.</p>
         ) : (
           <ul className="divide-y divide-border rounded-lg border border-border">
             {items.map((k) => (
@@ -292,8 +292,8 @@ export function ApiKeysCard() {
                   <p className="text-xs text-muted-foreground font-mono">
                     {k.prefix}…
                     {k.lastUsedAt && (
-                      <span className="ml-2">
-                        zuletzt verwendet: {new Date(k.lastUsedAt).toLocaleDateString("de-DE")}
+                      <span className="ms-2">
+                        zuletzt verwendet: {new Date(k.lastUsedAt).toLocaleDateString("ar-u-nu-latn")}
                       </span>
                     )}
                   </p>
@@ -336,25 +336,25 @@ export function ReferralsCard() {
         <div className="flex items-start gap-3">
           <Users className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div>
-            <CardTitle className="text-base">Empfehlungen</CardTitle>
+            <CardTitle className="text-base">الإحالات</CardTitle>
             <CardDescription>
-              Teile deinen persönlichen Link und werbe andere Nutzer an.
+              شارك رابط الإحالة الخاص بك وادعُ آخرين للتسجيل.
             </CardDescription>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         {!data ? (
-          <p className="text-sm text-muted-foreground">Lädt…</p>
+          <p className="text-sm text-muted-foreground">جارٍ التحميل…</p>
         ) : (
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-3 max-w-sm">
               <div className="rounded-lg border border-border p-3">
-                <p className="text-xs text-muted-foreground">Dein Code</p>
+                <p className="text-xs text-muted-foreground">رمزك</p>
                 <p className="font-mono font-semibold">{data.code}</p>
               </div>
               <div className="rounded-lg border border-border p-3">
-                <p className="text-xs text-muted-foreground">Geworben</p>
+                <p className="text-xs text-muted-foreground">المسجلون عبرك</p>
                 <p className="font-semibold">{data.signupCount}</p>
               </div>
             </div>
@@ -362,7 +362,7 @@ export function ReferralsCard() {
               <Input readOnly value={data.referralUrl} className="font-mono text-sm" />
               <Button type="button" variant="outline" onClick={copyUrl} size="sm">
                 {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                {copied ? "Kopiert" : "Kopieren"}
+                {copied ? "تم النسخ" : "نسخ"}
               </Button>
             </div>
           </div>

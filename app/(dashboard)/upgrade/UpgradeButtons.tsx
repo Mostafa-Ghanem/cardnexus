@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
+const SALES_EMAIL = process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "";
+
 interface Props {
   planId: "pro" | "business";
   isCurrent: boolean;
@@ -69,7 +71,7 @@ export function UpgradeButtons({
     return (
       <div className="space-y-2">
         <Button variant="outline" className="w-full" disabled>
-          Aktueller Plan
+          باقتك الحالية
         </Button>
         {hasStripe && (
           <Button
@@ -81,13 +83,13 @@ export function UpgradeButtons({
             {loading === "portal" ? (
               <Loader2 className="h-3.5 w-3.5 animate-spin" />
             ) : (
-              "Abo verwalten / kündigen (Stripe)"
+              "إدارة / إلغاء الاشتراك"
             )}
           </Button>
         )}
         {hasPaypal && (
           <p className="text-xs text-muted-foreground text-center">
-            PayPal-Abo über{" "}
+            ألغِ اشتراك PayPal من{" "}
             <a
               href="https://www.paypal.com/myaccount/autopay"
               target="_blank"
@@ -96,7 +98,7 @@ export function UpgradeButtons({
             >
               paypal.com/myaccount/autopay
             </a>{" "}
-            kündigen.
+            .
           </p>
         )}
       </div>
@@ -107,8 +109,8 @@ export function UpgradeButtons({
   if (!stripeConfigured && !paypalConfigured) {
     return (
       <Button asChild variant="outline" className="w-full">
-        <a href={`mailto:sales@cardnexus.app?subject=Upgrade zu ${planId}`}>
-          Per E-Mail anfragen
+        <a href={SALES_EMAIL ? `mailto:${SALES_EMAIL}?subject=${encodeURIComponent(`طلب ترقية إلى ${planId}`)}` : "/impressum"}>
+          اطلب الترقية
         </a>
       </Button>
     );
@@ -126,7 +128,7 @@ export function UpgradeButtons({
           {loading === "stripe" ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            "Kreditkarte / SEPA"
+            "بطاقة ائتمان"
           )}
         </Button>
       )}

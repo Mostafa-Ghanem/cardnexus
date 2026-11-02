@@ -1,3 +1,4 @@
+import { getPlatformSettings } from "@/lib/platform";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import type { Metadata } from "next";
@@ -11,8 +12,8 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { orgSlug } = await params;
   const org = await db.organization.findUnique({ where: { slug: orgSlug }, select: { name: true } });
-  if (!org) return { title: "Team nicht gefunden" };
-  return { title: `Team – ${org.name}`, description: `Digitale Visitenkarten des Teams ${org.name}` };
+  if (!org) return { title: "الفريق غير موجود" };
+  return { title: `فريق ${org.name}`, description: `بطاقات الأعمال الرقمية لفريق ${org.name}` };
 }
 
 export default async function PublicTeamPage({ params }: Props) {
@@ -72,7 +73,7 @@ export default async function PublicTeamPage({ params }: Props) {
           )}
           <h1 className="text-3xl font-bold">{org.name}</h1>
           <p className="text-white/70 mt-2">
-            {members.length} {members.length === 1 ? "Mitglied" : "Mitglieder"}
+            {members.length} {members.length === 1 ? "عضو" : "أعضاء"}
           </p>
         </div>
       </div>
@@ -81,7 +82,7 @@ export default async function PublicTeamPage({ params }: Props) {
       <div className="max-w-5xl mx-auto px-6 py-10">
         {members.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
-            <p className="text-lg font-medium">Keine öffentlichen Karten vorhanden.</p>
+            <p className="text-lg font-medium">لا توجد بطاقات عامة بعد.</p>
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -95,8 +96,8 @@ export default async function PublicTeamPage({ params }: Props) {
       {/* Footer */}
       <div className="text-center pb-8">
         <p className="text-xs text-gray-400">
-          Erstellt mit{" "}
-          <a href="/" className="hover:text-gray-600 transition-colors font-medium">CardNexus</a>
+          صُنعت بواسطة{" "}
+          <a href="/" className="hover:text-gray-600 transition-colors font-medium">{(await getPlatformSettings()).appName}</a>
         </p>
       </div>
     </div>
@@ -141,7 +142,7 @@ function MemberCard({
 
           <div className="min-w-0">
             <p className="font-bold text-gray-900 dark:text-gray-100 truncate group-hover:text-primary transition-colors">
-              {name || "Kein Name"}
+              {name || "بدون اسم"}
             </p>
             {member.title && (
               <p className="text-xs font-medium mt-0.5 truncate" style={{ color }}>
@@ -185,7 +186,7 @@ function MemberCard({
 
       <div className="px-5 py-3 border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/50">
         <span className="text-xs font-medium text-primary group-hover:underline">
-          Karte ansehen →
+          عرض البطاقة ←
         </span>
       </div>
     </Link>

@@ -51,7 +51,7 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
   }
 
   async function handleDelete(userId: string) {
-    if (!confirm("Benutzer wirklich löschen?")) return;
+    if (!confirm("هل تريد حذف المستخدم؟")) return;
     setLoadingId(userId);
     try {
       await onDelete(userId);
@@ -63,7 +63,7 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
   if (users.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <p className="text-muted-foreground text-sm">Keine Benutzer gefunden</p>
+        <p className="text-muted-foreground text-sm">لا يوجد مستخدمون</p>
       </div>
     );
   }
@@ -73,10 +73,10 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-border bg-muted/40">
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground">Benutzer</th>
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Rolle</th>
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Karte</th>
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Seit</th>
+            <th className="text-start px-4 py-3 font-medium text-muted-foreground">المستخدمون</th>
+            <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">الدور</th>
+            <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">البطاقة</th>
+            <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">منذ</th>
             <th className="px-4 py-3" />
           </tr>
         </thead>
@@ -93,7 +93,7 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
                     <p className="font-medium text-foreground flex items-center gap-1">
                       {user.name}
                       {user.id === currentUserId && (
-                        <span className="text-xs text-muted-foreground">(Ich)</span>
+                        <span className="text-xs text-muted-foreground">(أنا)</span>
                       )}
                     </p>
                     <p className="text-xs text-muted-foreground">{user.email}</p>
@@ -112,10 +112,10 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
                     </SelectTrigger>
                     <SelectContent>
                       {currentUserRole === "super_admin" && (
-                        <SelectItem value="company_admin">Admin</SelectItem>
+                        <SelectItem value="company_admin">مدير</SelectItem>
                       )}
-                      <SelectItem value="team_leader">Team Leader</SelectItem>
-                      <SelectItem value="member">Mitglied</SelectItem>
+                      <SelectItem value="team_leader">قائد فريق</SelectItem>
+                      <SelectItem value="member">عضو</SelectItem>
                     </SelectContent>
                   </Select>
                 ) : (
@@ -127,14 +127,14 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
               <td className="px-4 py-3 hidden lg:table-cell">
                 {user.card ? (
                   <div className="flex items-center gap-2">
-                    <Badge variant="success">Aktiv</Badge>
+                    <Badge variant="success">نشط</Badge>
                     <a href={`/c/${user.card.slug}`} target="_blank" rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-foreground">
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   </div>
                 ) : (
-                  <Badge variant="outline">Keine Karte</Badge>
+                  <Badge variant="outline">لا توجد بطاقة</Badge>
                 )}
               </td>
               <td className="px-4 py-3 hidden lg:table-cell text-muted-foreground text-xs">
@@ -151,7 +151,7 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
                     <DropdownMenuContent align="end">
                       {user.card && (
                         <DropdownMenuItem asChild>
-                          <a href={`/c/${user.card.slug}`} target="_blank">Karte ansehen</a>
+                          <a href={`/c/${user.card.slug}`} target="_blank">عرض البطاقة</a>
                         </DropdownMenuItem>
                       )}
                       <DropdownMenuSeparator />
@@ -160,7 +160,7 @@ export function UserTable({ users, currentUserId, currentUserRole, onRoleChange,
                         className="text-destructive focus:text-destructive"
                       >
                         <Trash2 className="h-4 w-4" />
-                        Löschen
+                        حذف
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

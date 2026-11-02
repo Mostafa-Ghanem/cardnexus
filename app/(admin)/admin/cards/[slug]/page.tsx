@@ -12,7 +12,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return { title: `Karte bearbeiten: ${slug}` };
+  return { title: `تعديل البطاقة: ${slug}` };
 }
 
 export default async function AdminCardEditPage({
@@ -41,21 +41,21 @@ export default async function AdminCardEditPage({
         <div className="flex items-center gap-3">
           <Button asChild variant="ghost" size="sm" className="gap-1.5">
             <Link href="/admin/cards">
-              <ArrowLeft className="h-3.5 w-3.5" />
-              Alle Karten
+              <ArrowLeft className="h-3.5 w-3.5 rtl:rotate-180" />
+              كل البطاقات
             </Link>
           </Button>
         </div>
         <Button asChild variant="outline" size="sm" className="gap-1.5">
           <Link href={`/c/${slug}`} target="_blank">
             <ExternalLink className="h-3.5 w-3.5" />
-            Karte ansehen
+            عرض البطاقة
           </Link>
         </Button>
       </div>
 
       <div className="border-b border-border pb-4">
-        <h1 className="text-2xl font-bold">Karte bearbeiten</h1>
+        <h1 className="text-2xl font-bold">تعديل البطاقة</h1>
         <p className="text-muted-foreground mt-1">
           Inhaber:{" "}
           <span className="font-medium text-foreground">{card.user.name}</span>

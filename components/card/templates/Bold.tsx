@@ -73,7 +73,7 @@ export function BoldTemplate({ card }: { card: Partial<CardData> }) {
             <p className="text-xs text-gray-300 mt-0.5">{card.department}</p>
           )}
           {!card.title && !card.company && (
-            <p className="text-sm font-semibold text-gray-300">Berufsbezeichnung</p>
+            <p className="text-sm font-semibold text-gray-300">المسمى الوظيفي</p>
           )}
         </div>
 
@@ -87,26 +87,26 @@ export function BoldTemplate({ card }: { card: Partial<CardData> }) {
           {card.phone && (
             <a href={`tel:${card.phone}`} className="flex items-center gap-2.5 group">
               <BoldIcon icon={Phone} color={color} />
-              <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors truncate">{card.phone}</span>
+              <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors truncate"><bdi>{card.phone}</bdi></span>
             </a>
           )}
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-2.5 group">
               <BoldIcon icon={Phone} color={color} />
-              <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors truncate">{card.mobile}</span>
+              <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors truncate"><bdi>{card.mobile}</bdi></span>
             </a>
           )}
           {card.email && (
             <a href={`mailto:${card.email}`} className="flex items-center gap-2.5 group">
               <BoldIcon icon={Mail} color={color} />
-              <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors truncate">{card.email}</span>
+              <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors truncate"><bdi>{card.email}</bdi></span>
             </a>
           )}
           {card.website && (
             <a href={card.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 group">
               <BoldIcon icon={Globe} color={color} />
               <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors truncate">
-                {card.website.replace(/^https?:\/\//, "")}
+                <bdi>{card.website.replace(/^https?:\/\//, "")}</bdi>
               </span>
             </a>
           )}

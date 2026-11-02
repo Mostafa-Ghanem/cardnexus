@@ -6,7 +6,7 @@ import { canManageUsers } from "@/lib/utils";
 import { canUseFeature, effectivePlan } from "@/lib/plans";
 import { ImportClient } from "./client";
 
-export const metadata = { title: "CSV-Import" };
+export const metadata = { title: "استيراد CSV" };
 
 export default async function ImportPage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -26,9 +26,9 @@ export default async function ImportPage() {
   return (
     <div className="space-y-8 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-bold">CSV-Import</h1>
+        <h1 className="text-2xl font-bold">استيراد CSV</h1>
         <p className="text-muted-foreground mt-1">
-          Importiere Mitglieder und befülle deren Visitenkarten aus einer CSV-Datei.
+          استورد الأعضاء واملأ بطاقاتهم من ملف CSV.
         </p>
       </div>
       <ImportClient />

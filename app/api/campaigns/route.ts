@@ -13,7 +13,7 @@ const createSchema = z.object({
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const user = session.user as { id: string; plan?: string };
   if (!canUseFeature("campaigns", user.plan ?? "free")) {
@@ -33,15 +33,15 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const user = session.user as { id: string; plan?: string };
   if (!canUseFeature("campaigns", user.plan ?? "free")) {
-    return NextResponse.json({ error: "Upgrade erforderlich" }, { status: 403 });
+    return NextResponse.json({ error: "تحتاج ترقية الباقة" }, { status: 403 });
   }
 
   const card = await db.card.findFirst({ where: { userId: user.id }, orderBy: [{ isDefault: "desc" }], select: { id: true, slug: true, firstName: true, lastName: true } });
-  if (!card) return NextResponse.json({ error: "Keine Karte" }, { status: 400 });
+  if (!card) return NextResponse.json({ error: "لا توجد بطاقة" }, { status: 400 });
 
   const body = createSchema.parse(await req.json());
 
@@ -68,17 +68,17 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const { id } = await req.json() as { id: string };
   const user = session.user as { id: string };
 
   const card = await db.card.findFirst({ where: { userId: user.id }, orderBy: [{ isDefault: "desc" }], select: { id: true } });
-  if (!card) return NextResponse.json({ error: "Keine Karte" }, { status: 400 });
+  if (!card) return NextResponse.json({ error: "لا توجد بطاقة" }, { status: 400 });
 
   const campaign = await db.campaign.findUnique({ where: { id }, select: { cardId: true } });
   if (!campaign || campaign.cardId !== card.id) {
-    return NextResponse.json({ error: "Nicht gefunden" }, { status: 404 });
+    return NextResponse.json({ error: "غير موجود" }, { status: 404 });
   }
 
   await db.campaign.delete({ where: { id } });

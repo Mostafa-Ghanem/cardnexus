@@ -11,7 +11,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
         {s.logoUrl ? (
           <img src={s.logoUrl} alt={s.appName} className="h-9 w-9 rounded-xl object-cover" />
         ) : (
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-900">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl " style={{ backgroundColor: s.primaryColor }}>
             <span className="text-sm font-bold text-white">{initials}</span>
           </div>
         )}

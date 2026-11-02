@@ -7,7 +7,7 @@ import { canManageOrganization } from "@/lib/utils";
 import Link from "next/link";
 import { Users } from "lucide-react";
 
-export const metadata = { title: "Analytics" };
+export const metadata = { title: "الإحصائيات" };
 
 export default async function AnalyticsPage({
   searchParams,
@@ -31,8 +31,8 @@ export default async function AnalyticsPage({
     <div className="space-y-8 max-w-5xl">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <PageHeader
-          title="Analytics"
-          description="Wie wird deine Karte genutzt?"
+          title="الإحصائيات"
+          description="كيف يتفاعل الناس مع بطاقتك؟"
         />
         {isOrgAdmin && (
           <Link
@@ -40,7 +40,7 @@ export default async function AnalyticsPage({
             className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors shrink-0"
           >
             <Users className="h-4 w-4" />
-            Team Analytics
+            إحصائيات الفريق
           </Link>
         )}
       </div>

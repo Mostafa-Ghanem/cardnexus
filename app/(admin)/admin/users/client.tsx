@@ -122,12 +122,12 @@ export function AdminUsersClient({
       const json = await res.json().catch(() => ({}));
       if (res.ok) {
         setUsers((prev) => prev.filter((u) => u.id !== pendingDelete.id));
-        toast.success("Benutzer gelöscht");
+        toast.success("تم حذف المستخدم");
       } else {
-        toast.error(`Fehler: ${json.error ?? res.status}`);
+        toast.error(`خطأ: ${json.error ?? res.status}`);
       }
     } catch (e) {
-      toast.error(`Netzwerkfehler: ${e instanceof Error ? e.message : String(e)}`);
+      toast.error(`خطأ في الاتصال: ${e instanceof Error ? e.message : String(e)}`);
     } finally {
       setDeleting(false);
       setPendingDelete(null);
@@ -138,12 +138,12 @@ export function AdminUsersClient({
     <>
     <div className="space-y-4">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Suchen…"
+          placeholder="بحث…"
           defaultValue={initialSearch}
           onChange={(e) => handleSearch(e.target.value)}
-          className="pl-9"
+          className="ps-9"
         />
       </div>
 
@@ -151,13 +151,13 @@ export function AdminUsersClient({
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border !bg-muted/40">
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Benutzer</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Organisation</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Rolle</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Plan</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Karte</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Seit</th>
-              <th className="text-right px-4 py-3 font-medium text-muted-foreground">Aktionen</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground">المستخدمون</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">المؤسسة</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground">الدور</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground">الباقة</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">البطاقة</th>
+              <th className="text-start px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">منذ</th>
+              <th className="text-end px-4 py-3 font-medium text-muted-foreground">إجراءات</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -173,8 +173,8 @@ export function AdminUsersClient({
                     <div>
                       <p className="font-medium flex items-center gap-1.5">
                         {user.name}
-                        {user.id === currentUserId && <span className="text-muted-foreground text-xs">(Ich)</span>}
-                        {user.bannedAt && <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium">Gesperrt</span>}
+                        {user.id === currentUserId && <span className="text-muted-foreground text-xs">(أنا)</span>}
+                        {user.bannedAt && <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium">محظور</span>}
                       </p>
                       <p className="text-xs text-muted-foreground">{user.email}</p>
                     </div>
@@ -188,7 +188,7 @@ export function AdminUsersClient({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="__none__">— Keine —</SelectItem>
+                      <SelectItem value="__none__">— بدون —</SelectItem>
                       {orgs.map((o) => (
                         <SelectItem key={o.id} value={o.id}>{o.name}</SelectItem>
                       ))}
@@ -203,10 +203,10 @@ export function AdminUsersClient({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="super_admin">Super Admin</SelectItem>
-                      <SelectItem value="company_admin">Admin</SelectItem>
-                      <SelectItem value="team_leader">Team Leader</SelectItem>
-                      <SelectItem value="member">Mitglied</SelectItem>
+                      <SelectItem value="super_admin">مدير المنصة</SelectItem>
+                      <SelectItem value="company_admin">مدير</SelectItem>
+                      <SelectItem value="team_leader">قائد فريق</SelectItem>
+                      <SelectItem value="member">عضو</SelectItem>
                     </SelectContent>
                   </Select>
                 </td>
@@ -222,7 +222,7 @@ export function AdminUsersClient({
                         </div>
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="free">Free</SelectItem>
+                        <SelectItem value="free">المجانية</SelectItem>
                         <SelectItem value="pro">Pro</SelectItem>
                         <SelectItem value="business">Business</SelectItem>
                       </SelectContent>
@@ -251,11 +251,11 @@ export function AdminUsersClient({
                         <button
                           onClick={() => setExpiryEdit(user.id)}
                           className="flex items-center gap-0.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                          title="Ablaufdatum setzen"
+                          title="تحديد تاريخ الانتهاء"
                         >
                           <CalendarDays className="h-3 w-3" />
                           {user.planExpiresAt
-                            ? new Date(user.planExpiresAt).toLocaleDateString("de-DE")
+                            ? new Date(user.planExpiresAt).toLocaleDateString("ar-u-nu-latn")
                             : <span className="opacity-50">&#8734;</span>}
                         </button>
                       )
@@ -270,7 +270,7 @@ export function AdminUsersClient({
                       <a href={`/c/${user.cards[0].slug}`} target="_blank" className="text-xs text-primary hover:underline">
                         {user.cards[0].slug}
                       </a>
-                      <Link href={`/admin/cards/${user.cards[0].slug}`} className="text-muted-foreground hover:text-foreground" title="Karte bearbeiten">
+                      <Link href={`/admin/cards/${user.cards[0].slug}`} className="text-muted-foreground hover:text-foreground" title="تعديل البطاقة">
                         <Pencil className="h-3 w-3" />
                       </Link>
                     </div>
@@ -283,13 +283,13 @@ export function AdminUsersClient({
                 </td>
 
                 {/* Actions */}
-                <td className="px-4 py-3 whitespace-nowrap text-right">
+                <td className="px-4 py-3 whitespace-nowrap text-end">
                   {user.id !== currentUserId && (
                     <div className="flex items-center justify-end gap-1">
                       {user.bannedAt ? (
                         <button
                           onClick={() => unbanUser(user.id)}
-                          title="Entsperren"
+                          title="إلغاء الحظر"
                           className="p-1.5 rounded hover:bg-green-50 text-green-600 hover:text-green-700 transition-colors"
                         >
                           <ShieldCheck className="h-4 w-4" />
@@ -297,7 +297,7 @@ export function AdminUsersClient({
                       ) : (
                         <button
                           onClick={() => banUser(user.id)}
-                          title="Sperren"
+                          title="حظر"
                           className="p-1.5 rounded hover:bg-amber-50 text-amber-600 hover:text-amber-700 transition-colors"
                         >
                           <ShieldOff className="h-4 w-4" />
@@ -305,7 +305,7 @@ export function AdminUsersClient({
                       )}
                       <button
                         onClick={() => setPendingDelete({ id: user.id, name: user.name })}
-                        title="Löschen"
+                        title="حذف"
                         className="p-1.5 rounded hover:bg-red-50 text-red-500 hover:text-red-700 transition-colors"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -323,19 +323,19 @@ export function AdminUsersClient({
     <AlertDialog open={pendingDelete !== null} onOpenChange={(open) => !open && setPendingDelete(null)}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Benutzer löschen</AlertDialogTitle>
+          <AlertDialogTitle>حذف المستخدم</AlertDialogTitle>
           <AlertDialogDescription>
-            <strong>{pendingDelete?.name}</strong> wird unwiderruflich gelöscht — inklusive aller Karten, Analytics und Leads. Diese Aktion kann nicht rückgängig gemacht werden.
+            <strong>{pendingDelete?.name}</strong> سيُحذف نهائيًا مع كل البطاقات والإحصائيات والعملاء المحتملين. لا يمكن التراجع عن هذا الإجراء.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={deleting}>Abbrechen</AlertDialogCancel>
+          <AlertDialogCancel disabled={deleting}>إلغاء</AlertDialogCancel>
           <AlertDialogAction
             onClick={confirmDelete}
             disabled={deleting}
             className="bg-red-600 hover:bg-red-700 text-white"
           >
-            {deleting ? "Wird gelöscht…" : "Endgültig löschen"}
+            {deleting ? "جارٍ الحذف…" : "حذف نهائي"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

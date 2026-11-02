@@ -29,7 +29,7 @@ function StatCard({ label, value, icon: Icon }: { label: string; value: number; 
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-muted-foreground">{label}</p>
-            <p className="text-2xl font-bold mt-1">{value.toLocaleString("de-DE")}</p>
+            <p className="text-2xl font-bold mt-1">{value.toLocaleString("ar-u-nu-latn")}</p>
           </div>
           <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
             <Icon className="h-5 w-5 text-muted-foreground" />
@@ -50,18 +50,18 @@ export function OrgAnalyticsClient({
     <div className="space-y-6">
       {/* Stats grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <StatCard label="Aufrufe gesamt" value={totalViews} icon={Eye} />
-        <StatCard label="vCard-Downloads" value={vcardDownloads} icon={Download} />
-        <StatCard label="QR-Scans" value={qrScans} icon={QrCode} />
-        <StatCard label="Link-Klicks" value={linkClicks} icon={MousePointer} />
-        <StatCard label="Leads erhalten" value={totalLeads} icon={UserPlus} />
-        <StatCard label="Teammitglieder" value={memberCount} icon={Users} />
+        <StatCard label="إجمالي الزيارات" value={totalViews} icon={Eye} />
+        <StatCard label="تنزيلات جهة الاتصال" value={vcardDownloads} icon={Download} />
+        <StatCard label="مسح QR" value={qrScans} icon={QrCode} />
+        <StatCard label="نقرات الروابط" value={linkClicks} icon={MousePointer} />
+        <StatCard label="العملاء المحتملون" value={totalLeads} icon={UserPlus} />
+        <StatCard label="أعضاء الفريق" value={memberCount} icon={Users} />
       </div>
 
       {/* 30-day chart */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Aufrufe – letzte 30 Tage</CardTitle>
+          <CardTitle className="text-base">الزيارات – آخر 30 يومًا</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={220}>
@@ -76,8 +76,8 @@ export function OrgAnalyticsClient({
               <XAxis dataKey="date" tick={{ fontSize: 10 }} tickFormatter={(v) => v.slice(5)} interval="preserveStartEnd" />
               <YAxis tick={{ fontSize: 10 }} allowDecimals={false} domain={[0, maxCount + 1]} />
               <Tooltip
-                formatter={(v: number) => [v.toLocaleString("de-DE"), "Aufrufe"]}
-                labelFormatter={(l) => new Date(l).toLocaleDateString("de-DE")}
+                formatter={(v: number) => [v.toLocaleString("ar-u-nu-latn"), "الزيارات"]}
+                labelFormatter={(l) => new Date(l).toLocaleDateString("ar-u-nu-latn")}
               />
               <Area type="monotone" dataKey="count" stroke="#6366f1" fill="url(#orgGrad)" strokeWidth={2} dot={false} />
             </AreaChart>
@@ -89,11 +89,11 @@ export function OrgAnalyticsClient({
         {/* Top cards by views */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Top-Karten nach Aufrufen</CardTitle>
+            <CardTitle className="text-base">أعلى البطاقات زيارةً</CardTitle>
           </CardHeader>
           <CardContent>
             {topCards.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Daten.</p>
+              <p className="text-sm text-muted-foreground">لا توجد بيانات بعد.</p>
             ) : (
               <div className="space-y-2">
                 {topCards.map((c) => (
@@ -108,7 +108,7 @@ export function OrgAnalyticsClient({
                       {c.name}
                     </a>
                     <span className="text-sm font-medium tabular-nums shrink-0">
-                      {c.views.toLocaleString("de-DE")}
+                      {c.views.toLocaleString("ar-u-nu-latn")}
                     </span>
                   </div>
                 ))}
@@ -120,11 +120,11 @@ export function OrgAnalyticsClient({
         {/* Top cards by leads */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Top-Karten nach Leads</CardTitle>
+            <CardTitle className="text-base">أعلى البطاقات في العملاء المحتملين</CardTitle>
           </CardHeader>
           <CardContent>
             {topCardsByLeads.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Leads.</p>
+              <p className="text-sm text-muted-foreground">لا يوجد عملاء محتملون بعد.</p>
             ) : (
               <div className="space-y-2">
                 {topCardsByLeads.map((c) => (
@@ -139,7 +139,7 @@ export function OrgAnalyticsClient({
                       {c.name}
                     </a>
                     <span className="text-sm font-medium tabular-nums shrink-0">
-                      {c.leads.toLocaleString("de-DE")}
+                      {c.leads.toLocaleString("ar-u-nu-latn")}
                     </span>
                   </div>
                 ))}

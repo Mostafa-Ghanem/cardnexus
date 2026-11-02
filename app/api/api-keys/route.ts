@@ -9,7 +9,7 @@ const createSchema = z.object({ name: z.string().min(1).max(100) });
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const keys = await db.apiKey.findMany({
     where: { userId: session.user.id },
@@ -22,11 +22,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const count = await db.apiKey.count({ where: { userId: session.user.id } });
   if (count >= 10) {
-    return NextResponse.json({ error: "Max 10 API-Keys erlaubt" }, { status: 400 });
+    return NextResponse.json({ error: "الحد الأقصى 10 مفاتيح API" }, { status: 400 });
   }
 
   const body = await request.json();
@@ -55,11 +55,11 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const { id } = await request.json();
   const existing = await db.apiKey.findFirst({ where: { id, userId: session.user.id } });
-  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!existing) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   await db.apiKey.delete({ where: { id } });
   return NextResponse.json({ ok: true });

@@ -9,7 +9,7 @@ export class WalletFeatureDisabledError extends Error {
     const missing = provider === "apple"
       ? "APPLE_WALLET_CERT, APPLE_WALLET_KEY, APPLE_WALLET_WWDR, APPLE_TEAM_ID, APPLE_PASS_TYPE_ID"
       : "GOOGLE_WALLET_ISSUER_ID, GOOGLE_WALLET_SERVICE_ACCOUNT";
-    super(`${provider === "apple" ? "Apple" : "Google"} Wallet ist nicht konfiguriert. Fehlende Env-Variablen: ${missing}`);
+    super(`${provider === "apple" ? "Apple" : "Google"} Wallet غير مُعدّة. متغيرات ناقصة: ${missing}`);
     this.name = "WalletFeatureDisabledError";
   }
 }
@@ -90,7 +90,7 @@ export async function generateAppleWalletPass(data: WalletCardData): Promise<Buf
         ...(data.phone ? [{ key: "phone", label: "TEL",    value: data.phone }] : []),
       ],
       backFields: [
-        { key: "url", label: "Digitale Karte", value: data.cardUrl },
+        { key: "url", label: "البطاقة الرقمية", value: data.cardUrl },
       ],
     },
   };
@@ -144,15 +144,15 @@ export async function generateGoogleWalletPassUrl(data: WalletCardData): Promise
     id: objectId,
     classId,
     genericType: "GENERIC_TYPE_UNSPECIFIED",
-    cardTitle:   { defaultValue: { language: "de", value: data.company ?? "CardNexus" } },
-    subheader:   { defaultValue: { language: "de", value: data.title ?? "" } },
-    header:      { defaultValue: { language: "de", value: `${data.firstName} ${data.lastName}` } },
+    cardTitle:   { defaultValue: { language: "ar", value: data.company ?? (process.env.NEXT_PUBLIC_APP_NAME ?? "كارت نكسس") } },
+    subheader:   { defaultValue: { language: "ar", value: data.title ?? "" } },
+    header:      { defaultValue: { language: "ar", value: `${data.firstName} ${data.lastName}` } },
     textModulesData: [
-      ...(data.email ? [{ header: "E-Mail", body: data.email, id: "email" }] : []),
-      ...(data.phone ? [{ header: "Telefon", body: data.phone, id: "phone" }] : []),
+      ...(data.email ? [{ header: "البريد الإلكتروني", body: data.email, id: "email" }] : []),
+      ...(data.phone ? [{ header: "الهاتف", body: data.phone, id: "phone" }] : []),
     ],
     linksModuleData: {
-      uris: [{ uri: data.cardUrl, description: "Digitale Visitenkarte", id: "card_url" }],
+      uris: [{ uri: data.cardUrl, description: "بطاقة أعمال رقمية", id: "card_url" }],
     },
     hexBackgroundColor: data.primaryColor,
     state: "ACTIVE",

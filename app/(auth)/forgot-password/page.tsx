@@ -31,33 +31,33 @@ export default function ForgotPasswordPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Passwort vergessen?</CardTitle>
+        <CardTitle>نسيت كلمة المرور؟</CardTitle>
         <CardDescription>
-          Wir senden dir einen Link zum Zurücksetzen deines Passworts.
+          سنرسل لك رابطًا لإعادة تعيين كلمة المرور.
         </CardDescription>
       </CardHeader>
       {done ? (
         <CardContent className="space-y-3">
           <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
-            Falls ein Account zu <strong>{email}</strong> existiert, wurde gerade eine
-            E-Mail mit einem Reset-Link an diese Adresse versendet. Bitte schau auch
-            im Spam-Ordner nach.
+            إذا كان هناك حساب مسجل بالبريد <strong dir="ltr">{email}</strong> فقد أرسلنا إليه
+            رسالة فيها رابط إعادة التعيين. لا تنسَ مراجعة
+            مجلد الرسائل غير المرغوب فيها (Spam).
           </div>
           <Button asChild variant="outline" className="w-full">
-            <Link href="/login">Zurück zum Login</Link>
+            <Link href="/login">العودة لتسجيل الدخول</Link>
           </Button>
         </CardContent>
       ) : (
         <form onSubmit={submit}>
           <CardContent className="space-y-4">
             <div className="space-y-1.5">
-              <Label htmlFor="email">E-Mail</Label>
+              <Label htmlFor="email">البريد الإلكتروني</Label>
               <Input
                 id="email"
                 type="email"
                 required
                 autoComplete="email"
-                placeholder="max@example.com"
+                placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -65,10 +65,10 @@ export default function ForgotPasswordPage() {
           </CardContent>
           <CardFooter className="flex flex-col gap-3">
             <Button type="submit" className="w-full" disabled={loading || !email}>
-              {loading ? "Senden…" : "Reset-Link senden"}
+              {loading ? "جارٍ الإرسال…" : "أرسل رابط إعادة التعيين"}
             </Button>
             <p className="text-sm text-muted-foreground text-center">
-              <Link href="/login" className="hover:underline">Zurück zum Login</Link>
+              <Link href="/login" className="hover:underline">العودة لتسجيل الدخول</Link>
             </p>
           </CardFooter>
         </form>

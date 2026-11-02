@@ -11,14 +11,14 @@ const schema = z.object({
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const me = session.user as { id: string; role?: string; organizationId?: string };
   const isApprover = me.role === "super_admin" || me.role === "company_admin" || me.role === "team_leader";
-  if (!isApprover) return NextResponse.json({ error: "Keine Berechtigung" }, { status: 403 });
+  if (!isApprover) return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
 
   const body = schema.safeParse(await req.json());
-  if (!body.success) return NextResponse.json({ error: "Ungültige Eingabe" }, { status: 400 });
+  if (!body.success) return NextResponse.json({ error: "البيانات غير صحيحة" }, { status: 400 });
 
   const { slug } = await params;
   const card = await db.card.findUnique({
@@ -26,12 +26,12 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ slu
     select: { id: true, userId: true, user: { select: { organizationId: true } } },
   });
 
-  if (!card) return NextResponse.json({ error: "Nicht gefunden" }, { status: 404 });
+  if (!card) return NextResponse.json({ error: "غير موجود" }, { status: 404 });
 
   // team_leader / company_admin may only approve cards in their own org
   if (me.role !== "super_admin") {
     if (!me.organizationId || card.user.organizationId !== me.organizationId) {
-      return NextResponse.json({ error: "Keine Berechtigung" }, { status: 403 });
+      return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
     }
   }
 

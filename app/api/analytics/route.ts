@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
   const parsed = trackSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid" }, { status: 400 });
+    return NextResponse.json({ error: "بيانات غير صالحة" }, { status: 400 });
   }
 
   const { cardSlug, event, linkLabel, source, utmSource, utmMedium, utmCampaign, referrer } = parsed.data;
@@ -120,14 +120,14 @@ async function checkMilestone(cardSlug: string) {
       userId: card.userId,
       type: "milestone",
       value: String(milestone),
-      message: `Deine Karte hat ${milestone.toLocaleString("de-DE")} Aufrufe erreicht!`,
+      message: `بطاقتك وصلت إلى ${milestone.toLocaleString("en-US")} زيارة!`,
     },
   }).catch(() => {});
 }
 
 export async function GET(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const url = new URL(request.url);
   const cardId = url.searchParams.get("cardId");
@@ -247,7 +247,7 @@ export async function GET(request: NextRequest) {
 
   const utmCampaigns = utmRaw
     .map((r) => ({
-      campaign: r.utmCampaign ?? "(kein utm_campaign)",
+      campaign: r.utmCampaign ?? "(بدون utm_campaign)",
       source:   r.utmSource   ?? null,
       medium:   r.utmMedium   ?? null,
       count:    r._count,

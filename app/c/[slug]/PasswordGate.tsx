@@ -23,7 +23,7 @@ export function CardPasswordGate({ slug }: Props) {
     setError("");
     start(async () => {
       const res = await unlockCard(slug, password);
-      if (!res.ok) setError(res.error ?? "Fehler");
+      if (!res.ok) setError(res.error ?? "حدث خطأ");
       else router.refresh();
     });
   }
@@ -38,13 +38,13 @@ export function CardPasswordGate({ slug }: Props) {
           <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
             <Lock className="h-5 w-5 text-gray-600 dark:text-gray-400" />
           </div>
-          <h1 className="text-lg font-semibold">Geschützte Karte</h1>
+          <h1 className="text-lg font-semibold">بطاقة محمية</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Diese Karte ist passwortgeschützt. Bitte gib das Passwort ein.
+            هذه البطاقة محمية بكلمة مرور. من فضلك أدخل كلمة المرور.
           </p>
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="card-pw">Passwort</Label>
+          <Label htmlFor="card-pw">كلمة المرور</Label>
           <Input
             id="card-pw"
             type="password"
@@ -56,7 +56,7 @@ export function CardPasswordGate({ slug }: Props) {
         </div>
         {error && <p className="text-sm text-destructive">{error}</p>}
         <Button type="submit" className="w-full" disabled={pending || !password}>
-          {pending ? "Prüfen…" : "Entsperren"}
+          {pending ? "جارٍ التحقق…" : "فتح البطاقة"}
         </Button>
       </form>
     </div>

@@ -9,7 +9,7 @@ const BROWSER_COLORS = ["#6366F1", "#8B5CF6", "#EC4899", "#F43F5E", "#F59E0B", "
 const OS_COLORS     = ["#0F172A", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#10B981", "#6366F1"];
 
 function PieLegend({ items, colors }: { items: { label: string; count: number }[]; colors: string[] }) {
-  if (items.length === 0) return <p className="text-sm text-muted-foreground">Noch keine Daten</p>;
+  if (items.length === 0) return <p className="text-sm text-muted-foreground">لا توجد بيانات بعد</p>;
   const pieData = items.map((i) => ({ name: i.label, value: i.count }));
   return (
     <div className="flex items-center gap-6">
@@ -23,7 +23,7 @@ function PieLegend({ items, colors }: { items: { label: string; count: number }[
           <div key={item.label} className="flex items-center gap-2 text-sm">
             <div className="h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: colors[i % colors.length] }} />
             <span className="truncate text-foreground">{item.label}</span>
-            <span className="text-muted-foreground ml-auto pl-2">{item.count}</span>
+            <span className="text-muted-foreground ms-auto ps-2">{item.count}</span>
           </div>
         ))}
       </div>
@@ -44,7 +44,7 @@ export function AnalyticsTech({ browserSplit, osSplit }: Props) {
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <Monitor className="h-4 w-4 text-muted-foreground" />
-            Browser
+            المتصفح
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -58,7 +58,7 @@ export function AnalyticsTech({ browserSplit, osSplit }: Props) {
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <Cpu className="h-4 w-4 text-muted-foreground" />
-            Betriebssystem
+            نظام التشغيل
           </CardTitle>
         </CardHeader>
         <CardContent>

@@ -1,7 +1,7 @@
 export type Plan = "free" | "pro" | "business";
 
 export interface PlanFeatures {
-  whiteLabel: boolean;          // Remove "Erstellt mit CardNexus" badge
+  whiteLabel: boolean;          // Remove the platform badge
   customDomain: boolean;        // Use own domain
   allTemplates: boolean;        // Access to all 12 templates (free: 4 only)
   maxCards: number;             // Max number of cards per user
@@ -21,8 +21,8 @@ export interface PlanFeatures {
 export interface PlanDefinition {
   id: Plan;
   name: string;
-  monthlyPrice: number; // EUR
-  yearlyPrice: number;  // EUR/month billed yearly
+  monthlyPrice: number; // in PRICE_CURRENCY
+  yearlyPrice: number;  // per month, billed yearly
   description: string;
   features: PlanFeatures;
   highlight?: boolean;
@@ -31,10 +31,10 @@ export interface PlanDefinition {
 export const PLANS: Record<Plan, PlanDefinition> = {
   free: {
     id: "free",
-    name: "Free",
+    name: "المجانية",
     monthlyPrice: 0,
     yearlyPrice: 0,
-    description: "Für den Einstieg",
+    description: "للبداية",
     features: {
       whiteLabel: false,
       customDomain: false,
@@ -50,7 +50,8 @@ export const PLANS: Record<Plan, PlanDefinition> = {
       milestoneNotifications: false,
       analyticsRetention: 30,
       teamDirectory: false,
-      leadCapture: false,
+      // Lead capture is available on every plan (core feature for the Arabic launch).
+      leadCapture: true,
     },
   },
   pro: {
@@ -58,7 +59,7 @@ export const PLANS: Record<Plan, PlanDefinition> = {
     name: "Pro",
     monthlyPrice: 5,
     yearlyPrice: 4,
-    description: "Für Profis & Freelancer",
+    description: "للمحترفين وأصحاب الأعمال الحرة",
     highlight: true,
     features: {
       whiteLabel: true,
@@ -83,7 +84,7 @@ export const PLANS: Record<Plan, PlanDefinition> = {
     name: "Business",
     monthlyPrice: 19,
     yearlyPrice: 15,
-    description: "Für Teams & Unternehmen",
+    description: "للفرق والشركات",
     features: {
       whiteLabel: true,
       customDomain: true,
@@ -103,6 +104,24 @@ export const PLANS: Record<Plan, PlanDefinition> = {
     },
   },
 };
+
+/**
+ * Display currency for plan prices. Must match the prices configured in Stripe/PayPal.
+ * Override with NEXT_PUBLIC_PRICE_CURRENCY (ISO 4217, e.g. SAR, EGP, AED).
+ */
+export const PRICE_CURRENCY = process.env.NEXT_PUBLIC_PRICE_CURRENCY || "USD";
+
+export function formatPrice(amount: number): string {
+  try {
+    return new Intl.NumberFormat("ar", {
+      style: "currency", currency: PRICE_CURRENCY,
+      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
+      numberingSystem: "latn",
+    } as Intl.NumberFormatOptions).format(amount);
+  } catch {
+    return `${amount} ${PRICE_CURRENCY}`;
+  }
+}
 
 export const FREE_TEMPLATES = ["classic", "modern", "minimal", "dark"];
 

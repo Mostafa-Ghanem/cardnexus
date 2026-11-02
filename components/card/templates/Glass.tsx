@@ -21,11 +21,11 @@ export function GlassTemplate({ card }: { card: Partial<CardData> }) {
     >
       {/* Decorative blobs */}
       <div
-        className="absolute -top-16 -right-16 h-48 w-48 rounded-full opacity-20 blur-2xl"
+        className="absolute -top-16 -end-16 h-48 w-48 rounded-full opacity-20 blur-2xl"
         style={{ backgroundColor: accent }}
       />
       <div
-        className="absolute -bottom-16 -left-8 h-40 w-40 rounded-full opacity-20 blur-2xl"
+        className="absolute -bottom-16 -start-8 h-40 w-40 rounded-full opacity-20 blur-2xl"
         style={{ backgroundColor: color }}
       />
 
@@ -91,26 +91,26 @@ export function GlassTemplate({ card }: { card: Partial<CardData> }) {
           {card.phone && (
             <a href={`tel:${card.phone}`} className="flex items-center gap-3 group">
               <GlassIcon icon={Phone} />
-              <span className="text-xs text-white/80 group-hover:text-white transition-colors">{card.phone}</span>
+              <span className="text-xs text-white/80 group-hover:text-white transition-colors"><bdi>{card.phone}</bdi></span>
             </a>
           )}
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 group">
               <GlassIcon icon={Phone} />
-              <span className="text-xs text-white/80 group-hover:text-white transition-colors">{card.mobile}</span>
+              <span className="text-xs text-white/80 group-hover:text-white transition-colors"><bdi>{card.mobile}</bdi></span>
             </a>
           )}
           {card.email && (
             <a href={`mailto:${card.email}`} className="flex items-center gap-3 group">
               <GlassIcon icon={Mail} />
-              <span className="text-xs text-white/80 group-hover:text-white transition-colors">{card.email}</span>
+              <span className="text-xs text-white/80 group-hover:text-white transition-colors"><bdi>{card.email}</bdi></span>
             </a>
           )}
           {card.website && (
             <a href={card.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
               <GlassIcon icon={Globe} />
               <span className="text-xs text-white/80 group-hover:text-white transition-colors">
-                {card.website.replace(/^https?:\/\//, "")}
+                <bdi>{card.website.replace(/^https?:\/\//, "")}</bdi>
               </span>
             </a>
           )}
@@ -138,8 +138,8 @@ export function GlassTemplate({ card }: { card: Partial<CardData> }) {
 
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
-            <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12 invert opacity-70" />
-            <p className="text-xs text-white/50">Scan für digitale Karte</p>
+            <img src={`/api/qr/${card.slug}`} alt="رمز QR" className="h-12 w-12 invert opacity-70" />
+            <p className="text-xs text-white/50">امسح لفتح البطاقة الرقمية</p>
           </div>
         )}
       </div>

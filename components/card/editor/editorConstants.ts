@@ -6,39 +6,39 @@ export const FONT_OPTIONS = [
 ];
 
 export const LAYOUT_OPTIONS = [
-  { value: "standard", label: "Standard", description: "Avatar links, Name rechts" },
-  { value: "centered", label: "Zentriert", description: "Avatar und Name mittig" },
-  { value: "compact",  label: "Kompakt",  description: "Platzsparend, kleiner Avatar" },
+  { value: "standard", label: "قياسي", description: "الصورة بجانب الاسم" },
+  { value: "centered", label: "في المنتصف", description: "الصورة والاسم في المنتصف" },
+  { value: "compact",  label: "مختصر",  description: "مساحة أقل وصورة أصغر" },
 ];
 
 export const ROUNDED_OPTIONS = [
-  { value: "default", label: "Abgerundet" },
-  { value: "sharp",   label: "Eckig" },
-  { value: "pill",    label: "Rund (Pill)" },
+  { value: "default", label: "مستدير" },
+  { value: "sharp",   label: "حاد" },
+  { value: "pill",    label: "كبسولة" },
 ];
 
 export const SHADOW_OPTIONS = [
-  { value: "none", label: "Kein" },
-  { value: "sm",   label: "Leicht" },
-  { value: "md",   label: "Mittel" },
-  { value: "lg",   label: "Stark" },
-  { value: "xl",   label: "Sehr stark" },
+  { value: "none", label: "بدون" },
+  { value: "sm",   label: "خفيف" },
+  { value: "md",   label: "متوسط" },
+  { value: "lg",   label: "قوي" },
+  { value: "xl",   label: "قوي جدًا" },
 ];
 
 export const SOCIAL_STYLE_OPTIONS = [
-  { value: "icons",   label: "Icons",        description: "Farbige Symbol-Buttons" },
-  { value: "outline", label: "Icons + Label", description: "Umrandete Pills mit Text" },
-  { value: "minimal", label: "Minimal",       description: "Nur Textlinks" },
+  { value: "icons",   label: "أيقونات",        description: "أزرار أيقونات ملونة" },
+  { value: "outline", label: "أيقونات + نص", description: "أزرار بإطار مع نص" },
+  { value: "minimal", label: "بسيط",       description: "روابط نصية فقط" },
 ];
 
 export const AVATAR_BORDER_OPTIONS = [
-  { value: "none", label: "Kein" },
-  { value: "ring", label: "Ring" },
-  { value: "glow", label: "Glow" },
+  { value: "none", label: "بدون" },
+  { value: "ring", label: "حلقة" },
+  { value: "glow", label: "توهج" },
 ];
 
 export const BG_OPTIONS = [
-  { value: "white",    label: "Weiß",    description: "Klassisch sauber" },
-  { value: "tinted",   label: "Getönt",  description: "Hauch der Primärfarbe" },
-  { value: "gradient", label: "Verlauf", description: "Sanfter Farbverlauf" },
+  { value: "white",    label: "أبيض",    description: "كلاسيكي ونظيف" },
+  { value: "tinted",   label: "ملوّن خفيف",  description: "لمسة من اللون الأساسي" },
+  { value: "gradient", label: "متدرج", description: "تدرج لوني ناعم" },
 ];

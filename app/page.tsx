@@ -7,37 +7,47 @@ import {
 } from "lucide-react";
 import { PLANS } from "@/lib/plans";
 import { FaqSection } from "./FaqSection";
+import { getPlatformSettings } from "@/lib/platform";
+import { BrandMark } from "@/components/layout/BrandMark";
+import { formatPrice } from "@/lib/plans";
+
+// Re-read platform settings (name, logo, colours) at most once a minute.
+export const revalidate = 60;
+
+/** Slug of a public card to show as a live example (optional). */
+const DEMO_SLUG = process.env.NEXT_PUBLIC_DEMO_CARD_SLUG ?? "";
 
 const features = [
-  { icon: Nfc,          title: "NFC-Ready",           desc: "Kontakt per Antippen teilen – einfach Smartphone halten, fertig." },
-  { icon: QrCode,       title: "QR-Code",             desc: "Automatisch generierter QR-Code, immer aktuell." },
-  { icon: Smartphone,   title: "Mobile First",         desc: "Lädt in unter einer Sekunde. Kein App-Download nötig." },
-  { icon: Users,        title: "Team-Verwaltung",      desc: "Ganze Teams zentral verwalten – Rollen, Abteilungen, Branding." },
-  { icon: BarChart2,    title: "Analytics",            desc: "Aufrufe, Scans und Downloads in Echtzeit im Blick." },
-  { icon: Megaphone,    title: "Kampagnen-Tracking",   desc: "UTM-Links für Messen und Events mit eigener Klick-Statistik." },
-  { icon: Mail,         title: "E-Mail-Signatur",      desc: "Professionelle Signatur für Gmail, Outlook und Apple Mail." },
-  { icon: CalendarDays, title: "Terminbuchung",        desc: "Direkt buchbar per Calendly, Cal.com oder eigenem Link." },
-  { icon: Download,     title: "PDF / Print-Export",   desc: "Karte als PDF exportieren oder druckfertig aufbereiten." },
-  { icon: FileText,     title: "Lead Capture",         desc: "Besucher hinterlassen Kontaktdaten – direkt im Dashboard." },
-  { icon: Shield,       title: "Datenschutz (DSGVO)",  desc: "Server in Deutschland. Keine Tracker. Vollständig DSGVO-konform." },
-  { icon: Zap,          title: "Whitelabel",           desc: "Eigene Domain, eigenes Branding – ohne CardNexus-Badge." },
+  { icon: Nfc,          title: "جاهز لـ NFC",          desc: "شارك بياناتك بلمسة واحدة: قرّب الجوال من البطاقة وخلاص." },
+  { icon: QrCode,       title: "رمز QR",               desc: "رمز QR يتولد تلقائيًا ويبقى محدّثًا دائمًا." },
+  { icon: Smartphone,   title: "مصمم للجوال أولًا",     desc: "يفتح في أقل من ثانية، بدون تحميل أي تطبيق." },
+  { icon: Users,        title: "إدارة الفرق",           desc: "أدر فريقك كاملًا من مكان واحد: الأدوار والأقسام والهوية." },
+  { icon: BarChart2,    title: "إحصائيات",              desc: "تابع الزيارات والمسح والتنزيلات لحظة بلحظة." },
+  { icon: Megaphone,    title: "تتبع الحملات",          desc: "روابط UTM للمعارض والفعاليات بإحصائيات نقرات مستقلة." },
+  { icon: Mail,         title: "توقيع البريد",          desc: "توقيع احترافي لـ Gmail وOutlook وApple Mail." },
+  { icon: CalendarDays, title: "حجز المواعيد",          desc: "رابط حجز مباشر عبر Calendly أو Cal.com أو رابطك الخاص." },
+  { icon: Download,     title: "تصدير PDF وطباعة",      desc: "صدّر بطاقتك PDF أو جهّزها للطباعة." },
+  { icon: FileText,     title: "جمع العملاء المحتملين",  desc: "الزائر يترك اسمه وجواله وبريده، وتوصلك فورًا في لوحة التحكم." },
+  { icon: Shield,       title: "خصوصية بياناتك",        desc: "بدون متتبعات إعلانية، وبياناتك وبيانات عملائك ملكك وحدك." },
+  { icon: Zap,          title: "علامتك الخاصة",         desc: "دومين خاص وهوية خاصة بدون شارة المنصة." },
 ];
 
 const steps = [
-  { n: 1, title: "Account erstellen",       desc: "Registriere dich kostenlos in weniger als 60 Sekunden." },
-  { n: 2, title: "Karte gestalten",         desc: "Wähle ein Template, füge deine Daten ein und passe Farben an." },
-  { n: 3, title: "Teilen & Vernetzen",      desc: "Link verschicken, QR-Code scannen lassen oder NFC-Tag beschreiben." },
+  { n: 1, title: "أنشئ حسابك",       desc: "سجّل مجانًا في أقل من دقيقة." },
+  { n: 2, title: "صمّم بطاقتك",      desc: "اختر قالبًا، أضف بياناتك وعدّل الألوان." },
+  { n: 3, title: "شارك وتواصل",      desc: "أرسل الرابط، أو اعرض رمز QR، أو اكتبه على بطاقة NFC." },
 ];
 
 const planList = [PLANS.free, PLANS.pro, PLANS.business];
 
 const PLAN_FEATURES: Record<string, string[]> = {
-  free:     ["1 digitale Visitenkarte", "QR-Code & vCard-Download", "Lead Capture", "4 Templates", `Bis zu ${PLANS.free.features.maxCustomLinks} eigene Links`, `Analytics (${PLANS.free.features.analyticsRetention} Tage)`],
-  pro:      ["Alle 9 Templates", "Whitelabel (kein Badge)", "Eigene Domain", "PDF & Print-Export", "Kampagnen-Tracking", "Terminbuchungs-Link", "Meilenstein-Benachrichtigungen", `Analytics (${PLANS.pro.features.analyticsRetention} Tage)`],
-  business: ["Alles aus Pro", "Team & Abteilungsverwaltung", "Bulk CSV-Import", "Organisations-Vorlage", "Team-Verzeichnis", `Analytics (${PLANS.business.features.analyticsRetention} Tage)`],
+  free:     ["بطاقة رقمية واحدة", "رمز QR وتنزيل جهة الاتصال", "جمع العملاء المحتملين", "4 قوالب", `حتى ${PLANS.free.features.maxCustomLinks} روابط مخصصة`, `إحصائيات (${PLANS.free.features.analyticsRetention} يومًا)`],
+  pro:      ["جميع القوالب", "بدون شارة المنصة", "دومين خاص", "تصدير PDF وطباعة", "تتبع الحملات", "رابط حجز المواعيد", "تنبيهات الإنجازات", `إحصائيات (${PLANS.pro.features.analyticsRetention} يومًا)`],
+  business: ["كل مزايا Pro", "إدارة الفريق والأقسام", "استيراد CSV جماعي", "قالب موحّد للمؤسسة", "دليل الفريق", `إحصائيات (${PLANS.business.features.analyticsRetention} يومًا)`],
 };
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const s = await getPlatformSettings();
   return (
     <div className="min-h-screen bg-background text-gray-900 dark:text-gray-100">
 
@@ -46,23 +56,21 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-900">
-                <span className="text-xs font-bold text-white">CN</span>
-              </div>
-              <span className="font-semibold">CardNexus</span>
+              <BrandMark name={s.appName} logoUrl={s.logoUrl} color={s.primaryColor} />
+              <span className="font-semibold">{s.appName}</span>
             </div>
             <div className="hidden md:flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400">
-              <a href="#features" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Features</a>
-              <a href="#how"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">So funktioniert es</a>
-              <a href="#pricing"  className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Preise</a>
-              <a href="#faq"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">FAQ</a>
+              <a href="#features" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">المزايا</a>
+              <a href="#how"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">كيف تعمل</a>
+              <a href="#pricing"  className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">الأسعار</a>
+              <a href="#faq"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">الأسئلة الشائعة</a>
             </div>
             <div className="flex items-center gap-2">
               <Link href="/login" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors hidden sm:block">
-                Anmelden
+                تسجيل الدخول
               </Link>
               <Button asChild size="sm">
-                <Link href="/register">Kostenlos starten</Link>
+                <Link href="/register">ابدأ مجانًا</Link>
               </Button>
             </div>
           </div>
@@ -73,26 +81,28 @@ export default function LandingPage() {
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-950 px-4 py-1.5 text-sm text-gray-600 dark:text-gray-400 mb-8">
           <Zap className="h-3.5 w-3.5 text-amber-500" />
-          Digitale Visitenkarte der nächsten Generation
+          بطاقة الأعمال الرقمية للجيل الجديد
         </div>
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6">
-          Deine Karte.
+          بطاقتك.
           <br />
-          <span className="text-gray-400">In Sekunden geteilt.</span>
+          <span className="text-gray-400">تتشارك في ثوانٍ.</span>
         </h1>
         <p className="mx-auto max-w-2xl text-xl text-gray-500 dark:text-gray-400 mb-10 leading-relaxed">
-          Erstelle deine digitale Visitenkarte, teile sie per NFC, QR-Code oder Link – und behalte den Überblick mit Analytics, Lead Capture und Team-Verwaltung.
+          أنشئ بطاقتك الرقمية وشاركها عبر NFC أو رمز QR أو رابط، واجمع بيانات عملائك المحتملين وتابع الإحصائيات وأدر فريقك من مكان واحد.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button asChild size="lg">
             <Link href="/register">
-              Jetzt kostenlos starten
-              <ArrowRight className="h-4 w-4" />
+              ابدأ الآن مجانًا
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/c/demo">Live-Demo ansehen</Link>
-          </Button>
+          {DEMO_SLUG && (
+            <Button asChild variant="outline" size="lg">
+              <Link href={`/c/${DEMO_SLUG}`}>شاهد مثالًا حيًّا</Link>
+            </Button>
+          )}
         </div>
 
         {/* Mock card */}
@@ -101,15 +111,15 @@ export default function LandingPage() {
             <div className="h-1.5 bg-gray-900" />
             <div className="p-8">
               <div className="flex items-start gap-4 mb-5">
-                <div className="h-16 w-16 rounded-full bg-gray-900 flex items-center justify-center text-white font-bold text-lg shrink-0">MH</div>
+                <div className="h-16 w-16 rounded-full bg-gray-900 flex items-center justify-center text-white font-bold text-lg shrink-0">أح</div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900">Max Hoffmann</h3>
-                  <p className="text-sm font-medium text-gray-500">Head of Product</p>
-                  <p className="text-sm text-gray-400">TechCorp GmbH</p>
+                  <h3 className="text-lg font-bold text-gray-900">أحمد حسن</h3>
+                  <p className="text-sm font-medium text-gray-500">مدير المبيعات</p>
+                  <p className="text-sm text-gray-400">شركة الريادة العقارية</p>
                 </div>
               </div>
               <div className="space-y-2 text-sm text-gray-600">
-                {["+49 170 1234567", "max@techcorp.de", "techcorp.de"].map((v) => (
+                {["+966 50 123 4567", "ahmed@example.com", "example.com"].map((v) => (
                   <div key={v} className="flex items-center gap-2">
                     <div className="h-7 w-7 rounded-full bg-gray-100 flex items-center justify-center">
                       <div className="h-2 w-2 rounded-full bg-gray-400" />
@@ -128,8 +138,8 @@ export default function LandingPage() {
       <section id="how" className="bg-gray-50 dark:bg-gray-950 py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">So funktioniert es</h2>
-            <p className="text-gray-500 dark:text-gray-400">In drei Schritten zur fertigen Karte.</p>
+            <h2 className="text-3xl font-bold mb-3">كيف تعمل</h2>
+            <p className="text-gray-500 dark:text-gray-400">ثلاث خطوات وبطاقتك جاهزة.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map(({ n, title, desc }) => (
@@ -147,8 +157,8 @@ export default function LandingPage() {
       <section id="features" className="py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">Alles was du brauchst</h2>
-            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Von der persönlichen Karte bis zur unternehmensweiten Lösung.</p>
+            <h2 className="text-3xl font-bold mb-3">كل ما تحتاجه</h2>
+            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">من البطاقة الشخصية إلى حل متكامل لشركتك.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map(({ icon: Icon, title, desc }) => (
@@ -168,8 +178,8 @@ export default function LandingPage() {
       <section id="pricing" className="bg-gray-50 dark:bg-gray-950 py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">Einfache Preise</h2>
-            <p className="text-gray-500 dark:text-gray-400">Kein Kleingedrucktes. Jederzeit kündbar.</p>
+            <h2 className="text-3xl font-bold mb-3">أسعار واضحة</h2>
+            <p className="text-gray-500 dark:text-gray-400">بدون شروط مخفية، وتقدر تلغي في أي وقت.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {planList.map((plan) => {
@@ -183,14 +193,14 @@ export default function LandingPage() {
                 >
                   {featured && (
                     <span className="text-xs font-semibold bg-white/20 text-white px-2.5 py-1 rounded-full self-start mb-3">
-                      Empfohlen
+                      الأكثر طلبًا
                     </span>
                   )}
                   <p className={`text-sm font-medium mb-1 ${featured ? "opacity-60" : "text-gray-500"}`}>{plan.description}</p>
                   <h3 className="text-2xl font-bold mb-1">{plan.name}</h3>
                   <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-bold">€{plan.monthlyPrice}</span>
-                    <span className={`text-sm ${featured ? "opacity-60" : "text-gray-400"}`}>/Monat</span>
+                    <span className="text-4xl font-bold">{formatPrice(plan.monthlyPrice)}</span>
+                    <span className={`text-sm ${featured ? "opacity-60" : "text-gray-400"}`}>/شهريًا</span>
                   </div>
                   <ul className="space-y-2.5 mb-8 flex-1">
                     {(PLAN_FEATURES[plan.id] ?? []).map((f) => (
@@ -201,14 +211,14 @@ export default function LandingPage() {
                     ))}
                   </ul>
                   <Button asChild variant={featured ? "secondary" : "default"} className="w-full">
-                    <Link href="/register">{plan.id === "free" ? "Kostenlos starten" : `${plan.name} testen`}</Link>
+                    <Link href="/register">{plan.id === "free" ? "ابدأ مجانًا" : `جرّب ${plan.name}`}</Link>
                   </Button>
                 </div>
               );
             })}
           </div>
           <p className="text-center text-sm text-gray-400 dark:text-gray-500 mt-8">
-            Alle Pläne inkl. DSGVO-konformer Datenspeicherung in Deutschland.
+            جميع الباقات تشمل رمز QR وتنزيل جهة الاتصال وجمع العملاء المحتملين.
           </p>
         </div>
       </section>
@@ -217,7 +227,7 @@ export default function LandingPage() {
       <section id="faq" className="py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">Häufige Fragen</h2>
+            <h2 className="text-3xl font-bold mb-3">الأسئلة الشائعة</h2>
           </div>
           <FaqSection />
         </div>
@@ -226,12 +236,12 @@ export default function LandingPage() {
       {/* ── CTA ─────────────────────────────────────────────────────────── */}
       <section className="bg-gray-900 py-20 text-center text-white">
         <div className="mx-auto max-w-2xl px-4">
-          <h2 className="text-3xl font-bold mb-4">Bereit loszulegen?</h2>
-          <p className="text-gray-400 mb-8">Kostenlos starten – keine Kreditkarte erforderlich.</p>
+          <h2 className="text-3xl font-bold mb-4">جاهز تبدأ؟</h2>
+          <p className="text-gray-400 mb-8">ابدأ مجانًا، بدون بطاقة ائتمان.</p>
           <Button asChild size="lg" variant="secondary">
             <Link href="/register">
-              Jetzt kostenlos registrieren
-              <ArrowRight className="h-4 w-4" />
+              سجّل الآن مجانًا
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </Button>
         </div>
@@ -243,35 +253,33 @@ export default function LandingPage() {
           <div className="grid sm:grid-cols-3 gap-8 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded bg-gray-900">
-                  <span className="text-[10px] font-bold text-white">CN</span>
-                </div>
-                <span className="font-semibold text-gray-900 dark:text-gray-100">CardNexus</span>
+                <BrandMark name={s.appName} logoUrl={s.logoUrl} color={s.primaryColor} size="sm" />
+                <span className="font-semibold text-gray-900 dark:text-gray-100">{s.appName}</span>
               </div>
               <p className="text-sm text-gray-400 dark:text-gray-500 leading-relaxed">
-                Die smarte digitale Visitenkarte für Professionals und Teams.
+                بطاقة الأعمال الرقمية الذكية للمحترفين والفرق.
               </p>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300">Produkt</p>
+              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300">المنتج</p>
               <ul className="space-y-2 text-sm text-gray-400 dark:text-gray-500">
-                <li><a href="#features"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Features</a></li>
-                <li><a href="#pricing"   className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Preise</a></li>
-                <li><Link href="/c/demo" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Demo</Link></li>
-                <li><Link href="/login"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Anmelden</Link></li>
+                <li><a href="#features"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">المزايا</a></li>
+                <li><a href="#pricing"   className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">الأسعار</a></li>
+                {DEMO_SLUG && <li><Link href={`/c/${DEMO_SLUG}`} className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">مثال</Link></li>}
+                <li><Link href="/login"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">تسجيل الدخول</Link></li>
               </ul>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300">Rechtliches</p>
+              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300">معلومات</p>
               <ul className="space-y-2 text-sm text-gray-400 dark:text-gray-500">
-                <li><Link href="/impressum"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Impressum</Link></li>
-                <li><Link href="/datenschutz" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Datenschutz</Link></li>
+                <li><Link href="/impressum"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">من نحن</Link></li>
+                <li><Link href="/datenschutz" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">سياسة الخصوصية</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-100 dark:border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-400 dark:text-gray-500">
-            <p>&copy; {new Date().getFullYear()} CardNexus. Alle Rechte vorbehalten.</p>
-            <p>Made in Germany 🇩🇪</p>
+            <p>&copy; {new Date().getFullYear()} {s.appName}. جميع الحقوق محفوظة.</p>
+            <p>{s.footerText ?? "صُنع للعالم العربي"}</p>
           </div>
         </div>
       </footer>

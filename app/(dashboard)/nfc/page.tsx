@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { Smartphone, Nfc, ExternalLink, Copy } from "lucide-react";
 
-export const metadata = { title: "NFC-Tag einrichten" };
+export const metadata = { title: "إعداد بطاقة NFC" };
 
 export default async function NfcPage() {
   const hdrs = await headers();
@@ -25,15 +25,15 @@ export default async function NfcPage() {
   return (
     <div className="max-w-2xl space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">NFC-Tag einrichten</h1>
+        <h1 className="text-2xl font-bold">إعداد بطاقة NFC</h1>
         <p className="text-muted-foreground mt-1">
-          Mit einem NFC-Tag kannst du deine digitale Karte per Antippen teilen.
+          ببطاقة أو ملصق NFC تقدر تشارك بطاقتك الرقمية بلمسة واحدة.
         </p>
       </div>
 
       {cardUrl && (
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-5">
-          <p className="text-sm font-medium mb-2">Deine Karten-URL (auf NFC-Tag schreiben):</p>
+          <p className="text-sm font-medium mb-2">رابط بطاقتك (اكتبه على شريحة NFC):</p>
           <div className="flex items-center gap-2 bg-white dark:bg-gray-900 rounded-lg border border-border px-3 py-2">
             <code className="text-sm flex-1 text-primary font-mono truncate">{cardUrl}</code>
             <a href={cardUrl} target="_blank" rel="noopener noreferrer">
@@ -44,44 +44,43 @@ export default async function NfcPage() {
       )}
 
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold">So geht es</h2>
+        <h2 className="text-lg font-semibold">الخطوات</h2>
 
-        <Step n={1} icon={Smartphone} title="NFC-Tag kaufen">
-          Kaufe einen beschreibbaren NFC-Tag (NTAG213 oder NTAG215).
-          Empfohlen: NFC-Aufkleber, Visitenkarten-NFC oder NFC-Armband.
+        <Step n={1} icon={Smartphone} title="اشترِ شريحة NFC">
+          اشترِ شريحة NFC قابلة للكتابة (NTAG213 أو NTAG215).
+          يُنصح بملصق NFC أو بطاقة أعمال NFC أو سوار NFC.
           Preis: ca. 0,50 &ndash; 2,00 &euro; pro Tag.
         </Step>
 
-        <Step n={2} icon={Nfc} title="App installieren">
-          Installiere eine NFC-Schreib-App auf deinem Smartphone:
+        <Step n={2} icon={Nfc} title="ثبّت التطبيق">
+          ثبّت تطبيقًا لكتابة NFC على جوالك:
           <ul className="mt-2 space-y-1 list-disc list-inside text-sm text-muted-foreground">
             <li><strong>iOS:</strong> NFC Tools (App Store)</li>
-            <li><strong>Android:</strong> NFC Tools oder NFC TagWriter by NXP</li>
+            <li><strong>Android:</strong> NFC Tools أو NFC TagWriter by NXP</li>
           </ul>
         </Step>
 
-        <Step n={3} icon={Copy} title="URL auf den Tag schreiben">
+        <Step n={3} icon={Copy} title="اكتب الرابط على الشريحة">
           <ol className="space-y-1 list-decimal list-inside text-sm text-muted-foreground mt-1">
-            <li>App offnen und &quot;Schreiben&quot; / &quot;Write&quot; auswahlen</li>
-            <li>Datensatz hinzufugen &rarr; URL/URI</li>
-            <li>Deine Karten-URL einfugen (siehe oben)</li>
-            <li>Auf &quot;Schreiben&quot; tippen und Tag ans Handy halten</li>
+            <li>افتح التطبيق واختر &quot;Write&quot; (كتابة)</li>
+            <li>أضف سجلًا &larr; URL/URI</li>
+            <li>الصق رابط بطاقتك (بالأعلى)</li>
+            <li>اضغط &quot;Write&quot; وقرّب الشريحة من الجوال</li>
           </ol>
         </Step>
 
-        <Step n={4} icon={Smartphone} title="Testen">
-          Halte ein Smartphone (ohne App) an den Tag &mdash;
-          die Karte sollte sich direkt im Browser offnen.
-          iOS ab iPhone 7, Android ab 4.4 unterstuetzt NFC.
+        <Step n={4} icon={Smartphone} title="جرّب">
+          قرّب أي جوال (بدون تطبيق) من الشريحة &mdash;
+          يجب أن تفتح البطاقة مباشرة في المتصفح.
+          يدعم NFC من iPhone 7 فما بعد ومعظم أجهزة Android.
         </Step>
       </div>
 
       <div className="bg-muted rounded-2xl p-5 space-y-2">
-        <p className="font-semibold text-sm">Empfohlene NFC-Tag Quellen</p>
+        <p className="font-semibold text-sm">أين تشتري شرائح NFC</p>
         <div className="space-y-1">
           {[
-            { label: "Amazon: NFC-Tags (NTAG213)", url: "https://www.amazon.de/s?k=nfc+tags+ntag213" },
-            { label: "nfctag.de – deutsche Shop", url: "https://www.nfctag.de" },
+            { label: "Amazon: شرائح NFC (NTAG213)", url: "https://www.amazon.com/s?k=nfc+tags+ntag213" },
             { label: "nfcshop.eu", url: "https://www.nfcshop.eu" },
           ].map((link) => (
             <a
