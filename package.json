@@ -10,8 +10,10 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:studio": "prisma studio",
-    "db:seed": "tsx prisma/seed.ts",
-    "db:migrate": "prisma migrate deploy"
+    "db:seed": "node -e \"console.error('Insecure upstream demo seed disabled. Use db:bootstrap-admin'); process.exit(1)\"",
+    "db:migrate": "prisma migrate deploy",
+    "db:bootstrap-admin": "tsx scripts/bootstrap-admin.ts",
+    "db:smoke": "tsx scripts/mysql-smoke.ts"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
