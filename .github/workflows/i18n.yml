@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: cardnexus-i18n-\${{ github.ref }}
+  group: cardnexus-i18n-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
       APP_URL: http://localhost:8787
       BETTER_AUTH_URL: http://localhost:8787
       NEXT_PUBLIC_APP_URL: http://localhost:8787
-      GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       MAX_TRANSLATIONS_PER_RUN: "160"
     steps:
       - uses: actions/checkout@v4
