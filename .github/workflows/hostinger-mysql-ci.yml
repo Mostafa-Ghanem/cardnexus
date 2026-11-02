@@ -1,0 +1,59 @@
+name: Hostinger MySQL checks
+
+on:
+  push:
+    branches:
+      - "feature/hostinger-mysql-foundation"
+      - "develop/hostinger-saas"
+  pull_request:
+    branches:
+      - "develop/hostinger-saas"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: MySQL schema, types and Next.js build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci_only
+          MYSQL_DATABASE: cardnexus_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -pci_only"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=15
+    env:
+      DATABASE_URL: mysql://root:ci_only@127.0.0.1:3306/cardnexus_ci
+      BETTER_AUTH_URL: http://localhost:3000
+      APP_URL: http://localhost:3000
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      BETTER_AUTH_SECRET: ci-only-not-for-production
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate Prisma schema
+        run: npx prisma validate
+      - name: Prepare test database
+        run: npx prisma db push --skip-generate
+      - name: Generate Prisma Client
+        run: npx prisma generate
+      - name: Check TypeScript
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Next.js webpack production build
+        run: npm run build
