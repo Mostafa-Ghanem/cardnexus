@@ -8,6 +8,7 @@ import { clientIp } from "@/lib/client-ip";
 import { rateLimit } from "@/lib/rate-limit";
 import { parseBrowser, parseOs, parseLanguage, parseReferrerDomain } from "@/lib/ua-parser";
 import { z } from "zod";
+import { waitUntil } from "cloudflare:workers";
 
 function isBot(ua: string): boolean {
   return /bot|crawl|spider|slurp|mediapartners|facebookexternalhit|twitterbot|whatsapp|linkedinbot|embedly|quora|pinterest|lighthouse|headlesschrome|prerender|wget|curl/i.test(ua);
@@ -86,7 +87,7 @@ export async function POST(request: NextRequest) {
       data: { totalViews: { increment: 1 } },
     });
     if (updated.count > 0) {
-      checkMilestone(cardSlug).catch(() => {});
+      waitUntil(checkMilestone(cardSlug).catch((e) => console.error("Milestone update failed", e)));
     }
   }
 
