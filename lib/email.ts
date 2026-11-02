@@ -1,21 +1,8 @@
-import nodemailer from "nodemailer";
+import { env } from "cloudflare:workers";
 
-// ── Transport ──────────────────────────────────────────────────────────────
-function createTransport() {
-  const host = process.env.SMTP_HOST;
-  if (!host) return null; // Email disabled if not configured
-
-  return nodemailer.createTransport({
-    host,
-    port: parseInt(process.env.SMTP_PORT ?? "587"),
-    secure: process.env.SMTP_SECURE === "true", // true = TLS on port 465
-    auth: process.env.SMTP_USER
-      ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS ?? "" }
-      : undefined,
-  });
-}
-
-const FROM = process.env.SMTP_FROM ?? "CardNexus <noreply@cardnexus.app>";
+// Workers cannot establish an SMTP socket; use Brevo transactional HTTPS API.
+// Never log API keys or user content. Sender domain must be verified in Brevo.
+const FROM = env.EMAIL_FROM || "noreply@example.invalid";
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME ?? "CardNexus";
 
 /**
@@ -98,15 +85,28 @@ function muted(text: string) {
 
 // ── Send helper ────────────────────────────────────────────────────────────
 async function send(to: string, subject: string, html: string) {
-  const transport = createTransport();
-  if (!transport) {
-    console.warn(`[email] SMTP not configured — skipping email to ${to}: ${subject}`);
-    return;
+  const apiKey = env.BREVO_API_KEY;
+  if (!apiKey || !env.EMAIL_FROM) {
+    throw new Error("Transactional email is not configured (BREVO_API_KEY and EMAIL_FROM required)");
   }
-  try {
-    await transport.sendMail({ from: FROM, to, subject, html });
-  } catch (err) {
-    console.error(`[email] Failed to send "${subject}" to ${to}:`, err);
+  const result = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "api-key": apiKey,
+      "content-type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify({
+      sender: { email: FROM, name: env.EMAIL_FROM_NAME || "CardNexus" },
+      to: [{ email: to }],
+      subject,
+      htmlContent: html,
+    }),
+    signal: AbortSignal.timeout(12000),
+  });
+  if (!result.ok) {
+    console.error("Brevo email failed", result.status);
+    throw new Error("Email delivery failed");
   }
 }
 
