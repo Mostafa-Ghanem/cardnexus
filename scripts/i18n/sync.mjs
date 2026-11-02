@@ -49,7 +49,9 @@ function record(text, file, kind, line) {
 }
 function scan(file, apply) {
   const full = path.join(root, file);
-  let source = fs.readFileSync(full, "utf8");
+  // Some upstream TSX files start with a UTF-8 BOM. Strip it before
+  // parsing/inserting imports so the React "use client" directive stays first.
+  let source = fs.readFileSync(full, "utf8").replace(/^\uFEFF/, "");
   const ast = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const replacements = [];
   let changed = 0;
@@ -71,6 +73,16 @@ function scan(file, apply) {
             changed++;
           }
         }
+      }
+    } else if (ts.isJsxSelfClosingElement(node) && node.tagName.getText(ast) === "T") {
+      // Preserve original source inventory after JSX labels are transformed.
+      const attribute = node.attributes.properties.find(
+        x => ts.isJsxAttribute(x) && x.name.getText(ast) === "text"
+      );
+      if (attribute && ts.isJsxAttribute(attribute) && attribute.initializer &&
+          ts.isJsxExpression(attribute.initializer) && attribute.initializer.expression &&
+          ts.isStringLiteral(attribute.initializer.expression)) {
+        record(attribute.initializer.expression.text, file, "jsx", line);
       }
     } else if (ts.isJsxAttribute(node)) {
       const name = node.name.getText(ast);
