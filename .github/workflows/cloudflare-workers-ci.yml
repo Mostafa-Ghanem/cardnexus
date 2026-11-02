@@ -3,8 +3,6 @@ name: Cloudflare Workers D1 compatibility
 on:
   push:
     branches: ["feature/cloudflare-workers-d1"]
-  pull_request:
-    branches: ["develop/hostinger-saas"]
   workflow_dispatch:
 
 concurrency:
@@ -34,7 +32,7 @@ jobs:
           node-version: '22'
           cache: npm
       - name: Install and resolve Cloudflare toolchain
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Generate Prisma client and validate schema
         run: |
           npx prisma validate
@@ -49,6 +47,33 @@ jobs:
         run: npm run lint
       - name: Build Cloudflare Worker using vinext
         run: npm run build
+      - name: HTTP smoke test using local Workerd preview
+        shell: bash
+        run: |
+          cat > .dev.vars <<EOF
+          APP_URL=http://localhost:8787
+          BETTER_AUTH_URL=http://localhost:8787
+          BETTER_AUTH_SECRET=ci-only-32-byte-very-long-secret-for-workerd
+          EMAIL_FROM=ci@example.invalid
+          EOF
+          npm run preview -- --host 127.0.0.1 --port 8787 > /tmp/cardnexus-cloudflare-preview.log 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for i in $(seq 1 30); do
+            if curl --silent --fail http://127.0.0.1:8787/ -o /dev/null; then
+              ready=true
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" != true ]; then
+            tail -n 100 /tmp/cardnexus-cloudflare-preview.log
+            exit 1
+          fi
+          curl --fail --silent http://127.0.0.1:8787/login -o /dev/null
+          curl --fail --silent http://127.0.0.1:8787/register -o /dev/null
+          echo "Worker preview responded on /, /login, and /register."
       - name: Commit lockfile and generated migration to feature branch
         if: success() && github.event_name == 'push' && github.ref_name == 'feature/cloudflare-workers-d1'
         shell: bash
