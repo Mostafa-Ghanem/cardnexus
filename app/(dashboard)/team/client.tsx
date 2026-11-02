@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -53,6 +54,7 @@ export function TeamClientPage({
   pendingCards: initialPendingCards = [],
   canImport = false,
 }: Props) {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const [users, setUsers] = useState(initialUsers);
   const [invitations, setInvitations] = useState(initialInvitations);
@@ -218,7 +220,7 @@ export function TeamClientPage({
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Suchen…"
+          placeholder={tI18n("Suchen…")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="pl-9"
@@ -347,7 +349,7 @@ export function TeamClientPage({
                 <div className="mt-2">
                   <input
                     type="text"
-                    placeholder="Ablehnungsgrund (optional)"
+                    placeholder={tI18n("Ablehnungsgrund (optional)")}
                     value={rejectNote[c.slug] ?? ""}
                     onChange={(e) => setRejectNote((prev) => ({ ...prev, [c.slug]: e.target.value }))}
                     className="w-full text-sm rounded-lg border border-border px-3 py-1.5 bg-background focus:outline-none focus:ring-1 focus:ring-ring"

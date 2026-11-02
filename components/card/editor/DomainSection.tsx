@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export function DomainSection({ card, update, allowedDomains, canCustomDomain }: Props) {
+  const tI18n = useI18n().t;
   if (!((allowedDomains && allowedDomains.length > 0) || canCustomDomain)) return null;
 
   return (
@@ -41,7 +43,7 @@ export function DomainSection({ card, update, allowedDomains, canCustomDomain }:
             <Input
               value={card.cardDomain && !allowedDomains?.includes(card.cardDomain) ? card.cardDomain : ""}
               onChange={(e) => update("cardDomain", (e.target.value as CardData["cardDomain"]) || null)}
-              placeholder="meine-domain.de"
+              placeholder={tI18n("meine-domain.de")}
             />
           </div>
         )}

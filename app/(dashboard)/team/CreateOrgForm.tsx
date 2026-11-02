@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -14,6 +15,7 @@ function slugify(s: string) {
 }
 
 export function CreateOrgForm() {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const [name,  setName]  = useState("");
   const [slug,  setSlug]  = useState("");
@@ -53,7 +55,7 @@ export function CreateOrgForm() {
         <Input
           value={name}
           onChange={(e) => handleName(e.target.value)}
-          placeholder="Meine Firma GmbH"
+          placeholder={tI18n("Meine Firma GmbH")}
           required
         />
       </div>
@@ -64,7 +66,7 @@ export function CreateOrgForm() {
           <Input
             value={slug}
             onChange={(e) => setSlug(slugify(e.target.value))}
-            placeholder="meine-firma"
+            placeholder={tI18n("meine-firma")}
             className="font-mono"
           />
         </div>

@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -18,6 +19,7 @@ interface Props {
 type Step = "idle" | "password" | "verify" | "done";
 
 export function SecurityCard({ twoFactorEnabled }: Props) {
+  const tI18n = useI18n().t;
   const [enabled, setEnabled] = useState(twoFactorEnabled);
 
   /* --- enable flow ----------------------------------------------------- */
@@ -198,7 +200,7 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
               {qrSrc && (
                 <img
                   src={qrSrc}
-                  alt="TOTP QR-Code"
+                  alt={tI18n("TOTP QR-Code")}
                   width={200}
                   height={200}
                   className="rounded-lg border border-border bg-white dark:bg-gray-900 p-2"
@@ -246,7 +248,7 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
                   required
                   pattern="\d{6}"
                   maxLength={6}
-                  placeholder="000000"
+                  placeholder={tI18n("000000")}
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   className="text-center text-lg tracking-widest"

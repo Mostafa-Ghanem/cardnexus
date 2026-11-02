@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -51,6 +52,7 @@ interface DesignDefaultsProps {
   orgColor: string;
 }
 export function DesignDefaultsCard(p: DesignDefaultsProps) {
+  const tI18n = useI18n().t;
   return (
     <Card>
       <CardHeader>
@@ -103,7 +105,7 @@ export function DesignDefaultsCard(p: DesignDefaultsProps) {
                 onChange={(e) => p.setDefaultAccent(e.target.value)}
                 className="h-9 w-12 rounded border border-input cursor-pointer" />
               <Input value={p.defaultAccent} onChange={(e) => p.setDefaultAccent(e.target.value)}
-                placeholder="wie Primär" className="font-mono" maxLength={7} />
+                placeholder={tI18n("wie Primär")} className="font-mono" maxLength={7} />
             </div>
           </div>
         </div>
@@ -195,6 +197,7 @@ interface DeptPoliciesProps {
   onUpdatePolicy: (name: string, key: keyof DeptPolicyOverride, v: boolean) => void;
 }
 export function DeptPoliciesCard({ deptRows, newDeptName, setNewDeptName, onAdd, onRemove, onUpdatePolicy }: DeptPoliciesProps) {
+  const tI18n = useI18n().t;
   return (
     <Card>
       <CardHeader>
@@ -239,7 +242,7 @@ export function DeptPoliciesCard({ deptRows, newDeptName, setNewDeptName, onAdd,
           </div>
         )}
         <div className="flex items-center gap-2">
-          <Input placeholder="Abteilungsname z.B. Marketing" value={newDeptName}
+          <Input placeholder={tI18n("Abteilungsname z.B. Marketing")} value={newDeptName}
             onChange={(e) => setNewDeptName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && onAdd()} className="flex-1" />
           <Button type="button" variant="outline" size="sm" onClick={onAdd}>

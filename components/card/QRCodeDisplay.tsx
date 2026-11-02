@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -13,6 +14,7 @@ interface QRCodeDisplayProps {
 }
 
 export function QRCodeDisplay({ slug, color = "#000000", size = 200 }: QRCodeDisplayProps) {
+  const tI18n = useI18n().t;
   const [src, setSrc] = useState<string>("");
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export function QRCodeDisplay({ slug, color = "#000000", size = 200 }: QRCodeDis
       <div className="rounded-xl border border-border p-3 bg-white dark:bg-gray-900">
         <img
           src={src}
-          alt="QR Code"
+          alt={tI18n("QR Code")}
           width={size}
           height={size}
           className="rounded-lg"

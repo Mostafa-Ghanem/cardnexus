@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -44,6 +45,7 @@ function StatCard({ label, value, icon: Icon }: { label: string; value: number; 
 }
 
 export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
+  const tI18n = useI18n().t;
   const [data, setData] = useState<AnalyticsSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(30);
@@ -102,7 +104,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
             value={cardId}
             onChange={(e) => setCardId(e.target.value)}
             className="rounded-md border border-input bg-background px-3 py-1.5 text-sm"
-            aria-label="Karte auswählen"
+            aria-label={tI18n("Karte auswählen")}
           >
             {cards.map((c) => (
               <option key={c.id} value={c.id}>{c.name}</option>
@@ -113,11 +115,11 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
 
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-        <StatCard label="Aufrufe gesamt" value={data.totalViews} icon={Eye} />
-        <StatCard label="vCard Downloads" value={data.vcardDownloads} icon={Download} />
-        <StatCard label="QR-Scans" value={data.qrScans} icon={QrCode} />
-        <StatCard label="Link-Klicks" value={data.linkClicks} icon={MousePointer} />
-        <StatCard label="Wallet Saves" value={data.walletSaves ?? 0} icon={Wallet} />
+        <StatCard label={tI18n("Aufrufe gesamt")} value={data.totalViews} icon={Eye} />
+        <StatCard label={tI18n("vCard Downloads")} value={data.vcardDownloads} icon={Download} />
+        <StatCard label={tI18n("QR-Scans")} value={data.qrScans} icon={QrCode} />
+        <StatCard label={tI18n("Link-Klicks")} value={data.linkClicks} icon={MousePointer} />
+        <StatCard label={tI18n("Wallet Saves")} value={data.walletSaves ?? 0} icon={Wallet} />
       </div>
 
       {/* Views chart */}

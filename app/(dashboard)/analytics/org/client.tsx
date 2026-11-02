@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -46,18 +47,19 @@ export function OrgAnalyticsClient({
   totalViews, vcardDownloads, qrScans, linkClicks, totalLeads,
   memberCount, topCards, topCardsByLeads, viewsLast30Days,
 }: Props) {
+  const tI18n = useI18n().t;
   const maxCount = Math.max(...viewsLast30Days.map((d) => d.count), 1);
 
   return (
     <div className="space-y-6">
       {/* Stats grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <StatCard label="Aufrufe gesamt" value={totalViews} icon={Eye} />
-        <StatCard label="vCard-Downloads" value={vcardDownloads} icon={Download} />
-        <StatCard label="QR-Scans" value={qrScans} icon={QrCode} />
-        <StatCard label="Link-Klicks" value={linkClicks} icon={MousePointer} />
-        <StatCard label="Leads erhalten" value={totalLeads} icon={UserPlus} />
-        <StatCard label="Teammitglieder" value={memberCount} icon={Users} />
+        <StatCard label={tI18n("Aufrufe gesamt")} value={totalViews} icon={Eye} />
+        <StatCard label={tI18n("vCard-Downloads")} value={vcardDownloads} icon={Download} />
+        <StatCard label={tI18n("QR-Scans")} value={qrScans} icon={QrCode} />
+        <StatCard label={tI18n("Link-Klicks")} value={linkClicks} icon={MousePointer} />
+        <StatCard label={tI18n("Leads erhalten")} value={totalLeads} icon={UserPlus} />
+        <StatCard label={tI18n("Teammitglieder")} value={memberCount} icon={Users} />
       </div>
 
       {/* 30-day chart */}

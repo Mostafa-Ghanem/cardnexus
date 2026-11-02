@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -31,6 +32,7 @@ interface HeaderProps {
 }
 
 export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProps) {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -55,7 +57,7 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
         <button
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
           className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-          aria-label="Theme wechseln"
+          aria-label={tI18n("Theme wechseln")}
         >
           {resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>
@@ -71,7 +73,7 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
 
         <DropdownMenu>
           <DropdownMenuTrigger
-            aria-label="Benutzermenü"
+            aria-label={tI18n("Benutzermenü")}
             className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <div className="flex items-center gap-2">

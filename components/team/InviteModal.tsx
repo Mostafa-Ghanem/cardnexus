@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -15,6 +16,7 @@ interface InviteModalProps {
 }
 
 export function InviteModal({ onInvited }: InviteModalProps) {
+  const tI18n = useI18n().t;
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("member");
@@ -74,7 +76,7 @@ export function InviteModal({ onInvited }: InviteModalProps) {
               <Label><T text={"E-Mail-Adresse"} /></Label>
               <Input
                 type="email"
-                placeholder="max@example.com"
+                placeholder={tI18n("max@example.com")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleInvite()}

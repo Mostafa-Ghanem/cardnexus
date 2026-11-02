@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -13,6 +14,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 
 export default function ForgotPasswordPage() {
+  const tI18n = useI18n().t;
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -53,7 +55,7 @@ export default function ForgotPasswordPage() {
                 type="email"
                 required
                 autoComplete="email"
-                placeholder="max@example.com"
+                placeholder={tI18n("max@example.com")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />

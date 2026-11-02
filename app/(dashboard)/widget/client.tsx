@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -20,6 +21,7 @@ interface WidgetClientProps {
 }
 
 export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
+  const tI18n = useI18n().t;
   const [selectedSlug, setSelectedSlug] = useState(cards[0]?.slug ?? "");
   const [width, setWidth] = useState("400");
   const [height, setHeight] = useState("700");
@@ -126,7 +128,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
                 height={Math.min(parseInt(height) || 700, 700)}
                 frameBorder={0}
                 style={{ borderRadius: 16, boxShadow: "0 4px 24px rgba(0,0,0,0.1)" }}
-                title="Vorschau"
+                title={tI18n("Vorschau")}
                 loading="lazy"
               />
             </div>

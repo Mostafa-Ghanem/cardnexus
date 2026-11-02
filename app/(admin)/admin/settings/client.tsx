@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -17,6 +18,7 @@ function parseAllowedDomains(val: string | null): string[] {
 }
 
 export function AdminSettingsClient({ settings: initial }: { settings: PlatformSettings }) {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const [s, setS] = useState(initial);
   const [saving, setSaving] = useState(false);
@@ -82,7 +84,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               id="appName"
               value={s.appName}
               onChange={(e) => update("appName", e.target.value)}
-              placeholder="CardNexus"
+              placeholder={tI18n("CardNexus")}
               maxLength={64}
             />
             <p className="text-xs text-muted-foreground"><T text={"Vorschau Browser-Tab:"} /><span className="font-mono">{s.appName}{" "}<T text={"– Digitale Visitenkarten"} /></span>
@@ -133,7 +135,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               <ImageUpload
                 value={s.faviconUrl}
                 onChange={(url) => update("faviconUrl", url)}
-                label="Favicon hochladen"
+                label={tI18n("Favicon hochladen")}
                 shape="square"
               />
               {s.faviconUrl && (
@@ -141,7 +143,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
                   <div className="text-xs text-muted-foreground">
                     <p className="font-medium text-foreground mb-1"><T text={"Vorschau"} /></p>
                     <div className="flex items-center gap-2">
-                      <img src={s.faviconUrl} alt="Favicon" className="h-4 w-4 object-cover" />
+                      <img src={s.faviconUrl} alt={tI18n("Favicon")} className="h-4 w-4 object-cover" />
                       <span className="font-mono">{s.appName}</span>
                     </div>
                   </div>
@@ -156,7 +158,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
             <ImageUpload
               value={s.logoUrl}
               onChange={(url) => update("logoUrl", url)}
-              label="Logo hochladen"
+              label={tI18n("Logo hochladen")}
               shape="square"
             />
           </div>
@@ -178,7 +180,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               id="supportEmail"
               value={s.supportEmail ?? ""}
               onChange={(e) => update("supportEmail", e.target.value || null)}
-              placeholder="support@meinedomain.de"
+              placeholder={tI18n("support@meinedomain.de")}
               type="email"
             />
           </div>
@@ -188,7 +190,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               id="footerText"
               value={s.footerText ?? ""}
               onChange={(e) => update("footerText", e.target.value || null)}
-              placeholder="© 2025 Meine Firma. Alle Rechte vorbehalten."
+              placeholder={tI18n("© 2025 Meine Firma. Alle Rechte vorbehalten.")}
               maxLength={200}
             />
           </div>
@@ -224,7 +226,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               value={newDomain}
               onChange={(e) => setNewDomain(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addDomain()}
-              placeholder="karte.meinefirma.de"
+              placeholder={tI18n("karte.meinefirma.de")}
               className="flex-1"
             />
             <Button type="button" variant="outline" size="sm" onClick={addDomain}>

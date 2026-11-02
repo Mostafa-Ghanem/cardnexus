@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
+  const tI18n = useI18n().t;
   const [leads, setLeads] = useState(initialLeads);
   const [query, setQuery] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -91,7 +93,7 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
         <div className="flex-1 min-w-[200px] relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Suchen…"
+            placeholder={tI18n("Suchen…")}
             className="pl-9"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -134,6 +136,7 @@ function LeadCard({
 }: {
   lead: Lead; onDelete: () => void; deleting: boolean;
 }) {
+  const tI18n = useI18n().t;
   const [showFull, setShowFull] = useState(false);
   const date = new Date(lead.createdAt);
 
@@ -192,7 +195,7 @@ function LeadCard({
         onClick={onDelete}
         disabled={deleting}
         className="text-muted-foreground hover:text-destructive transition-colors p-1 rounded hover:bg-destructive/10 shrink-0"
-        title="Lead löschen"
+        title={tI18n("Lead löschen")}
       >
         <Trash2 className="h-4 w-4" />
       </button>

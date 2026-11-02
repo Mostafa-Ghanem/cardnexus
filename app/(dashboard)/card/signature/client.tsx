@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -59,6 +60,7 @@ const GUIDES: Record<string, { title: string; steps: string[] }> = {
 };
 
 export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
+  const tI18n = useI18n().t;
   const cards = allCards.length > 0 ? allCards : [initialCard];
 
   const [activeCardId, setActiveCardId] = useState(initialCard.id);
@@ -173,7 +175,7 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
             <Textarea
               value={footerText}
               onChange={(e) => setFooterText(e.target.value)}
-              placeholder="Vertraulichkeitshinweis, Datenschutzerklärung…"
+              placeholder={tI18n("Vertraulichkeitshinweis, Datenschutzerklärung…")}
               rows={2}
               className="text-xs resize-none"
             />

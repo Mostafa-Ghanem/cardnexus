@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -279,6 +280,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
 // ── Lead Capture Modal ──────────────────────────────────────────────────────
 
 function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
+  const tI18n = useI18n().t;
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -350,7 +352,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
                 id="lead-name"
                 value={form.name}
                 onChange={(e) => set("name", e.target.value)}
-                placeholder="Dein Name"
+                placeholder={tI18n("Dein Name")}
                 className="mt-1"
                 required
               />
@@ -362,7 +364,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
                 type="email"
                 value={form.email}
                 onChange={(e) => set("email", e.target.value)}
-                placeholder="deine@email.de"
+                placeholder={tI18n("deine@email.de")}
                 className="mt-1"
               />
             </div>
@@ -373,7 +375,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
                 type="tel"
                 value={form.phone}
                 onChange={(e) => set("phone", e.target.value)}
-                placeholder="+49 ..."
+                placeholder={tI18n("+49 ...")}
                 className="mt-1"
               />
             </div>
@@ -383,7 +385,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
                 id="lead-message"
                 value={form.message}
                 onChange={(e) => set("message", e.target.value)}
-                placeholder="Optionale Nachricht..."
+                placeholder={tI18n("Optionale Nachricht...")}
                 rows={3}
                 className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-none"
               />

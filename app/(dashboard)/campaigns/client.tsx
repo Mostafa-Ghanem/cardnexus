@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }: Props) {
+  const tI18n = useI18n().t;
   const [campaigns, setCampaigns] = useState(init);
   const [name, setName] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
@@ -83,7 +85,7 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
               id="camp-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="z.B. Messe Berlin 2026"
+              placeholder={tI18n("z.B. Messe Berlin 2026")}
               className="mt-1"
               onKeyDown={(e) => e.key === "Enter" && create()}
             />
@@ -137,7 +139,7 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
                   <button
                     onClick={() => copy(c.urlSlug)}
                     className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                    title="URL kopieren"
+                    title={tI18n("URL kopieren")}
                   >
                     {copiedId === c.urlSlug ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
                   </button>
@@ -146,14 +148,14 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors"
-                    title="Link testen"
+                    title={tI18n("Link testen")}
                   >
                     <ExternalLink className="h-4 w-4" />
                   </a>
                   <button
                     onClick={() => remove(c.id)}
                     className="text-muted-foreground hover:text-destructive transition-colors"
-                    title="Loeschen"
+                    title={tI18n("Loeschen")}
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>

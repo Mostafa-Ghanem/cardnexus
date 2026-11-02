@@ -25,7 +25,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 88
+        "line": 90
       }
     ]
   },
@@ -35,12 +35,12 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 232
+        "line": 234
       },
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 234
+        "line": 236
       }
     ]
   },
@@ -50,7 +50,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 193
+        "line": 195
       }
     ]
   },
@@ -60,7 +60,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 312
+        "line": 314
       }
     ]
   },
@@ -70,7 +70,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 286
+        "line": 288
       }
     ]
   },
@@ -80,7 +80,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 270
+        "line": 272
       }
     ]
   },
@@ -100,7 +100,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 166
+        "line": 168
       }
     ]
   },
@@ -120,7 +120,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 93
+        "line": 95
       }
     ]
   },
@@ -130,7 +130,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 178
+        "line": 180
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -145,7 +145,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 155
+        "line": 157
       }
     ]
   },
@@ -180,12 +180,12 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 100
+        "line": 102
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 112
+        "line": 114
       }
     ]
   },
@@ -195,7 +195,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 259
+        "line": 261
       }
     ]
   },
@@ -205,7 +205,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 178
+        "line": 180
       }
     ]
   },
@@ -215,7 +215,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 171
+        "line": 173
       }
     ]
   },
@@ -255,7 +255,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 190
+        "line": 192
       }
     ]
   },
@@ -295,7 +295,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 167
+        "line": 169
       }
     ]
   },
@@ -305,7 +305,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 268
+        "line": 270
       }
     ]
   },
@@ -315,7 +315,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 139
+        "line": 141
       }
     ]
   },
@@ -335,17 +335,17 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 199
+        "line": 201
       },
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 247
+        "line": 249
       },
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 333
+        "line": 335
       },
       {
         "file": "components/settings/AccountActions.tsx",
@@ -355,27 +355,27 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 116
+        "line": 118
       },
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 242
+        "line": 245
       },
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 159
+        "line": 161
       },
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 189
+        "line": 191
       },
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 259
+        "line": 261
       }
     ]
   },
@@ -385,7 +385,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 327
+        "line": 329
       }
     ]
   },
@@ -395,7 +395,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 120
+        "line": 122
       }
     ]
   },
@@ -405,7 +405,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 92
+        "line": 94
       }
     ]
   },
@@ -415,7 +415,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "attribute:title",
-        "line": 255
+        "line": 257
       }
     ]
   },
@@ -425,7 +425,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 344
+        "line": 346
       }
     ]
   },
@@ -435,7 +435,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 349
+        "line": 351
       }
     ]
   },
@@ -445,7 +445,7 @@
       {
         "file": "components/layout/Header.tsx",
         "kind": "jsx",
-        "line": 108
+        "line": 110
       },
       {
         "file": "components/layout/Sidebar.tsx",
@@ -460,12 +460,12 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 213
+        "line": 216
       },
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 161
+        "line": 163
       }
     ]
   },
@@ -475,7 +475,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "attribute:placeholder",
-        "line": 242
+        "line": 245
       }
     ]
   },
@@ -485,7 +485,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 203
+        "line": 206
       }
     ]
   },
@@ -535,7 +535,7 @@
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "jsx",
-        "line": 59
+        "line": 60
       },
       {
         "file": "app/page.tsx",
@@ -580,12 +580,12 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 178
+        "line": 180
       },
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 158
+        "line": 160
       }
     ]
   },
@@ -595,7 +595,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 182
+        "line": 184
       }
     ]
   },
@@ -605,12 +605,12 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 194
+        "line": 196
       },
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 224
+        "line": 226
       }
     ]
   },
@@ -625,7 +625,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 209
+        "line": 211
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -640,7 +640,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 227
+        "line": 229
       }
     ]
   },
@@ -660,7 +660,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 255
+        "line": 257
       },
       {
         "file": "components/card/templates/Corporate.tsx",
@@ -680,7 +680,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 162
+        "line": 164
       }
     ]
   },
@@ -690,12 +690,12 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 133
+        "line": 135
       },
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 131
+        "line": 133
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -710,7 +710,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 258
+        "line": 260
       }
     ]
   },
@@ -780,22 +780,22 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 145
+        "line": 147
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 100
+        "line": 102
       },
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 75
+        "line": 77
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 112
+        "line": 114
       }
     ]
   },
@@ -870,7 +870,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 193
+        "line": 195
       }
     ]
   },
@@ -880,7 +880,7 @@
       {
         "file": "components/card/CardSwitcher.tsx",
         "kind": "attribute:title",
-        "line": 186
+        "line": 188
       }
     ]
   },
@@ -910,7 +910,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 228
+        "line": 230
       }
     ]
   },
@@ -940,7 +940,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "property:label",
-        "line": 166
+        "line": 168
       },
       {
         "file": "app/page.tsx",
@@ -990,7 +990,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 252
+        "line": 254
       }
     ]
   },
@@ -1010,12 +1010,12 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 115
+        "line": 117
       },
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 241
+        "line": 244
       }
     ]
   },
@@ -1025,7 +1025,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 199
+        "line": 201
       }
     ]
   },
@@ -1035,7 +1035,7 @@
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "jsx",
-        "line": 111
+        "line": 112
       },
       {
         "file": "app/page.tsx",
@@ -1055,7 +1055,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 97
+        "line": 99
       }
     ]
   },
@@ -1065,7 +1065,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 198
+        "line": 200
       }
     ]
   },
@@ -1075,7 +1075,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 99
+        "line": 101
       }
     ]
   },
@@ -1085,7 +1085,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 74
+        "line": 76
       }
     ]
   },
@@ -1095,7 +1095,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 226
+        "line": 229
       }
     ]
   },
@@ -1135,7 +1135,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:title",
-        "line": 50
+        "line": 51
       }
     ]
   },
@@ -1200,7 +1200,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 285
+        "line": 287
       }
     ]
   },
@@ -1210,7 +1210,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "jsx",
-        "line": 66
+        "line": 68
       }
     ]
   },
@@ -1220,7 +1220,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 126
+        "line": 128
       }
     ]
   },
@@ -1230,7 +1230,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "attribute:label",
-        "line": 55
+        "line": 57
       },
       {
         "file": "app/(dashboard)/dashboard/LiveViews.tsx",
@@ -1245,7 +1245,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "attribute:label",
-        "line": 116
+        "line": 118
       }
     ]
   },
@@ -1255,7 +1255,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 269
+        "line": 271
       }
     ]
   },
@@ -1295,7 +1295,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 227
+        "line": 230
       }
     ]
   },
@@ -1315,7 +1315,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 219
+        "line": 221
       }
     ]
   },
@@ -1325,7 +1325,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:label",
-        "line": 221
+        "line": 223
       }
     ]
   },
@@ -1335,7 +1335,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 224
+        "line": 226
       }
     ]
   },
@@ -1345,7 +1345,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 224
+        "line": 226
       }
     ]
   },
@@ -1365,7 +1365,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 101
+        "line": 103
       }
     ]
   },
@@ -1380,7 +1380,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "attribute:title",
-        "line": 287
+        "line": 289
       },
       {
         "file": "app/(dashboard)/dashboard/page.tsx",
@@ -1395,7 +1395,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 269
+        "line": 271
       }
     ]
   },
@@ -1405,7 +1405,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 113
+        "line": 115
       }
     ]
   },
@@ -1435,7 +1435,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 156
+        "line": 158
       },
       {
         "file": "app/(admin)/layout.tsx",
@@ -1455,7 +1455,7 @@
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 68
+        "line": 70
       }
     ]
   },
@@ -1475,7 +1475,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 328
+        "line": 330
       }
     ]
   },
@@ -1495,7 +1495,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 311
+        "line": 313
       }
     ]
   },
@@ -1505,7 +1505,7 @@
       {
         "file": "components/layout/Header.tsx",
         "kind": "attribute:aria-label",
-        "line": 73
+        "line": 75
       }
     ]
   },
@@ -1525,7 +1525,7 @@
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "jsx",
-        "line": 110
+        "line": 111
       }
     ]
   },
@@ -1535,7 +1535,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 152
+        "line": 154
       },
       {
         "file": "components/card/templates/Bold.tsx",
@@ -1550,7 +1550,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 241
+        "line": 243
       }
     ]
   },
@@ -1570,7 +1570,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 229
+        "line": 231
       }
     ]
   },
@@ -1590,7 +1590,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 46
+        "line": 48
       }
     ]
   },
@@ -1600,7 +1600,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 217
+        "line": 219
       }
     ]
   },
@@ -1620,7 +1620,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 132
+        "line": 134
       }
     ]
   },
@@ -1630,7 +1630,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 130
+        "line": 132
       }
     ]
   },
@@ -1660,7 +1660,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 84
+        "line": 86
       }
     ]
   },
@@ -1710,7 +1710,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 229
+        "line": 231
       }
     ]
   },
@@ -1760,12 +1760,12 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 84
+        "line": 86
       },
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 272
+        "line": 273
       },
       {
         "file": "app/page.tsx",
@@ -1860,7 +1860,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:label",
-        "line": 226
+        "line": 228
       }
     ]
   },
@@ -1870,7 +1870,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 224
+        "line": 226
       }
     ]
   },
@@ -1880,7 +1880,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "jsx",
-        "line": 103
+        "line": 105
       }
     ]
   },
@@ -1890,7 +1890,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 167
+        "line": 169
       }
     ]
   },
@@ -1935,7 +1935,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 203
+        "line": 205
       }
     ]
   },
@@ -1955,7 +1955,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 26
+        "line": 27
       }
     ]
   },
@@ -2040,7 +2040,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 158
+        "line": 160
       }
     ]
   },
@@ -2050,7 +2050,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 330
+        "line": 333
       }
     ]
   },
@@ -2060,7 +2060,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 352
+        "line": 354
       }
     ]
   },
@@ -2130,7 +2130,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 364
+        "line": 366
       }
     ]
   },
@@ -2170,7 +2170,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 211
+        "line": 213
       }
     ]
   },
@@ -2200,7 +2200,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 135
+        "line": 137
       }
     ]
   },
@@ -2220,7 +2220,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 59
+        "line": 61
       }
     ]
   },
@@ -2260,7 +2260,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 205
+        "line": 207
       }
     ]
   },
@@ -2270,7 +2270,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 127
+        "line": 129
       }
     ]
   },
@@ -2310,7 +2310,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 268
+        "line": 271
       }
     ]
   },
@@ -2320,7 +2320,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 61
+        "line": 63
       }
     ]
   },
@@ -2370,7 +2370,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 97
+        "line": 99
       }
     ]
   },
@@ -2380,7 +2380,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 84
+        "line": 86
       }
     ]
   },
@@ -2400,12 +2400,12 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 193
+        "line": 195
       },
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 223
+        "line": 225
       }
     ]
   },
@@ -2455,7 +2455,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 96
+        "line": 98
       }
     ]
   },
@@ -2465,7 +2465,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:desc",
-        "line": 26
+        "line": 27
       }
     ]
   },
@@ -2475,22 +2475,22 @@
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "jsx",
-        "line": 50
+        "line": 52
       },
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "jsx",
-        "line": 54
+        "line": 55
       },
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "jsx",
-        "line": 80
+        "line": 81
       },
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 370
+        "line": 372
       },
       {
         "file": "app/(dashboard)/team/import/client.tsx",
@@ -2500,17 +2500,17 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 231
+        "line": 232
       },
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 359
+        "line": 361
       },
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 247
+        "line": 249
       },
       {
         "file": "components/card/templates/Corporate.tsx",
@@ -2530,7 +2530,7 @@
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 74
+        "line": 76
       }
     ]
   },
@@ -2570,7 +2570,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 208
+        "line": 210
       }
     ]
   },
@@ -2590,7 +2590,7 @@
       {
         "file": "components/card/editor/DomainSection.tsx",
         "kind": "jsx",
-        "line": 40
+        "line": 42
       }
     ]
   },
@@ -2620,7 +2620,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 286
+        "line": 288
       }
     ]
   },
@@ -2660,7 +2660,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 372
+        "line": 374
       }
     ]
   },
@@ -2670,7 +2670,7 @@
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 64
+        "line": 66
       }
     ]
   },
@@ -2680,7 +2680,7 @@
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 103
+        "line": 105
       }
     ]
   },
@@ -2715,12 +2715,12 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 97
+        "line": 99
       },
       {
         "file": "components/layout/Header.tsx",
         "kind": "jsx",
-        "line": 100
+        "line": 102
       },
       {
         "file": "components/layout/Sidebar.tsx",
@@ -2745,7 +2745,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 318
+        "line": 321
       }
     ]
   },
@@ -2765,7 +2765,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 131
+        "line": 133
       }
     ]
   },
@@ -2795,7 +2795,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 108
+        "line": 110
       }
     ]
   },
@@ -2805,7 +2805,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 162
+        "line": 164
       }
     ]
   },
@@ -2825,7 +2825,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "attribute:title",
-        "line": 293
+        "line": 295
       }
     ]
   },
@@ -2835,7 +2835,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 175
+        "line": 177
       }
     ]
   },
@@ -2845,7 +2845,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 330
+        "line": 332
       }
     ]
   },
@@ -2855,7 +2855,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 93
+        "line": 95
       }
     ]
   },
@@ -2865,7 +2865,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 260
+        "line": 262
       }
     ]
   },
@@ -2875,7 +2875,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 155
+        "line": 157
       }
     ]
   },
@@ -2905,7 +2905,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 258
+        "line": 260
       }
     ]
   },
@@ -2935,7 +2935,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 70
+        "line": 72
       }
     ]
   },
@@ -2945,7 +2945,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "jsx",
-        "line": 71
+        "line": 73
       }
     ]
   },
@@ -2965,7 +2965,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 271
+        "line": 272
       },
       {
         "file": "app/team/[orgSlug]/page.tsx",
@@ -3010,7 +3010,7 @@
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "jsx",
-        "line": 41
+        "line": 43
       }
     ]
   },
@@ -3020,7 +3020,7 @@
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "jsx",
-        "line": 41
+        "line": 43
       }
     ]
   },
@@ -3040,7 +3040,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:desc",
-        "line": 21
+        "line": 22
       }
     ]
   },
@@ -3050,7 +3050,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 215
+        "line": 218
       }
     ]
   },
@@ -3060,7 +3060,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:desc",
-        "line": 24
+        "line": 25
       }
     ]
   },
@@ -3070,7 +3070,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "property:label",
-        "line": 163
+        "line": 165
       }
     ]
   },
@@ -3080,12 +3080,12 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 130
+        "line": 132
       },
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "attribute:alt",
-        "line": 144
+        "line": 146
       }
     ]
   },
@@ -3095,7 +3095,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 124
+        "line": 126
       }
     ]
   },
@@ -3105,7 +3105,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 126
+        "line": 128
       }
     ]
   },
@@ -3115,7 +3115,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "attribute:label",
-        "line": 135
+        "line": 137
       }
     ]
   },
@@ -3125,7 +3125,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 243
+        "line": 245
       }
     ]
   },
@@ -3150,7 +3150,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 259
+        "line": 261
       }
     ]
   },
@@ -3160,7 +3160,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 186
+        "line": 188
       }
     ]
   },
@@ -3170,7 +3170,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:desc",
-        "line": 23
+        "line": 24
       }
     ]
   },
@@ -3190,7 +3190,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 227
+        "line": 229
       }
     ]
   },
@@ -3210,7 +3210,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 337
+        "line": 339
       }
     ]
   },
@@ -3220,7 +3220,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 312
+        "line": 314
       }
     ]
   },
@@ -3240,7 +3240,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 171
+        "line": 173
       }
     ]
   },
@@ -3260,7 +3260,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 194
+        "line": 196
       }
     ]
   },
@@ -3290,7 +3290,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 168
+        "line": 170
       }
     ]
   },
@@ -3300,7 +3300,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 178
+        "line": 180
       }
     ]
   },
@@ -3325,7 +3325,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 246
+        "line": 248
       },
       {
         "file": "app/(dashboard)/settings/client.tsx",
@@ -3340,7 +3340,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 364
+        "line": 366
       }
     ]
   },
@@ -3350,7 +3350,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 179
+        "line": 181
       }
     ]
   },
@@ -3360,7 +3360,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 334
+        "line": 337
       }
     ]
   },
@@ -3380,7 +3380,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "property:label",
-        "line": 44
+        "line": 45
       },
       {
         "file": "components/card/templates/SocialLinks.tsx",
@@ -3395,7 +3395,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 173
+        "line": 175
       }
     ]
   },
@@ -3415,7 +3415,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:title",
-        "line": 30
+        "line": 31
       }
     ]
   },
@@ -3425,7 +3425,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 26
+        "line": 27
       }
     ]
   },
@@ -3435,7 +3435,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 238
+        "line": 240
       },
       {
         "file": "app/(dashboard)/dashboard/page.tsx",
@@ -3480,7 +3480,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 129
+        "line": 131
       }
     ]
   },
@@ -3490,7 +3490,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 225
+        "line": 227
       }
     ]
   },
@@ -3510,17 +3510,17 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 231
+        "line": 233
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 146
+        "line": 148
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 246
+        "line": 249
       }
     ]
   },
@@ -3530,7 +3530,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 88
+        "line": 90
       }
     ]
   },
@@ -3540,7 +3540,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 187
+        "line": 189
       }
     ]
   },
@@ -3550,7 +3550,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 244
+        "line": 246
       }
     ]
   },
@@ -3560,7 +3560,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 188
+        "line": 190
       }
     ]
   },
@@ -3570,7 +3570,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 107
+        "line": 109
       }
     ]
   },
@@ -3580,7 +3580,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:label",
-        "line": 278
+        "line": 280
       }
     ]
   },
@@ -3590,7 +3590,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 242
+        "line": 244
       }
     ]
   },
@@ -3650,7 +3650,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 238
+        "line": 239
       }
     ]
   },
@@ -3680,7 +3680,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "property:label",
-        "line": 43
+        "line": 44
       },
       {
         "file": "components/card/templates/SocialLinks.tsx",
@@ -3705,7 +3705,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 81
+        "line": 83
       }
     ]
   },
@@ -3785,7 +3785,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 282
+        "line": 284
       }
     ]
   },
@@ -3795,7 +3795,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 103
+        "line": 105
       }
     ]
   },
@@ -3845,17 +3845,17 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 160
+        "line": 162
       },
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 105
+        "line": 107
       },
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 241
+        "line": 243
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -3905,12 +3905,12 @@
       {
         "file": "components/layout/Header.tsx",
         "kind": "jsx",
-        "line": 69
+        "line": 71
       },
       {
         "file": "components/layout/Header.tsx",
         "kind": "jsx",
-        "line": 104
+        "line": 106
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -3935,12 +3935,12 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 52
+        "line": 54
       },
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "attribute:aria-label",
-        "line": 104
+        "line": 106
       }
     ]
   },
@@ -3955,7 +3955,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "attribute:title",
-        "line": 275
+        "line": 277
       },
       {
         "file": "app/(dashboard)/dashboard/page.tsx",
@@ -3970,7 +3970,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 45
+        "line": 47
       }
     ]
   },
@@ -3985,7 +3985,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "jsx",
-        "line": 73
+        "line": 75
       }
     ]
   },
@@ -3995,7 +3995,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:desc",
-        "line": 277
+        "line": 279
       }
     ]
   },
@@ -4035,7 +4035,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:label",
-        "line": 277
+        "line": 279
       }
     ]
   },
@@ -4065,7 +4065,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 226
+        "line": 228
       }
     ]
   },
@@ -4125,7 +4125,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 318
+        "line": 320
       }
     ]
   },
@@ -4135,7 +4135,7 @@
       {
         "file": "components/card/editor/DomainSection.tsx",
         "kind": "jsx",
-        "line": 21
+        "line": 23
       }
     ]
   },
@@ -4145,7 +4145,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 200
+        "line": 202
       }
     ]
   },
@@ -4155,7 +4155,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 266
+        "line": 269
       }
     ]
   },
@@ -4175,7 +4175,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 146
+        "line": 148
       }
     ]
   },
@@ -4225,7 +4225,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 270
+        "line": 272
       }
     ]
   },
@@ -4235,7 +4235,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:desc",
-        "line": 279
+        "line": 281
       }
     ]
   },
@@ -4285,7 +4285,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "jsx",
-        "line": 115
+        "line": 117
       }
     ]
   },
@@ -4295,7 +4295,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 266
+        "line": 268
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -4310,7 +4310,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 138
+        "line": 140
       }
     ]
   },
@@ -4330,7 +4330,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 229
+        "line": 231
       }
     ]
   },
@@ -4350,7 +4350,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 192
+        "line": 194
       }
     ]
   },
@@ -4360,7 +4360,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:desc",
-        "line": 276
+        "line": 278
       }
     ]
   },
@@ -4370,7 +4370,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 127
+        "line": 129
       }
     ]
   },
@@ -4380,12 +4380,12 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 22
+        "line": 23
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 95
+        "line": 97
       }
     ]
   },
@@ -4400,7 +4400,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 133
+        "line": 135
       }
     ]
   },
@@ -4410,12 +4410,12 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 212
+        "line": 213
       },
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 328
+        "line": 330
       }
     ]
   },
@@ -4435,7 +4435,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 199
+        "line": 200
       }
     ]
   },
@@ -4495,7 +4495,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 166
+        "line": 168
       }
     ]
   },
@@ -4505,7 +4505,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 167
+        "line": 169
       }
     ]
   },
@@ -4515,7 +4515,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 313
+        "line": 315
       }
     ]
   },
@@ -4545,17 +4545,17 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 122
+        "line": 124
       },
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 263
+        "line": 266
       },
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 325
+        "line": 328
       }
     ]
   },
@@ -4585,7 +4585,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 373
+        "line": 375
       }
     ]
   },
@@ -4595,12 +4595,12 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 217
+        "line": 220
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 186
+        "line": 188
       }
     ]
   },
@@ -4610,7 +4610,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "property:label",
-        "line": 165
+        "line": 167
       }
     ]
   },
@@ -4630,7 +4630,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "attribute:title",
-        "line": 194
+        "line": 197
       }
     ]
   },
@@ -4670,7 +4670,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "attribute:label",
-        "line": 59
+        "line": 61
       }
     ]
   },
@@ -4690,7 +4690,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 175
+        "line": 177
       }
     ]
   },
@@ -4700,7 +4700,7 @@
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 104
+        "line": 106
       }
     ]
   },
@@ -4710,7 +4710,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 355
+        "line": 357
       }
     ]
   },
@@ -4720,7 +4720,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "attribute:title",
-        "line": 148
+        "line": 150
       }
     ]
   },
@@ -4750,12 +4750,12 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "attribute:label",
-        "line": 58
+        "line": 60
       },
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "attribute:label",
-        "line": 119
+        "line": 121
       }
     ]
   },
@@ -4765,7 +4765,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "property:label",
-        "line": 40
+        "line": 41
       },
       {
         "file": "components/card/templates/SocialLinks.tsx",
@@ -4780,7 +4780,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 136
+        "line": 138
       }
     ]
   },
@@ -4810,7 +4810,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 378
+        "line": 380
       }
     ]
   },
@@ -4820,7 +4820,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "attribute:title",
-        "line": 155
+        "line": 157
       }
     ]
   },
@@ -4830,7 +4830,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "attribute:alt",
-        "line": 269
+        "line": 271
       },
       {
         "file": "components/card/templates/Bold.tsx",
@@ -4900,12 +4900,12 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "attribute:label",
-        "line": 158
+        "line": 160
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "attribute:label",
-        "line": 265
+        "line": 267
       }
     ]
   },
@@ -4915,17 +4915,17 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "attribute:title",
-        "line": 290
+        "line": 292
       },
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "attribute:title",
-        "line": 309
+        "line": 311
       },
       {
         "file": "components/card/CardSwitcher.tsx",
         "kind": "attribute:title",
-        "line": 196
+        "line": 198
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -4960,7 +4960,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 211
+        "line": 213
       }
     ]
   },
@@ -4970,7 +4970,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 81
+        "line": 83
       }
     ]
   },
@@ -4980,7 +4980,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 125
+        "line": 127
       }
     ]
   },
@@ -4990,7 +4990,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 144
+        "line": 146
       }
     ]
   },
@@ -5010,7 +5010,7 @@
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "attribute:placeholder",
-        "line": 71
+        "line": 72
       }
     ]
   },
@@ -5020,27 +5020,27 @@
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "attribute:placeholder",
-        "line": 55
+        "line": 57
       },
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "attribute:placeholder",
-        "line": 57
+        "line": 58
       },
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "attribute:placeholder",
-        "line": 83
+        "line": 84
       },
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 248
+        "line": 250
       },
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "attribute:placeholder",
-        "line": 76
+        "line": 78
       }
     ]
   },
@@ -5050,7 +5050,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 284
+        "line": 286
       }
     ]
   },
@@ -5060,7 +5060,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 75
+        "line": 77
       }
     ]
   },
@@ -5080,7 +5080,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 207
+        "line": 209
       }
     ]
   },
@@ -5090,7 +5090,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "attribute:placeholder",
-        "line": 55
+        "line": 57
       }
     ]
   },
@@ -5120,7 +5120,7 @@
       {
         "file": "components/card/editor/DomainSection.tsx",
         "kind": "attribute:placeholder",
-        "line": 43
+        "line": 45
       }
     ]
   },
@@ -5130,7 +5130,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "attribute:placeholder",
-        "line": 66
+        "line": 68
       }
     ]
   },
@@ -5140,7 +5140,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 234
+        "line": 236
       }
     ]
   },
@@ -5150,7 +5150,7 @@
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "jsx",
-        "line": 49
+        "line": 50
       }
     ]
   },
@@ -5180,7 +5180,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 25
+        "line": 26
       }
     ]
   },
@@ -5200,7 +5200,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 238
+        "line": 240
       }
     ]
   },
@@ -5210,17 +5210,17 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 211
+        "line": 213
       },
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 239
+        "line": 241
       },
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 91
+        "line": 93
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -5235,12 +5235,12 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 282
+        "line": 284
       },
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 162
+        "line": 164
       }
     ]
   },
@@ -5260,7 +5260,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 238
+        "line": 240
       },
       {
         "file": "components/card/templates/Corporate.tsx",
@@ -5285,7 +5285,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 24
+        "line": 25
       }
     ]
   },
@@ -5295,7 +5295,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 83
+        "line": 85
       }
     ]
   },
@@ -5315,7 +5315,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 148
+        "line": 150
       }
     ]
   },
@@ -5325,7 +5325,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 256
+        "line": 258
       }
     ]
   },
@@ -5335,7 +5335,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:aria-label",
-        "line": 332
+        "line": 334
       }
     ]
   },
@@ -5345,7 +5345,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:aria-label",
-        "line": 339
+        "line": 341
       }
     ]
   },
@@ -5355,7 +5355,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 147
+        "line": 149
       }
     ]
   },
@@ -5365,7 +5365,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 381
+        "line": 383
       }
     ]
   },
@@ -5375,17 +5375,17 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 80
+        "line": 82
       },
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "jsx",
-        "line": 69
+        "line": 70
       },
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 81
+        "line": 83
       },
       {
         "file": "app/(dashboard)/custom-domain/page.tsx",
@@ -5395,12 +5395,12 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 104
+        "line": 106
       },
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 237
+        "line": 240
       }
     ]
   },
@@ -5410,17 +5410,17 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 177
+        "line": 179
       },
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 212
+        "line": 214
       },
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 348
+        "line": 350
       }
     ]
   },
@@ -5440,7 +5440,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 52
+        "line": 54
       }
     ]
   },
@@ -5450,7 +5450,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 66
+        "line": 68
       }
     ]
   },
@@ -5460,12 +5460,12 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 96
+        "line": 98
       },
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 230
+        "line": 233
       }
     ]
   },
@@ -5485,7 +5485,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 248
+        "line": 251
       }
     ]
   },
@@ -5495,7 +5495,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 78
+        "line": 80
       }
     ]
   },
@@ -5515,7 +5515,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 171
+        "line": 173
       }
     ]
   },
@@ -5655,7 +5655,7 @@
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "jsx",
-        "line": 86
+        "line": 87
       }
     ]
   },
@@ -5665,7 +5665,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 265
+        "line": 268
       }
     ]
   },
@@ -5680,12 +5680,12 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 172
+        "line": 174
       },
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 202
+        "line": 204
       },
       {
         "file": "components/analytics/AnalyticsTech.tsx",
@@ -5700,7 +5700,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "jsx",
-        "line": 98
+        "line": 100
       }
     ]
   },
@@ -5710,7 +5710,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 219
+        "line": 221
       }
     ]
   },
@@ -5720,7 +5720,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "jsx",
-        "line": 108
+        "line": 110
       }
     ]
   },
@@ -5730,7 +5730,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "jsx",
-        "line": 70
+        "line": 72
       }
     ]
   },
@@ -5740,7 +5740,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 78
+        "line": 80
       }
     ]
   },
@@ -5760,7 +5760,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "jsx",
-        "line": 111
+        "line": 113
       }
     ]
   },
@@ -5770,7 +5770,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "jsx",
-        "line": 129
+        "line": 131
       }
     ]
   },
@@ -5780,7 +5780,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 257
+        "line": 259
       }
     ]
   },
@@ -5790,7 +5790,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 276
+        "line": 278
       }
     ]
   },
@@ -5800,7 +5800,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 124
+        "line": 126
       }
     ]
   },
@@ -5810,7 +5810,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 248
+        "line": 251
       }
     ]
   },
@@ -5820,7 +5820,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "property:description",
-        "line": 194
+        "line": 197
       }
     ]
   },
@@ -5830,7 +5830,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:desc",
-        "line": 25
+        "line": 26
       }
     ]
   },
@@ -5860,7 +5860,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 365
+        "line": 367
       }
     ]
   },
@@ -5880,7 +5880,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 71
+        "line": 73
       }
     ]
   },
@@ -5890,7 +5890,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 181
+        "line": 183
       }
     ]
   },
@@ -5910,7 +5910,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 385
+        "line": 387
       }
     ]
   },
@@ -5920,7 +5920,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 142
+        "line": 144
       }
     ]
   },
@@ -5930,12 +5930,12 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 157
+        "line": 159
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 25
+        "line": 26
       },
       {
         "file": "components/layout/Sidebar.tsx",
@@ -5950,7 +5950,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 209
+        "line": 211
       }
     ]
   },
@@ -5970,12 +5970,12 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 174
+        "line": 176
       },
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 93
+        "line": 95
       }
     ]
   },
@@ -5985,12 +5985,12 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 165
+        "line": 167
       },
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 166
+        "line": 168
       },
       {
         "file": "app/(admin)/admin/organizations/page.tsx",
@@ -6015,7 +6015,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 30
+        "line": 31
       }
     ]
   },
@@ -6025,7 +6025,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:title",
-        "line": 40
+        "line": 41
       }
     ]
   },
@@ -6045,12 +6045,12 @@
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "jsx",
-        "line": 66
+        "line": 67
       },
       {
         "file": "app/(auth)/register/page.tsx",
         "kind": "jsx",
-        "line": 92
+        "line": 93
       },
       {
         "file": "app/c/[slug]/PasswordGate.tsx",
@@ -6080,12 +6080,12 @@
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "jsx",
-        "line": 36
+        "line": 38
       },
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "jsx",
-        "line": 85
+        "line": 86
       }
     ]
   },
@@ -6105,12 +6105,12 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 145
+        "line": 147
       },
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 174
+        "line": 176
       }
     ]
   },
@@ -6120,7 +6120,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 135
+        "line": 137
       }
     ]
   },
@@ -6205,7 +6205,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 159
+        "line": 161
       }
     ]
   },
@@ -6235,7 +6235,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 65
+        "line": 67
       },
       {
         "file": "app/(admin)/admin/settings/page.tsx",
@@ -6285,27 +6285,27 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 186
+        "line": 188
       },
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 216
+        "line": 218
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 34
+        "line": 35
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 289
+        "line": 292
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 74
+        "line": 76
       }
     ]
   },
@@ -6315,7 +6315,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 76
+        "line": 78
       }
     ]
   },
@@ -6335,17 +6335,17 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 228
+        "line": 230
       },
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 76
+        "line": 78
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 60
+        "line": 62
       }
     ]
   },
@@ -6385,7 +6385,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 131
+        "line": 133
       }
     ]
   },
@@ -6395,7 +6395,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:desc",
-        "line": 278
+        "line": 280
       }
     ]
   },
@@ -6405,7 +6405,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 220
+        "line": 222
       }
     ]
   },
@@ -6415,7 +6415,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 155
+        "line": 157
       }
     ]
   },
@@ -6425,7 +6425,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 174
+        "line": 176
       }
     ]
   },
@@ -6460,7 +6460,7 @@
       {
         "file": "components/card/QRCodeDisplay.tsx",
         "kind": "attribute:alt",
-        "line": 36
+        "line": 38
       },
       {
         "file": "components/card/templates/Classic.tsx",
@@ -6515,12 +6515,12 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 223
+        "line": 224
       },
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 254
+        "line": 255
       },
       {
         "file": "app/page.tsx",
@@ -6535,7 +6535,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:label",
-        "line": 276
+        "line": 278
       }
     ]
   },
@@ -6545,7 +6545,7 @@
       {
         "file": "components/card/QRCodeDisplay.tsx",
         "kind": "jsx",
-        "line": 44
+        "line": 46
       }
     ]
   },
@@ -6565,12 +6565,12 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "attribute:label",
-        "line": 57
+        "line": 59
       },
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "attribute:label",
-        "line": 118
+        "line": 120
       }
     ]
   },
@@ -6580,7 +6580,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 283
+        "line": 285
       }
     ]
   },
@@ -6600,7 +6600,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 198
+        "line": 200
       }
     ]
   },
@@ -6645,7 +6645,7 @@
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "jsx",
-        "line": 87
+        "line": 88
       }
     ]
   },
@@ -6665,7 +6665,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 23
+        "line": 24
       }
     ]
   },
@@ -6675,22 +6675,22 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 158
+        "line": 160
       },
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 240
+        "line": 242
       },
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 371
+        "line": 373
       },
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 84
+        "line": 86
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -6770,7 +6770,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 209
+        "line": 211
       }
     ]
   },
@@ -6780,17 +6780,17 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 343
+        "line": 345
       },
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 258
+        "line": 261
       },
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 270
+        "line": 272
       }
     ]
   },
@@ -6800,7 +6800,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 216
+        "line": 219
       }
     ]
   },
@@ -6810,7 +6810,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 163
+        "line": 165
       }
     ]
   },
@@ -6820,7 +6820,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "property:label",
-        "line": 164
+        "line": 166
       }
     ]
   },
@@ -6830,7 +6830,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 127
+        "line": 129
       }
     ]
   },
@@ -6840,7 +6840,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 161
+        "line": 163
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -6875,7 +6875,7 @@
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 104
+        "line": 106
       }
     ]
   },
@@ -6885,7 +6885,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:placeholder",
-        "line": 153
+        "line": 155
       }
     ]
   },
@@ -6895,7 +6895,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 82
+        "line": 84
       }
     ]
   },
@@ -6935,7 +6935,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 279
+        "line": 281
       }
     ]
   },
@@ -6945,7 +6945,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 154
+        "line": 156
       }
     ]
   },
@@ -6965,7 +6965,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 181
+        "line": 183
       }
     ]
   },
@@ -7020,7 +7020,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 134
+        "line": 136
       }
     ]
   },
@@ -7030,7 +7030,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 161
+        "line": 163
       }
     ]
   },
@@ -7040,7 +7040,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 240
+        "line": 242
       }
     ]
   },
@@ -7060,7 +7060,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 171
+        "line": 173
       }
     ]
   },
@@ -7070,7 +7070,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "attribute:title",
-        "line": 301
+        "line": 303
       }
     ]
   },
@@ -7100,7 +7100,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 21
+        "line": 22
       },
       {
         "file": "app/(dashboard)/dashboard/page.tsx",
@@ -7110,7 +7110,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 93
+        "line": 95
       }
     ]
   },
@@ -7120,7 +7120,7 @@
       {
         "file": "components/card/editor/DomainSection.tsx",
         "kind": "jsx",
-        "line": 28
+        "line": 30
       }
     ]
   },
@@ -7130,7 +7130,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 89
+        "line": 91
       }
     ]
   },
@@ -7140,7 +7140,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 77
+        "line": 79
       }
     ]
   },
@@ -7150,7 +7150,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 66
+        "line": 68
       }
     ]
   },
@@ -7185,7 +7185,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 120
+        "line": 122
       }
     ]
   },
@@ -7195,17 +7195,17 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 144
+        "line": 146
       },
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 93
+        "line": 95
       },
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 220
+        "line": 222
       }
     ]
   },
@@ -7215,7 +7215,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 208
+        "line": 210
       },
       {
         "file": "app/(admin)/layout.tsx",
@@ -7235,7 +7235,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 176
+        "line": 178
       }
     ]
   },
@@ -7245,7 +7245,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 180
+        "line": 182
       }
     ]
   },
@@ -7265,7 +7265,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 160
+        "line": 162
       },
       {
         "file": "app/(dashboard)/team/page.tsx",
@@ -7305,12 +7305,12 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 210
+        "line": 212
       },
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 90
+        "line": 92
       },
       {
         "file": "components/team/UserTable.tsx",
@@ -7355,7 +7355,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "attribute:label",
-        "line": 60
+        "line": 62
       }
     ]
   },
@@ -7375,7 +7375,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 319
+        "line": 322
       }
     ]
   },
@@ -7395,7 +7395,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "property:label",
-        "line": 279
+        "line": 281
       }
     ]
   },
@@ -7415,7 +7415,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 370
+        "line": 372
       },
       {
         "file": "components/card/templates/Corporate.tsx",
@@ -7435,7 +7435,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 234
+        "line": 236
       }
     ]
   },
@@ -7450,17 +7450,17 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 214
+        "line": 217
       },
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 278
+        "line": 281
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 44
+        "line": 46
       }
     ]
   },
@@ -7470,7 +7470,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "property:label",
-        "line": 162
+        "line": 164
       }
     ]
   },
@@ -7480,7 +7480,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 206
+        "line": 207
       }
     ]
   },
@@ -7505,7 +7505,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 259
+        "line": 261
       }
     ]
   },
@@ -7525,7 +7525,7 @@
       {
         "file": "components/layout/Header.tsx",
         "kind": "attribute:aria-label",
-        "line": 57
+        "line": 59
       }
     ]
   },
@@ -7545,7 +7545,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 235
+        "line": 237
       }
     ]
   },
@@ -7555,7 +7555,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "jsx",
-        "line": 94
+        "line": 96
       }
     ]
   },
@@ -7565,7 +7565,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "jsx",
-        "line": 125
+        "line": 127
       }
     ]
   },
@@ -7575,7 +7575,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "attribute:alt",
-        "line": 200
+        "line": 202
       }
     ]
   },
@@ -7595,7 +7595,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "property:label",
-        "line": 42
+        "line": 43
       }
     ]
   },
@@ -7615,7 +7615,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 205
+        "line": 208
       }
     ]
   },
@@ -7645,7 +7645,7 @@
       {
         "file": "components/card/CardSwitcher.tsx",
         "kind": "attribute:title",
-        "line": 177
+        "line": 179
       }
     ]
   },
@@ -7665,7 +7665,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 270
+        "line": 272
       }
     ]
   },
@@ -7675,7 +7675,7 @@
       {
         "file": "components/card/editor/DomainSection.tsx",
         "kind": "jsx",
-        "line": 22
+        "line": 24
       }
     ]
   },
@@ -7685,7 +7685,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 157
+        "line": 159
       }
     ]
   },
@@ -7695,7 +7695,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 272
+        "line": 275
       }
     ]
   },
@@ -7725,7 +7725,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 105
+        "line": 107
       }
     ]
   },
@@ -7745,7 +7745,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "attribute:title",
-        "line": 139
+        "line": 141
       }
     ]
   },
@@ -7755,7 +7755,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 61
+        "line": 63
       }
     ]
   },
@@ -7770,7 +7770,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "jsx",
-        "line": 268
+        "line": 270
       }
     ]
   },
@@ -7815,7 +7815,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "attribute:label",
-        "line": 117
+        "line": 119
       }
     ]
   },
@@ -7825,7 +7825,7 @@
       {
         "file": "app/(dashboard)/analytics/org/client.tsx",
         "kind": "attribute:label",
-        "line": 56
+        "line": 58
       }
     ]
   },
@@ -7845,7 +7845,7 @@
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 77
+        "line": 79
       }
     ]
   },
@@ -7875,7 +7875,7 @@
       {
         "file": "app/(dashboard)/team/client.tsx",
         "kind": "jsx",
-        "line": 280
+        "line": 282
       }
     ]
   },
@@ -7885,7 +7885,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 175
+        "line": 177
       }
     ]
   },
@@ -7895,7 +7895,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 340
+        "line": 342
       }
     ]
   },
@@ -7905,7 +7905,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 32
+        "line": 33
       }
     ]
   },
@@ -7935,7 +7935,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:label",
-        "line": 227
+        "line": 229
       }
     ]
   },
@@ -7965,7 +7965,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 143
+        "line": 145
       }
     ]
   },
@@ -7975,27 +7975,27 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 142
+        "line": 144
       },
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "jsx",
-        "line": 223
+        "line": 225
       },
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "jsx",
-        "line": 121
+        "line": 123
       },
       {
         "file": "app/(dashboard)/widget/client.tsx",
         "kind": "attribute:title",
-        "line": 128
+        "line": 130
       },
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 373
+        "line": 375
       }
     ]
   },
@@ -8005,7 +8005,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 88
+        "line": 90
       }
     ]
   },
@@ -8055,7 +8055,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 297
+        "line": 299
       }
     ]
   },
@@ -8065,7 +8065,7 @@
       {
         "file": "components/analytics/AnalyticsOverview.tsx",
         "kind": "attribute:label",
-        "line": 120
+        "line": 122
       }
     ]
   },
@@ -8095,7 +8095,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 92
+        "line": 94
       }
     ]
   },
@@ -8105,7 +8105,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 251
+        "line": 253
       }
     ]
   },
@@ -8115,7 +8115,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 188
+        "line": 190
       }
     ]
   },
@@ -8135,7 +8135,7 @@
       {
         "file": "components/team/InviteModal.tsx",
         "kind": "jsx",
-        "line": 112
+        "line": 114
       }
     ]
   },
@@ -8155,7 +8155,7 @@
       {
         "file": "app/(dashboard)/leads/client.tsx",
         "kind": "jsx",
-        "line": 112
+        "line": 114
       }
     ]
   },
@@ -8165,7 +8165,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 229
+        "line": 230
       }
     ]
   },
@@ -8225,12 +8225,12 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "attribute:placeholder",
-        "line": 105
+        "line": 107
       },
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "attribute:placeholder",
-        "line": 119
+        "line": 121
       }
     ]
   },
@@ -8240,7 +8240,7 @@
       {
         "file": "app/(auth)/login/page.tsx",
         "kind": "jsx",
-        "line": 48
+        "line": 49
       }
     ]
   },
@@ -8250,7 +8250,7 @@
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "jsx",
-        "line": 37
+        "line": 39
       }
     ]
   },
@@ -8260,7 +8260,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "jsx",
-        "line": 261
+        "line": 263
       }
     ]
   },
@@ -8270,7 +8270,7 @@
       {
         "file": "app/(admin)/admin/organizations/client.tsx",
         "kind": "jsx",
-        "line": 183
+        "line": 185
       }
     ]
   },
@@ -8280,7 +8280,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 274
+        "line": 277
       }
     ]
   },
@@ -8290,7 +8290,7 @@
       {
         "file": "app/(dashboard)/team/CreateOrgForm.tsx",
         "kind": "jsx",
-        "line": 92
+        "line": 94
       }
     ]
   },
@@ -8300,7 +8300,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 237
+        "line": 238
       }
     ]
   },
@@ -8310,7 +8310,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 401
+        "line": 403
       }
     ]
   },
@@ -8340,7 +8340,7 @@
       {
         "file": "app/(admin)/admin/settings/client.tsx",
         "kind": "jsx",
-        "line": 76
+        "line": 78
       }
     ]
   },
@@ -8350,7 +8350,7 @@
       {
         "file": "app/(admin)/admin/users/client.tsx",
         "kind": "jsx",
-        "line": 330
+        "line": 332
       }
     ]
   },
@@ -8360,7 +8360,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 198
+        "line": 199
       }
     ]
   },
@@ -8380,7 +8380,7 @@
       {
         "file": "app/c/[slug]/client.tsx",
         "kind": "jsx",
-        "line": 342
+        "line": 344
       }
     ]
   },
@@ -8400,7 +8400,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "property:label",
-        "line": 41
+        "line": 42
       },
       {
         "file": "components/card/templates/SocialLinks.tsx",
@@ -8415,7 +8415,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "property:label",
-        "line": 45
+        "line": 46
       },
       {
         "file": "components/card/templates/SocialLinks.tsx",
@@ -8430,7 +8430,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "attribute:placeholder",
-        "line": 238
+        "line": 241
       }
     ]
   },
@@ -8440,7 +8440,7 @@
       {
         "file": "app/(dashboard)/campaigns/client.tsx",
         "kind": "attribute:placeholder",
-        "line": 85
+        "line": 87
       }
     ]
   },
@@ -8450,7 +8450,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "attribute:placeholder",
-        "line": 105
+        "line": 107
       }
     ]
   },
@@ -8470,7 +8470,7 @@
       {
         "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
         "kind": "jsx",
-        "line": 94
+        "line": 96
       }
     ]
   },
@@ -8480,7 +8480,7 @@
       {
         "file": "components/card/CardEditor.tsx",
         "kind": "attribute:title",
-        "line": 307
+        "line": 309
       }
     ]
   },
@@ -8510,7 +8510,7 @@
       {
         "file": "components/settings/IntegrationsCards.tsx",
         "kind": "jsx",
-        "line": 275
+        "line": 278
       }
     ]
   },
@@ -8570,12 +8570,12 @@
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "jsx",
-        "line": 43
+        "line": 45
       },
       {
         "file": "app/(auth)/forgot-password/page.tsx",
         "kind": "jsx",
-        "line": 67
+        "line": 69
       },
       {
         "file": "app/(auth)/login/2fa/page.tsx",
@@ -8605,7 +8605,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 122
+        "line": 124
       }
     ]
   },
@@ -8620,7 +8620,7 @@
       {
         "file": "components/settings/SecurityCard.tsx",
         "kind": "jsx",
-        "line": 126
+        "line": 128
       }
     ]
   },
@@ -8630,7 +8630,7 @@
       {
         "file": "app/(dashboard)/card/signature/client.tsx",
         "kind": "property:desc",
-        "line": 22
+        "line": 23
       }
     ]
   },
@@ -8640,7 +8640,7 @@
       {
         "file": "components/card/editor/DesignTab.tsx",
         "kind": "jsx",
-        "line": 113
+        "line": 115
       }
     ]
   }

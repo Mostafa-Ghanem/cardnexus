@@ -13,6 +13,7 @@ import { signIn } from "@/lib/auth-client";
 import { useI18n } from "@/components/i18n/I18nProvider";
 
 export default function LoginPage() {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const { t } = useI18n();
   const [email, setEmail] = useState("");
@@ -55,7 +56,7 @@ export default function LoginPage() {
             <Input
               id="email"
               type="email"
-              placeholder="max@example.com"
+              placeholder={tI18n("max@example.com")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

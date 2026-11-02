@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -30,6 +31,7 @@ interface Org {
 interface Member { id: string; name: string; role: string }
 
 export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const [orgs, setOrgs] = useState(initial);
   const [open, setOpen] = useState(false);
@@ -175,11 +177,11 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
             <div className="space-y-4 pt-2">
               <div className="space-y-1.5">
                 <Label><T text={"Name *"} /></Label>
-                <Input placeholder="ACME GmbH" value={name} onChange={(e) => handleNameChange(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleCreate()} autoFocus />
+                <Input placeholder={tI18n("ACME GmbH")} value={name} onChange={(e) => handleNameChange(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleCreate()} autoFocus />
               </div>
               <div className="space-y-1.5">
                 <Label><T text={"Slug (URL-Kürzel)"} /></Label>
-                <Input placeholder="acme-gmbh" value={slug} onChange={(e) => setSlugVal(e.target.value)} />
+                <Input placeholder={tI18n("acme-gmbh")} value={slug} onChange={(e) => setSlugVal(e.target.value)} />
                 <p className="text-xs text-muted-foreground"><T text={"Wird automatisch aus dem Namen generiert"} /></p>
               </div>
               <div className="space-y-1.5">
@@ -191,7 +193,7 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
               </div>
               <div className="space-y-1.5">
                 <Label><T text={"Domain (optional)"} /></Label>
-                <Input placeholder="acme.de" value={domain} onChange={(e) => setDomain(e.target.value)} />
+                <Input placeholder={tI18n("acme.de")} value={domain} onChange={(e) => setDomain(e.target.value)} />
               </div>
               {error && <p className="text-sm text-destructive rounded-lg bg-destructive/10 px-3 py-2">{error}</p>}
               <div className="flex gap-2 pt-2">
@@ -221,7 +223,7 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Domain (optional)"} /></Label>
-              <Input placeholder="acme.de" value={editDomain} onChange={(e) => setEditDomain(e.target.value)} />
+              <Input placeholder={tI18n("acme.de")} value={editDomain} onChange={(e) => setEditDomain(e.target.value)} />
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Administrator"} /></Label>
@@ -229,7 +231,7 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
                 <p className="text-xs text-muted-foreground"><T text={"Keine Mitglieder in dieser Organisation."} /></p>
               ) : (
                 <Select value={editAdmin} onValueChange={setEditAdmin}>
-                  <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="— Kein Admin —" /></SelectTrigger>
+                  <SelectTrigger className="h-9 text-sm"><SelectValue placeholder={tI18n("— Kein Admin —")} /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="__none__"><T text={"— Kein Admin —"} /></SelectItem>
                     {editMembers.map((m) => (
@@ -284,10 +286,10 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
                   <span>{formatDate(org.createdAt)}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button onClick={() => openEdit(org)} className="p-1 rounded hover:bg-muted transition-colors hover:text-foreground" title="Bearbeiten">
+                  <button onClick={() => openEdit(org)} className="p-1 rounded hover:bg-muted transition-colors hover:text-foreground" title={tI18n("Bearbeiten")}>
                     <Pencil className="h-3.5 w-3.5" />
                   </button>
-                  <button onClick={() => handleDelete(org)} className="p-1 rounded hover:bg-destructive/10 transition-colors hover:text-destructive" title="Löschen">
+                  <button onClick={() => handleDelete(org)} className="p-1 rounded hover:bg-destructive/10 transition-colors hover:text-destructive" title={tI18n("Löschen")}>
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
                 </div>

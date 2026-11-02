@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -48,6 +49,7 @@ export function AdminUsersClient({
   currentUserId: string;
   initialSearch?: string;
 }) {
+  const tI18n = useI18n().t;
   const router   = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -142,7 +144,7 @@ export function AdminUsersClient({
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Suchen…"
+          placeholder={tI18n("Suchen…")}
           defaultValue={initialSearch}
           onChange={(e) => handleSearch(e.target.value)}
           className="pl-9"
@@ -253,7 +255,7 @@ export function AdminUsersClient({
                         <button
                           onClick={() => setExpiryEdit(user.id)}
                           className="flex items-center gap-0.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                          title="Ablaufdatum setzen"
+                          title={tI18n("Ablaufdatum setzen")}
                         >
                           <CalendarDays className="h-3 w-3" />
                           {user.planExpiresAt
@@ -272,7 +274,7 @@ export function AdminUsersClient({
                       <a href={`/c/${user.cards[0].slug}`} target="_blank" className="text-xs text-primary hover:underline">
                         {user.cards[0].slug}
                       </a>
-                      <Link href={`/admin/cards/${user.cards[0].slug}`} className="text-muted-foreground hover:text-foreground" title="Karte bearbeiten">
+                      <Link href={`/admin/cards/${user.cards[0].slug}`} className="text-muted-foreground hover:text-foreground" title={tI18n("Karte bearbeiten")}>
                         <Pencil className="h-3 w-3" />
                       </Link>
                     </div>
@@ -291,7 +293,7 @@ export function AdminUsersClient({
                       {user.bannedAt ? (
                         <button
                           onClick={() => unbanUser(user.id)}
-                          title="Entsperren"
+                          title={tI18n("Entsperren")}
                           className="p-1.5 rounded hover:bg-green-50 text-green-600 hover:text-green-700 transition-colors"
                         >
                           <ShieldCheck className="h-4 w-4" />
@@ -299,7 +301,7 @@ export function AdminUsersClient({
                       ) : (
                         <button
                           onClick={() => banUser(user.id)}
-                          title="Sperren"
+                          title={tI18n("Sperren")}
                           className="p-1.5 rounded hover:bg-amber-50 text-amber-600 hover:text-amber-700 transition-colors"
                         >
                           <ShieldOff className="h-4 w-4" />
@@ -307,7 +309,7 @@ export function AdminUsersClient({
                       )}
                       <button
                         onClick={() => setPendingDelete({ id: user.id, name: user.name })}
-                        title="Löschen"
+                        title={tI18n("Löschen")}
                         className="p-1.5 rounded hover:bg-red-50 text-red-500 hover:text-red-700 transition-colors"
                       >
                         <Trash2 className="h-4 w-4" />

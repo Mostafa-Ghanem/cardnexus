@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -23,6 +24,7 @@ interface Webhook {
 }
 
 export function WebhooksCard() {
+  const tI18n = useI18n().t;
   const [items, setItems] = useState<Webhook[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -102,7 +104,7 @@ export function WebhooksCard() {
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <Label htmlFor="wh-name"><T text={"Name"} /></Label>
-                <Input id="wh-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="z.B. Slack Notifier" />
+                <Input id="wh-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder={tI18n("z.B. Slack Notifier")} />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="wh-url"><T text={"Endpoint-URL"} /></Label>
@@ -161,6 +163,7 @@ interface ApiKey {
 }
 
 export function ApiKeysCard() {
+  const tI18n = useI18n().t;
   const [items, setItems] = useState<ApiKey[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -235,7 +238,7 @@ export function ApiKeysCard() {
           <form onSubmit={create} className="rounded-lg border border-border p-4 bg-muted/30 flex gap-2 items-end">
             <div className="flex-1 space-y-1.5">
               <Label htmlFor="ak-name"><T text={"Name"} /></Label>
-              <Input id="ak-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="z.B. CI Pipeline" />
+              <Input id="ak-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder={tI18n("z.B. CI Pipeline")} />
             </div>
             <Button type="submit" size="sm" disabled={busy}>
               {busy && <Loader2 className="h-4 w-4 animate-spin" />}<T text={"Anlegen"} /></Button>

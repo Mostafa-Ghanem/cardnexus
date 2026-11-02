@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -34,6 +35,7 @@ function LockedBadge() {
 }
 
 export function DesignTab({ card, update, policy, allTemplates, allowedDomains, canCustomDomain }: Props) {
+  const tI18n = useI18n().t;
   const hasBrandColors = policy.brandColors.length > 0;
 
   return (
@@ -116,7 +118,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
             onChange={(e) => update("accentColor", e.target.value)}
             className="h-10 w-16 rounded-md border border-input cursor-pointer" />
           <Input value={card.accentColor ?? ""} onChange={(e) => update("accentColor", e.target.value || null)}
-            className="font-mono w-32" placeholder="wie Primär" maxLength={7} />
+            className="font-mono w-32" placeholder={tI18n("wie Primär")} maxLength={7} />
           {card.accentColor && (
             <Button type="button" variant="ghost" size="sm" onClick={() => update("accentColor", null)}
               className="text-muted-foreground"><T text={"Zurücksetzen"} /></Button>
@@ -263,10 +265,10 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
         </div>
         {policy.canEditLogo ? (
           <ImageUpload value={card.logoUrl} onChange={(url) => update("logoUrl", url)}
-            label="Logo hochladen" shape="wide" className="h-20" />
+            label={tI18n("Logo hochladen")} shape="wide" className="h-20" />
         ) : (
           card.logoUrl
-            ? <img src={card.logoUrl} alt="Logo" className="h-10 w-auto max-w-[120px] object-contain opacity-60" />
+            ? <img src={card.logoUrl} alt={tI18n("Logo")} className="h-10 w-auto max-w-[120px] object-contain opacity-60" />
             : <p className="text-xs text-muted-foreground"><T text={"Kein Logo gesetzt"} /></p>
         )}
       </section>

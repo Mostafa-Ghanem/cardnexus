@@ -14,6 +14,7 @@ import { Suspense } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 
 function RegisterForm() {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const { t } = useI18n();
   const searchParams = useSearchParams();
@@ -69,7 +70,7 @@ function RegisterForm() {
             <Label htmlFor="name"><T text={"Name"} /></Label>
             <Input
               id="name"
-              placeholder="Max Mustermann"
+              placeholder={tI18n("Max Mustermann")}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -81,7 +82,7 @@ function RegisterForm() {
             <Input
               id="email"
               type="email"
-              placeholder="max@example.com"
+              placeholder={tI18n("max@example.com")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

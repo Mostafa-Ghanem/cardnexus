@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 import { T } from "@/components/i18n/I18nProvider";
 
 
@@ -46,6 +47,7 @@ const SOCIAL_FIELDS = [
 ];
 
 export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, saveEndpoint, userPlan = "free", allowedDomains, canCustomDomain }: CardEditorProps) {
+  const tI18n = useI18n().t;
   const router = useRouter();
   const allTemplates = userPlan !== "free";
 
@@ -141,38 +143,38 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <Label><T text={"Vorname"} /></Label>
-                <Input value={card.firstName ?? ""} onChange={(e) => update("firstName", e.target.value || null)} placeholder="Max" />
+                <Input value={card.firstName ?? ""} onChange={(e) => update("firstName", e.target.value || null)} placeholder={tI18n("Max")} />
               </div>
               <div className="space-y-1.5">
                 <Label><T text={"Nachname"} /></Label>
-                <Input value={card.lastName ?? ""} onChange={(e) => update("lastName", e.target.value || null)} placeholder="Mustermann" />
+                <Input value={card.lastName ?? ""} onChange={(e) => update("lastName", e.target.value || null)} placeholder={tI18n("Mustermann")} />
               </div>
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Berufsbezeichnung"} /></Label>
-              <Input value={card.title ?? ""} onChange={(e) => update("title", e.target.value || null)} placeholder="Senior Developer" />
+              <Input value={card.title ?? ""} onChange={(e) => update("title", e.target.value || null)} placeholder={tI18n("Senior Developer")} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <Label><T text={"Unternehmen"} /></Label>
-                <Input value={card.company ?? ""} onChange={(e) => update("company", e.target.value || null)} placeholder="ACME GmbH" />
+                <Input value={card.company ?? ""} onChange={(e) => update("company", e.target.value || null)} placeholder={tI18n("ACME GmbH")} />
               </div>
               <div className="space-y-1.5">
                 <Label><T text={"Abteilung"} /></Label>
-                <Input value={card.department ?? ""} onChange={(e) => update("department", e.target.value || null)} placeholder="Engineering" />
+                <Input value={card.department ?? ""} onChange={(e) => update("department", e.target.value || null)} placeholder={tI18n("Engineering")} />
               </div>
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Kurzbeschreibung"} /></Label>
               <Textarea value={card.bio ?? ""} onChange={(e) => update("bio", e.target.value || null)}
-                placeholder="Kurze Beschreibung über dich…" maxLength={500} />
+                placeholder={tI18n("Kurze Beschreibung über dich…")} maxLength={500} />
               <p className="text-xs text-muted-foreground text-right">{(card.bio ?? "").length}/500</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <Label><T text={"Pronomen"} /></Label>
-                <Input value={card.pronouns ?? ""} onChange={(e) => update("pronouns", e.target.value || null)} placeholder="er/ihm, she/her…" />
+                <Input value={card.pronouns ?? ""} onChange={(e) => update("pronouns", e.target.value || null)} placeholder={tI18n("er/ihm, she/her…")} />
               </div>
               <div className="space-y-1.5">
                 <Label><T text={"Geschlecht"} />{" "}<span className="text-xs font-normal text-muted-foreground"><T text={"(vCard)"} /></span></Label>
@@ -205,7 +207,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                     value={card.slug}
                     onChange={(e) => update("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/--+/g, "-"))}
                     className="font-mono"
-                    placeholder="mein-slug"
+                    placeholder={tI18n("mein-slug")}
                   />
                 </div>
                 <p className="text-xs text-muted-foreground"><T text={"Der alte Link wird automatisch weitergeleitet. Speichere die Karte um die Änderung zu übernehmen."} /></p>
@@ -218,12 +220,12 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             <div className="space-y-2">
               <Label><T text={"Avatar"} /></Label>
               <p className="text-xs text-muted-foreground"><T text={"Profilbild. Empfohlen: quadratisch, mind. 200×200 px."} /></p>
-              <ImageUpload value={card.avatarUrl} onChange={(url) => update("avatarUrl", url)} label="Avatar hochladen" shape="circle" />
+              <ImageUpload value={card.avatarUrl} onChange={(url) => update("avatarUrl", url)} label={tI18n("Avatar hochladen")} shape="circle" />
             </div>
             <div className="space-y-2">
               <Label><T text={"Cover-Bild"} /></Label>
               <p className="text-xs text-muted-foreground"><T text={"Hintergrundbild für das Modern-Template. Empfohlen: 800×300 px."} /></p>
-              <ImageUpload value={card.coverUrl} onChange={(url) => update("coverUrl", url)} label="Cover hochladen" shape="wide" className="h-28" />
+              <ImageUpload value={card.coverUrl} onChange={(url) => update("coverUrl", url)} label={tI18n("Cover hochladen")} shape="wide" className="h-28" />
             </div>
           </TabsContent>
 
@@ -232,20 +234,20 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <Label><T text={"Telefon (Büro)"} /></Label>
-                <Input value={card.phone ?? ""} onChange={(e) => update("phone", e.target.value || null)} placeholder="+49 89 1234567" type="tel" />
+                <Input value={card.phone ?? ""} onChange={(e) => update("phone", e.target.value || null)} placeholder={tI18n("+49 89 1234567")} type="tel" />
               </div>
               <div className="space-y-1.5">
                 <Label><T text={"Mobil"} /></Label>
-                <Input value={card.mobile ?? ""} onChange={(e) => update("mobile", e.target.value || null)} placeholder="+49 170 1234567" type="tel" />
+                <Input value={card.mobile ?? ""} onChange={(e) => update("mobile", e.target.value || null)} placeholder={tI18n("+49 170 1234567")} type="tel" />
               </div>
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Fax"} /></Label>
-              <Input value={card.fax ?? ""} onChange={(e) => update("fax", e.target.value || null)} placeholder="+49 89 1234568" type="tel" />
+              <Input value={card.fax ?? ""} onChange={(e) => update("fax", e.target.value || null)} placeholder={tI18n("+49 89 1234568")} type="tel" />
             </div>
             <div className="space-y-1.5">
               <Label><T text={"E-Mail"} /></Label>
-              <Input value={card.email ?? ""} onChange={(e) => update("email", e.target.value || null)} placeholder="max@example.com" type="email" />
+              <Input value={card.email ?? ""} onChange={(e) => update("email", e.target.value || null)} placeholder={tI18n("max@example.com")} type="email" />
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Website"} /></Label>
@@ -253,7 +255,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Adresse"} /></Label>
-              <Input value={card.address ?? ""} onChange={(e) => update("address", e.target.value || null)} placeholder="Musterstraße 1, 80331 München" />
+              <Input value={card.address ?? ""} onChange={(e) => update("address", e.target.value || null)} placeholder={tI18n("Musterstraße 1, 80331 München")} />
             </div>
             <div className="space-y-1.5">
               <Label><T text={"Terminbuchungs-Link"} />{" "}<span className="text-xs font-normal text-muted-foreground"><T text={"(Pro)"} /></span></Label>
@@ -305,13 +307,13 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                     type="button"
                     aria-label={`Link ${i + 1} verschieben`}
                     className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground p-1 -ml-1"
-                    title="Ziehen zum Sortieren"
+                    title={tI18n("Ziehen zum Sortieren")}
                     tabIndex={-1}
                   >
                     <GripVertical className="h-4 w-4" />
                   </button>
                   <Input
-                    placeholder="Label"
+                    placeholder={tI18n("Label")}
                     value={link.label}
                     onChange={(e) => updateLink(i, "label", e.target.value)}
                     className="w-32"
@@ -330,14 +332,14 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                       onClick={() => moveLink(i, i - 1)}
                       disabled={i === 0}
                       className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-30 px-1 leading-3"
-                      aria-label="Nach oben"
+                      aria-label={tI18n("Nach oben")}
                     >▲</button>
                     <button
                       type="button"
                       onClick={() => moveLink(i, i + 1)}
                       disabled={i === (card.customLinks?.length ?? 0) - 1}
                       className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-30 px-1 leading-3"
-                      aria-label="Nach unten"
+                      aria-label={tI18n("Nach unten")}
                     >▼</button>
                   </div>
                   <Button
