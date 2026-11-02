@@ -51,7 +51,7 @@ export default async function AdminPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{label}</p>
+                  <p className="text-sm text-muted-foreground"><T text={label} /></p>
                   <p className="text-3xl font-bold mt-1">{value.toLocaleString("de-DE")}</p>
                 </div>
                 <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
