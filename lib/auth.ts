@@ -2,18 +2,20 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { twoFactor } from "better-auth/plugins";
 import { db } from "./db";
+import { env } from "cloudflare:workers";
 
 // Hostinger can assign its own internal process port. Auth must expose the
 // actual HTTPS origin rather than a hard-coded localhost:3000 address.
 const publicUrl =
-  process.env.BETTER_AUTH_URL ??
-  process.env.APP_URL ??
+  env.BETTER_AUTH_URL ||
+  env.APP_URL ||
   "http://localhost:3000";
 
 export const auth = betterAuth({
   baseURL: publicUrl,
+  secret: env.BETTER_AUTH_SECRET,
   database: prismaAdapter(db, {
-    provider: "mysql",
+    provider: "sqlite",
   }),
   advanced: {
     // Force Secure cookie flag when the public-facing URL is HTTPS.
