@@ -10,18 +10,26 @@ async function ownCardIds(userId: string): Promise<string[]> {
   return cards.map((c) => c.id);
 }
 
-/** Leads from every card the signed-in user owns. */
-export async function GET() {
+/**
+ * Leads from every card the signed-in user owns.
+ * `?since=<ISO date>` returns only newer leads (used by the live notifier).
+ */
+export async function GET(req: Request) {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) return NextResponse.json({ error: "غير مصرح، سجّل الدخول أولًا" }, { status: 401 });
 
   const cardIds = await ownCardIds(session.user.id);
   if (cardIds.length === 0) return NextResponse.json({ leads: [] });
 
+  const sinceRaw = new URL(req.url).searchParams.get("since");
+  const since = sinceRaw ? new Date(sinceRaw) : null;
+  const hasSince = !!since && !isNaN(since.getTime());
+
   const leads = await db.lead.findMany({
-    where: { cardId: { in: cardIds } },
+    where: { cardId: { in: cardIds }, ...(hasSince ? { createdAt: { gt: since! } } : {}) },
     orderBy: { createdAt: "desc" },
-    take: 500,
+    take: hasSince ? 10 : 500,
+    ...(hasSince ? { select: { id: true, name: true, createdAt: true } } : {}),
   });
 
   return NextResponse.json({ leads });

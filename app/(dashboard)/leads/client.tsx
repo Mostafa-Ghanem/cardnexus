@@ -1,14 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Lead } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, Search, UserCheck, CreditCard } from "lucide-react";
+import { Download, Search, UserCheck, CreditCard, List, Columns3 } from "lucide-react";
 import { toast } from "sonner";
 import { buildCsv } from "@/lib/csv";
 import { LEAD_STATUSES, LEAD_STATUS_LABELS, isLeadStatus, type LeadStatus } from "@/lib/lead-status";
 import { LeadCard } from "./LeadCard";
+import { LeadBoard } from "./LeadBoard";
 
 interface Props {
   leads: Lead[];
@@ -22,6 +23,15 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [view, setView] = useState<"list" | "board">("list");
+  // Remembered per browser; read after mount to keep server and client HTML identical.
+  useEffect(() => {
+    try { if (localStorage.getItem("leads_view") === "board") setView("board"); } catch { /* ignore */ }
+  }, []);
+  function changeView(v: "list" | "board") {
+    setView(v);
+    try { localStorage.setItem("leads_view", v); } catch { /* ignore */ }
+  }
 
   const statusOf = (l: Lead): LeadStatus => (isLeadStatus(l.status) ? l.status : "new");
 
@@ -115,13 +125,23 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
           <Input placeholder="بحث بالاسم أو الجوال أو الملاحظة…" className="ps-9" value={query} onChange={(e) => setQuery(e.target.value)} />
         </div>
         {leads.length > 0 && (
+          <div className="flex rounded-lg border border-border p-0.5" role="group" aria-label="طريقة العرض">
+            {([["list", List, "قائمة"], ["board", Columns3, "لوحة"]] as const).map(([v, Icon, label]) => (
+              <button key={v} onClick={() => changeView(v)} aria-pressed={view === v}
+                className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${view === v ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>
+                <Icon className="h-3.5 w-3.5" /> {label}
+              </button>
+            ))}
+          </div>
+        )}
+        {leads.length > 0 && (
           <Button variant="outline" size="sm" onClick={exportCsv}>
             <Download className="h-4 w-4" /> تصدير CSV
           </Button>
         )}
       </div>
 
-      {leads.length > 0 && (
+      {leads.length > 0 && view === "list" && (
         <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
           {chips.map((c) => (
             <button
@@ -143,6 +163,11 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
           <p className="font-semibold text-muted-foreground">لا يوجد عملاء محتملون بعد</p>
           <p className="text-sm text-muted-foreground max-w-xs">عندما يضغط أحد على «اترك بياناتك للتواصل» في بطاقتك سيظهر هنا.</p>
         </div>
+      ) : view === "board" ? (
+        <LeadBoard
+          leads={leads.filter((l) => !q || l.name.toLowerCase().includes(q) || (l.phone ?? "").includes(q) || (l.email ?? "").toLowerCase().includes(q))}
+          onMove={(id, status) => { updateLead(id, { status }).then((ok) => ok && toast.success(`نُقل إلى «${LEAD_STATUS_LABELS[status]}»`)); }}
+        />
       ) : filtered.length === 0 ? (
         <p className="text-center text-muted-foreground py-12">لا توجد نتائج مطابقة.</p>
       ) : (

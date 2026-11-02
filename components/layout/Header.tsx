@@ -13,6 +13,7 @@ import Link from "next/link";
 import { ExternalLink, Sun, Moon } from "lucide-react";
 import { MobileNav } from "./MobileNav";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
   user: {
@@ -31,6 +32,9 @@ interface HeaderProps {
 export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProps) {
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
+  // The theme is only known in the browser; render a neutral icon until mounted.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   async function handleSignOut() {
     await signOut();
@@ -55,7 +59,7 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
           className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           aria-label="تبديل المظهر"
         >
-          {resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          {mounted && resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>
 
         {cardSlug && (

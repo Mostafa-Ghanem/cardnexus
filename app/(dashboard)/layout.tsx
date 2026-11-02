@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { getPlatformSettings } from "@/lib/platform";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
+import { LeadNotifier } from "@/components/layout/LeadNotifier";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -49,6 +50,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           logoUrl={settings.logoUrl}
         />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">{children}</main>
+        {card && <LeadNotifier />}
       </div>
     </div>
   );

@@ -18,7 +18,8 @@
     "build:hostinger:init": "node scripts/check-initial-setup.cjs && prisma db push --skip-generate && npm run build",
     "test:e2e": "node tests/e2e/api.mjs",
     "test:e2e:mobile": "node tests/e2e/mobile.cjs",
-    "test:e2e:english": "node tests/e2e/english.cjs"
+    "test:e2e:english": "node tests/e2e/english.cjs",
+    "test:e2e:studio": "node tests/e2e/studio.cjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",

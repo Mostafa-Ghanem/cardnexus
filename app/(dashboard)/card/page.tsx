@@ -8,16 +8,17 @@ import { CardEditor } from "@/components/card/CardEditor";
 import { QRCodeDisplay } from "@/components/card/QRCodeDisplay";
 import { CardSwitcher } from "@/components/card/CardSwitcher";
 import { ApprovalBanner } from "@/components/card/ApprovalBanner";
+import { OnboardingWizard } from "@/components/card/OnboardingWizard";
 import type { CardData } from "@/types";
 import Link from "next/link";
-import { BarChart2 } from "lucide-react";
+import { BarChart2, Printer } from "lucide-react";
 
 export const metadata = { title: "بطاقتي" };
 
 export default async function CardPage({
   searchParams,
 }: {
-  searchParams: Promise<{ card?: string }>;
+  searchParams: Promise<{ card?: string; advanced?: string }>;
 }) {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session!.user as {
@@ -28,7 +29,7 @@ export default async function CardPage({
     planExpiresAt?: Date;
   };
 
-  const { card: cardIdParam } = await searchParams;
+  const { card: cardIdParam, advanced } = await searchParams;
 
   const [rawCards, orgSettings, platformSettings] = await Promise.all([
     db.card.findMany({
@@ -64,6 +65,13 @@ export default async function CardPage({
     cards[0] ??
     null;
 
+  // First card: a short guided wizard instead of the full editor.
+  // Org members keep the full editor (their design may be locked by the org).
+  if (!activeCard && advanced !== "1" && !user.organizationId) {
+    const u = session!.user as { name?: string; email?: string };
+    return <OnboardingWizard userName={u.name ?? ""} userEmail={u.email ?? ""} userPlan={user.plan ?? "free"} />;
+  }
+
   const basePolicy = resolveDesignPolicy(orgSettings, activeCard?.department);
   const canEditLogo =
     !user.organizationId ||
@@ -85,6 +93,15 @@ export default async function CardPage({
         </div>
 
         <div className="flex items-center gap-2">
+          {activeCard && (
+            <Link
+              href={`/card/print?card=${activeCard.id}`}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+            >
+              <Printer className="h-4 w-4" />
+              اطبع كارتك
+            </Link>
+          )}
           {activeCard && (
             <Link
               href={`/analytics?cardId=${activeCard.id}`}
@@ -120,7 +137,10 @@ export default async function CardPage({
 
       {activeCard && (
         <div className="border-t border-border pt-8">
-          <h2 className="text-lg font-semibold mb-4">رمز QR</h2>
+          <div className="flex items-center justify-between gap-2 mb-4">
+            <h2 className="text-lg font-semibold">رمز QR</h2>
+            <Link href={`/card/print?card=${activeCard.id}&tab=qr`} className="text-sm text-primary hover:underline">صمّم رمزًا بهويتك ←</Link>
+          </div>
           <QRCodeDisplay slug={activeCard.slug} color={activeCard.primaryColor} />
         </div>
       )}

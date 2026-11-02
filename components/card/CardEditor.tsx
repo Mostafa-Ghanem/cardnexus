@@ -12,6 +12,7 @@ import { CardPreview } from "./CardPreview";
 import { DesignTab } from "./editor/DesignTab";
 import type { CardData, CustomLink, DesignPolicy } from "@/types";
 import { EnglishTab } from "./editor/EnglishTab";
+import { ExtrasTab } from "./editor/ExtrasTab";
 import { localizeCard } from "@/lib/card-i18n";
 import { whatsappDigits } from "@/lib/utils";
 import { Plus, Trash2, Save, Eye, GripVertical } from "lucide-react";
@@ -150,6 +151,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             <TabsTrigger value="social">السوشيال</TabsTrigger>
             <TabsTrigger value="design">التصميم</TabsTrigger>
             <TabsTrigger value="links">الروابط</TabsTrigger>
+            <TabsTrigger value="extras">إضافات</TabsTrigger>
             <TabsTrigger value="english">English</TabsTrigger>
           </TabsList>
 
@@ -386,6 +388,9 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                 <Plus className="h-4 w-4" /> إضافة رابط
               </Button>
             )}
+          </TabsContent>
+          <TabsContent value="extras">
+            <ExtrasTab value={card.extras} onChange={(v) => update("extras", v)} hasAddress={!!card.address?.trim()} />
           </TabsContent>
           <TabsContent value="english">
             <EnglishTab value={card.translations ?? null} onChange={(v) => update("translations", v)} />

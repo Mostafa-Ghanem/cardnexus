@@ -5,6 +5,8 @@ import { headers } from "next/headers";
 import { nanoid } from "nanoid";
 import { z } from "zod";
 import { translationsInput } from "@/lib/card-i18n";
+import { printDesignInput } from "@/lib/print-design";
+import { extrasInput } from "@/lib/card-extras";
 import { hashPassword } from "@/lib/password-hash";
 import { getPlanFeatures, effectivePlan } from "@/lib/plans";
 
@@ -89,6 +91,8 @@ const CardPatch = z.object({
   bookingUrl:          z.string().max(500).optional().nullable(),
   whatsapp:            z.string().max(50).optional().nullable(),
   translations:        translationsInput,
+  printDesign:         printDesignInput,
+  extras:              extrasInput,
 
   // expiry & password protection
   expiresAt:           z.string().datetime().optional().nullable(),

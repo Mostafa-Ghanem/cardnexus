@@ -12,6 +12,8 @@ interface ImageUploadProps {
   label?: string;
   shape?: "square" | "circle" | "wide";
   className?: string;
+  /** Called with the chosen file before it is uploaded (e.g. to read its colours). */
+  onFileSelected?: (file: File) => void;
 }
 
 export function ImageUpload({
@@ -20,6 +22,7 @@ export function ImageUpload({
   label = "رفع صورة",
   shape = "square",
   className,
+  onFileSelected,
 }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
@@ -27,6 +30,7 @@ export function ImageUpload({
   const inputRef = useRef<HTMLInputElement>(null);
 
   async function handleFile(file: File) {
+    onFileSelected?.(file);
     setUploading(true);
     setError("");
     try {

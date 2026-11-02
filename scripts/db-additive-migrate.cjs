@@ -20,6 +20,8 @@ const COLUMNS = [
   { table: "Lead",      column: "note",                    ddl: "TEXT NULL" },
   { table: "Card",      column: "whatsapp",                ddl: "VARCHAR(191) NULL" },
   { table: "Card",      column: "translations",            ddl: "TEXT NULL" },
+  { table: "Card",      column: "printDesign",             ddl: "TEXT NULL" },
+  { table: "Card",      column: "extras",                  ddl: "TEXT NULL" },
 ];
 
 const IDENT = /^[A-Za-z_][A-Za-z0-9_]*$/;

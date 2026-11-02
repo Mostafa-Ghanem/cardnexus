@@ -1,83 +1,62 @@
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
+import type { Metadata } from "next";
 import { db } from "@/lib/db";
-import type { CardData } from "@/types";
-import { CardPreview } from "@/components/card/CardPreview";
+import { auth } from "@/lib/auth";
+import { getPlatformSettings } from "@/lib/platform";
+import { effectivePlan } from "@/lib/plans";
+import { parsePrintDesign } from "@/lib/print-design";
+import { FREE_PRINT_DESIGNS } from "@/components/print/designs";
+import { PrintDocument, type PrintMode } from "@/components/print/PrintDocument";
+import { toPrintCard } from "@/lib/print-design";
 
-interface Props { params: Promise<{ slug: string }> }
+export const metadata: Metadata = { title: "طباعة الكارت", robots: { index: false } };
 
-export default async function PrintPage({ params }: Props) {
+interface Props {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ mode?: string; auto?: string }>;
+}
+
+export default async function PrintPage({ params, searchParams }: Props) {
   const { slug } = await params;
-  const raw = await db.card.findUnique({
+  const sp = await searchParams;
+  const card = await db.card.findUnique({
     where: { slug },
-    include: { user: { select: { name: true, email: true, plan: true } } },
+    include: { user: { select: { plan: true, planExpiresAt: true } } },
   });
+  if (!card) notFound();
 
-  if (!raw || !raw.isPublic) notFound();
+  // Public cards can be printed by anyone who has the link; private cards only by their owner.
+  if (!card.isPublic) {
+    const session = await auth.api.getSession({ headers: await headers() });
+    if (session?.user?.id !== card.userId) notFound();
+  }
 
-  const card = { ...raw, customLinks: JSON.parse(raw.customLinks) } as CardData;
-  const isPro = ["pro", "business"].includes(raw.user?.plan ?? "free");
+  const plan = effectivePlan(card.user?.plan ?? "free", card.user?.planExpiresAt);
+  const isFree = plan === "free";
+  let design = parsePrintDesign(card.printDesign);
+  let notice: string | null = null;
+  if (isFree && !FREE_PRINT_DESIGNS.includes(design.designId)) {
+    notice = "هذا التصميم متاح في باقة Pro، لذلك تمت الطباعة بالتصميم الكلاسيكي.";
+    design = { ...design, designId: "classic" };
+  }
+
+  let mode: PrintMode = sp.mode === "exact" || sp.mode === "sheet" ? sp.mode : "pro";
+  if (mode === "sheet" && isFree) {
+    mode = "pro";
+    notice = (notice ? notice + " " : "") + "لوح A4 متاح في باقة Pro.";
+  }
+
+  const settings = await getPlatformSettings();
 
   return (
-    <html lang="ar" dir="rtl">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>{card.firstName} {card.lastName} – بطاقة أعمال</title>
-        <style>{`
-          @page {
-            size: 85mm 54mm;
-            margin: 0;
-          }
-          * { box-sizing: border-box; margin: 0; padding: 0; }
-          body {
-            font-family: Arial, sans-serif;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 16px;
-          }
-          .card-wrap {
-            width: 100%;
-            max-width: 384px;
-          }
-          .no-print { display: flex; gap: 8px; margin-bottom: 16px; }
-          @media print {
-            .no-print { display: none !important; }
-            body { padding: 0; justify-content: flex-start; }
-          }
-          button {
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-            background: white;
-            cursor: pointer;
-            font-size: 14px;
-          }
-          button.primary {
-            background: #0f172a;
-            color: white;
-            border-color: #0f172a;
-          }
-        `}</style>
-        <link rel="stylesheet" href="/_next/static/css/app/layout.css" />
-      </head>
-      <body>
-        <div className="no-print">
-          <button onClick={() => window.print()} className="primary">طباعة / حفظ PDF</button>
-          <button onClick={() => window.close()}>إغلاق</button>
-        </div>
-        <div className="card-wrap">
-          <CardPreview card={card} />
-        </div>
-        {!isPro && (
-          <p style={{ marginTop: 12, fontSize: 10, color: '#9ca3af', textAlign: 'center' }}>
-            صُنعت بواسطة منصة بطاقات الأعمال الرقمية
-          </p>
-        )}
-      </body>
-    </html>
+    <PrintDocument
+      jobs={[{ card: toPrintCard(card), design }]}
+      mode={mode}
+      branding={isFree ? settings.appName : null}
+      backHref="/card/print"
+      autoPrint={sp.auto === "1"}
+      notice={notice}
+    />
   );
 }

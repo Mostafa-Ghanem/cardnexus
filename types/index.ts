@@ -68,6 +68,10 @@ export interface CardData {
   whatsapp?: string | null;
   /** JSON string, see lib/card-i18n.ts */
   translations?: string | null;
+  /** JSON string, see lib/print-design.ts */
+  printDesign?: string | null;
+  /** JSON string, see lib/card-extras.ts */
+  extras?: string | null;
   shadowStyle?: string | null;
   socialStyle?: string | null;
   avatarBorder?: string | null;

@@ -10,6 +10,8 @@ import { FaqSection } from "./FaqSection";
 import { getPlatformSettings } from "@/lib/platform";
 import { BrandMark } from "@/components/layout/BrandMark";
 import { formatPrice } from "@/lib/plans";
+import { HeroVisual } from "@/components/landing/HeroVisual";
+import { TemplatePlayground } from "@/components/landing/TemplatePlayground";
 
 // Re-read platform settings (name, logo, colours) at most once a minute.
 export const revalidate = 60;
@@ -26,7 +28,7 @@ const features = [
   { icon: Megaphone,    title: "تتبع الحملات",          desc: "روابط UTM للمعارض والفعاليات بإحصائيات نقرات مستقلة." },
   { icon: Mail,         title: "توقيع البريد",          desc: "توقيع احترافي لـ Gmail وOutlook وApple Mail." },
   { icon: CalendarDays, title: "حجز المواعيد",          desc: "رابط حجز مباشر عبر Calendly أو Cal.com أو رابطك الخاص." },
-  { icon: Download,     title: "تصدير PDF وطباعة",      desc: "صدّر بطاقتك PDF أو جهّزها للطباعة." },
+  { icon: Download,     title: "استوديو الطباعة",       desc: "12 تصميمًا للكارت الورقي بوجهين، PDF جاهز للمطبعة بهوامش قص، ولوح A4." },
   { icon: FileText,     title: "جمع العملاء المحتملين",  desc: "الزائر يترك اسمه وجواله وبريده، وتوصلك فورًا في لوحة التحكم." },
   { icon: Shield,       title: "خصوصية بياناتك",        desc: "بدون متتبعات إعلانية، وبياناتك وبيانات عملائك ملكك وحدك." },
   { icon: Zap,          title: "علامتك الخاصة",         desc: "دومين خاص وهوية خاصة بدون شارة المنصة." },
@@ -41,9 +43,9 @@ const steps = [
 const planList = [PLANS.free, PLANS.pro, PLANS.business];
 
 const PLAN_FEATURES: Record<string, string[]> = {
-  free:     ["بطاقة رقمية واحدة", "رمز QR وتنزيل جهة الاتصال", "جمع العملاء المحتملين", "4 قوالب", `حتى ${PLANS.free.features.maxCustomLinks} روابط مخصصة`, `إحصائيات (${PLANS.free.features.analyticsRetention} يومًا)`],
-  pro:      ["جميع القوالب", "بدون شارة المنصة", "دومين خاص", "تصدير PDF وطباعة", "تتبع الحملات", "رابط حجز المواعيد", "تنبيهات الإنجازات", `إحصائيات (${PLANS.pro.features.analyticsRetention} يومًا)`],
-  business: ["كل مزايا Pro", "إدارة الفريق والأقسام", "استيراد CSV جماعي", "قالب موحّد للمؤسسة", "دليل الفريق", `إحصائيات (${PLANS.business.features.analyticsRetention} يومًا)`],
+  free:     ["بطاقة رقمية واحدة", "رمز QR وتنزيل جهة الاتصال", "جمع العملاء المحتملين", "4 قوالب", "3 تصاميم للطباعة (PDF)", `حتى ${PLANS.free.features.maxCustomLinks} روابط مخصصة`, `إحصائيات (${PLANS.free.features.analyticsRetention} يومًا)`],
+  pro:      ["جميع القوالب", "بدون شارة المنصة", "دومين خاص", "كل تصاميم الطباعة + لوح A4", "تتبع الحملات", "رابط حجز المواعيد", "تنبيهات الإنجازات", `إحصائيات (${PLANS.pro.features.analyticsRetention} يومًا)`],
+  business: ["كل مزايا Pro", "إدارة الفريق والأقسام", "استيراد CSV جماعي", "طباعة كروت الفريق دفعة واحدة", "قالب موحّد للمؤسسة", "دليل الفريق", `إحصائيات (${PLANS.business.features.analyticsRetention} يومًا)`],
 };
 
 export default async function LandingPage() {
@@ -78,59 +80,77 @@ export default async function LandingPage() {
       </nav>
 
       {/* ── Hero ────────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-950 px-4 py-1.5 text-sm text-gray-600 dark:text-gray-400 mb-8">
-          <Zap className="h-3.5 w-3.5 text-amber-500" />
-          بطاقة الأعمال الرقمية للجيل الجديد
-        </div>
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6">
-          بطاقتك.
-          <br />
-          <span className="text-gray-400">تتشارك في ثوانٍ.</span>
-        </h1>
-        <p className="mx-auto max-w-2xl text-xl text-gray-500 dark:text-gray-400 mb-10 leading-relaxed">
-          أنشئ بطاقتك الرقمية وشاركها عبر NFC أو رمز QR أو رابط، واجمع بيانات عملائك المحتملين وتابع الإحصائيات وأدر فريقك من مكان واحد.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Button asChild size="lg">
-            <Link href="/register">
-              ابدأ الآن مجانًا
-              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-            </Link>
-          </Button>
-          {DEMO_SLUG && (
-            <Button asChild variant="outline" size="lg">
-              <Link href={`/c/${DEMO_SLUG}`}>شاهد مثالًا حيًّا</Link>
-            </Button>
-          )}
-        </div>
-
-        {/* Mock card */}
-        <div className="mt-20 relative max-w-sm mx-auto">
-          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
-            <div className="h-1.5 bg-gray-900" />
-            <div className="p-8">
-              <div className="flex items-start gap-4 mb-5">
-                <div className="h-16 w-16 rounded-full bg-gray-900 flex items-center justify-center text-white font-bold text-lg shrink-0">أح</div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">أحمد حسن</h3>
-                  <p className="text-sm font-medium text-gray-500">مدير المبيعات</p>
-                  <p className="text-sm text-gray-400">شركة الريادة العقارية</p>
-                </div>
-              </div>
-              <div className="space-y-2 text-sm text-gray-600">
-                {["+966 50 123 4567", "ahmed@example.com", "example.com"].map((v) => (
-                  <div key={v} className="flex items-center gap-2">
-                    <div className="h-7 w-7 rounded-full bg-gray-100 flex items-center justify-center">
-                      <div className="h-2 w-2 rounded-full bg-gray-400" />
-                    </div>
-                    {v}
-                  </div>
-                ))}
-              </div>
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_70%_0%,hsl(var(--primary)/0.12),transparent_70%)]" />
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-14 pb-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:pt-20">
+          <div className="text-center lg:text-start stagger">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-950 px-4 py-1.5 text-sm text-gray-600 dark:text-gray-400 mb-6">
+              <Zap className="h-3.5 w-3.5 text-amber-500" />
+              رقمية ومطبوعة · بهوية شركتك
             </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] mb-6">
+              بطاقة أعمال
+              <br />
+              <span className="bg-gradient-to-l from-primary to-emerald-500 bg-clip-text text-transparent">تجيب لك عملاء</span>
+            </h1>
+            <p className="mx-auto max-w-xl text-lg text-gray-500 dark:text-gray-400 mb-8 leading-relaxed lg:mx-0">
+              شارك بياناتك بـ NFC أو QR أو رابط، يحفظ العميل رقمك بضغطة، ويترك بياناته فتصلك فورًا على لوحتك وتيليجرام. واطبع كارتك الورقي بتصاميم جاهزة للمطبعة.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+              <Button asChild size="lg" className="h-12 px-6 text-base shadow-lg shadow-primary/25">
+                <Link href="/register">
+                  أنشئ بطاقتك مجانًا
+                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                </Link>
+              </Button>
+              {DEMO_SLUG ? (
+                <Button asChild variant="outline" size="lg" className="h-12">
+                  <Link href={`/c/${DEMO_SLUG}`}>شاهد مثالًا حيًّا</Link>
+                </Button>
+              ) : (
+                <Button asChild variant="outline" size="lg" className="h-12">
+                  <a href="#try">جرّب القوالب الآن</a>
+                </Button>
+              )}
+            </div>
+            <ul className="mt-8 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
+              {["بدون تطبيق", "جاهزة في دقيقة", "عربي وإنجليزي"].map((t) => (
+                <li key={t} className="flex items-center gap-1.5"><Check className="h-4 w-4 text-primary" />{t}</li>
+              ))}
+            </ul>
           </div>
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
+          <HeroVisual />
+        </div>
+      </section>
+
+      {/* ── Playground ──────────────────────────────────────────────────── */}
+      <section id="try" className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">جرّبها باسمك قبل التسجيل</h2>
+          <p className="text-gray-500 dark:text-gray-400">اكتب اسمك واختر لونك، وشاهد بطاقتك في كل القوالب فورًا.</p>
+        </div>
+        <TemplatePlayground />
+      </section>
+
+      {/* ── Paper vs digital ────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-border p-6">
+            <p className="text-sm font-semibold text-gray-400 mb-4">الكارت الورقي وحده</p>
+            <ul className="space-y-3 text-sm text-gray-500 dark:text-gray-400">
+              {["يضيع في الدرج ولا يُحفظ في الجوال", "أي تغيير في رقمك يعني طباعة من جديد", "لا تعرف من اهتم ومن تجاهل", "بيانات العميل لا تصلك أبدًا"].map((t) => (
+                <li key={t} className="flex gap-2"><span className="text-rose-400">✕</span>{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border-2 border-primary/40 bg-primary/5 p-6">
+            <p className="text-sm font-semibold text-primary mb-4">{s.appName}: مطبوع + رقمي</p>
+            <ul className="space-y-3 text-sm">
+              {["يحفظ رقمك في جهات الاتصال بضغطة", "عدّل بياناتك متى شئت، والرمز المطبوع لا يتغير", "إحصائيات زيارات ومسح وحفظ", "العميل يترك بياناته وتصلك فورًا"].map((t) => (
+                <li key={t} className="flex gap-2"><Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />{t}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

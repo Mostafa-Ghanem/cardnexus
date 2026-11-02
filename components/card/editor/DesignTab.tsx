@@ -14,6 +14,9 @@ import {
   SOCIAL_STYLE_OPTIONS, AVATAR_BORDER_OPTIONS, BG_OPTIONS,
 } from "./editorConstants";
 import { DomainSection } from "./DomainSection";
+import { useState } from "react";
+import { extractPalette, readableOnWhite } from "@/lib/color-extract";
+import { Sparkles } from "lucide-react";
 
 interface Props {
   card: Partial<CardData>;
@@ -34,6 +37,11 @@ function LockedBadge() {
 
 export function DesignTab({ card, update, policy, allTemplates, allowedDomains, canCustomDomain }: Props) {
   const hasBrandColors = policy.brandColors.length > 0;
+  const [logoPalette, setLogoPalette] = useState<string[]>([]);
+  async function suggestFromLogo(src: File | string) {
+    const colors = await extractPalette(src);
+    setLogoPalette(colors);
+  }
 
   return (
     <div className="space-y-8">
@@ -262,8 +270,28 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
           {!policy.canEditLogo && <LockedBadge />}
         </div>
         {policy.canEditLogo ? (
-          <ImageUpload value={card.logoUrl} onChange={(url) => update("logoUrl", url)}
-            label="رفع الشعار" shape="wide" className="h-20" />
+          <>
+            <ImageUpload value={card.logoUrl} onChange={(url) => update("logoUrl", url)}
+              label="رفع الشعار" shape="wide" className="h-20" onFileSelected={suggestFromLogo} />
+            {policy.allowColorChange && card.logoUrl && logoPalette.length === 0 && (
+              <Button type="button" variant="ghost" size="sm" onClick={() => suggestFromLogo(card.logoUrl!)}>
+                <Sparkles className="h-3.5 w-3.5" /> اقترح ألوانًا من الشعار
+              </Button>
+            )}
+            {policy.allowColorChange && logoPalette.length > 0 && (
+              <div className="rounded-lg bg-muted/50 p-3 space-y-2">
+                <p className="text-xs font-medium flex items-center gap-1"><Sparkles className="h-3.5 w-3.5 text-primary" /> ألوان من شعارك — اضغط لتطبيقها</p>
+                <div className="flex flex-wrap gap-2">
+                  {logoPalette.map((c, i) => (
+                    <button key={c} type="button" title={c}
+                      onClick={() => { update("primaryColor", readableOnWhite(c)); const other = logoPalette[i === 0 ? 1 : 0]; if (other) update("accentColor", other); }}
+                      className="h-9 w-9 rounded-full border-2 border-white shadow ring-1 ring-border transition-transform hover:scale-110"
+                      style={{ backgroundColor: c }} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         ) : (
           card.logoUrl
             ? <img src={card.logoUrl} alt="الشعار" className="h-10 w-auto max-w-[120px] object-contain opacity-60" />

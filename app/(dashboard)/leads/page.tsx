@@ -25,7 +25,7 @@ export default async function LeadsPage() {
     : [];
 
   return (
-    <div className="space-y-8 max-w-4xl">
+    <div className="space-y-8 max-w-6xl">
       <div>
         <h1 className="text-2xl font-bold">العملاء المحتملون</h1>
         <p className="text-muted-foreground mt-1">

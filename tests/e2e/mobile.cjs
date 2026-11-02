@@ -18,7 +18,7 @@ const OUT = process.argv[2] ?? ".";
   await page.click('button[type=submit]'); await page.waitForURL("**/dashboard", { timeout: 20000 });
   await page.screenshot({ path: `${OUT}/2-dashboard.png` });
   // create card through UI editor
-  await page.goto(B + "/card"); await page.waitForLoadState("networkidle");
+  await page.goto(B + "/card?advanced=1"); await page.waitForLoadState("networkidle");
   const first = page.locator('input[autocomplete="given-name"]');
   await first.fill("منى"); await page.locator('input[autocomplete="family-name"]').fill("علي");
   await page.getByRole("tab", { name: "التواصل" }).click();

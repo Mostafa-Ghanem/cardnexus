@@ -94,3 +94,29 @@
 ::-webkit-scrollbar-track { @apply bg-transparent; }
 ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
 ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground; }
+
+/* ─── Motion (respects reduced-motion) ─────────────────────────────────── */
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.12); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); } 50% { transform: translateY(-10px) rotate(var(--r, 0deg)); } }
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(520px) rotate(540deg); opacity: 0; }
+}
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+.animate-rise { animation: rise 0.45s cubic-bezier(.2,.7,.2,1) both; }
+.animate-pop { animation: pop 0.5s cubic-bezier(.2,.7,.2,1) both; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.stagger > * { animation: rise 0.5s cubic-bezier(.2,.7,.2,1) both; }
+.stagger > *:nth-child(1) { animation-delay: .04s } .stagger > *:nth-child(2) { animation-delay: .1s }
+.stagger > *:nth-child(3) { animation-delay: .16s } .stagger > *:nth-child(4) { animation-delay: .22s }
+.stagger > *:nth-child(5) { animation-delay: .28s } .stagger > *:nth-child(6) { animation-delay: .34s }
+.stagger > *:nth-child(7) { animation-delay: .4s }  .stagger > *:nth-child(n+8) { animation-delay: .46s }
+.confetti-piece {
+  position: absolute; top: -12px; width: 8px; height: 14px; border-radius: 2px;
+  animation-name: confetti-fall; animation-timing-function: cubic-bezier(.3,.6,.4,1); animation-fill-mode: both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise, .animate-pop, .animate-float, .stagger > *, .confetti-piece { animation: none !important; }
+  .confetti-piece { display: none; }
+}

@@ -246,6 +246,10 @@ model Card {
   whatsapp    String?
   // Second-language version, JSON: {"en": {firstName,lastName,title,company,department,bio,address}}
   translations String? @db.Text
+  // Printed business card settings, JSON (see lib/print-design.ts)
+  printDesign  String? @db.Text
+  // Public page extras, JSON: gallery, video, opening hours, map (see lib/card-extras.ts)
+  extras       String? @db.Text
 
   // Booking
   bookingUrl  String? @db.Text // appointment booking URL (Cal.com, Calendly, etc.)

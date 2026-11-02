@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CardPreview } from "@/components/card/CardPreview";
 import { QRCodeDisplay } from "@/components/card/QRCodeDisplay";
 import { Button } from "@/components/ui/button";
 import type { CardData } from "@/types";
 import { Download, Share2, QrCode, Wallet, X, Loader2, UserPlus, CalendarDays, Mail, MessageCircle } from "lucide-react";
 import { LeadModal } from "./LeadModal";
+import { CardExtrasView } from "./Extras";
 import { whatsappDigits } from "@/lib/utils";
 import { hasEnglish, localizeCard, type CardLang } from "@/lib/card-i18n";
 
@@ -72,6 +73,16 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
   const shown = localizeCard(card, lang);
   const waNumber = whatsappDigits(card.whatsapp) ?? whatsappDigits(card.mobile);
   const T = UI[lang];
+  // Sticky "save / WhatsApp" bar once the main buttons have scrolled away (mobile).
+  const actionsRef = useRef<HTMLDivElement>(null);
+  const [showSticky, setShowSticky] = useState(false);
+  useEffect(() => {
+    const el = actionsRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([e]) => setShowSticky(!e.isIntersecting && e.boundingClientRect.top < 0));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   // Open the English version for ?lang=en or non-Arabic browsers.
   useEffect(() => {
@@ -217,7 +228,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center py-6 sm:py-8 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center py-6 sm:py-8 px-4 pb-24 sm:pb-8">
       {/* Card */}
       <div className="w-full max-w-sm">
         {bilingual && (
@@ -237,13 +248,13 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
             </div>
           </div>
         )}
-        <div dir={lang === "en" ? "ltr" : "rtl"} lang={lang}>
+        <div dir={lang === "en" ? "ltr" : "rtl"} lang={lang} className="animate-rise">
           <CardPreview card={shown} lang={lang} />
         </div>
       </div>
 
       {/* Action buttons */}
-      <div className="mt-6 w-full max-w-sm flex flex-col gap-2" dir={lang === "en" ? "ltr" : "rtl"}>
+      <div ref={actionsRef} className="mt-6 w-full max-w-sm flex flex-col gap-2 stagger" dir={lang === "en" ? "ltr" : "rtl"}>
         <Button
           onClick={downloadVCard}
           className="w-full font-semibold shadow-sm"
@@ -324,6 +335,34 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           }
         </Button>
         )}
+      </div>
+
+      <CardExtrasView extras={card.extras} address={shown.address} color={card.primaryColor} lang={lang} />
+
+      {/* Sticky actions (mobile, after scrolling past the main buttons) */}
+      <div
+        className={`fixed inset-x-0 bottom-0 z-40 border-t border-border bg-white/95 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur transition-transform duration-300 dark:bg-gray-950/95 sm:hidden ${showSticky ? "translate-y-0" : "translate-y-full"}`}
+        dir={lang === "en" ? "ltr" : "rtl"}
+        aria-hidden={!showSticky}
+      >
+        <div className="mx-auto flex max-w-sm gap-2">
+          <Button onClick={downloadVCard} disabled={downloading} tabIndex={showSticky ? 0 : -1}
+            className="flex-1 font-semibold" style={{ backgroundColor: card.primaryColor, borderColor: card.primaryColor }}>
+            {downloading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />} {T.save}
+          </Button>
+          {waNumber && (
+            <Button onClick={openWhatsApp} tabIndex={showSticky ? 0 : -1} aria-label={T.whatsapp}
+              className="bg-[#25D366] hover:bg-[#1ebe5b] text-white px-4">
+              <MessageCircle className="h-5 w-5" />
+            </Button>
+          )}
+          {showLeadForm && (
+            <Button variant="outline" onClick={() => setShowLead(true)} tabIndex={showSticky ? 0 : -1} aria-label={T.lead}
+              className="px-4" style={{ borderColor: card.primaryColor, color: card.primaryColor }}>
+              <UserPlus className="h-5 w-5" />
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* QR overlay */}
