@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -14,7 +14,7 @@ model user {
   name          String
   email         String    @unique
   emailVerified Boolean
-  image         String?
+  image         String? @db.Text
   createdAt     DateTime
   updatedAt     DateTime
 
@@ -65,7 +65,7 @@ model twoFactor {
   userId      String
   user        user   @relation(fields: [userId], references: [id], onDelete: Cascade)
   secret      String
-  backupCodes String
+  backupCodes String @db.Text
   verified    Boolean @default(true)
 
   @@index([secret])
@@ -80,7 +80,7 @@ model session {
   token     String   @unique
   expiresAt DateTime
   ipAddress String?
-  userAgent String?
+  userAgent String? @db.Text
   createdAt DateTime
   updatedAt DateTime
 
@@ -93,9 +93,9 @@ model account {
   user                 user      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accountId            String
   providerId           String
-  accessToken          String?
-  refreshToken         String?
-  idToken              String?
+  accessToken          String? @db.Text
+  refreshToken         String? @db.Text
+  idToken              String? @db.Text
   accessTokenExpiresAt DateTime?
   refreshTokenExpiresAt DateTime?
   scope                String?
@@ -110,7 +110,7 @@ model account {
 model verification {
   id         String   @id
   identifier String
-  value      String
+  value      String @db.Text
   expiresAt  DateTime
   createdAt  DateTime
   updatedAt  DateTime
@@ -147,7 +147,7 @@ model OrganizationSettings {
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   // Branding defaults
-  cardFooterText      String?
+  cardFooterText      String? @db.Text
   defaultTemplate     String  @default("classic")
   defaultFontFamily   String  @default("inter")
   defaultLayoutStyle  String  @default("standard")
@@ -160,21 +160,21 @@ model OrganizationSettings {
   allowMemberLayoutChange   Boolean @default(true)
 
   // Brand kit: JSON string[] of hex colors the org endorses
-  brandColors String? // e.g. '["#0F172A","#2563EB","#16A34A"]'
+  brandColors String? @db.Text // e.g. '["#0F172A","#2563EB","#16A34A"]'
 
   // Per-department overrides: JSON Record<deptName, DeptPolicy>
   // DeptPolicy: { allowTemplateChange?, allowColorChange?, allowFontChange?, allowLayoutChange? }
-  departmentPolicies String?
+  departmentPolicies String? @db.Text
 
   // Features
   walletEnabled          Boolean @default(false)
   analyticsEnabled       Boolean @default(true)
   leadCaptureEnabled     Boolean @default(false)
   teamDirectoryEnabled   Boolean @default(true)
-  templateCardData       String? // JSON: default card values for new members
+  templateCardData       String? @db.Text // JSON: default card values for new members
 
   // Integrations
-  webhookUrl             String?  // legacy single webhook URL (kept for simplicity)
+  webhookUrl             String? @db.Text // legacy single webhook URL (kept for simplicity)
   managerApproval        Boolean  @default(false)
 }
 
@@ -193,8 +193,8 @@ model Card {
   title      String?
   company    String?
   department String?
-  bio        String?
-  avatarUrl  String?
+  bio        String? @db.Text
+  avatarUrl  String? @db.Text
   pronouns   String?  // e.g. "er/ihm", "she/her", "they/them"
   gender     String?  // vCard 4.0 GENDER: M | F | O | N | U or free text
   birthday   String?  // ISO date YYYY-MM-DD
@@ -204,19 +204,19 @@ model Card {
   mobile  String?
   fax     String?
   email   String?
-  website String?
-  address String?
+  website String? @db.Text
+  address String? @db.Text
 
   // Social
-  linkedin  String?
-  xing      String?
-  twitter   String?
-  instagram String?
-  github    String?
-  youtube   String?
+  linkedin  String? @db.Text
+  xing      String? @db.Text
+  twitter   String? @db.Text
+  instagram String? @db.Text
+  github    String? @db.Text
+  youtube   String? @db.Text
 
   // Custom links (JSON array: [{label, url}])
-  customLinks String @default("[]")
+  customLinks String @db.Text // Card create endpoints always supply "[]" (portable across MySQL/MariaDB)
 
   // Appearance
   templateId     String  @default("classic")
@@ -226,20 +226,20 @@ model Card {
   layoutStyle    String  @default("standard") // standard | centered | compact
   roundedStyle   String  @default("default")  // default | sharp | pill
   showQrOnCard   Boolean @default(false)
-  coverUrl       String?
+  coverUrl       String? @db.Text
 
   // Extended appearance
   shadowStyle    String  @default("md")      // none | sm | md | lg | xl
   socialStyle    String  @default("icons")   // icons | outline | minimal
   avatarBorder   String  @default("none")    // none | ring | glow
   cardBackground String  @default("white")   // white | tinted | gradient
-  logoUrl        String?                     // org logo (admin-controlled) or personal logo
+  logoUrl        String? @db.Text // org logo (admin-controlled) or personal logo
 
   // Directory
   showInTeamDirectory Boolean @default(true)
 
   // Booking
-  bookingUrl  String?  // appointment booking URL (Cal.com, Calendly, etc.)
+  bookingUrl  String? @db.Text // appointment booking URL (Cal.com, Calendly, etc.)
 
   // Visibility
   hideShareButton Boolean @default(false)
@@ -291,7 +291,7 @@ model Lead {
   name      String
   email     String?
   phone     String?
-  message   String?
+  message   String? @db.Text
   createdAt DateTime @default(now())
 
   @@index([cardId])
@@ -315,7 +315,7 @@ model CardAnalytic {
   device    String?  // mobile | desktop | tablet
   browser   String?  // Chrome | Firefox | Safari | Edge | ...
   os        String?  // Windows | macOS | iOS | Android | Linux | ...
-  referrer  String?  // document.referrer domain
+  referrer  String? @db.Text // document.referrer domain
   language  String?  // Accept-Language primary tag
 
   // UTM/campaign attribution. Captured on `view` events whenever the visitor
@@ -349,12 +349,12 @@ model PlatformSettings {
   id             String  @id @default("main")
   appName        String  @default("FreddieCard")
   appUrl         String  @default("http://localhost:3000")
-  faviconUrl     String?
-  logoUrl        String?
+  faviconUrl     String? @db.Text
+  logoUrl        String? @db.Text
   primaryColor   String  @default("#0F172A")
   supportEmail   String?
   footerText     String?
-  allowedDomains String? // JSON array of allowed domain strings
+  allowedDomains String? @db.Text // JSON array of allowed domain strings
 }
 
 model Notification {
