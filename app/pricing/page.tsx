@@ -28,8 +28,8 @@ export default function PricingPage() {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">Einfache, faire Preise</h1>
-          <p className="text-lg text-gray-500 mt-3">Starte kostenlos. Upgrade wenn du bereit bist.</p>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100"><T text={"Einfache, faire Preise"} /></h1>
+          <p className="text-lg text-gray-500 mt-3"><T text={"Starte kostenlos. Upgrade wenn du bereit bist."} /></p>
         </div>
 
         {/* Plan cards */}
@@ -47,9 +47,7 @@ export default function PricingPage() {
               >
                 {plan.highlight && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                      Beliebteste Wahl
-                    </span>
+                    <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full"><T text={"Beliebteste Wahl"} /></span>
                   </div>
                 )}
 
@@ -57,7 +55,7 @@ export default function PricingPage() {
                   <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{plan.name}</p>
                   <div className="mt-2 flex items-end gap-1">
                     {plan.monthlyPrice === 0 ? (
-                      <span className="text-4xl font-bold text-gray-900 dark:text-gray-100">Kostenlos</span>
+                      <span className="text-4xl font-bold text-gray-900 dark:text-gray-100"><T text={"Kostenlos"} /></span>
                     ) : (
                       <>
                         <span className="text-4xl font-bold text-gray-900 dark:text-gray-100">{plan.monthlyPrice} €</span>
@@ -66,9 +64,7 @@ export default function PricingPage() {
                     )}
                   </div>
                   {plan.yearlyPrice > 0 && (
-                    <p className="text-xs text-muted-foreground mt-1">
-                      oder {plan.yearlyPrice} €/Monat bei Jahreszahlung
-                    </p>
+                    <p className="text-xs text-muted-foreground mt-1"><T text={"oder"} />{plan.yearlyPrice}<T text={"€/Monat bei Jahreszahlung"} /></p>
                   )}
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-2"><T text={plan.description} /></p>
                 </div>
@@ -106,9 +102,8 @@ export default function PricingPage() {
           })}
         </div>
 
-        <p className="text-center text-sm text-gray-400 dark:text-gray-500">
-          Alle Preise zzgl. MwSt. · Jederzeit kündbar · Fragen?{" "}
-          <a href="mailto:support@cardnexus.app" className="underline hover:text-gray-600 dark:hover:text-gray-400">Kontakt</a>
+        <p className="text-center text-sm text-gray-400 dark:text-gray-500"><T text={"Alle Preise zzgl. MwSt. · Jederzeit kündbar · Fragen?"} />{" "}
+          <a href="mailto:support@cardnexus.app" className="underline hover:text-gray-600 dark:hover:text-gray-400"><T text={"Kontakt"} /></a>
         </p>
       </div>
     </div>

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState, useEffect } from "react";
 import { Download } from "lucide-react";
@@ -39,9 +41,7 @@ export function QRCodeDisplay({ slug, color = "#000000", size = 200 }: QRCodeDis
         />
       </div>
       <Button variant="outline" size="sm" onClick={downloadQR}>
-        <Download className="h-4 w-4" />
-        QR-Code herunterladen
-      </Button>
+        <Download className="h-4 w-4" /><T text={"QR-Code herunterladen"} /></Button>
     </div>
   );
 }

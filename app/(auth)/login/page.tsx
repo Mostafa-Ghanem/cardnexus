@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -43,13 +45,13 @@ export default function LoginPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Willkommen zurück</CardTitle>
-        <CardDescription>Melde dich mit deinem Account an.</CardDescription>
+        <CardTitle><T text={"Willkommen zurück"} /></CardTitle>
+        <CardDescription><T text={"Melde dich mit deinem Account an."} /></CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="email">E-Mail</Label>
+            <Label htmlFor="email"><T text={"E-Mail"} /></Label>
             <Input
               id="email"
               type="email"
@@ -61,7 +63,7 @@ export default function LoginPage() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="password">Passwort</Label>
+            <Label htmlFor="password"><T text={"Passwort"} /></Label>
             <Input
               id="password"
               type="password"
@@ -80,14 +82,9 @@ export default function LoginPage() {
           <Link
             href="/forgot-password"
             className="text-xs text-muted-foreground hover:text-foreground hover:underline text-center"
-          >
-            Passwort vergessen?
-          </Link>
-          <p className="text-sm text-muted-foreground text-center">
-            Noch kein Account?{" "}
-            <Link href="/register" className="text-foreground font-medium hover:underline">
-              Registrieren
-            </Link>
+          ><T text={"Passwort vergessen?"} /></Link>
+          <p className="text-sm text-muted-foreground text-center"><T text={"Noch kein Account?"} />{" "}
+            <Link href="/register" className="text-foreground font-medium hover:underline"><T text={"Registrieren"} /></Link>
           </p>
         </CardFooter>
       </form>

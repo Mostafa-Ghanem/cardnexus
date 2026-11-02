@@ -1,0 +1,8647 @@
+[
+  {
+    "text": "-Header.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 111
+      }
+    ]
+  },
+  {
+    "text": "-Plan",
+    "sites": [
+      {
+        "file": "components/plan/UpgradePrompt.tsx",
+        "kind": "jsx",
+        "line": 38
+      }
+    ]
+  },
+  {
+    "text": "– Digitale Visitenkarten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 88
+      }
+    ]
+  },
+  {
+    "text": "— Kein Admin —",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 232
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 234
+      }
+    ]
+  },
+  {
+    "text": "— Keine —",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 193
+      }
+    ]
+  },
+  {
+    "text": ", hier mit Klicks aus dem Redirect-Counter.",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 312
+      }
+    ]
+  },
+  {
+    "text": ", um die Reihenfolge zu ändern.",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 286
+      }
+    ]
+  },
+  {
+    "text": ". Jeder Link mit UTM-Parametern erscheint hier — auch ohne eigenen Kampagnen-Eintrag.",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 270
+      }
+    ]
+  },
+  {
+    "text": ". Optionale Felder:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 82
+      }
+    ]
+  },
+  {
+    "text": "„Digitale Visitenkarte\"-Button",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 166
+      }
+    ]
+  },
+  {
+    "text": "(bis",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 62
+      }
+    ]
+  },
+  {
+    "text": "(HMAC-SHA256).",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 93
+      }
+    ]
+  },
+  {
+    "text": "(Ich)",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 178
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 98
+      }
+    ]
+  },
+  {
+    "text": "(kein Foto hinterlegt)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 155
+      }
+    ]
+  },
+  {
+    "text": "(Mobil)",
+    "sites": [
+      {
+        "file": "components/card/templates/Classic.tsx",
+        "kind": "jsx",
+        "line": 83
+      },
+      {
+        "file": "components/card/templates/Elegant.tsx",
+        "kind": "jsx",
+        "line": 79
+      }
+    ]
+  },
+  {
+    "text": "(oder",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "text": "(optional)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 100
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 112
+      }
+    ]
+  },
+  {
+    "text": "(Pro)",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 259
+      }
+    ]
+  },
+  {
+    "text": "(vCard)",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 178
+      }
+    ]
+  },
+  {
+    "text": "(z.B. rechtlicher Hinweis)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 171
+      }
+    ]
+  },
+  {
+    "text": "&copy;",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 256
+      }
+    ]
+  },
+  {
+    "text": "&ldquo;",
+    "sites": [
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "jsx",
+        "line": 91
+      }
+    ]
+  },
+  {
+    "text": "&rdquo;",
+    "sites": [
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "jsx",
+        "line": 91
+      }
+    ]
+  },
+  {
+    "text": "© 2025 Meine Firma. Alle Rechte vorbehalten.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 190
+      }
+    ]
+  },
+  {
+    "text": "← Zurück",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 180
+      }
+    ]
+  },
+  {
+    "text": "✓ Zahlung erfolgreich! Dein Plan wurde aktualisiert.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 69
+      }
+    ]
+  },
+  {
+    "text": "€/Monat bei Jahreszahlung",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 67
+      }
+    ]
+  },
+  {
+    "text": "2FA aktivieren",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 167
+      }
+    ]
+  },
+  {
+    "text": "2FA aktiviert ✓",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 268
+      }
+    ]
+  },
+  {
+    "text": "2FA deaktivieren",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 139
+      }
+    ]
+  },
+  {
+    "text": "A-Eintrag",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 58
+      }
+    ]
+  },
+  {
+    "text": "Abbrechen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 199
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 247
+      },
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 333
+      },
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 203
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 116
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 242
+      },
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 159
+      },
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 189
+      },
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 259
+      }
+    ]
+  },
+  {
+    "text": "abgelaufen",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 327
+      }
+    ]
+  },
+  {
+    "text": "Abgelaufen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 120
+      }
+    ]
+  },
+  {
+    "text": "Ablaufdatum (optional)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 92
+      }
+    ]
+  },
+  {
+    "text": "Ablaufdatum setzen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "attribute:title",
+        "line": 255
+      }
+    ]
+  },
+  {
+    "text": "Ablehnen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 344
+      }
+    ]
+  },
+  {
+    "text": "Ablehnungsgrund (optional)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 349
+      }
+    ]
+  },
+  {
+    "text": "Abmelden",
+    "sites": [
+      {
+        "file": "components/layout/Header.tsx",
+        "kind": "jsx",
+        "line": 108
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "jsx",
+        "line": 163
+      }
+    ]
+  },
+  {
+    "text": "Abteilung",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 213
+      },
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 161
+      }
+    ]
+  },
+  {
+    "text": "Abteilungsname z.B. Marketing",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "attribute:placeholder",
+        "line": 242
+      }
+    ]
+  },
+  {
+    "text": "Abteilungsregeln",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 203
+      }
+    ]
+  },
+  {
+    "text": "Access Log",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 62
+      },
+      {
+        "file": "app/(admin)/admin/access-log/page.tsx",
+        "kind": "property:title",
+        "line": 7
+      },
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "property:label",
+        "line": 13
+      }
+    ]
+  },
+  {
+    "text": "Account",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 170
+      }
+    ]
+  },
+  {
+    "text": "Account endgültig löschen",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 185
+      }
+    ]
+  },
+  {
+    "text": "Account erstellen",
+    "sites": [
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "jsx",
+        "line": 59
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 28
+      }
+    ]
+  },
+  {
+    "text": "Account löschen",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 176
+      }
+    ]
+  },
+  {
+    "text": "Account und Organisations-Einstellungen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 164
+      }
+    ]
+  },
+  {
+    "text": "Account wirklich löschen?",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 189
+      }
+    ]
+  },
+  {
+    "text": "ACME GmbH",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 178
+      },
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 158
+      }
+    ]
+  },
+  {
+    "text": "acme-gmbh",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 182
+      }
+    ]
+  },
+  {
+    "text": "acme.de",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 194
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 224
+      }
+    ]
+  },
+  {
+    "text": "Admin",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "property:title",
+        "line": 8
+      },
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 209
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 117
+      }
+    ]
+  },
+  {
+    "text": "Administrator",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 227
+      }
+    ]
+  },
+  {
+    "text": "Adr",
+    "sites": [
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "attribute:label",
+        "line": 109
+      }
+    ]
+  },
+  {
+    "text": "Adresse",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 255
+      },
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "attribute:label",
+        "line": 101
+      },
+      {
+        "file": "components/card/templates/Minimal.tsx",
+        "kind": "jsx",
+        "line": 86
+      }
+    ]
+  },
+  {
+    "text": "Aktionen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 162
+      }
+    ]
+  },
+  {
+    "text": "Aktiv",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 133
+      },
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 131
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 132
+      }
+    ]
+  },
+  {
+    "text": "Aktivieren",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 258
+      }
+    ]
+  },
+  {
+    "text": "Aktualisiert",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "property:label",
+        "line": 150
+      }
+    ]
+  },
+  {
+    "text": "Aktuell",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 96
+      }
+    ]
+  },
+  {
+    "text": "Aktuell:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 59
+      }
+    ]
+  },
+  {
+    "text": "Aktueller Plan",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/UpgradeButtons.tsx",
+        "kind": "jsx",
+        "line": 73
+      }
+    ]
+  },
+  {
+    "text": "Aktuelles Passwort",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 74
+      }
+    ]
+  },
+  {
+    "text": "Aktuelles Passwort falsch oder neues Passwort zu schwach.",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "property:description",
+        "line": 47
+      }
+    ]
+  },
+  {
+    "text": "Akzentfarbe",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 145
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 100
+      },
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 75
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 112
+      }
+    ]
+  },
+  {
+    "text": "Alle 9 Templates",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 11
+      }
+    ]
+  },
+  {
+    "text": "Alle Benutzer",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/page.tsx",
+        "kind": "jsx",
+        "line": 41
+      }
+    ]
+  },
+  {
+    "text": "Alle Karten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/[slug]/page.tsx",
+        "kind": "jsx",
+        "line": 45
+      },
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 24
+      }
+    ]
+  },
+  {
+    "text": "Alle Pläne inkl. DSGVO-konformer Datenspeicherung in Deutschland.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 199
+      }
+    ]
+  },
+  {
+    "text": "Alle Preise zzgl. MwSt. · Jederzeit kündbar · Fragen?",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 105
+      }
+    ]
+  },
+  {
+    "text": "Alles was du brauchst",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 141
+      }
+    ]
+  },
+  {
+    "text": "Als Klartext kopieren",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 193
+      }
+    ]
+  },
+  {
+    "text": "Als Standard",
+    "sites": [
+      {
+        "file": "components/card/CardSwitcher.tsx",
+        "kind": "attribute:title",
+        "line": 186
+      }
+    ]
+  },
+  {
+    "text": "Als Super-Admin verwaltest du alle Nutzer und Organisationen im Admin-Panel. Das Team-Tab ist für Nutzer innerhalb einer Organisation gedacht.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 29
+      }
+    ]
+  },
+  {
+    "text": "Amazon: NFC-Tags (NTAG213)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "property:label",
+        "line": 72
+      }
+    ]
+  },
+  {
+    "text": "An:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 228
+      }
+    ]
+  },
+  {
+    "text": "Analytics",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/page.tsx",
+        "kind": "property:title",
+        "line": 11
+      },
+      {
+        "file": "app/(dashboard)/analytics/page.tsx",
+        "kind": "attribute:title",
+        "line": 34
+      },
+      {
+        "file": "app/(dashboard)/card/page.tsx",
+        "kind": "jsx",
+        "line": 94
+      },
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 161
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "property:label",
+        "line": 166
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 17
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 34
+      }
+    ]
+  },
+  {
+    "text": "Analytics ansehen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "attribute:title",
+        "line": 157
+      }
+    ]
+  },
+  {
+    "text": "Andere Sessions wurden abgemeldet.",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "property:description",
+        "line": 51
+      }
+    ]
+  },
+  {
+    "text": "Änderung abgelehnt",
+    "sites": [
+      {
+        "file": "components/card/ApprovalBanner.tsx",
+        "kind": "jsx",
+        "line": 30
+      }
+    ]
+  },
+  {
+    "text": "Änderungen aktiv — Browser-Tab neu laden zum Prüfen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 252
+      }
+    ]
+  },
+  {
+    "text": "Android:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 52
+      }
+    ]
+  },
+  {
+    "text": "Anlegen",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 115
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 241
+      }
+    ]
+  },
+  {
+    "text": "Anleitung für deinen E-Mail-Client",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 199
+      }
+    ]
+  },
+  {
+    "text": "Anmelden",
+    "sites": [
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "jsx",
+        "line": 111
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 62
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 244
+      }
+    ]
+  },
+  {
+    "text": "anpassen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 97
+      }
+    ]
+  },
+  {
+    "text": "Ansehen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 198
+      }
+    ]
+  },
+  {
+    "text": "Anwendungs-URL",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "text": "Anwendungsname",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 74
+      }
+    ]
+  },
+  {
+    "text": "API-Keys",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 226
+      }
+    ]
+  },
+  {
+    "text": "App installieren",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "attribute:title",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "text": "App offnen und \"Schreiben\" / \"Write\" auswahlen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 58
+      }
+    ]
+  },
+  {
+    "text": "Apple & Google Wallet",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 326
+      }
+    ]
+  },
+  {
+    "text": "Apple Mail",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:title",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "text": "Auf \"Schreiben\" tippen und Tag ans Handy halten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 61
+      }
+    ]
+  },
+  {
+    "text": "Auf Business upgraden",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 101
+      }
+    ]
+  },
+  {
+    "text": "auf den Server dieser Plattform:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 47
+      }
+    ]
+  },
+  {
+    "text": "auf die IP-Adresse des Servers.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 58
+      }
+    ]
+  },
+  {
+    "text": "Aufruf",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "property:label",
+        "line": 8
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 35
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 285
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe – letzte 30 Tage",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "jsx",
+        "line": 66
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe (",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 126
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe gesamt",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "attribute:label",
+        "line": 55
+      },
+      {
+        "file": "app/(dashboard)/dashboard/LiveViews.tsx",
+        "kind": "jsx",
+        "line": 41
+      },
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "attribute:title",
+        "line": 135
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "attribute:label",
+        "line": 116
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe gruppiert nach",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 269
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe letzte 30 Tage",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "attribute:title",
+        "line": 139
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe letzte 7 Tage",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "attribute:title",
+        "line": 129
+      }
+    ]
+  },
+  {
+    "text": "Aufrufe, Scans und Downloads in Echtzeit im Blick.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 17
+      }
+    ]
+  },
+  {
+    "text": "Authentifiziere externe Skripte über die HTTP-API. Keys sind nur bei der Erstellung sichtbar.",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 227
+      }
+    ]
+  },
+  {
+    "text": "Automatisch generierter QR-Code, immer aktuell.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 14
+      }
+    ]
+  },
+  {
+    "text": "Avatar",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 219
+      }
+    ]
+  },
+  {
+    "text": "Avatar hochladen",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:label",
+        "line": 221
+      }
+    ]
+  },
+  {
+    "text": "Avatar-Rahmen",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 224
+      }
+    ]
+  },
+  {
+    "text": "Backup-Codes",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 224
+      }
+    ]
+  },
+  {
+    "text": "Basierend auf",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 107
+      }
+    ]
+  },
+  {
+    "text": "Basis-URL der Anwendung. Wird in QR-Codes, vCards und Einladungslinks verwendet.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 101
+      }
+    ]
+  },
+  {
+    "text": "Bearbeiten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 98
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "attribute:title",
+        "line": 287
+      },
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 153
+      }
+    ]
+  },
+  {
+    "text": "Beim nächsten Login wirst du zusätzlich nach einem Code aus deiner Authenticator-App gefragt.",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 269
+      }
+    ]
+  },
+  {
+    "text": "Beispiel-Karten-URL:",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 113
+      }
+    ]
+  },
+  {
+    "text": "Beispiel: karte.meinefirma.de",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 36
+      }
+    ]
+  },
+  {
+    "text": "Beliebteste Wahl",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "text": "Benutzer",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 156
+      },
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "property:label",
+        "line": 11
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 78
+      }
+    ]
+  },
+  {
+    "text": "Benutzer einladen",
+    "sites": [
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 68
+      }
+    ]
+  },
+  {
+    "text": "Benutzer gesamt",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "property:label",
+        "line": 35
+      }
+    ]
+  },
+  {
+    "text": "Benutzer löschen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 328
+      }
+    ]
+  },
+  {
+    "text": "Benutzer verwalten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/page.tsx",
+        "kind": "property:title",
+        "line": 7
+      }
+    ]
+  },
+  {
+    "text": "Benutzerdefinierte Kampagnen",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 311
+      }
+    ]
+  },
+  {
+    "text": "Benutzermenü",
+    "sites": [
+      {
+        "file": "components/layout/Header.tsx",
+        "kind": "attribute:aria-label",
+        "line": 73
+      }
+    ]
+  },
+  {
+    "text": "Bereit loszulegen?",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 216
+      }
+    ]
+  },
+  {
+    "text": "Bereits registriert?",
+    "sites": [
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "jsx",
+        "line": 110
+      }
+    ]
+  },
+  {
+    "text": "Berufsbezeichnung",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 152
+      },
+      {
+        "file": "components/card/templates/Bold.tsx",
+        "kind": "jsx",
+        "line": 77
+      }
+    ]
+  },
+  {
+    "text": "Bestätige durch Eingabe des aktuellen Codes",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 241
+      }
+    ]
+  },
+  {
+    "text": "Besucher hinterlassen Kontaktdaten – direkt im Dashboard.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 22
+      }
+    ]
+  },
+  {
+    "text": "Betr.:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 229
+      }
+    ]
+  },
+  {
+    "text": "Betriebssystem",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsTech.tsx",
+        "kind": "jsx",
+        "line": 60
+      }
+    ]
+  },
+  {
+    "text": "Bette deine digitale Karte per iFrame direkt auf deiner Website ein.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 46
+      }
+    ]
+  },
+  {
+    "text": "Bewahre deine Backup-Codes sicher auf. Du kannst sie verwenden, falls du dein Gerät verlierst.",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 217
+      }
+    ]
+  },
+  {
+    "text": "Bezahlend",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 116
+      }
+    ]
+  },
+  {
+    "text": "Bilder",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 132
+      }
+    ]
+  },
+  {
+    "text": "bis",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 130
+      }
+    ]
+  },
+  {
+    "text": "Bitte überarbeite deine Karte und speichere erneut.",
+    "sites": [
+      {
+        "file": "components/card/ApprovalBanner.tsx",
+        "kind": "jsx",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "text": "Breadcrumb",
+    "sites": [
+      {
+        "file": "components/layout/PageHeader.tsx",
+        "kind": "attribute:aria-label",
+        "line": 33
+      }
+    ]
+  },
+  {
+    "text": "Breite (px)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 84
+      }
+    ]
+  },
+  {
+    "text": "Browser",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsTech.tsx",
+        "kind": "jsx",
+        "line": 48
+      }
+    ]
+  },
+  {
+    "text": "Browser / OS",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 115
+      }
+    ]
+  },
+  {
+    "text": "Build:",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 127
+      }
+    ]
+  },
+  {
+    "text": "Bulk CSV-Import (Team)",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 19
+      }
+    ]
+  },
+  {
+    "text": "Business",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 229
+      }
+    ]
+  },
+  {
+    "text": "Business ×",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 107
+      }
+    ]
+  },
+  {
+    "text": "Business-Plan",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "Business-Plan buchen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "text": "Caddy (empfohlen — HTTPS automatisch):",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 71
+      }
+    ]
+  },
+  {
+    "text": "CardNexus",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 84
+      },
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 272
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 53
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 234
+      },
+      {
+        "file": "app/team/[orgSlug]/page.tsx",
+        "kind": "jsx",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "text": "CardNexus erkennt automatisch Anfragen über deine Domain und leitet sie an die richtige Karte weiter — vorausgesetzt, der Reverse Proxy sendet den korrekten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 111
+      }
+    ]
+  },
+  {
+    "text": "CardNexus. Alle Rechte vorbehalten.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 256
+      }
+    ]
+  },
+  {
+    "text": "Changelog",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 132
+      }
+    ]
+  },
+  {
+    "text": "CN",
+    "sites": [
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "jsx",
+        "line": 30
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 51
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 232
+      }
+    ]
+  },
+  {
+    "text": "CNAME",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 53
+      }
+    ]
+  },
+  {
+    "text": "CNAME-Eintrag",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 47
+      }
+    ]
+  },
+  {
+    "text": "Cover hochladen",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:label",
+        "line": 226
+      }
+    ]
+  },
+  {
+    "text": "Cover-Bild",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 224
+      }
+    ]
+  },
+  {
+    "text": "CSV Export",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "jsx",
+        "line": 103
+      }
+    ]
+  },
+  {
+    "text": "CSV importieren",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 167
+      }
+    ]
+  },
+  {
+    "text": "CSV-Datei hierher ziehen oder klicken",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 124
+      }
+    ]
+  },
+  {
+    "text": "CSV-Format",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 80
+      }
+    ]
+  },
+  {
+    "text": "CSV-Import",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/page.tsx",
+        "kind": "property:title",
+        "line": 10
+      },
+      {
+        "file": "app/(dashboard)/team/import/page.tsx",
+        "kind": "jsx",
+        "line": 30
+      }
+    ]
+  },
+  {
+    "text": "Custom Domains",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 203
+      }
+    ]
+  },
+  {
+    "text": "Damit HTTPS funktioniert, muss der Reverse Proxy (z. B. Caddy) die Domain akzeptieren und an CardNexus weiterleiten.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 69
+      }
+    ]
+  },
+  {
+    "text": "Dark",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 26
+      }
+    ]
+  },
+  {
+    "text": "Das Team-Verzeichnis ist ab dem",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "Dashboard",
+    "sites": [
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "jsx",
+        "line": 48
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 24
+      }
+    ]
+  },
+  {
+    "text": "Daten als JSON herunterladen",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 144
+      }
+    ]
+  },
+  {
+    "text": "Daten exportieren",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 137
+      }
+    ]
+  },
+  {
+    "text": "Datensatz hinzufugen &rarr; URL/URI",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 59
+      }
+    ]
+  },
+  {
+    "text": "Datenschutz",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 251
+      }
+    ]
+  },
+  {
+    "text": "Datenschutz (DSGVO)",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 23
+      }
+    ]
+  },
+  {
+    "text": "Deaktivieren",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 158
+      }
+    ]
+  },
+  {
+    "text": "Dein Code",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 330
+      }
+    ]
+  },
+  {
+    "text": "Dein Name",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 352
+      }
+    ]
+  },
+  {
+    "text": "Deine Karte.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 75
+      }
+    ]
+  },
+  {
+    "text": "Deine Karten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 92
+      }
+    ]
+  },
+  {
+    "text": "Deine Karten-URL (auf NFC-Tag schreiben):",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 35
+      }
+    ]
+  },
+  {
+    "text": "Deine Karten-URL einfugen (siehe oben)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 60
+      }
+    ]
+  },
+  {
+    "text": "Deine letzte Änderung wird von einem Administrator geprüft. Die Karte bleibt bis zur Freigabe in ihrem bisherigen Zustand sichtbar.",
+    "sites": [
+      {
+        "file": "components/card/ApprovalBanner.tsx",
+        "kind": "jsx",
+        "line": 19
+      }
+    ]
+  },
+  {
+    "text": "Deine persönlichen Informationen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 171
+      }
+    ]
+  },
+  {
+    "text": "deine@email.de",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 364
+      }
+    ]
+  },
+  {
+    "text": "deines Karteneditors ein. Deine QR-Codes, NFC-Links und Kampagnen-URLs verwenden dann automatisch diese Domain.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "text": "Demnächst",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 327
+      }
+    ]
+  },
+  {
+    "text": "Demo",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 243
+      }
+    ]
+  },
+  {
+    "text": "Der alte Link wird automatisch weitergeleitet. Speichere die Karte um die Änderung zu übernehmen.",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 211
+      }
+    ]
+  },
+  {
+    "text": "Der Business-Plan für",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 67
+      }
+    ]
+  },
+  {
+    "text": "Der Import aktualisiert bestehende Mitglieder (gleiche E-Mail in der Org). Neue E-Mails werden als „nicht gefunden\" markiert — nutze dafür Einladungen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 87
+      }
+    ]
+  },
+  {
+    "text": "Design",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 135
+      }
+    ]
+  },
+  {
+    "text": "Design → Karten-Domain",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "text": "Design-Vorgaben",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 59
+      }
+    ]
+  },
+  {
+    "text": "Die Organisation",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 68
+      }
+    ]
+  },
+  {
+    "text": "Die smarte digitale Visitenkarte für Professionals und Teams.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 236
+      }
+    ]
+  },
+  {
+    "text": "Diese Aktion kann",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 190
+      }
+    ]
+  },
+  {
+    "text": "Diese Domains können Nutzer und Organisationen für ihre Karten auswählen.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 205
+      }
+    ]
+  },
+  {
+    "text": "Diese Farben stehen Mitgliedern zur schnellen Auswahl bereit. Leer = freie Farbwahl.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 127
+      }
+    ]
+  },
+  {
+    "text": "Diese Karte existiert nicht oder ist nicht öffentlich.",
+    "sites": [
+      {
+        "file": "app/not-found.tsx",
+        "kind": "jsx",
+        "line": 10
+      }
+    ]
+  },
+  {
+    "text": "Diese Karte ist nicht mehr verfügbar.",
+    "sites": [
+      {
+        "file": "app/c/[slug]/page.tsx",
+        "kind": "jsx",
+        "line": 80
+      }
+    ]
+  },
+  {
+    "text": "Diese Karte ist passwortgeschützt. Bitte gib das Passwort ein.",
+    "sites": [
+      {
+        "file": "app/c/[slug]/PasswordGate.tsx",
+        "kind": "jsx",
+        "line": 44
+      }
+    ]
+  },
+  {
+    "text": "Diese Werte werden beim CSV-Import als Standardwerte für neue Karten verwendet.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 268
+      }
+    ]
+  },
+  {
+    "text": "Diese Werte werden für neue Mitglieder-Karten als Standard gesetzt.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 61
+      }
+    ]
+  },
+  {
+    "text": "Diesem Gerät 30 Tage vertrauen",
+    "sites": [
+      {
+        "file": "app/(auth)/login/2fa/page.tsx",
+        "kind": "jsx",
+        "line": 88
+      }
+    ]
+  },
+  {
+    "text": "Digitale Karten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "property:label",
+        "line": 37
+      }
+    ]
+  },
+  {
+    "text": "Digitale Visitenkarte der nächsten Generation",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 74
+      }
+    ]
+  },
+  {
+    "text": "Direkt buchbar per Calendly, Cal.com oder eigenem Link.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 20
+      }
+    ]
+  },
+  {
+    "text": "Direktlink",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 97
+      }
+    ]
+  },
+  {
+    "text": "Display",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 84
+      }
+    ]
+  },
+  {
+    "text": "DNS-Eintrag setzen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 46
+      }
+    ]
+  },
+  {
+    "text": "Domain (optional)",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 193
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 223
+      }
+    ]
+  },
+  {
+    "text": "Domain einrichten – CardNexus",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "property:title",
+        "line": 8
+      }
+    ]
+  },
+  {
+    "text": "Domain in den Karteneinstellungen eintragen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 98
+      }
+    ]
+  },
+  {
+    "text": "Domain kaufen oder auswählen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 34
+      }
+    ]
+  },
+  {
+    "text": "Du bekommst bei jedem neuen Lead eine E-Mail.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "property:desc",
+        "line": 239
+      }
+    ]
+  },
+  {
+    "text": "Du wirst automatisch zum Organisations-Admin. Design-Vorgaben kannst du danach unter",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 96
+      }
+    ]
+  },
+  {
+    "text": "Dunkler Hintergrund",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:desc",
+        "line": 26
+      }
+    ]
+  },
+  {
+    "text": "E-Mail",
+    "sites": [
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      },
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "jsx",
+        "line": 54
+      },
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "jsx",
+        "line": 80
+      },
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 370
+      },
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 164
+      },
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 231
+      },
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 359
+      },
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 247
+      },
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "attribute:label",
+        "line": 95
+      },
+      {
+        "file": "components/card/templates/Minimal.tsx",
+        "kind": "jsx",
+        "line": 65
+      }
+    ]
+  },
+  {
+    "text": "E-Mail-Adresse",
+    "sites": [
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 74
+      }
+    ]
+  },
+  {
+    "text": "E-Mail-Adresse ändern",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 198
+      }
+    ]
+  },
+  {
+    "text": "E-Mail-Signatur",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/page.tsx",
+        "kind": "property:title",
+        "line": 9
+      },
+      {
+        "file": "app/(dashboard)/card/signature/page.tsx",
+        "kind": "jsx",
+        "line": 31
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 19
+      }
+    ]
+  },
+  {
+    "text": "Eckenradius",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 208
+      }
+    ]
+  },
+  {
+    "text": "Eigene Domain",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 12
+      }
+    ]
+  },
+  {
+    "text": "Eigene Domain (Pro)",
+    "sites": [
+      {
+        "file": "components/card/editor/DomainSection.tsx",
+        "kind": "jsx",
+        "line": 40
+      }
+    ]
+  },
+  {
+    "text": "Eigene Domain einrichten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 24
+      }
+    ]
+  },
+  {
+    "text": "Eigene Domain, eigenes Branding – ohne CardNexus-Badge.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 24
+      }
+    ]
+  },
+  {
+    "text": "Eigene Links werden als Buttons auf der Karte angezeigt (max. 5). Ziehe am Griff",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 286
+      }
+    ]
+  },
+  {
+    "text": "Einfache Preise",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 162
+      }
+    ]
+  },
+  {
+    "text": "Einfache, faire Preise",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 31
+      }
+    ]
+  },
+  {
+    "text": "Eingefroren seit",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 72
+      }
+    ]
+  },
+  {
+    "text": "Eingeladen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 372
+      }
+    ]
+  },
+  {
+    "text": "Einladen",
+    "sites": [
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 64
+      }
+    ]
+  },
+  {
+    "text": "Einladung erstellt!",
+    "sites": [
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 103
+      }
+    ]
+  },
+  {
+    "text": "Einmal täglich – nur wenn neue Leads vorliegen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "property:desc",
+        "line": 240
+      }
+    ]
+  },
+  {
+    "text": "Einstellungen",
+    "sites": [
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "property:label",
+        "line": 15
+      },
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 163
+      },
+      {
+        "file": "app/(dashboard)/settings/page.tsx",
+        "kind": "property:title",
+        "line": 6
+      },
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 97
+      },
+      {
+        "file": "components/layout/Header.tsx",
+        "kind": "jsx",
+        "line": 100
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 43
+      }
+    ]
+  },
+  {
+    "text": "Einträge",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 64
+      }
+    ]
+  },
+  {
+    "text": "Empfehlungen",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 318
+      }
+    ]
+  },
+  {
+    "text": "Empfohlen",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 176
+      }
+    ]
+  },
+  {
+    "text": "Empfohlen: quadratisch, mind. 32×32 px (PNG, ICO, SVG).",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 131
+      }
+    ]
+  },
+  {
+    "text": "Empfohlene NFC-Tag Quellen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 69
+      }
+    ]
+  },
+  {
+    "text": "Endgültig löschen",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 209
+      }
+    ]
+  },
+  {
+    "text": "Endpoint-URL",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 108
+      }
+    ]
+  },
+  {
+    "text": "Engineering",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 162
+      }
+    ]
+  },
+  {
+    "text": "Entfernt deinen Account und alle zugehörigen Daten unwiderruflich (Karten, Leads, Webhooks, API-Keys).",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 177
+      }
+    ]
+  },
+  {
+    "text": "Entsperren",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "attribute:title",
+        "line": 293
+      }
+    ]
+  },
+  {
+    "text": "er/ihm, she/her…",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 175
+      }
+    ]
+  },
+  {
+    "text": "erhält deine Daten",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 330
+      }
+    ]
+  },
+  {
+    "text": "Erhalte HTTP-POSTs in Echtzeit, wenn neue Leads über deine Karten kommen. Signatur via",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 93
+      }
+    ]
+  },
+  {
+    "text": "Erscheint klein auf der Karte (oben rechts)",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 260
+      }
+    ]
+  },
+  {
+    "text": "Ersetzt die Buchstaben-Initialen in der Sidebar. Empfohlen: quadratisch, 64×64 px.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 155
+      }
+    ]
+  },
+  {
+    "text": "Erstelle deine digitale Visitenkarte, teile sie per NFC, QR-Code oder Link – und behalte den Überblick mit Analytics, Lead Capture und Team-Verwaltung.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 78
+      }
+    ]
+  },
+  {
+    "text": "Erstelle deine Organisation",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 114
+      }
+    ]
+  },
+  {
+    "text": "Erstelle die erste Organisation",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 258
+      }
+    ]
+  },
+  {
+    "text": "Erstelle individuelle Links fur Events, Messen oder Kampagnen &mdash; mit separater Klick-Statistik.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/page.tsx",
+        "kind": "jsx",
+        "line": 44
+      }
+    ]
+  },
+  {
+    "text": "Erstelle jetzt deine digitale Visitenkarte in wenigen Minuten.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 80
+      }
+    ]
+  },
+  {
+    "text": "Erstelle zuerst deine Visitenkarte, um Kampagnen zu verwenden.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 70
+      }
+    ]
+  },
+  {
+    "text": "Erstelle zuerst deine Visitenkarte, um Leads zu sammeln.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "jsx",
+        "line": 71
+      }
+    ]
+  },
+  {
+    "text": "Erstellt",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "property:label",
+        "line": 149
+      }
+    ]
+  },
+  {
+    "text": "Erstellt mit",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 271
+      },
+      {
+        "file": "app/team/[orgSlug]/page.tsx",
+        "kind": "jsx",
+        "line": 98
+      }
+    ]
+  },
+  {
+    "text": "Event",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 110
+      }
+    ]
+  },
+  {
+    "text": "Event-Einladungslinks",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 18
+      }
+    ]
+  },
+  {
+    "text": "Events (30d)",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "property:label",
+        "line": 38
+      }
+    ]
+  },
+  {
+    "text": "existiert, wurde gerade eine E-Mail mit einem Reset-Link an diese Adresse versendet. Bitte schau auch im Spam-Ordner nach.",
+    "sites": [
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "jsx",
+        "line": 41
+      }
+    ]
+  },
+  {
+    "text": "Falls ein Account zu",
+    "sites": [
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "jsx",
+        "line": 41
+      }
+    ]
+  },
+  {
+    "text": "FAQ",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 59
+      }
+    ]
+  },
+  {
+    "text": "Farbbalken + Kontakt",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:desc",
+        "line": 21
+      }
+    ]
+  },
+  {
+    "text": "Farbe",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 215
+      }
+    ]
+  },
+  {
+    "text": "Farbiger Headerstreifen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:desc",
+        "line": 24
+      }
+    ]
+  },
+  {
+    "text": "Farbwahl",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "property:label",
+        "line": 163
+      }
+    ]
+  },
+  {
+    "text": "Favicon",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 130
+      },
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "attribute:alt",
+        "line": 144
+      }
+    ]
+  },
+  {
+    "text": "Favicon & Logo",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 124
+      }
+    ]
+  },
+  {
+    "text": "Favicon erscheint im Browser-Tab. Logo erscheint in der Sidebar statt der Initialen.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 126
+      }
+    ]
+  },
+  {
+    "text": "Favicon hochladen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "attribute:label",
+        "line": 135
+      }
+    ]
+  },
+  {
+    "text": "Fax",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 243
+      }
+    ]
+  },
+  {
+    "text": "Features",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 56
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 241
+      }
+    ]
+  },
+  {
+    "text": "Firmenlogo",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 259
+      }
+    ]
+  },
+  {
+    "text": "Footer-Text",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 186
+      }
+    ]
+  },
+  {
+    "text": "Foto + Social-Links",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:desc",
+        "line": 23
+      }
+    ]
+  },
+  {
+    "text": "Fragen?",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 134
+      }
+    ]
+  },
+  {
+    "text": "Free",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 227
+      }
+    ]
+  },
+  {
+    "text": "Free: 4 Templates",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:note",
+        "line": 11
+      }
+    ]
+  },
+  {
+    "text": "Freigeben",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 337
+      }
+    ]
+  },
+  {
+    "text": "Friendly-URLs unter",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 312
+      }
+    ]
+  },
+  {
+    "text": "Für eine Root-Domain (ohne Subdomain) nutze stattdessen einen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 58
+      }
+    ]
+  },
+  {
+    "text": "Fußzeile",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 171
+      }
+    ]
+  },
+  {
+    "text": "Ganze Teams zentral verwalten – Rollen, Abteilungen, Branding.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 16
+      }
+    ]
+  },
+  {
+    "text": "Geburtstag",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 194
+      }
+    ]
+  },
+  {
+    "text": "gemacht werden. Alle deine Karten, Leads, Analytics, Webhooks und API-Keys werden unwiderruflich gelöscht.",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 190
+      }
+    ]
+  },
+  {
+    "text": "Gerät",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 114
+      }
+    ]
+  },
+  {
+    "text": "Geräte",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 168
+      }
+    ]
+  },
+  {
+    "text": "Geschlecht",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 178
+      }
+    ]
+  },
+  {
+    "text": "Geschützte Karte",
+    "sites": [
+      {
+        "file": "app/c/[slug]/PasswordGate.tsx",
+        "kind": "jsx",
+        "line": 43
+      },
+      {
+        "file": "app/c/[slug]/page.tsx",
+        "kind": "property:title",
+        "line": 28
+      }
+    ]
+  },
+  {
+    "text": "Gespeichert",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 246
+      },
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 230
+      }
+    ]
+  },
+  {
+    "text": "Gespeichert ✓",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 364
+      }
+    ]
+  },
+  {
+    "text": "Gesperrt",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 179
+      }
+    ]
+  },
+  {
+    "text": "Geworben",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 334
+      }
+    ]
+  },
+  {
+    "text": "Gib deiner Organisation einen Namen, lade Mitglieder ein und lege Design-Vorgaben für alle Visitenkarten fest.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 115
+      }
+    ]
+  },
+  {
+    "text": "GitHub",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "property:label",
+        "line": 44
+      },
+      {
+        "file": "components/card/templates/SocialLinks.tsx",
+        "kind": "property:label",
+        "line": 10
+      }
+    ]
+  },
+  {
+    "text": "Globale Berechtigungen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 173
+      }
+    ]
+  },
+  {
+    "text": "Globale Statistiken für alle Organisationen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 45
+      }
+    ]
+  },
+  {
+    "text": "Gmail",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:title",
+        "line": 30
+      }
+    ]
+  },
+  {
+    "text": "Grundlegende Informationen zu",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 26
+      }
+    ]
+  },
+  {
+    "text": "Hallo,",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 238
+      },
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 67
+      }
+    ]
+  },
+  {
+    "text": "Halte ein Smartphone (ohne App) an den Tag &mdash; die Karte sollte sich direkt im Browser offnen. iOS ab iPhone 7, Android ab 4.4 unterstuetzt NFC.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 65
+      }
+    ]
+  },
+  {
+    "text": "Häufige Fragen",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 207
+      }
+    ]
+  },
+  {
+    "text": "Head of Product",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 98
+      }
+    ]
+  },
+  {
+    "text": "Hintergrund",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 129
+      }
+    ]
+  },
+  {
+    "text": "Hintergrundbild für das Modern-Template. Empfohlen: 800×300 px.",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 225
+      }
+    ]
+  },
+  {
+    "text": "Hinweis",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 166
+      }
+    ]
+  },
+  {
+    "text": "Hinzufügen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 231
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 146
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 246
+      }
+    ]
+  },
+  {
+    "text": "Höhe (px)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 88
+      }
+    ]
+  },
+  {
+    "text": "HTML kopiert!",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 187
+      }
+    ]
+  },
+  {
+    "text": "HTML-Code anzeigen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 244
+      }
+    ]
+  },
+  {
+    "text": "HTML-Code kopieren",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 188
+      }
+    ]
+  },
+  {
+    "text": "iFrame-Code",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 107
+      }
+    ]
+  },
+  {
+    "text": "Im Team-Verzeichnis anzeigen",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:label",
+        "line": 278
+      }
+    ]
+  },
+  {
+    "text": "Im Verzeichnis",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 242
+      }
+    ]
+  },
+  {
+    "text": "Import starten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 140
+      }
+    ]
+  },
+  {
+    "text": "Importiere Mitglieder und befülle deren Visitenkarten aus einer CSV-Datei.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/page.tsx",
+        "kind": "jsx",
+        "line": 31
+      }
+    ]
+  },
+  {
+    "text": "Impressum",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 250
+      }
+    ]
+  },
+  {
+    "text": "In drei Schritten zur fertigen Karte.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 123
+      }
+    ]
+  },
+  {
+    "text": "In Sekunden geteilt.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 76
+      }
+    ]
+  },
+  {
+    "text": "In Wallet speichern",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 238
+      }
+    ]
+  },
+  {
+    "text": "Inhaber",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "text": "Inhaber:",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/[slug]/page.tsx",
+        "kind": "jsx",
+        "line": 56
+      }
+    ]
+  },
+  {
+    "text": "Instagram",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "property:label",
+        "line": 43
+      },
+      {
+        "file": "components/card/templates/SocialLinks.tsx",
+        "kind": "property:label",
+        "line": 9
+      }
+    ]
+  },
+  {
+    "text": "Installiere eine NFC-Schreib-App auf deinem Smartphone:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "text": "Inter (Sans-serif)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "text": "iOS:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 51
+      }
+    ]
+  },
+  {
+    "text": "IP",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 112
+      }
+    ]
+  },
+  {
+    "text": "ist abgelaufen. Alle Daten sind erhalten — buche den Plan erneut um die Organisation sofort wieder zu aktivieren.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 67
+      }
+    ]
+  },
+  {
+    "text": "ist derzeit eingefroren. Bitte wende dich an deinen Administrator.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 68
+      }
+    ]
+  },
+  {
+    "text": "Jetzt kostenlos registrieren",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 219
+      }
+    ]
+  },
+  {
+    "text": "Jetzt kostenlos starten",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "text": "Jetzt upgraden",
+    "sites": [
+      {
+        "file": "components/plan/UpgradePrompt.tsx",
+        "kind": "jsx",
+        "line": 41
+      }
+    ]
+  },
+  {
+    "text": "Kampagne",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 282
+      }
+    ]
+  },
+  {
+    "text": "Kampagne erstellen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 103
+      }
+    ]
+  },
+  {
+    "text": "Kampagnen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/page.tsx",
+        "kind": "property:title",
+        "line": 10
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 33
+      }
+    ]
+  },
+  {
+    "text": "Kampagnen-Tracking",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 18
+      }
+    ]
+  },
+  {
+    "text": "karte",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 54
+      }
+    ]
+  },
+  {
+    "text": "Karte",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 111
+      },
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 160
+      },
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 105
+      },
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 241
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 80
+      }
+    ]
+  },
+  {
+    "text": "Karte abgelaufen",
+    "sites": [
+      {
+        "file": "app/c/[slug]/page.tsx",
+        "kind": "property:title",
+        "line": 27
+      },
+      {
+        "file": "app/c/[slug]/page.tsx",
+        "kind": "jsx",
+        "line": 79
+      }
+    ]
+  },
+  {
+    "text": "Karte als PDF exportieren oder druckfertig aufbereiten.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 21
+      }
+    ]
+  },
+  {
+    "text": "Karte ansehen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/[slug]/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      },
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "attribute:title",
+        "line": 91
+      },
+      {
+        "file": "components/layout/Header.tsx",
+        "kind": "jsx",
+        "line": 69
+      },
+      {
+        "file": "components/layout/Header.tsx",
+        "kind": "jsx",
+        "line": 104
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 156
+      }
+    ]
+  },
+  {
+    "text": "Karte ansehen →",
+    "sites": [
+      {
+        "file": "app/team/[orgSlug]/page.tsx",
+        "kind": "jsx",
+        "line": 187
+      }
+    ]
+  },
+  {
+    "text": "Karte auswählen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 52
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "attribute:aria-label",
+        "line": 104
+      }
+    ]
+  },
+  {
+    "text": "Karte bearbeiten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/[slug]/page.tsx",
+        "kind": "jsx",
+        "line": 55
+      },
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "attribute:title",
+        "line": 275
+      },
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "attribute:title",
+        "line": 149
+      }
+    ]
+  },
+  {
+    "text": "Karte einbetten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 45
+      }
+    ]
+  },
+  {
+    "text": "Karte erstellen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 82
+      },
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "jsx",
+        "line": 73
+      }
+    ]
+  },
+  {
+    "text": "Karte für alle sichtbar",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:desc",
+        "line": 277
+      }
+    ]
+  },
+  {
+    "text": "Karte gestalten",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 29
+      }
+    ]
+  },
+  {
+    "text": "Karte nicht gefunden",
+    "sites": [
+      {
+        "file": "app/c/[slug]/page.tsx",
+        "kind": "property:title",
+        "line": 23
+      }
+    ]
+  },
+  {
+    "text": "Karte nicht verfügbar",
+    "sites": [
+      {
+        "file": "app/c/[slug]/page.tsx",
+        "kind": "property:title",
+        "line": 26
+      }
+    ]
+  },
+  {
+    "text": "Karte öffentlich",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:label",
+        "line": 277
+      }
+    ]
+  },
+  {
+    "text": "Karte teilen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 176
+      }
+    ]
+  },
+  {
+    "text": "Karte wartet auf Freigabe",
+    "sites": [
+      {
+        "file": "components/card/ApprovalBanner.tsx",
+        "kind": "jsx",
+        "line": 18
+      }
+    ]
+  },
+  {
+    "text": "karte.meinefirma.de",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 226
+      }
+    ]
+  },
+  {
+    "text": "Karten",
+    "sites": [
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "property:label",
+        "line": 12
+      }
+    ]
+  },
+  {
+    "text": "Karten · letzte 30 Tage",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/page.tsx",
+        "kind": "jsx",
+        "line": 94
+      }
+    ]
+  },
+  {
+    "text": "Karten auf der Plattform",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 25
+      }
+    ]
+  },
+  {
+    "text": "Karten direkt in Apple Wallet oder Google Wallet speichern. Diese Funktion wird bald verfügbar sein.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 329
+      }
+    ]
+  },
+  {
+    "text": "Karten verwalten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "property:title",
+        "line": 10
+      }
+    ]
+  },
+  {
+    "text": "Karten zur Freigabe",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 318
+      }
+    ]
+  },
+  {
+    "text": "Karten-Domain",
+    "sites": [
+      {
+        "file": "components/card/editor/DomainSection.tsx",
+        "kind": "jsx",
+        "line": 21
+      }
+    ]
+  },
+  {
+    "text": "Karten-URL (Slug)",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 200
+      }
+    ]
+  },
+  {
+    "text": "Karten-Vorlage (Bulk Import)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 266
+      }
+    ]
+  },
+  {
+    "text": "Karten-Vorlage (Org)",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 20
+      }
+    ]
+  },
+  {
+    "text": "Kartenschatten",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 146
+      }
+    ]
+  },
+  {
+    "text": "Kaufe eine Domain bei einem Anbieter deiner Wahl (z. B. Namecheap, IONOS, Hetzner, Cloudflare) oder nutze eine vorhandene Subdomain.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 35
+      }
+    ]
+  },
+  {
+    "text": "Kaufe einen beschreibbaren NFC-Tag (NTAG213 oder NTAG215). Empfohlen: NFC-Aufkleber, Visitenkarten-NFC oder NFC-Armband. Preis: ca. 0,50 &ndash; 2,00 &euro; pro Tag.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 48
+      }
+    ]
+  },
+  {
+    "text": "KB",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 119
+      }
+    ]
+  },
+  {
+    "text": "Kein Kleingedrucktes. Jederzeit kündbar.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 163
+      }
+    ]
+  },
+  {
+    "text": "Kein Logo gesetzt",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 270
+      }
+    ]
+  },
+  {
+    "text": "Kein Teilen-Button auf der öffentlichen Kartenansicht",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:desc",
+        "line": 279
+      }
+    ]
+  },
+  {
+    "text": "Kein Zahlungsanbieter konfiguriert. Bitte Stripe- oder PayPal-Umgebungsvariablen setzen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 76
+      }
+    ]
+  },
+  {
+    "text": "Keine Benachrichtigungen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "property:label",
+        "line": 238
+      }
+    ]
+  },
+  {
+    "text": "Keine Benutzer gefunden",
+    "sites": [
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 68
+      }
+    ]
+  },
+  {
+    "text": "Keine Einträge gefunden.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 123
+      }
+    ]
+  },
+  {
+    "text": "Keine Ergebnisse für „",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "jsx",
+        "line": 115
+      }
+    ]
+  },
+  {
+    "text": "Keine Karte",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 266
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 139
+      }
+    ]
+  },
+  {
+    "text": "Keine Karte gefunden. Erstelle zuerst eine Karte.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 138
+      }
+    ]
+  },
+  {
+    "text": "Keine Karte vorhanden",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 79
+      }
+    ]
+  },
+  {
+    "text": "Keine Mitglieder in dieser Organisation.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 229
+      }
+    ]
+  },
+  {
+    "text": "Keine öffentlichen Karten vorhanden.",
+    "sites": [
+      {
+        "file": "app/team/[orgSlug]/page.tsx",
+        "kind": "jsx",
+        "line": 85
+      }
+    ]
+  },
+  {
+    "text": "Klartext kopiert!",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 192
+      }
+    ]
+  },
+  {
+    "text": "Kleiner QR-Code direkt auf der Visitenkarte",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:desc",
+        "line": 276
+      }
+    ]
+  },
+  {
+    "text": "Klicks",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 127
+      }
+    ]
+  },
+  {
+    "text": "Kompakt",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 22
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "Kontakt",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 106
+      },
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 133
+      }
+    ]
+  },
+  {
+    "text": "Kontakt hinterlassen",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 212
+      },
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 328
+      }
+    ]
+  },
+  {
+    "text": "Kontakt per Antippen teilen – einfach Smartphone halten, fertig.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 13
+      }
+    ]
+  },
+  {
+    "text": "Kontakt speichern",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 199
+      }
+    ]
+  },
+  {
+    "text": "Kopiere deinen HTML-Code direkt in Outlook, Gmail oder Apple Mail.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/page.tsx",
+        "kind": "jsx",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "text": "Kostenlos",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 58
+      }
+    ]
+  },
+  {
+    "text": "Kostenlos starten",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 64
+      }
+    ]
+  },
+  {
+    "text": "Kostenlos starten – keine Kreditkarte erforderlich.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 217
+      }
+    ]
+  },
+  {
+    "text": "kündigen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/UpgradeButtons.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "Kurzbeschreibung",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 166
+      }
+    ]
+  },
+  {
+    "text": "Kurze Beschreibung über dich…",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 167
+      }
+    ]
+  },
+  {
+    "text": "Label",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 313
+      }
+    ]
+  },
+  {
+    "text": "Lade alle deine personenbezogenen Daten als JSON herunter (DSGVO Art. 15 & 20).",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 138
+      }
+    ]
+  },
+  {
+    "text": "Lädt in unter einer Sekunde. Kein App-Download nötig.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 15
+      }
+    ]
+  },
+  {
+    "text": "Lädt…",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 122
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 263
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 325
+      }
+    ]
+  },
+  {
+    "text": "Land / Stadt",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 113
+      }
+    ]
+  },
+  {
+    "text": "Länder",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsGeo.tsx",
+        "kind": "jsx",
+        "line": 72
+      }
+    ]
+  },
+  {
+    "text": "Läuft ab",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 373
+      }
+    ]
+  },
+  {
+    "text": "Layout",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 217
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 186
+      }
+    ]
+  },
+  {
+    "text": "Layout-Wahl",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "property:label",
+        "line": 165
+      }
+    ]
+  },
+  {
+    "text": "Lead Capture",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 22
+      }
+    ]
+  },
+  {
+    "text": "Lead löschen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "attribute:title",
+        "line": 194
+      }
+    ]
+  },
+  {
+    "text": "Lead-Benachrichtigungen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 229
+      }
+    ]
+  },
+  {
+    "text": "Leads",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/page.tsx",
+        "kind": "property:title",
+        "line": 8
+      },
+      {
+        "file": "app/(dashboard)/leads/page.tsx",
+        "kind": "jsx",
+        "line": 30
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "text": "Leads erhalten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "attribute:label",
+        "line": 59
+      }
+    ]
+  },
+  {
+    "text": "Leads werden nur im Dashboard gespeichert.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "property:desc",
+        "line": 238
+      }
+    ]
+  },
+  {
+    "text": "Legen Sie fest, was Mitglieder standardmäßig anpassen dürfen. Abteilungsregeln können diese Werte überschreiben.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 175
+      }
+    ]
+  },
+  {
+    "text": "Link an",
+    "sites": [
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 104
+      }
+    ]
+  },
+  {
+    "text": "Link hinzufügen",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 355
+      }
+    ]
+  },
+  {
+    "text": "Link testen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "attribute:title",
+        "line": 148
+      }
+    ]
+  },
+  {
+    "text": "Link verschicken, QR-Code scannen lassen oder NFC-Tag beschreiben.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 30
+      }
+    ]
+  },
+  {
+    "text": "Link-Klick",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "property:label",
+        "line": 11
+      }
+    ]
+  },
+  {
+    "text": "Link-Klicks",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "attribute:label",
+        "line": 58
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "attribute:label",
+        "line": 119
+      }
+    ]
+  },
+  {
+    "text": "LinkedIn",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "property:label",
+        "line": 40
+      },
+      {
+        "file": "components/card/templates/SocialLinks.tsx",
+        "kind": "property:label",
+        "line": 7
+      }
+    ]
+  },
+  {
+    "text": "Links",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 136
+      }
+    ]
+  },
+  {
+    "text": "Live-Aufrufe",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 204
+      }
+    ]
+  },
+  {
+    "text": "Live-Demo ansehen",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 85
+      }
+    ]
+  },
+  {
+    "text": "Live-Vorschau",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 378
+      }
+    ]
+  },
+  {
+    "text": "Loeschen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "attribute:title",
+        "line": 155
+      }
+    ]
+  },
+  {
+    "text": "Logo",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "attribute:alt",
+        "line": 269
+      },
+      {
+        "file": "components/card/templates/Bold.tsx",
+        "kind": "attribute:alt",
+        "line": 30
+      },
+      {
+        "file": "components/card/templates/Classic.tsx",
+        "kind": "attribute:alt",
+        "line": 33
+      },
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "attribute:alt",
+        "line": 38
+      },
+      {
+        "file": "components/card/templates/Dark.tsx",
+        "kind": "attribute:alt",
+        "line": 36
+      },
+      {
+        "file": "components/card/templates/Elegant.tsx",
+        "kind": "attribute:alt",
+        "line": 24
+      },
+      {
+        "file": "components/card/templates/Glass.tsx",
+        "kind": "attribute:alt",
+        "line": 47
+      },
+      {
+        "file": "components/card/templates/Gradient.tsx",
+        "kind": "attribute:alt",
+        "line": 38
+      },
+      {
+        "file": "components/card/templates/Minimal.tsx",
+        "kind": "attribute:alt",
+        "line": 23
+      },
+      {
+        "file": "components/card/templates/Modern.tsx",
+        "kind": "attribute:alt",
+        "line": 29
+      },
+      {
+        "file": "components/card/templates/Neon.tsx",
+        "kind": "attribute:alt",
+        "line": 42
+      },
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "attribute:alt",
+        "line": 42
+      },
+      {
+        "file": "components/card/templates/Wave.tsx",
+        "kind": "attribute:alt",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "text": "Logo hochladen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "attribute:label",
+        "line": 158
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "attribute:label",
+        "line": 265
+      }
+    ]
+  },
+  {
+    "text": "Löschen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "attribute:title",
+        "line": 290
+      },
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "attribute:title",
+        "line": 309
+      },
+      {
+        "file": "components/card/CardSwitcher.tsx",
+        "kind": "attribute:title",
+        "line": 196
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 164
+      }
+    ]
+  },
+  {
+    "text": "Made in Germany 🇩🇪",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 257
+      }
+    ]
+  },
+  {
+    "text": "Mail",
+    "sites": [
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "attribute:label",
+        "line": 103
+      }
+    ]
+  },
+  {
+    "text": "Manuell eingeben",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 211
+      }
+    ]
+  },
+  {
+    "text": "Markenfarben der Organisation",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "text": "Markenfarben-Palette",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 125
+      }
+    ]
+  },
+  {
+    "text": "Max",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 144
+      }
+    ]
+  },
+  {
+    "text": "Max Hoffmann",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 97
+      }
+    ]
+  },
+  {
+    "text": "Max Mustermann",
+    "sites": [
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "attribute:placeholder",
+        "line": 71
+      }
+    ]
+  },
+  {
+    "text": "max@example.com",
+    "sites": [
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "attribute:placeholder",
+        "line": 55
+      },
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "attribute:placeholder",
+        "line": 57
+      },
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "attribute:placeholder",
+        "line": 83
+      },
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 248
+      },
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "attribute:placeholder",
+        "line": 76
+      }
+    ]
+  },
+  {
+    "text": "Medium",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 284
+      }
+    ]
+  },
+  {
+    "text": "Mehrere Karten ab",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 75
+      }
+    ]
+  },
+  {
+    "text": "Meilenstein-Benachrichtig.",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 17
+      }
+    ]
+  },
+  {
+    "text": "mein-slug",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 207
+      }
+    ]
+  },
+  {
+    "text": "Meine Firma GmbH",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "attribute:placeholder",
+        "line": 55
+      }
+    ]
+  },
+  {
+    "text": "Meine Karte",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/page.tsx",
+        "kind": "property:title",
+        "line": 16
+      },
+      {
+        "file": "app/(dashboard)/card/page.tsx",
+        "kind": "jsx",
+        "line": 80
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 25
+      }
+    ]
+  },
+  {
+    "text": "meine-domain.de",
+    "sites": [
+      {
+        "file": "components/card/editor/DomainSection.tsx",
+        "kind": "attribute:placeholder",
+        "line": 43
+      }
+    ]
+  },
+  {
+    "text": "meine-firma",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "attribute:placeholder",
+        "line": 66
+      }
+    ]
+  },
+  {
+    "text": "Meistgeklickte Links",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 234
+      }
+    ]
+  },
+  {
+    "text": "Melde dich mit deinem Account an.",
+    "sites": [
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "jsx",
+        "line": 49
+      }
+    ]
+  },
+  {
+    "text": "MH",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "Middleware-Routing",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 110
+      }
+    ]
+  },
+  {
+    "text": "Minimal",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 25
+      }
+    ]
+  },
+  {
+    "text": "Mit einem NFC-Tag kannst du deine digitale Karte per Antippen teilen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 30
+      }
+    ]
+  },
+  {
+    "text": "Mit freundlichen Grüßen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 238
+      }
+    ]
+  },
+  {
+    "text": "Mitglied",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 211
+      },
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 239
+      },
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 91
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 120
+      }
+    ]
+  },
+  {
+    "text": "Mitglieder",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 282
+      },
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 162
+      }
+    ]
+  },
+  {
+    "text": "Mob",
+    "sites": [
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "attribute:label",
+        "line": 100
+      }
+    ]
+  },
+  {
+    "text": "Mobil",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 238
+      },
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "attribute:label",
+        "line": 92
+      }
+    ]
+  },
+  {
+    "text": "Mobile First",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 15
+      }
+    ]
+  },
+  {
+    "text": "Modern",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 24
+      }
+    ]
+  },
+  {
+    "text": "Mono",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 83
+      }
+    ]
+  },
+  {
+    "text": "MRR (geschätzt)",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 103
+      }
+    ]
+  },
+  {
+    "text": "Mustermann",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 148
+      }
+    ]
+  },
+  {
+    "text": "Musterstraße 1, 80331 München",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 256
+      }
+    ]
+  },
+  {
+    "text": "Nach oben",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:aria-label",
+        "line": 332
+      }
+    ]
+  },
+  {
+    "text": "Nach unten",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:aria-label",
+        "line": 339
+      }
+    ]
+  },
+  {
+    "text": "Nachname",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 147
+      }
+    ]
+  },
+  {
+    "text": "Nachricht",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 381
+      }
+    ]
+  },
+  {
+    "text": "Name",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 80
+      },
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "jsx",
+        "line": 69
+      },
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 81
+      },
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 104
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 237
+      }
+    ]
+  },
+  {
+    "text": "Name *",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 177
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 212
+      },
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 348
+      }
+    ]
+  },
+  {
+    "text": "Name ändern",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 183
+      }
+    ]
+  },
+  {
+    "text": "Name der Organisation",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 52
+      }
+    ]
+  },
+  {
+    "text": "Name, URL, Favicon und Branding der gesamten Anwendung",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 66
+      }
+    ]
+  },
+  {
+    "text": "Neu",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 96
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 230
+      }
+    ]
+  },
+  {
+    "text": "Neu diesen Monat",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "property:label",
+        "line": 36
+      }
+    ]
+  },
+  {
+    "text": "Neue Abteilungen erben die globalen Berechtigungen oben als Startwert.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 248
+      }
+    ]
+  },
+  {
+    "text": "Neue Kampagne erstellen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 78
+      }
+    ]
+  },
+  {
+    "text": "Neue Karte",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "Neue Organisation",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 171
+      }
+    ]
+  },
+  {
+    "text": "Neues Passwort",
+    "sites": [
+      {
+        "file": "app/(auth)/reset-password/page.tsx",
+        "kind": "jsx",
+        "line": 56
+      },
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 85
+      }
+    ]
+  },
+  {
+    "text": "Neues Passwort setzen",
+    "sites": [
+      {
+        "file": "app/(auth)/reset-password/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "text": "NFC",
+    "sites": [
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 41
+      }
+    ]
+  },
+  {
+    "text": "NFC Tools (App Store)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 51
+      }
+    ]
+  },
+  {
+    "text": "NFC Tools oder NFC TagWriter by NXP",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 52
+      }
+    ]
+  },
+  {
+    "text": "NFC-Ready",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 13
+      }
+    ]
+  },
+  {
+    "text": "NFC-Tag einrichten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "property:title",
+        "line": 7
+      },
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 29
+      }
+    ]
+  },
+  {
+    "text": "NFC-Tag kaufen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "attribute:title",
+        "line": 48
+      }
+    ]
+  },
+  {
+    "text": "nfcshop.eu",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "property:label",
+        "line": 74
+      }
+    ]
+  },
+  {
+    "text": "nfctag.de – deutsche Shop",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "property:label",
+        "line": 73
+      }
+    ]
+  },
+  {
+    "text": "Nginx:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 77
+      }
+    ]
+  },
+  {
+    "text": "nicht rückgängig",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 190
+      }
+    ]
+  },
+  {
+    "text": "Noch kein Account?",
+    "sites": [
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "jsx",
+        "line": 86
+      }
+    ]
+  },
+  {
+    "text": "Noch keine API-Keys angelegt.",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 265
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Daten",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsGeo.tsx",
+        "kind": "jsx",
+        "line": 23
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 172
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 202
+      },
+      {
+        "file": "components/analytics/AnalyticsTech.tsx",
+        "kind": "jsx",
+        "line": 14
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Daten.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "jsx",
+        "line": 98
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Domains hinzugefügt.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 219
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Kampagnen. Erstelle deinen ersten Link oben.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "jsx",
+        "line": 108
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Karte erstellt",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "jsx",
+        "line": 70
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Karte erstellt.",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 78
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Karten erstellt.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 108
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Leads",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "jsx",
+        "line": 111
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Leads.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "jsx",
+        "line": 129
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Organisationen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 257
+      }
+    ]
+  },
+  {
+    "text": "Noch keine UTM-getaggten Aufrufe in diesem Zeitraum.",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 276
+      }
+    ]
+  },
+  {
+    "text": "Noch keine Webhooks angelegt.",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 124
+      }
+    ]
+  },
+  {
+    "text": "Notiere diesen Key jetzt — er wird nicht erneut angezeigt:",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 248
+      }
+    ]
+  },
+  {
+    "text": "Notiere ihn — er wird nicht erneut angezeigt.",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "property:description",
+        "line": 194
+      }
+    ]
+  },
+  {
+    "text": "Nur Text, keine Icons",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:desc",
+        "line": 25
+      }
+    ]
+  },
+  {
+    "text": "Nutzerverwaltung",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 28
+      }
+    ]
+  },
+  {
+    "text": "oder",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 67
+      }
+    ]
+  },
+  {
+    "text": "Offene Einladungen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 365
+      }
+    ]
+  },
+  {
+    "text": "Öffentlich",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 83
+      }
+    ]
+  },
+  {
+    "text": "Öffentliche URL des Team-Verzeichnisses",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 71
+      }
+    ]
+  },
+  {
+    "text": "Öffentliches Team-Verzeichnis",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 181
+      }
+    ]
+  },
+  {
+    "text": "Öffnen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 187
+      }
+    ]
+  },
+  {
+    "text": "Optionale Nachricht...",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 385
+      }
+    ]
+  },
+  {
+    "text": "Optionen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 142
+      }
+    ]
+  },
+  {
+    "text": "Organisation",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 157
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 25
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 37
+      }
+    ]
+  },
+  {
+    "text": "Organisation bearbeiten",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 209
+      }
+    ]
+  },
+  {
+    "text": "Organisation eingefroren",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 64
+      }
+    ]
+  },
+  {
+    "text": "Organisation erstellen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 174
+      },
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 93
+      }
+    ]
+  },
+  {
+    "text": "Organisationen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 165
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 166
+      },
+      {
+        "file": "app/(admin)/admin/organizations/page.tsx",
+        "kind": "property:title",
+        "line": 4
+      },
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 112
+      },
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "property:label",
+        "line": 14
+      }
+    ]
+  },
+  {
+    "text": "Organisationsname",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 30
+      }
+    ]
+  },
+  {
+    "text": "Outlook",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:title",
+        "line": 40
+      }
+    ]
+  },
+  {
+    "text": "Pal",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/UpgradeButtons.tsx",
+        "kind": "jsx",
+        "line": 139
+      }
+    ]
+  },
+  {
+    "text": "Passwort",
+    "sites": [
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "jsx",
+        "line": 66
+      },
+      {
+        "file": "app/(auth)/register/page.tsx",
+        "kind": "jsx",
+        "line": 92
+      },
+      {
+        "file": "app/c/[slug]/PasswordGate.tsx",
+        "kind": "jsx",
+        "line": 47
+      }
+    ]
+  },
+  {
+    "text": "Passwort ändern",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 66
+      },
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 97
+      }
+    ]
+  },
+  {
+    "text": "Passwort vergessen?",
+    "sites": [
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "jsx",
+        "line": 36
+      },
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "jsx",
+        "line": 85
+      }
+    ]
+  },
+  {
+    "text": "Passwort wiederholen",
+    "sites": [
+      {
+        "file": "app/(auth)/reset-password/page.tsx",
+        "kind": "jsx",
+        "line": 64
+      }
+    ]
+  },
+  {
+    "text": "Passwort zur Bestätigung",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 145
+      },
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 174
+      }
+    ]
+  },
+  {
+    "text": "Pausiert",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 135
+      }
+    ]
+  },
+  {
+    "text": "Pay",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/UpgradeButtons.tsx",
+        "kind": "jsx",
+        "line": 138
+      }
+    ]
+  },
+  {
+    "text": "PayPal-Abo über",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/UpgradeButtons.tsx",
+        "kind": "jsx",
+        "line": 89
+      }
+    ]
+  },
+  {
+    "text": "paypal.com/myaccount/autopay",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/UpgradeButtons.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "PDF / Print-Export",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 21
+      },
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 14
+      }
+    ]
+  },
+  {
+    "text": "Per E-Mail anfragen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/UpgradeButtons.tsx",
+        "kind": "jsx",
+        "line": 105
+      }
+    ]
+  },
+  {
+    "text": "Personen, die ihren Kontakt auf deiner Karte hinterlassen haben.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/page.tsx",
+        "kind": "jsx",
+        "line": 31
+      }
+    ]
+  },
+  {
+    "text": "Pflichtfelder:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "text": "Plan",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 159
+      }
+    ]
+  },
+  {
+    "text": "Plan upgraden",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 58
+      }
+    ]
+  },
+  {
+    "text": "Plan-Verteilung",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 70
+      }
+    ]
+  },
+  {
+    "text": "Plattform-Einstellungen",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 65
+      },
+      {
+        "file": "app/(admin)/admin/settings/page.tsx",
+        "kind": "property:title",
+        "line": 4
+      }
+    ]
+  },
+  {
+    "text": "Plattform-Übersicht",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 44
+      }
+    ]
+  },
+  {
+    "text": "Preise",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 58
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 242
+      }
+    ]
+  },
+  {
+    "text": "Preise – CardNexus",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:title",
+        "line": 8
+      }
+    ]
+  },
+  {
+    "text": "Primärfarbe",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 186
+      },
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 216
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 34
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 289
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 74
+      }
+    ]
+  },
+  {
+    "text": "Primärfarbe für Karten deiner Mitglieder",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 76
+      }
+    ]
+  },
+  {
+    "text": "Privat",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 86
+      }
+    ]
+  },
+  {
+    "text": "Pro",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 228
+      },
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 76
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 60
+      }
+    ]
+  },
+  {
+    "text": "Pro ×",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 107
+      }
+    ]
+  },
+  {
+    "text": "Produkt",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 239
+      }
+    ]
+  },
+  {
+    "text": "Professionelle Signatur für Gmail, Outlook und Apple Mail.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 19
+      }
+    ]
+  },
+  {
+    "text": "Profil",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 131
+      }
+    ]
+  },
+  {
+    "text": "Profil im öffentlichen Verzeichnis deiner Organisation sichtbar",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:desc",
+        "line": 278
+      }
+    ]
+  },
+  {
+    "text": "Profilbild. Empfohlen: quadratisch, mind. 200×200 px.",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 220
+      }
+    ]
+  },
+  {
+    "text": "Profilfoto",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 155
+      }
+    ]
+  },
+  {
+    "text": "Pronomen",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 174
+      }
+    ]
+  },
+  {
+    "text": "QR",
+    "sites": [
+      {
+        "file": "components/card/templates/Bold.tsx",
+        "kind": "attribute:alt",
+        "line": 57
+      },
+      {
+        "file": "components/card/templates/Elegant.tsx",
+        "kind": "attribute:alt",
+        "line": 119
+      },
+      {
+        "file": "components/card/templates/Gradient.tsx",
+        "kind": "attribute:alt",
+        "line": 119
+      },
+      {
+        "file": "components/card/templates/Wave.tsx",
+        "kind": "attribute:alt",
+        "line": 122
+      }
+    ]
+  },
+  {
+    "text": "QR Code",
+    "sites": [
+      {
+        "file": "components/card/QRCodeDisplay.tsx",
+        "kind": "attribute:alt",
+        "line": 36
+      },
+      {
+        "file": "components/card/templates/Classic.tsx",
+        "kind": "attribute:alt",
+        "line": 128
+      },
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "attribute:alt",
+        "line": 121
+      },
+      {
+        "file": "components/card/templates/Dark.tsx",
+        "kind": "attribute:alt",
+        "line": 118
+      },
+      {
+        "file": "components/card/templates/Glass.tsx",
+        "kind": "attribute:alt",
+        "line": 142
+      },
+      {
+        "file": "components/card/templates/Modern.tsx",
+        "kind": "attribute:alt",
+        "line": 113
+      },
+      {
+        "file": "components/card/templates/Neon.tsx",
+        "kind": "attribute:alt",
+        "line": 127
+      },
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "attribute:alt",
+        "line": 129
+      }
+    ]
+  },
+  {
+    "text": "QR-Code",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 36
+      },
+      {
+        "file": "app/(dashboard)/card/page.tsx",
+        "kind": "jsx",
+        "line": 122
+      },
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 223
+      },
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 254
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 14
+      }
+    ]
+  },
+  {
+    "text": "QR-Code auf Karte zeigen",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:label",
+        "line": 276
+      }
+    ]
+  },
+  {
+    "text": "QR-Code herunterladen",
+    "sites": [
+      {
+        "file": "components/card/QRCodeDisplay.tsx",
+        "kind": "jsx",
+        "line": 44
+      }
+    ]
+  },
+  {
+    "text": "QR-Scan",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "property:label",
+        "line": 10
+      }
+    ]
+  },
+  {
+    "text": "QR-Scans",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "attribute:label",
+        "line": 57
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "attribute:label",
+        "line": 118
+      }
+    ]
+  },
+  {
+    "text": "Quelle",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 283
+      }
+    ]
+  },
+  {
+    "text": "Quelle / UTM",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 117
+      }
+    ]
+  },
+  {
+    "text": "Quellen",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 198
+      }
+    ]
+  },
+  {
+    "text": "Rechtliches",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 248
+      }
+    ]
+  },
+  {
+    "text": "Referrer",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 116
+      },
+      {
+        "file": "components/analytics/AnalyticsGeo.tsx",
+        "kind": "jsx",
+        "line": 100
+      }
+    ]
+  },
+  {
+    "text": "Registriere dich kostenlos in weniger als 60 Sekunden.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 28
+      }
+    ]
+  },
+  {
+    "text": "Registrieren",
+    "sites": [
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "jsx",
+        "line": 87
+      }
+    ]
+  },
+  {
+    "text": "Reverse Proxy konfigurieren",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 68
+      }
+    ]
+  },
+  {
+    "text": "Rich",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 23
+      }
+    ]
+  },
+  {
+    "text": "Rolle",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 158
+      },
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 240
+      },
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 371
+      },
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 84
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 79
+      }
+    ]
+  },
+  {
+    "text": "sales@cardnexus.app",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 138
+      }
+    ]
+  },
+  {
+    "text": "Scan für digitale Karte",
+    "sites": [
+      {
+        "file": "components/card/templates/Classic.tsx",
+        "kind": "jsx",
+        "line": 129
+      },
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "jsx",
+        "line": 122
+      },
+      {
+        "file": "components/card/templates/Dark.tsx",
+        "kind": "jsx",
+        "line": 119
+      },
+      {
+        "file": "components/card/templates/Elegant.tsx",
+        "kind": "jsx",
+        "line": 120
+      },
+      {
+        "file": "components/card/templates/Glass.tsx",
+        "kind": "jsx",
+        "line": 143
+      },
+      {
+        "file": "components/card/templates/Gradient.tsx",
+        "kind": "jsx",
+        "line": 120
+      },
+      {
+        "file": "components/card/templates/Modern.tsx",
+        "kind": "jsx",
+        "line": 114
+      },
+      {
+        "file": "components/card/templates/Wave.tsx",
+        "kind": "jsx",
+        "line": 123
+      }
+    ]
+  },
+  {
+    "text": "SCAN_FOR_CARD",
+    "sites": [
+      {
+        "file": "components/card/templates/Neon.tsx",
+        "kind": "jsx",
+        "line": 129
+      }
+    ]
+  },
+  {
+    "text": "Scanne den QR-Code mit deiner Authenticator-App.",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 209
+      }
+    ]
+  },
+  {
+    "text": "Schließen",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 343
+      },
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 258
+      },
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 270
+      }
+    ]
+  },
+  {
+    "text": "Schrift",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 216
+      }
+    ]
+  },
+  {
+    "text": "Schriftart",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 163
+      }
+    ]
+  },
+  {
+    "text": "Schriftwahl",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "property:label",
+        "line": 164
+      }
+    ]
+  },
+  {
+    "text": "Schütze deinen Account zusätzlich mit einem Code aus einer Authenticator-App (Google Authenticator, 1Password, Authy …).",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 127
+      }
+    ]
+  },
+  {
+    "text": "Seit",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 161
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "text": "Seite",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 173
+      }
+    ]
+  },
+  {
+    "text": "Seite nicht gefunden",
+    "sites": [
+      {
+        "file": "app/not-found.tsx",
+        "kind": "jsx",
+        "line": 9
+      }
+    ]
+  },
+  {
+    "text": "senden (gültig 7 Tage)",
+    "sites": [
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 104
+      }
+    ]
+  },
+  {
+    "text": "Senior Developer",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:placeholder",
+        "line": 153
+      }
+    ]
+  },
+  {
+    "text": "Serif",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 82
+      }
+    ]
+  },
+  {
+    "text": "Server in Deutschland. Keine Tracker. Vollständig DSGVO-konform.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 23
+      }
+    ]
+  },
+  {
+    "text": "Setze ein neues Passwort. Andere aktive Sessions werden abgemeldet.",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 67
+      }
+    ]
+  },
+  {
+    "text": "Setze im DNS-Verwaltungsbereich deines Domain-Anbieters einen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 47
+      }
+    ]
+  },
+  {
+    "text": "Sichtbar",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 279
+      }
+    ]
+  },
+  {
+    "text": "Sidebar-Logo",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 154
+      }
+    ]
+  },
+  {
+    "text": "Signatur",
+    "sites": [
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 26
+      }
+    ]
+  },
+  {
+    "text": "Slug (URL-Kürzel)",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 181
+      }
+    ]
+  },
+  {
+    "text": "Slug / URL",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 33
+      }
+    ]
+  },
+  {
+    "text": "So funktioniert es",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 57
+      },
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 122
+      }
+    ]
+  },
+  {
+    "text": "So geht es",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "jsx",
+        "line": 46
+      }
+    ]
+  },
+  {
+    "text": "So verlinkst du deine eigene Domain mit deiner digitalen Visitenkarte.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 25
+      }
+    ]
+  },
+  {
+    "text": "Social",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 134
+      }
+    ]
+  },
+  {
+    "text": "Social-Links",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 161
+      }
+    ]
+  },
+  {
+    "text": "Social-Stil",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 240
+      }
+    ]
+  },
+  {
+    "text": "Sofort",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "property:label",
+        "line": 239
+      }
+    ]
+  },
+  {
+    "text": "Sonstiges",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 171
+      }
+    ]
+  },
+  {
+    "text": "Sperren",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "attribute:title",
+        "line": 301
+      }
+    ]
+  },
+  {
+    "text": "Sprachen",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsGeo.tsx",
+        "kind": "jsx",
+        "line": 111
+      }
+    ]
+  },
+  {
+    "text": "Städte",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsGeo.tsx",
+        "kind": "jsx",
+        "line": 83
+      }
+    ]
+  },
+  {
+    "text": "Standard",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 21
+      },
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 119
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 93
+      }
+    ]
+  },
+  {
+    "text": "Standard (Plattform-Domain)",
+    "sites": [
+      {
+        "file": "components/card/editor/DomainSection.tsx",
+        "kind": "jsx",
+        "line": 28
+      }
+    ]
+  },
+  {
+    "text": "Standard-Layout",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 89
+      }
+    ]
+  },
+  {
+    "text": "Standard-Schrift",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 77
+      }
+    ]
+  },
+  {
+    "text": "Standard-Template",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 66
+      }
+    ]
+  },
+  {
+    "text": "Starte kostenlos. Upgrade wenn du bereit bist.",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "jsx",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "text": "Status",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 37
+      },
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 165
+      }
+    ]
+  },
+  {
+    "text": "Stil wählen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 120
+      }
+    ]
+  },
+  {
+    "text": "Suchen…",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 144
+      },
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 93
+      },
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 220
+      }
+    ]
+  },
+  {
+    "text": "Super Admin",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 208
+      },
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "jsx",
+        "line": 32
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "jsx",
+        "line": 153
+      }
+    ]
+  },
+  {
+    "text": "Support-E-Mail",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 176
+      }
+    ]
+  },
+  {
+    "text": "support@meinedomain.de",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 180
+      }
+    ]
+  },
+  {
+    "text": "Tägliche Zusammenfassung",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "property:label",
+        "line": 240
+      }
+    ]
+  },
+  {
+    "text": "Team",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 160
+      },
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "property:title",
+        "line": 12
+      },
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 40
+      }
+    ]
+  },
+  {
+    "text": "Team Analytics",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/page.tsx",
+        "kind": "property:title",
+        "line": 11
+      },
+      {
+        "file": "app/(dashboard)/analytics/org/page.tsx",
+        "kind": "jsx",
+        "line": 92
+      },
+      {
+        "file": "app/(dashboard)/analytics/page.tsx",
+        "kind": "jsx",
+        "line": 43
+      }
+    ]
+  },
+  {
+    "text": "Team Leader",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 210
+      },
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 90
+      },
+      {
+        "file": "components/team/UserTable.tsx",
+        "kind": "jsx",
+        "line": 119
+      }
+    ]
+  },
+  {
+    "text": "Team nicht gefunden",
+    "sites": [
+      {
+        "file": "app/team/[orgSlug]/page.tsx",
+        "kind": "property:title",
+        "line": 15
+      }
+    ]
+  },
+  {
+    "text": "Team-Verwaltung",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 16
+      }
+    ]
+  },
+  {
+    "text": "Team-Verzeichnis",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 94
+      }
+    ]
+  },
+  {
+    "text": "Teammitglieder",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "attribute:label",
+        "line": 60
+      }
+    ]
+  },
+  {
+    "text": "TechCorp GmbH",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "text": "Teile deinen persönlichen Link und werbe andere Nutzer an.",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 319
+      }
+    ]
+  },
+  {
+    "text": "Teilen & Vernetzen",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 30
+      }
+    ]
+  },
+  {
+    "text": "Teilen-Button ausblenden",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "property:label",
+        "line": 279
+      }
+    ]
+  },
+  {
+    "text": "Tel",
+    "sites": [
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "attribute:label",
+        "line": 97
+      }
+    ]
+  },
+  {
+    "text": "Telefon",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 370
+      },
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "attribute:label",
+        "line": 89
+      },
+      {
+        "file": "components/card/templates/Minimal.tsx",
+        "kind": "jsx",
+        "line": 71
+      }
+    ]
+  },
+  {
+    "text": "Telefon (Büro)",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 234
+      }
+    ]
+  },
+  {
+    "text": "Template",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 34
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 214
+      },
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 278
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 44
+      }
+    ]
+  },
+  {
+    "text": "Template-Wahl",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "property:label",
+        "line": 162
+      }
+    ]
+  },
+  {
+    "text": "Termin buchen",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 206
+      }
+    ]
+  },
+  {
+    "text": "Terminbuchung",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 20
+      }
+    ]
+  },
+  {
+    "text": "Terminbuchungs-Link",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 15
+      },
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 259
+      }
+    ]
+  },
+  {
+    "text": "Testen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "attribute:title",
+        "line": 65
+      }
+    ]
+  },
+  {
+    "text": "Theme wechseln",
+    "sites": [
+      {
+        "file": "components/layout/Header.tsx",
+        "kind": "attribute:aria-label",
+        "line": 57
+      }
+    ]
+  },
+  {
+    "text": "Tippe",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 193
+      }
+    ]
+  },
+  {
+    "text": "Top-10 Custom-Links und Social-Links nach Klickzahl.",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 235
+      }
+    ]
+  },
+  {
+    "text": "Top-Karten nach Aufrufen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "jsx",
+        "line": 94
+      }
+    ]
+  },
+  {
+    "text": "Top-Karten nach Leads",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "jsx",
+        "line": 125
+      }
+    ]
+  },
+  {
+    "text": "TOTP QR-Code",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "attribute:alt",
+        "line": 200
+      }
+    ]
+  },
+  {
+    "text": "Trage deine Domain im Tab",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "text": "Twitter / X",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "property:label",
+        "line": 42
+      }
+    ]
+  },
+  {
+    "text": "Typ",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "text": "Überschreiben Sie globale Berechtigungen pro Abteilung. Name muss exakt mit dem Feld „Abteilung\" der Mitgliedskarte übereinstimmen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 205
+      }
+    ]
+  },
+  {
+    "text": "Übersicht",
+    "sites": [
+      {
+        "file": "app/(admin)/layout.tsx",
+        "kind": "property:label",
+        "line": 10
+      }
+    ]
+  },
+  {
+    "text": "Übersprungen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "property:label",
+        "line": 151
+      }
+    ]
+  },
+  {
+    "text": "Umbenennen",
+    "sites": [
+      {
+        "file": "components/card/CardSwitcher.tsx",
+        "kind": "attribute:title",
+        "line": 177
+      }
+    ]
+  },
+  {
+    "text": "Umsatz-Schätzung",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "text": "und",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 270
+      }
+    ]
+  },
+  {
+    "text": "Unter welcher Domain soll deine Karte erreichbar sein?",
+    "sites": [
+      {
+        "file": "components/card/editor/DomainSection.tsx",
+        "kind": "jsx",
+        "line": 22
+      }
+    ]
+  },
+  {
+    "text": "Unternehmen",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 157
+      }
+    ]
+  },
+  {
+    "text": "Unternehmensname",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 272
+      }
+    ]
+  },
+  {
+    "text": "Upgrade",
+    "sites": [
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "jsx",
+        "line": 140
+      }
+    ]
+  },
+  {
+    "text": "Upgrade – CardNexus",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "property:title",
+        "line": 11
+      }
+    ]
+  },
+  {
+    "text": "URL",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 105
+      }
+    ]
+  },
+  {
+    "text": "URL auf den Tag schreiben",
+    "sites": [
+      {
+        "file": "app/(dashboard)/nfc/page.tsx",
+        "kind": "attribute:title",
+        "line": 56
+      }
+    ]
+  },
+  {
+    "text": "URL kopieren",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "attribute:title",
+        "line": 139
+      }
+    ]
+  },
+  {
+    "text": "URL-Kürzel (Slug)",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 61
+      }
+    ]
+  },
+  {
+    "text": "UTM-Kampagnen",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/page.tsx",
+        "kind": "jsx",
+        "line": 43
+      },
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "jsx",
+        "line": 268
+      }
+    ]
+  },
+  {
+    "text": "UTM-Kampagnen & QR-Links",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 16
+      }
+    ]
+  },
+  {
+    "text": "UTM-Links für Messen und Events mit eigener Klick-Statistik.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 18
+      }
+    ]
+  },
+  {
+    "text": "vCard",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "property:label",
+        "line": 9
+      },
+      {
+        "file": "app/(dashboard)/dashboard/page.tsx",
+        "kind": "jsx",
+        "line": 190
+      }
+    ]
+  },
+  {
+    "text": "vCard Downloads",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "attribute:label",
+        "line": 117
+      }
+    ]
+  },
+  {
+    "text": "vCard-Downloads",
+    "sites": [
+      {
+        "file": "app/(dashboard)/analytics/org/client.tsx",
+        "kind": "attribute:label",
+        "line": 56
+      }
+    ]
+  },
+  {
+    "text": "Verfügbar ab dem",
+    "sites": [
+      {
+        "file": "components/plan/UpgradePrompt.tsx",
+        "kind": "jsx",
+        "line": 38
+      }
+    ]
+  },
+  {
+    "text": "verfügbar.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 77
+      }
+    ]
+  },
+  {
+    "text": "verfügbar. Verwalte Mitglieder, versende Einladungen und behalte den Überblick über dein Team.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 95
+      }
+    ]
+  },
+  {
+    "text": "Version:",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/page.tsx",
+        "kind": "jsx",
+        "line": 126
+      }
+    ]
+  },
+  {
+    "text": "Versteckt",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/client.tsx",
+        "kind": "jsx",
+        "line": 280
+      }
+    ]
+  },
+  {
+    "text": "Vertraulichkeitshinweis, Datenschutzerklärung…",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 175
+      }
+    ]
+  },
+  {
+    "text": "Vielen Dank!",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 340
+      }
+    ]
+  },
+  {
+    "text": "Vom Admin gesperrt",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "text": "von",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 173
+      }
+    ]
+  },
+  {
+    "text": "Von der persönlichen Karte bis zur unternehmensweiten Lösung.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "jsx",
+        "line": 142
+      }
+    ]
+  },
+  {
+    "text": "Von:",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:label",
+        "line": 227
+      }
+    ]
+  },
+  {
+    "text": "Vorgang abgebrochen.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 72
+      }
+    ]
+  },
+  {
+    "text": "Vorlage",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 90
+      }
+    ]
+  },
+  {
+    "text": "Vorname",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 143
+      }
+    ]
+  },
+  {
+    "text": "Vorschau",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 142
+      },
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "jsx",
+        "line": 223
+      },
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "jsx",
+        "line": 121
+      },
+      {
+        "file": "app/(dashboard)/widget/client.tsx",
+        "kind": "attribute:title",
+        "line": 128
+      },
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 373
+      }
+    ]
+  },
+  {
+    "text": "Vorschau Browser-Tab:",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 88
+      }
+    ]
+  },
+  {
+    "text": "Wachstum",
+    "sites": [
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 29
+      }
+    ]
+  },
+  {
+    "text": "Wähle ein sicheres Passwort mit mindestens 8 Zeichen.",
+    "sites": [
+      {
+        "file": "app/(auth)/reset-password/page.tsx",
+        "kind": "jsx",
+        "line": 51
+      }
+    ]
+  },
+  {
+    "text": "Wähle ein Template, füge deine Daten ein und passe Farben an.",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:desc",
+        "line": 29
+      }
+    ]
+  },
+  {
+    "text": "Wallet",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "property:label",
+        "line": 12
+      }
+    ]
+  },
+  {
+    "text": "Wallet aktiv",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 297
+      }
+    ]
+  },
+  {
+    "text": "Wallet Saves",
+    "sites": [
+      {
+        "file": "components/analytics/AnalyticsOverview.tsx",
+        "kind": "attribute:label",
+        "line": 120
+      }
+    ]
+  },
+  {
+    "text": "Web",
+    "sites": [
+      {
+        "file": "components/card/templates/Corporate.tsx",
+        "kind": "attribute:label",
+        "line": 98
+      },
+      {
+        "file": "components/card/templates/Minimal.tsx",
+        "kind": "jsx",
+        "line": 78
+      },
+      {
+        "file": "components/card/templates/Retro.tsx",
+        "kind": "attribute:label",
+        "line": 106
+      }
+    ]
+  },
+  {
+    "text": "Webhooks",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 92
+      }
+    ]
+  },
+  {
+    "text": "Website",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 251
+      }
+    ]
+  },
+  {
+    "text": "Weiter",
+    "sites": [
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 188
+      }
+    ]
+  },
+  {
+    "text": "Weiter →",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 186
+      }
+    ]
+  },
+  {
+    "text": "Weitere einladen",
+    "sites": [
+      {
+        "file": "components/team/InviteModal.tsx",
+        "kind": "jsx",
+        "line": 112
+      }
+    ]
+  },
+  {
+    "text": "Weiteren Import starten",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 190
+      }
+    ]
+  },
+  {
+    "text": "Wenn jemand auf deiner Karte auf „Kontakt hinterlassen\" tippt, erscheint er hier.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/leads/client.tsx",
+        "kind": "jsx",
+        "line": 112
+      }
+    ]
+  },
+  {
+    "text": "WhatsApp",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 229
+      }
+    ]
+  },
+  {
+    "text": "White Label (kein Badge)",
+    "sites": [
+      {
+        "file": "app/pricing/page.tsx",
+        "kind": "property:label",
+        "line": 13
+      }
+    ]
+  },
+  {
+    "text": "Whitelabel",
+    "sites": [
+      {
+        "file": "app/page.tsx",
+        "kind": "property:title",
+        "line": 24
+      }
+    ]
+  },
+  {
+    "text": "Widget",
+    "sites": [
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 42
+      }
+    ]
+  },
+  {
+    "text": "Widget – CardNexus",
+    "sites": [
+      {
+        "file": "app/(dashboard)/widget/page.tsx",
+        "kind": "property:title",
+        "line": 7
+      }
+    ]
+  },
+  {
+    "text": "Wie möchtest du benachrichtigt werden, wenn jemand auf deiner Karte Kontakt hinterlässt?",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 233
+      }
+    ]
+  },
+  {
+    "text": "wie Primär",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "attribute:placeholder",
+        "line": 105
+      },
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "attribute:placeholder",
+        "line": 119
+      }
+    ]
+  },
+  {
+    "text": "Willkommen zurück",
+    "sites": [
+      {
+        "file": "app/(auth)/login/page.tsx",
+        "kind": "jsx",
+        "line": 48
+      }
+    ]
+  },
+  {
+    "text": "Wir senden dir einen Link zum Zurücksetzen deines Passworts.",
+    "sites": [
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "jsx",
+        "line": 37
+      }
+    ]
+  },
+  {
+    "text": "Wird als Button auf deiner Karte angezeigt.",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "jsx",
+        "line": 261
+      }
+    ]
+  },
+  {
+    "text": "Wird automatisch aus dem Namen generiert",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/organizations/client.tsx",
+        "kind": "jsx",
+        "line": 183
+      }
+    ]
+  },
+  {
+    "text": "Wird eingetragen wenn CSV keine Firma enthält.",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 274
+      }
+    ]
+  },
+  {
+    "text": "Wird erstellt…",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/CreateOrgForm.tsx",
+        "kind": "jsx",
+        "line": 92
+      }
+    ]
+  },
+  {
+    "text": "Wird geladen…",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 237
+      }
+    ]
+  },
+  {
+    "text": "Wird gesendet…",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 401
+      }
+    ]
+  },
+  {
+    "text": "Wird gespeichert…",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/client.tsx",
+        "kind": "jsx",
+        "line": 231
+      }
+    ]
+  },
+  {
+    "text": "Wird importiert…",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/import/client.tsx",
+        "kind": "jsx",
+        "line": 139
+      }
+    ]
+  },
+  {
+    "text": "Wird in Browser-Tab, Sidebar, E-Mails und überall als Produktname angezeigt.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/settings/client.tsx",
+        "kind": "jsx",
+        "line": 76
+      }
+    ]
+  },
+  {
+    "text": "wird unwiderruflich gelöscht — inklusive aller Karten, Analytics und Leads. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/users/client.tsx",
+        "kind": "jsx",
+        "line": 330
+      }
+    ]
+  },
+  {
+    "text": "Wird vorbereitet…",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 198
+      }
+    ]
+  },
+  {
+    "text": "Workspace",
+    "sites": [
+      {
+        "file": "components/layout/Sidebar.tsx",
+        "kind": "property:label",
+        "line": 21
+      }
+    ]
+  },
+  {
+    "text": "wurde benachrichtigt.",
+    "sites": [
+      {
+        "file": "app/c/[slug]/client.tsx",
+        "kind": "jsx",
+        "line": 342
+      }
+    ]
+  },
+  {
+    "text": "X / Twitter",
+    "sites": [
+      {
+        "file": "components/card/templates/SocialLinks.tsx",
+        "kind": "property:label",
+        "line": 8
+      }
+    ]
+  },
+  {
+    "text": "Xing",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "property:label",
+        "line": 41
+      },
+      {
+        "file": "components/card/templates/SocialLinks.tsx",
+        "kind": "property:label",
+        "line": 12
+      }
+    ]
+  },
+  {
+    "text": "YouTube",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "property:label",
+        "line": 45
+      },
+      {
+        "file": "components/card/templates/SocialLinks.tsx",
+        "kind": "property:label",
+        "line": 11
+      }
+    ]
+  },
+  {
+    "text": "z.B. CI Pipeline",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "attribute:placeholder",
+        "line": 238
+      }
+    ]
+  },
+  {
+    "text": "z.B. Messe Berlin 2026",
+    "sites": [
+      {
+        "file": "app/(dashboard)/campaigns/client.tsx",
+        "kind": "attribute:placeholder",
+        "line": 85
+      }
+    ]
+  },
+  {
+    "text": "z.B. Slack Notifier",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "attribute:placeholder",
+        "line": 105
+      }
+    ]
+  },
+  {
+    "text": "Zeit",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/access-log/client.tsx",
+        "kind": "jsx",
+        "line": 109
+      }
+    ]
+  },
+  {
+    "text": "Zentriert",
+    "sites": [
+      {
+        "file": "app/(dashboard)/settings/OrgSettingsCards.tsx",
+        "kind": "jsx",
+        "line": 94
+      }
+    ]
+  },
+  {
+    "text": "Ziehen zum Sortieren",
+    "sites": [
+      {
+        "file": "components/card/CardEditor.tsx",
+        "kind": "attribute:title",
+        "line": 307
+      }
+    ]
+  },
+  {
+    "text": "Ziel",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "text": "Zuletzt geändert",
+    "sites": [
+      {
+        "file": "app/(admin)/admin/cards/page.tsx",
+        "kind": "jsx",
+        "line": 36
+      }
+    ]
+  },
+  {
+    "text": "zuletzt verwendet:",
+    "sites": [
+      {
+        "file": "components/settings/IntegrationsCards.tsx",
+        "kind": "jsx",
+        "line": 275
+      }
+    ]
+  },
+  {
+    "text": "Zum Admin-Panel",
+    "sites": [
+      {
+        "file": "app/(dashboard)/team/page.tsx",
+        "kind": "jsx",
+        "line": 35
+      }
+    ]
+  },
+  {
+    "text": "zur Bestätigung",
+    "sites": [
+      {
+        "file": "components/settings/AccountActions.tsx",
+        "kind": "jsx",
+        "line": 193
+      }
+    ]
+  },
+  {
+    "text": "Zur Karte",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 101
+      }
+    ]
+  },
+  {
+    "text": "Zur Startseite",
+    "sites": [
+      {
+        "file": "app/not-found.tsx",
+        "kind": "jsx",
+        "line": 12
+      }
+    ]
+  },
+  {
+    "text": "Zurück zum Dashboard",
+    "sites": [
+      {
+        "file": "app/(dashboard)/upgrade/page.tsx",
+        "kind": "jsx",
+        "line": 57
+      }
+    ]
+  },
+  {
+    "text": "Zurück zum Login",
+    "sites": [
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "jsx",
+        "line": 43
+      },
+      {
+        "file": "app/(auth)/forgot-password/page.tsx",
+        "kind": "jsx",
+        "line": 67
+      },
+      {
+        "file": "app/(auth)/login/2fa/page.tsx",
+        "kind": "jsx",
+        "line": 110
+      },
+      {
+        "file": "app/(auth)/reset-password/page.tsx",
+        "kind": "jsx",
+        "line": 78
+      }
+    ]
+  },
+  {
+    "text": "Zurück zur Karte",
+    "sites": [
+      {
+        "file": "app/(dashboard)/custom-domain/page.tsx",
+        "kind": "jsx",
+        "line": 22
+      }
+    ]
+  },
+  {
+    "text": "Zurücksetzen",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 122
+      }
+    ]
+  },
+  {
+    "text": "Zwei-Faktor-Authentifizierung",
+    "sites": [
+      {
+        "file": "app/(auth)/login/2fa/page.tsx",
+        "kind": "jsx",
+        "line": 54
+      },
+      {
+        "file": "components/settings/SecurityCard.tsx",
+        "kind": "jsx",
+        "line": 126
+      }
+    ]
+  },
+  {
+    "text": "Zweispaltig, klein",
+    "sites": [
+      {
+        "file": "app/(dashboard)/card/signature/client.tsx",
+        "kind": "property:desc",
+        "line": 22
+      }
+    ]
+  },
+  {
+    "text": "Zweite Farbe für Icons, Links und Buttons",
+    "sites": [
+      {
+        "file": "components/card/editor/DesignTab.tsx",
+        "kind": "jsx",
+        "line": 113
+      }
+    ]
+  }
+]

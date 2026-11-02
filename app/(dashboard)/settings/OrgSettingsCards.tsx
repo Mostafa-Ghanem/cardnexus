@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,16 +22,16 @@ export function OrgInfoCard({ orgName, setOrgName, orgColor, setOrgColor, orgDis
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Organisation</CardTitle>
-        <CardDescription>Grundlegende Informationen zu {orgDisplayName}</CardDescription>
+        <CardTitle><T text={"Organisation"} /></CardTitle>
+        <CardDescription><T text={"Grundlegende Informationen zu"} />{" "}{orgDisplayName}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="space-y-1.5">
-          <Label>Organisationsname</Label>
+          <Label><T text={"Organisationsname"} /></Label>
           <Input value={orgName} onChange={(e) => setOrgName(e.target.value)} />
         </div>
         <div className="space-y-1.5">
-          <Label>Primärfarbe</Label>
+          <Label><T text={"Primärfarbe"} /></Label>
           <div className="flex items-center gap-3">
             <input type="color" value={orgColor} onChange={(e) => setOrgColor(e.target.value)}
               className="h-10 w-16 rounded-md border border-input cursor-pointer" />
@@ -54,14 +56,14 @@ export function DesignDefaultsCard(p: DesignDefaultsProps) {
       <CardHeader>
         <div className="flex items-center gap-2">
           <LayoutTemplate className="h-4 w-4 text-muted-foreground" />
-          <CardTitle className="text-base">Design-Vorgaben</CardTitle>
+          <CardTitle className="text-base"><T text={"Design-Vorgaben"} /></CardTitle>
         </div>
-        <CardDescription>Diese Werte werden für neue Mitglieder-Karten als Standard gesetzt.</CardDescription>
+        <CardDescription><T text={"Diese Werte werden für neue Mitglieder-Karten als Standard gesetzt."} /></CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label>Standard-Template</Label>
+            <Label><T text={"Standard-Template"} /></Label>
             <Select value={p.defaultTemplate} onValueChange={p.setDefaultTemplate}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -72,30 +74,30 @@ export function DesignDefaultsCard(p: DesignDefaultsProps) {
             </Select>
           </div>
           <div className="space-y-1.5">
-            <Label>Standard-Schrift</Label>
+            <Label><T text={"Standard-Schrift"} /></Label>
             <Select value={p.defaultFont} onValueChange={p.setDefaultFont}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="inter">Inter (Sans-serif)</SelectItem>
-                <SelectItem value="serif">Serif</SelectItem>
-                <SelectItem value="mono">Mono</SelectItem>
-                <SelectItem value="display">Display</SelectItem>
+                <SelectItem value="inter"><T text={"Inter (Sans-serif)"} /></SelectItem>
+                <SelectItem value="serif"><T text={"Serif"} /></SelectItem>
+                <SelectItem value="mono"><T text={"Mono"} /></SelectItem>
+                <SelectItem value="display"><T text={"Display"} /></SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="space-y-1.5">
-            <Label>Standard-Layout</Label>
+            <Label><T text={"Standard-Layout"} /></Label>
             <Select value={p.defaultLayout} onValueChange={p.setDefaultLayout}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="standard">Standard</SelectItem>
-                <SelectItem value="centered">Zentriert</SelectItem>
-                <SelectItem value="compact">Kompakt</SelectItem>
+                <SelectItem value="standard"><T text={"Standard"} /></SelectItem>
+                <SelectItem value="centered"><T text={"Zentriert"} /></SelectItem>
+                <SelectItem value="compact"><T text={"Kompakt"} /></SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="space-y-1.5">
-            <Label>Akzentfarbe <span className="text-xs text-muted-foreground">(optional)</span></Label>
+            <Label><T text={"Akzentfarbe"} />{" "}<span className="text-xs text-muted-foreground"><T text={"(optional)"} /></span></Label>
             <div className="flex items-center gap-2">
               <input type="color" value={p.defaultAccent || p.orgColor}
                 onChange={(e) => p.setDefaultAccent(e.target.value)}
@@ -120,9 +122,9 @@ export function BrandColorsCard({ brandColors, newColor, setNewColor, onAdd, onR
       <CardHeader>
         <div className="flex items-center gap-2">
           <Palette className="h-4 w-4 text-muted-foreground" />
-          <CardTitle className="text-base">Markenfarben-Palette</CardTitle>
+          <CardTitle className="text-base"><T text={"Markenfarben-Palette"} /></CardTitle>
         </div>
-        <CardDescription>Diese Farben stehen Mitgliedern zur schnellen Auswahl bereit. Leer = freie Farbwahl.</CardDescription>
+        <CardDescription><T text={"Diese Farben stehen Mitgliedern zur schnellen Auswahl bereit. Leer = freie Farbwahl."} /></CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex flex-wrap gap-2">
@@ -141,8 +143,7 @@ export function BrandColorsCard({ brandColors, newColor, setNewColor, onAdd, onR
             className="h-9 w-12 rounded border border-input cursor-pointer" />
           <Input value={newColor} onChange={(e) => setNewColor(e.target.value)} className="font-mono w-28" maxLength={7} />
           <Button type="button" variant="outline" size="sm" onClick={onAdd}>
-            <Plus className="h-4 w-4" /> Hinzufügen
-          </Button>
+            <Plus className="h-4 w-4" /><T text={"Hinzufügen"} /></Button>
         </div>
       </CardContent>
     </Card>
@@ -169,9 +170,9 @@ export function PermissionsCard(p: PermissionsProps) {
       <CardHeader>
         <div className="flex items-center gap-2">
           <Type className="h-4 w-4 text-muted-foreground" />
-          <CardTitle className="text-base">Globale Berechtigungen</CardTitle>
+          <CardTitle className="text-base"><T text={"Globale Berechtigungen"} /></CardTitle>
         </div>
-        <CardDescription>Legen Sie fest, was Mitglieder standardmäßig anpassen dürfen. Abteilungsregeln können diese Werte überschreiben.</CardDescription>
+        <CardDescription><T text={"Legen Sie fest, was Mitglieder standardmäßig anpassen dürfen. Abteilungsregeln können diese Werte überschreiben."} /></CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         {rows.map(({ label, sub, val, set }) => (
@@ -199,12 +200,9 @@ export function DeptPoliciesCard({ deptRows, newDeptName, setNewDeptName, onAdd,
       <CardHeader>
         <div className="flex items-center gap-2">
           <Users className="h-4 w-4 text-muted-foreground" />
-          <CardTitle className="text-base">Abteilungsregeln</CardTitle>
+          <CardTitle className="text-base"><T text={"Abteilungsregeln"} /></CardTitle>
         </div>
-        <CardDescription>
-          Überschreiben Sie globale Berechtigungen pro Abteilung.
-          Name muss exakt mit dem Feld „Abteilung" der Mitgliedskarte übereinstimmen.
-        </CardDescription>
+        <CardDescription><T text={"Überschreiben Sie globale Berechtigungen pro Abteilung. Name muss exakt mit dem Feld „Abteilung\" der Mitgliedskarte übereinstimmen."} /></CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {deptRows.length > 0 && (
@@ -212,11 +210,11 @@ export function DeptPoliciesCard({ deptRows, newDeptName, setNewDeptName, onAdd,
             <table className="w-full text-sm">
               <thead className="bg-muted/50 text-xs text-muted-foreground uppercase tracking-wide">
                 <tr>
-                  <th className="text-left px-3 py-2">Abteilung</th>
-                  <th className="text-center px-2 py-2">Template</th>
-                  <th className="text-center px-2 py-2">Farbe</th>
-                  <th className="text-center px-2 py-2">Schrift</th>
-                  <th className="text-center px-2 py-2">Layout</th>
+                  <th className="text-left px-3 py-2"><T text={"Abteilung"} /></th>
+                  <th className="text-center px-2 py-2"><T text={"Template"} /></th>
+                  <th className="text-center px-2 py-2"><T text={"Farbe"} /></th>
+                  <th className="text-center px-2 py-2"><T text={"Schrift"} /></th>
+                  <th className="text-center px-2 py-2"><T text={"Layout"} /></th>
                   <th className="px-2 py-2" />
                 </tr>
               </thead>
@@ -245,10 +243,9 @@ export function DeptPoliciesCard({ deptRows, newDeptName, setNewDeptName, onAdd,
             onChange={(e) => setNewDeptName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && onAdd()} className="flex-1" />
           <Button type="button" variant="outline" size="sm" onClick={onAdd}>
-            <Plus className="h-4 w-4" /> Hinzufügen
-          </Button>
+            <Plus className="h-4 w-4" /><T text={"Hinzufügen"} /></Button>
         </div>
-        <p className="text-xs text-muted-foreground">Neue Abteilungen erben die globalen Berechtigungen oben als Startwert.</p>
+        <p className="text-xs text-muted-foreground"><T text={"Neue Abteilungen erben die globalen Berechtigungen oben als Startwert."} /></p>
       </CardContent>
     </Card>
   );
@@ -266,19 +263,19 @@ export function TemplateCardSection(p: TemplateCardProps) {
       <CardHeader>
         <div className="flex items-center gap-2">
           <LayoutTemplate className="h-4 w-4 text-muted-foreground" />
-          <CardTitle className="text-base">Karten-Vorlage (Bulk Import)</CardTitle>
+          <CardTitle className="text-base"><T text={"Karten-Vorlage (Bulk Import)"} /></CardTitle>
         </div>
-        <CardDescription>Diese Werte werden beim CSV-Import als Standardwerte für neue Karten verwendet.</CardDescription>
+        <CardDescription><T text={"Diese Werte werden beim CSV-Import als Standardwerte für neue Karten verwendet."} /></CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-1.5">
-          <Label>Unternehmensname</Label>
+          <Label><T text={"Unternehmensname"} /></Label>
           <Input value={p.templateCompany} onChange={(e) => p.setTemplateCompany(e.target.value)} placeholder={p.orgName} />
-          <p className="text-xs text-muted-foreground">Wird eingetragen wenn CSV keine Firma enthält.</p>
+          <p className="text-xs text-muted-foreground"><T text={"Wird eingetragen wenn CSV keine Firma enthält."} /></p>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label>Template</Label>
+            <Label><T text={"Template"} /></Label>
             <Select value={p.templateId} onValueChange={p.setTemplateId}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -289,7 +286,7 @@ export function TemplateCardSection(p: TemplateCardProps) {
             </Select>
           </div>
           <div className="space-y-1.5">
-            <Label>Primärfarbe</Label>
+            <Label><T text={"Primärfarbe"} /></Label>
             <div className="flex items-center gap-2">
               <input type="color" value={p.templateColor} onChange={(e) => p.setTemplateColor(e.target.value)}
                 className="h-9 w-12 rounded border border-input cursor-pointer" />

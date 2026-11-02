@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { db } from "@/lib/db";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -20,20 +21,20 @@ export default async function AdminCardsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Alle Karten</h1>
-        <p className="text-muted-foreground mt-1">{cards.length} Karten auf der Plattform</p>
+        <h1 className="text-2xl font-bold"><T text={"Alle Karten"} /></h1>
+        <p className="text-muted-foreground mt-1">{cards.length}{" "}<T text={"Karten auf der Plattform"} /></p>
       </div>
 
       <div className="rounded-xl border border-border overflow-hidden bg-white dark:bg-gray-900">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/40">
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Inhaber</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Slug / URL</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Template</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Aufrufe</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Zuletzt geändert</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Status</th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Inhaber"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Slug / URL"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell"><T text={"Template"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell"><T text={"Aufrufe"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell"><T text={"Zuletzt geändert"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Status"} /></th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -79,12 +80,10 @@ export default async function AdminCardsPage() {
                 <td className="px-4 py-3">
                   {card.isPublic ? (
                     <span className="inline-flex items-center gap-1 text-xs text-emerald-600">
-                      <Globe className="h-3 w-3" /> Öffentlich
-                    </span>
+                      <Globe className="h-3 w-3" /><T text={"Öffentlich"} /></span>
                   ) : (
                     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                      <EyeOff className="h-3 w-3" /> Privat
-                    </span>
+                      <EyeOff className="h-3 w-3" /><T text={"Privat"} /></span>
                   )}
                 </td>
                 <td className="px-4 py-3">
@@ -96,9 +95,7 @@ export default async function AdminCardsPage() {
                     </Button>
                     <Button asChild variant="outline" size="sm" className="h-7 gap-1 text-xs">
                       <Link href={`/admin/cards/${card.slug}`}>
-                        <Pencil className="h-3 w-3" />
-                        Bearbeiten
-                      </Link>
+                        <Pencil className="h-3 w-3" /><T text={"Bearbeiten"} /></Link>
                     </Button>
                   </div>
                 </td>
@@ -108,9 +105,7 @@ export default async function AdminCardsPage() {
         </table>
 
         {cards.length === 0 && (
-          <div className="px-4 py-12 text-center text-muted-foreground text-sm">
-            Noch keine Karten erstellt.
-          </div>
+          <div className="px-4 py-12 text-center text-muted-foreground text-sm"><T text={"Noch keine Karten erstellt."} /></div>
         )}
       </div>
     </div>

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { Copy, Check, Code2, Zap } from "lucide-react";
@@ -40,18 +42,14 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
     <div className="max-w-2xl space-y-8">
       <div>
         <h1 className="text-2xl font-bold flex items-center gap-2">
-          <Code2 className="h-6 w-6" />
-          Karte einbetten
-        </h1>
-        <p className="text-muted-foreground mt-1">
-          Bette deine digitale Karte per iFrame direkt auf deiner Website ein.
-        </p>
+          <Code2 className="h-6 w-6" /><T text={"Karte einbetten"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Bette deine digitale Karte per iFrame direkt auf deiner Website ein."} /></p>
       </div>
 
       <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
         {/* Card selector */}
         <div>
-          <Label htmlFor="card-select">Karte auswählen</Label>
+          <Label htmlFor="card-select"><T text={"Karte auswählen"} /></Label>
           {canSelectMultiple && cards.length > 1 ? (
             <select
               id="card-select"
@@ -74,24 +72,20 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
 
           {!canSelectMultiple && (
             <p className="mt-2 text-xs text-muted-foreground flex items-center gap-1.5">
-              <Zap className="h-3 w-3 text-amber-500" />
-              Mehrere Karten ab{" "}
-              <Link href="/upgrade" className="text-primary underline underline-offset-2">
-                Pro
-              </Link>
-              {" "}verfügbar.
-            </p>
+              <Zap className="h-3 w-3 text-amber-500" /><T text={"Mehrere Karten ab"} />{" "}
+              <Link href="/upgrade" className="text-primary underline underline-offset-2"><T text={"Pro"} /></Link>
+              {" "}<T text={"verfügbar."} /></p>
           )}
         </div>
 
         {/* Dimensions */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="width">Breite (px)</Label>
+            <Label htmlFor="width"><T text={"Breite (px)"} /></Label>
             <Input id="width" value={width} onChange={(e) => setWidth(e.target.value)} className="mt-1" />
           </div>
           <div>
-            <Label htmlFor="height">Höhe (px)</Label>
+            <Label htmlFor="height"><T text={"Höhe (px)"} /></Label>
             <Input id="height" value={height} onChange={(e) => setHeight(e.target.value)} className="mt-1" />
           </div>
         </div>
@@ -100,7 +94,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
       {selectedSlug && (
         <>
           <div className="space-y-2">
-            <p className="text-sm font-medium">Direktlink</p>
+            <p className="text-sm font-medium"><T text={"Direktlink"} /></p>
             <div className="flex items-center gap-2">
               <code className="flex-1 text-xs bg-muted rounded-lg px-3 py-2 truncate">{cardUrl}</code>
               <Button size="sm" variant="outline" onClick={() => copy(cardUrl, "link")}>
@@ -110,7 +104,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm font-medium">iFrame-Code</p>
+            <p className="text-sm font-medium"><T text={"iFrame-Code"} /></p>
             <div className="relative">
               <pre className="text-xs bg-muted rounded-xl p-4 overflow-x-auto whitespace-pre leading-relaxed">{iframeCode}</pre>
               <Button
@@ -124,7 +118,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm font-medium">Vorschau</p>
+            <p className="text-sm font-medium"><T text={"Vorschau"} /></p>
             <div className="flex justify-center bg-muted rounded-2xl p-6">
               <iframe
                 src={cardUrl}
@@ -141,9 +135,7 @@ export function WidgetClient({ cards, canSelectMultiple }: WidgetClientProps) {
       )}
 
       {!selectedSlug && (
-        <div className="rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground text-sm">
-          Keine Karte gefunden. Erstelle zuerst eine Karte.
-        </div>
+        <div className="rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground text-sm"><T text={"Keine Karte gefunden. Erstelle zuerst eine Karte."} /></div>
       )}
     </div>
   );

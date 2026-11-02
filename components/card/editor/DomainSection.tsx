@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -16,18 +18,14 @@ export function DomainSection({ card, update, allowedDomains, canCustomDomain }:
 
   return (
     <section className="space-y-3">
-      <Label className="text-base">Karten-Domain</Label>
-      <p className="text-xs text-muted-foreground">
-        Unter welcher Domain soll deine Karte erreichbar sein?
-      </p>
+      <Label className="text-base"><T text={"Karten-Domain"} /></Label>
+      <p className="text-xs text-muted-foreground"><T text={"Unter welcher Domain soll deine Karte erreichbar sein?"} /></p>
       <div className="space-y-2">
         <button type="button"
           onClick={() => update("cardDomain", null)}
           className={`w-full rounded-lg border-2 p-3 text-left text-sm transition-all ${
             !card.cardDomain ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"
-          }`}>
-          Standard (Plattform-Domain)
-        </button>
+          }`}><T text={"Standard (Plattform-Domain)"} /></button>
         {allowedDomains?.map((d) => (
           <button key={d} type="button"
             onClick={() => update("cardDomain", d)}
@@ -39,7 +37,7 @@ export function DomainSection({ card, update, allowedDomains, canCustomDomain }:
         ))}
         {canCustomDomain && (
           <div className="space-y-1.5">
-            <p className="text-xs text-muted-foreground font-medium">Eigene Domain (Pro)</p>
+            <p className="text-xs text-muted-foreground font-medium"><T text={"Eigene Domain (Pro)"} /></p>
             <Input
               value={card.cardDomain && !allowedDomains?.includes(card.cardDomain) ? card.cardDomain : ""}
               onChange={(e) => update("cardDomain", (e.target.value as CardData["cardDomain"]) || null)}

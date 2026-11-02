@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -54,7 +56,7 @@ function RegisterForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Account erstellen</CardTitle>
+        <CardTitle><T text={"Account erstellen"} /></CardTitle>
         <CardDescription>
           {inviteToken
             ? t("Du wurdest eingeladen. Erstelle deinen Account.")
@@ -64,7 +66,7 @@ function RegisterForm() {
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name"><T text={"Name"} /></Label>
             <Input
               id="name"
               placeholder="Max Mustermann"
@@ -75,7 +77,7 @@ function RegisterForm() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="email">E-Mail</Label>
+            <Label htmlFor="email"><T text={"E-Mail"} /></Label>
             <Input
               id="email"
               type="email"
@@ -87,7 +89,7 @@ function RegisterForm() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="password">Passwort</Label>
+            <Label htmlFor="password"><T text={"Passwort"} /></Label>
             <Input
               id="password"
               type="password"
@@ -105,11 +107,8 @@ function RegisterForm() {
           <Button type="submit" className="w-full" disabled={loading}>
             {t(loading ? "Wird erstellt…" : "Account erstellen")}
           </Button>
-          <p className="text-sm text-muted-foreground text-center">
-            Bereits registriert?{" "}
-            <Link href="/login" className="text-foreground font-medium hover:underline">
-              Anmelden
-            </Link>
+          <p className="text-sm text-muted-foreground text-center"><T text={"Bereits registriert?"} />{" "}
+            <Link href="/login" className="text-foreground font-medium hover:underline"><T text={"Anmelden"} /></Link>
           </p>
         </CardFooter>
       </form>

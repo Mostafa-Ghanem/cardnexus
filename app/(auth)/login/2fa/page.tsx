@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -49,7 +51,7 @@ export default function TwoFactorChallengePage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Zwei-Faktor-Authentifizierung</CardTitle>
+        <CardTitle><T text={"Zwei-Faktor-Authentifizierung"} /></CardTitle>
         <CardDescription>
           {mode === "totp"
             ? "Gib den 6-stelligen Code aus deiner Authenticator-App ein."
@@ -83,9 +85,7 @@ export default function TwoFactorChallengePage() {
               checked={trustDevice}
               onChange={(e) => setTrustDevice(e.target.checked)}
               className="h-4 w-4 rounded border-input"
-            />
-            Diesem Gerät 30 Tage vertrauen
-          </label>
+            /><T text={"Diesem Gerät 30 Tage vertrauen"} /></label>
 
           {error && <p className="text-sm text-destructive" role="alert">{error}</p>}
         </CardContent>
@@ -107,7 +107,7 @@ export default function TwoFactorChallengePage() {
               : "Zurück zur Authenticator-App"}
           </button>
           <p className="text-xs text-muted-foreground text-center">
-            <Link href="/login" className="hover:underline">Zurück zum Login</Link>
+            <Link href="/login" className="hover:underline"><T text={"Zurück zum Login"} /></Link>
           </p>
         </CardFooter>
       </form>

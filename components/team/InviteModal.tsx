@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -59,19 +61,17 @@ export function InviteModal({ onInvited }: InviteModalProps) {
     <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) reset(); }}>
       <DialogTrigger asChild>
         <Button>
-          <UserPlus className="h-4 w-4" />
-          Einladen
-        </Button>
+          <UserPlus className="h-4 w-4" /><T text={"Einladen"} /></Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Benutzer einladen</DialogTitle>
+          <DialogTitle><T text={"Benutzer einladen"} /></DialogTitle>
         </DialogHeader>
 
         {!inviteUrl ? (
           <div className="space-y-4">
             <div className="space-y-1.5">
-              <Label>E-Mail-Adresse</Label>
+              <Label><T text={"E-Mail-Adresse"} /></Label>
               <Input
                 type="email"
                 placeholder="max@example.com"
@@ -81,14 +81,14 @@ export function InviteModal({ onInvited }: InviteModalProps) {
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Rolle</Label>
+              <Label><T text={"Rolle"} /></Label>
               <Select value={role} onValueChange={setRole}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="team_leader">Team Leader</SelectItem>
-                  <SelectItem value="member">Mitglied</SelectItem>
+                  <SelectItem value="team_leader"><T text={"Team Leader"} /></SelectItem>
+                  <SelectItem value="member"><T text={"Mitglied"} /></SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -100,8 +100,8 @@ export function InviteModal({ onInvited }: InviteModalProps) {
         ) : (
           <div className="space-y-4">
             <div className="rounded-lg bg-muted p-4 text-center">
-              <p className="text-sm font-medium text-foreground mb-1">Einladung erstellt!</p>
-              <p className="text-xs text-muted-foreground">Link an {email} senden (gültig 7 Tage)</p>
+              <p className="text-sm font-medium text-foreground mb-1"><T text={"Einladung erstellt!"} /></p>
+              <p className="text-xs text-muted-foreground"><T text={"Link an"} />{" "}{email}{" "}<T text={"senden (gültig 7 Tage)"} /></p>
             </div>
             <div className="flex gap-2">
               <Input value={inviteUrl} readOnly className="font-mono text-xs" />
@@ -109,9 +109,7 @@ export function InviteModal({ onInvited }: InviteModalProps) {
                 {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
               </Button>
             </div>
-            <Button variant="outline" onClick={reset} className="w-full">
-              Weitere einladen
-            </Button>
+            <Button variant="outline" onClick={reset} className="w-full"><T text={"Weitere einladen"} /></Button>
           </div>
         )}
       </DialogContent>

@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -24,19 +25,14 @@ export default async function TeamPage() {
           <LayoutDashboard className="h-8 w-8 text-muted-foreground" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Nutzerverwaltung</h1>
-          <p className="text-muted-foreground max-w-sm">
-            Als Super-Admin verwaltest du alle Nutzer und Organisationen im Admin-Panel.
-            Das Team-Tab ist für Nutzer innerhalb einer Organisation gedacht.
-          </p>
+          <h1 className="text-2xl font-bold"><T text={"Nutzerverwaltung"} /></h1>
+          <p className="text-muted-foreground max-w-sm"><T text={"Als Super-Admin verwaltest du alle Nutzer und Organisationen im Admin-Panel. Das Team-Tab ist für Nutzer innerhalb einer Organisation gedacht."} /></p>
         </div>
         <Link
           href="/admin/users"
           className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
-          <Users className="h-4 w-4" />
-          Zum Admin-Panel
-        </Link>
+          <Users className="h-4 w-4" /><T text={"Zum Admin-Panel"} /></Link>
       </div>
     );
   }
@@ -65,16 +61,15 @@ export default async function TeamPage() {
           <SnowflakeIcon className="h-8 w-8 text-amber-600" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Organisation eingefroren</h1>
+          <h1 className="text-2xl font-bold"><T text={"Organisation eingefroren"} /></h1>
           <p className="text-muted-foreground max-w-sm">
             {isAdmin
-              ? <>Der Business-Plan für <strong>{frozenOrg.name}</strong> ist abgelaufen. Alle Daten sind erhalten — buche den Plan erneut um die Organisation sofort wieder zu aktivieren.</>
-              : <>Die Organisation <strong>{frozenOrg.name}</strong> ist derzeit eingefroren. Bitte wende dich an deinen Administrator.</>
+              ? <><T text={"Der Business-Plan für"} />{" "}<strong>{frozenOrg.name}</strong>{" "}<T text={"ist abgelaufen. Alle Daten sind erhalten — buche den Plan erneut um die Organisation sofort wieder zu aktivieren."} /></>
+              : <><T text={"Die Organisation"} />{" "}<strong>{frozenOrg.name}</strong>{" "}<T text={"ist derzeit eingefroren. Bitte wende dich an deinen Administrator."} /></>
             }
           </p>
           {frozenOrg.frozenAt && (
-            <p className="text-xs text-muted-foreground">
-              Eingefroren seit {new Date(frozenOrg.frozenAt).toLocaleDateString("de-DE")}
+            <p className="text-xs text-muted-foreground"><T text={"Eingefroren seit"} />{new Date(frozenOrg.frozenAt).toLocaleDateString("de-DE")}
             </p>
           )}
         </div>
@@ -83,9 +78,7 @@ export default async function TeamPage() {
             href="/upgrade"
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
           >
-            <Zap className="h-4 w-4" />
-            Business-Plan buchen
-          </Link>
+            <Zap className="h-4 w-4" /><T text={"Business-Plan buchen"} /></Link>
         )}
       </div>
     );
@@ -98,19 +91,14 @@ export default async function TeamPage() {
           <Users className="h-8 w-8 text-muted-foreground" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Team-Verzeichnis</h1>
-          <p className="text-muted-foreground max-w-sm">
-            Das Team-Verzeichnis ist ab dem <strong>Business-Plan</strong> verfügbar.
-            Verwalte Mitglieder, versende Einladungen und behalte den Überblick über dein Team.
-          </p>
+          <h1 className="text-2xl font-bold"><T text={"Team-Verzeichnis"} /></h1>
+          <p className="text-muted-foreground max-w-sm"><T text={"Das Team-Verzeichnis ist ab dem"} /><strong><T text={"Business-Plan"} /></strong><T text={"verfügbar. Verwalte Mitglieder, versende Einladungen und behalte den Überblick über dein Team."} /></p>
         </div>
         <Link
           href="/upgrade"
           className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
-          <Zap className="h-4 w-4" />
-          Auf Business upgraden
-        </Link>
+          <Zap className="h-4 w-4" /><T text={"Auf Business upgraden"} /></Link>
       </div>
     );
   }
@@ -123,11 +111,8 @@ export default async function TeamPage() {
           <Building2 className="h-8 w-8 text-primary" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Erstelle deine Organisation</h1>
-          <p className="text-muted-foreground">
-            Gib deiner Organisation einen Namen, lade Mitglieder ein und lege
-            Design-Vorgaben für alle Visitenkarten fest.
-          </p>
+          <h1 className="text-2xl font-bold"><T text={"Erstelle deine Organisation"} /></h1>
+          <p className="text-muted-foreground"><T text={"Gib deiner Organisation einen Namen, lade Mitglieder ein und lege Design-Vorgaben für alle Visitenkarten fest."} /></p>
         </div>
         <CreateOrgForm />
       </div>

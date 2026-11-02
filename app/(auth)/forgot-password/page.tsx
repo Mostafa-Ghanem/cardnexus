@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import Link from "next/link";
@@ -31,27 +33,21 @@ export default function ForgotPasswordPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Passwort vergessen?</CardTitle>
-        <CardDescription>
-          Wir senden dir einen Link zum Zurücksetzen deines Passworts.
-        </CardDescription>
+        <CardTitle><T text={"Passwort vergessen?"} /></CardTitle>
+        <CardDescription><T text={"Wir senden dir einen Link zum Zurücksetzen deines Passworts."} /></CardDescription>
       </CardHeader>
       {done ? (
         <CardContent className="space-y-3">
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
-            Falls ein Account zu <strong>{email}</strong> existiert, wurde gerade eine
-            E-Mail mit einem Reset-Link an diese Adresse versendet. Bitte schau auch
-            im Spam-Ordner nach.
-          </div>
+          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><T text={"Falls ein Account zu"} /><strong>{email}</strong><T text={"existiert, wurde gerade eine E-Mail mit einem Reset-Link an diese Adresse versendet. Bitte schau auch im Spam-Ordner nach."} /></div>
           <Button asChild variant="outline" className="w-full">
-            <Link href="/login">Zurück zum Login</Link>
+            <Link href="/login"><T text={"Zurück zum Login"} /></Link>
           </Button>
         </CardContent>
       ) : (
         <form onSubmit={submit}>
           <CardContent className="space-y-4">
             <div className="space-y-1.5">
-              <Label htmlFor="email">E-Mail</Label>
+              <Label htmlFor="email"><T text={"E-Mail"} /></Label>
               <Input
                 id="email"
                 type="email"
@@ -68,7 +64,7 @@ export default function ForgotPasswordPage() {
               {loading ? "Senden…" : "Reset-Link senden"}
             </Button>
             <p className="text-sm text-muted-foreground text-center">
-              <Link href="/login" className="hover:underline">Zurück zum Login</Link>
+              <Link href="/login" className="hover:underline"><T text={"Zurück zum Login"} /></Link>
             </p>
           </CardFooter>
         </form>

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useRouter, usePathname } from "next/navigation";
 
@@ -57,10 +59,9 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Access Log</h1>
+        <h1 className="text-2xl font-bold"><T text={"Access Log"} /></h1>
         <p className="text-muted-foreground mt-1">
-          {total.toLocaleString("de-DE")} Einträge
-        </p>
+          {total.toLocaleString("de-DE")}<T text={"Einträge"} /></p>
       </div>
 
       {/* Filters */}
@@ -105,23 +106,21 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
         <table className="w-full text-sm">
           <thead className="border-b border-border">
             <tr className="text-left text-xs uppercase tracking-wide text-muted-foreground">
-              <th className="px-4 py-3 font-medium">Zeit</th>
-              <th className="px-4 py-3 font-medium">Event</th>
-              <th className="px-4 py-3 font-medium">Karte</th>
-              <th className="px-4 py-3 font-medium">IP</th>
-              <th className="px-4 py-3 font-medium">Land / Stadt</th>
-              <th className="px-4 py-3 font-medium">Gerät</th>
-              <th className="px-4 py-3 font-medium">Browser / OS</th>
-              <th className="px-4 py-3 font-medium">Referrer</th>
-              <th className="px-4 py-3 font-medium">Quelle / UTM</th>
+              <th className="px-4 py-3 font-medium"><T text={"Zeit"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"Event"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"Karte"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"IP"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"Land / Stadt"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"Gerät"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"Browser / OS"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"Referrer"} /></th>
+              <th className="px-4 py-3 font-medium"><T text={"Quelle / UTM"} /></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
             {entries.length === 0 && (
               <tr>
-                <td colSpan={9} className="px-4 py-8 text-center text-muted-foreground">
-                  Keine Einträge gefunden.
-                </td>
+                <td colSpan={9} className="px-4 py-8 text-center text-muted-foreground"><T text={"Keine Einträge gefunden."} /></td>
               </tr>
             )}
             {entries.map((e) => {
@@ -171,25 +170,20 @@ export function AccessLogClient({ entries, total, page, pageSize, cards, filters
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">
-            Seite {page} von {totalPages}
+          <span className="text-muted-foreground"><T text={"Seite"} />{page}{" "}<T text={"von"} />{" "}{totalPages}
           </span>
           <div className="flex gap-2">
             {page > 1 && (
               <button
                 onClick={() => applyFilter("page", String(page - 1))}
                 className="px-3 py-1.5 rounded-lg border border-border hover:bg-muted transition-colors"
-              >
-                ← Zurück
-              </button>
+              ><T text={"← Zurück"} /></button>
             )}
             {page < totalPages && (
               <button
                 onClick={() => applyFilter("page", String(page + 1))}
                 className="px-3 py-1.5 rounded-lg border border-border hover:bg-muted transition-colors"
-              >
-                Weiter →
-              </button>
+              ><T text={"Weiter →"} /></button>
             )}
           </div>
         </div>

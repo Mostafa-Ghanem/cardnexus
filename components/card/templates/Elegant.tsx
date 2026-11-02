@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, shadowClass, avatarBorderStyle } from "../CardPreview";
@@ -75,7 +76,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors group">
               <Phone className="h-3.5 w-3.5 shrink-0 group-hover:scale-110 transition-transform" style={{ color: accent }} />
-              <span>{card.mobile} (Mobil)</span>
+              <span>{card.mobile}{" "}<T text={"(Mobil)"} /></span>
             </a>
           )}
           {card.email && (
@@ -116,7 +117,7 @@ export function ElegantTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <p className="text-xs text-gray-400"><T text={"Scan für digitale Karte"} /></p>
           </div>
         )}
       </div>

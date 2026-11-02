@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -121,17 +123,12 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
         <div className="flex items-start gap-3">
           <Shield className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div className="flex-1">
-            <CardTitle className="text-base">Zwei-Faktor-Authentifizierung</CardTitle>
-            <CardDescription>
-              Schütze deinen Account zusätzlich mit einem Code aus einer Authenticator-App
-              (Google Authenticator, 1Password, Authy …).
-            </CardDescription>
+            <CardTitle className="text-base"><T text={"Zwei-Faktor-Authentifizierung"} /></CardTitle>
+            <CardDescription><T text={"Schütze deinen Account zusätzlich mit einem Code aus einer Authenticator-App (Google Authenticator, 1Password, Authy …)."} /></CardDescription>
           </div>
           {enabled && (
             <Badge variant="success" className="gap-1">
-              <ShieldCheck className="h-3 w-3" />
-              Aktiv
-            </Badge>
+              <ShieldCheck className="h-3 w-3" /><T text={"Aktiv"} /></Badge>
           )}
         </div>
       </CardHeader>
@@ -139,15 +136,13 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
       <CardContent className="space-y-4">
         {/* ── Already enabled ───────────────────────────────────────── */}
         {enabled && step === "idle" && !showDisable && (
-          <Button variant="outline" onClick={() => setShowDisable(true)}>
-            2FA deaktivieren
-          </Button>
+          <Button variant="outline" onClick={() => setShowDisable(true)}><T text={"2FA deaktivieren"} /></Button>
         )}
 
         {enabled && showDisable && (
           <form onSubmit={submitDisable} className="space-y-3 max-w-sm">
             <div className="space-y-1.5">
-              <Label htmlFor="disable-pw">Passwort zur Bestätigung</Label>
+              <Label htmlFor="disable-pw"><T text={"Passwort zur Bestätigung"} /></Label>
               <Input
                 id="disable-pw"
                 type="password"
@@ -160,12 +155,8 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
             {err && <p className="text-sm text-destructive">{err}</p>}
             <div className="flex gap-2">
               <Button type="submit" variant="destructive" size="sm" disabled={busy}>
-                {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-                Deaktivieren
-              </Button>
-              <Button type="button" variant="ghost" size="sm" onClick={() => { setShowDisable(false); setErr(""); }}>
-                Abbrechen
-              </Button>
+                {busy && <Loader2 className="h-4 w-4 animate-spin" />}<T text={"Deaktivieren"} /></Button>
+              <Button type="button" variant="ghost" size="sm" onClick={() => { setShowDisable(false); setErr(""); }}><T text={"Abbrechen"} /></Button>
             </div>
           </form>
         )}
@@ -173,16 +164,14 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
         {/* ── Not enabled — start ───────────────────────────────────── */}
         {!enabled && step === "idle" && (
           <Button onClick={startEnable}>
-            <KeyRound className="h-4 w-4" />
-            2FA aktivieren
-          </Button>
+            <KeyRound className="h-4 w-4" /><T text={"2FA aktivieren"} /></Button>
         )}
 
         {/* ── Step 1: password ──────────────────────────────────────── */}
         {!enabled && step === "password" && (
           <form onSubmit={submitPassword} className="space-y-3 max-w-sm">
             <div className="space-y-1.5">
-              <Label htmlFor="enable-pw">Passwort zur Bestätigung</Label>
+              <Label htmlFor="enable-pw"><T text={"Passwort zur Bestätigung"} /></Label>
               <Input
                 id="enable-pw"
                 type="password"
@@ -196,12 +185,8 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
             {err && <p className="text-sm text-destructive">{err}</p>}
             <div className="flex gap-2">
               <Button type="submit" disabled={busy} size="sm">
-                {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-                Weiter
-              </Button>
-              <Button type="button" variant="ghost" size="sm" onClick={reset}>
-                Abbrechen
-              </Button>
+                {busy && <Loader2 className="h-4 w-4 animate-spin" />}<T text={"Weiter"} /></Button>
+              <Button type="button" variant="ghost" size="sm" onClick={reset}><T text={"Abbrechen"} /></Button>
             </div>
           </form>
         )}
@@ -221,27 +206,22 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
               )}
               <div className="space-y-3 text-sm">
                 <p>
-                  <strong>1.</strong> Scanne den QR-Code mit deiner Authenticator-App.
-                </p>
+                  <strong>1.</strong><T text={"Scanne den QR-Code mit deiner Authenticator-App."} /></p>
                 <details className="text-xs text-muted-foreground">
-                  <summary className="cursor-pointer hover:text-foreground">
-                    Manuell eingeben
-                  </summary>
+                  <summary className="cursor-pointer hover:text-foreground"><T text={"Manuell eingeben"} /></summary>
                   <code className="mt-2 block rounded bg-muted px-2 py-1 font-mono break-all">
                     {secret}
                   </code>
                 </details>
                 <p className="pt-2">
-                  <strong>2.</strong> Bewahre deine Backup-Codes sicher auf.
-                  Du kannst sie verwenden, falls du dein Gerät verlierst.
-                </p>
+                  <strong>2.</strong><T text={"Bewahre deine Backup-Codes sicher auf. Du kannst sie verwenden, falls du dein Gerät verlierst."} /></p>
               </div>
             </div>
 
             {backupCodes.length > 0 && (
               <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <p className="text-sm font-semibold text-amber-900">Backup-Codes</p>
+                  <p className="text-sm font-semibold text-amber-900"><T text={"Backup-Codes"} /></p>
                   <Button type="button" variant="ghost" size="sm" onClick={copyBackup}>
                     {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                     {copied ? "Kopiert" : "Kopieren"}
@@ -258,8 +238,7 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
             <form onSubmit={submitVerify} className="space-y-3 max-w-sm">
               <div className="space-y-1.5">
                 <Label htmlFor="verify-code">
-                  <strong>3.</strong> Bestätige durch Eingabe des aktuellen Codes
-                </Label>
+                  <strong>3.</strong><T text={"Bestätige durch Eingabe des aktuellen Codes"} /></Label>
                 <Input
                   id="verify-code"
                   inputMode="numeric"
@@ -276,12 +255,8 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
               {err && <p className="text-sm text-destructive">{err}</p>}
               <div className="flex gap-2">
                 <Button type="submit" disabled={busy || code.length < 6} size="sm">
-                  {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-                  Aktivieren
-                </Button>
-                <Button type="button" variant="ghost" size="sm" onClick={reset}>
-                  Abbrechen
-                </Button>
+                  {busy && <Loader2 className="h-4 w-4 animate-spin" />}<T text={"Aktivieren"} /></Button>
+                <Button type="button" variant="ghost" size="sm" onClick={reset}><T text={"Abbrechen"} /></Button>
               </div>
             </form>
           </div>
@@ -290,14 +265,9 @@ export function SecurityCard({ twoFactorEnabled }: Props) {
         {/* ── Done ──────────────────────────────────────────────────── */}
         {step === "done" && (
           <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
-            <p className="font-semibold mb-1">2FA aktiviert ✓</p>
-            <p>
-              Beim nächsten Login wirst du zusätzlich nach einem Code aus deiner
-              Authenticator-App gefragt.
-            </p>
-            <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={reset}>
-              Schließen
-            </Button>
+            <p className="font-semibold mb-1"><T text={"2FA aktiviert ✓"} /></p>
+            <p><T text={"Beim nächsten Login wirst du zusätzlich nach einem Code aus deiner Authenticator-App gefragt."} /></p>
+            <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={reset}><T text={"Schließen"} /></Button>
           </div>
         )}
       </CardContent>

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useEffect, useRef, useState } from "react";
 import { Eye } from "lucide-react";
@@ -36,7 +38,7 @@ export function LiveViews({ initialViews, cardSlug }: Props) {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <p className="text-sm text-muted-foreground">Aufrufe gesamt</p>
+        <p className="text-sm text-muted-foreground"><T text={"Aufrufe gesamt"} /></p>
         <p className={`text-3xl font-bold mt-1 transition-colors duration-300 ${pulse ? "text-green-600" : ""}`}>
           {views.toLocaleString("de-DE")}
         </p>

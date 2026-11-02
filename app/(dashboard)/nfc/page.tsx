@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -25,15 +26,13 @@ export default async function NfcPage() {
   return (
     <div className="max-w-2xl space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">NFC-Tag einrichten</h1>
-        <p className="text-muted-foreground mt-1">
-          Mit einem NFC-Tag kannst du deine digitale Karte per Antippen teilen.
-        </p>
+        <h1 className="text-2xl font-bold"><T text={"NFC-Tag einrichten"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Mit einem NFC-Tag kannst du deine digitale Karte per Antippen teilen."} /></p>
       </div>
 
       {cardUrl && (
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-5">
-          <p className="text-sm font-medium mb-2">Deine Karten-URL (auf NFC-Tag schreiben):</p>
+          <p className="text-sm font-medium mb-2"><T text={"Deine Karten-URL (auf NFC-Tag schreiben):"} /></p>
           <div className="flex items-center gap-2 bg-white dark:bg-gray-900 rounded-lg border border-border px-3 py-2">
             <code className="text-sm flex-1 text-primary font-mono truncate">{cardUrl}</code>
             <a href={cardUrl} target="_blank" rel="noopener noreferrer">
@@ -44,40 +43,30 @@ export default async function NfcPage() {
       )}
 
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold">So geht es</h2>
+        <h2 className="text-lg font-semibold"><T text={"So geht es"} /></h2>
 
-        <Step n={1} icon={Smartphone} title="NFC-Tag kaufen">
-          Kaufe einen beschreibbaren NFC-Tag (NTAG213 oder NTAG215).
-          Empfohlen: NFC-Aufkleber, Visitenkarten-NFC oder NFC-Armband.
-          Preis: ca. 0,50 &ndash; 2,00 &euro; pro Tag.
-        </Step>
+        <Step n={1} icon={Smartphone} title="NFC-Tag kaufen"><T text={"Kaufe einen beschreibbaren NFC-Tag (NTAG213 oder NTAG215). Empfohlen: NFC-Aufkleber, Visitenkarten-NFC oder NFC-Armband. Preis: ca. 0,50 &ndash; 2,00 &euro; pro Tag."} /></Step>
 
-        <Step n={2} icon={Nfc} title="App installieren">
-          Installiere eine NFC-Schreib-App auf deinem Smartphone:
-          <ul className="mt-2 space-y-1 list-disc list-inside text-sm text-muted-foreground">
-            <li><strong>iOS:</strong> NFC Tools (App Store)</li>
-            <li><strong>Android:</strong> NFC Tools oder NFC TagWriter by NXP</li>
+        <Step n={2} icon={Nfc} title="App installieren"><T text={"Installiere eine NFC-Schreib-App auf deinem Smartphone:"} /><ul className="mt-2 space-y-1 list-disc list-inside text-sm text-muted-foreground">
+            <li><strong><T text={"iOS:"} /></strong>{" "}<T text={"NFC Tools (App Store)"} /></li>
+            <li><strong><T text={"Android:"} /></strong>{" "}<T text={"NFC Tools oder NFC TagWriter by NXP"} /></li>
           </ul>
         </Step>
 
         <Step n={3} icon={Copy} title="URL auf den Tag schreiben">
           <ol className="space-y-1 list-decimal list-inside text-sm text-muted-foreground mt-1">
-            <li>App offnen und &quot;Schreiben&quot; / &quot;Write&quot; auswahlen</li>
-            <li>Datensatz hinzufugen &rarr; URL/URI</li>
-            <li>Deine Karten-URL einfugen (siehe oben)</li>
-            <li>Auf &quot;Schreiben&quot; tippen und Tag ans Handy halten</li>
+            <li><T text={"App offnen und \"Schreiben\" / \"Write\" auswahlen"} /></li>
+            <li><T text={"Datensatz hinzufugen &rarr; URL/URI"} /></li>
+            <li><T text={"Deine Karten-URL einfugen (siehe oben)"} /></li>
+            <li><T text={"Auf \"Schreiben\" tippen und Tag ans Handy halten"} /></li>
           </ol>
         </Step>
 
-        <Step n={4} icon={Smartphone} title="Testen">
-          Halte ein Smartphone (ohne App) an den Tag &mdash;
-          die Karte sollte sich direkt im Browser offnen.
-          iOS ab iPhone 7, Android ab 4.4 unterstuetzt NFC.
-        </Step>
+        <Step n={4} icon={Smartphone} title="Testen"><T text={"Halte ein Smartphone (ohne App) an den Tag &mdash; die Karte sollte sich direkt im Browser offnen. iOS ab iPhone 7, Android ab 4.4 unterstuetzt NFC."} /></Step>
       </div>
 
       <div className="bg-muted rounded-2xl p-5 space-y-2">
-        <p className="font-semibold text-sm">Empfohlene NFC-Tag Quellen</p>
+        <p className="font-semibold text-sm"><T text={"Empfohlene NFC-Tag Quellen"} /></p>
         <div className="space-y-1">
           {[
             { label: "Amazon: NFC-Tags (NTAG213)", url: "https://www.amazon.de/s?k=nfc+tags+ntag213" },

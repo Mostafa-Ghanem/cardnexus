@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { CardEditor } from "@/components/card/CardEditor";
 import { QRCodeDisplay } from "@/components/card/QRCodeDisplay";
@@ -31,7 +33,7 @@ export function AdminCardEditClient({ card }: Props) {
       />
 
       <div className="border-t border-border pt-8">
-        <h2 className="text-lg font-semibold mb-4">QR-Code</h2>
+        <h2 className="text-lg font-semibold mb-4"><T text={"QR-Code"} /></h2>
         <QRCodeDisplay slug={card.slug} color={card.primaryColor} />
       </div>
     </div>

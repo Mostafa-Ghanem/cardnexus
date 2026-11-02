@@ -1,4 +1,6 @@
-﻿"use client";
+"use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import type { Lead } from "@/types";
@@ -65,12 +67,10 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center gap-3">
         <CreditCard className="h-12 w-12 text-muted-foreground/40" />
-        <p className="font-semibold text-muted-foreground">Noch keine Karte erstellt</p>
-        <p className="text-sm text-muted-foreground">
-          Erstelle zuerst deine Visitenkarte, um Leads zu sammeln.
-        </p>
+        <p className="font-semibold text-muted-foreground"><T text={"Noch keine Karte erstellt"} /></p>
+        <p className="text-sm text-muted-foreground"><T text={"Erstelle zuerst deine Visitenkarte, um Leads zu sammeln."} /></p>
         <Button asChild variant="outline" className="mt-2">
-          <a href="/card">Karte erstellen</a>
+          <a href="/card"><T text={"Karte erstellen"} /></a>
         </Button>
       </div>
     );
@@ -100,9 +100,7 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
 
         {leads.length > 0 && (
           <Button variant="outline" size="sm" onClick={exportCsv}>
-            <Download className="h-4 w-4" />
-            CSV Export
-          </Button>
+            <Download className="h-4 w-4" /><T text={"CSV Export"} /></Button>
         )}
       </div>
 
@@ -110,13 +108,11 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
       {leads.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center gap-3 border-2 border-dashed rounded-2xl">
           <UserCheck className="h-12 w-12 text-muted-foreground/40" />
-          <p className="font-semibold text-muted-foreground">Noch keine Leads</p>
-          <p className="text-sm text-muted-foreground max-w-xs">
-            Wenn jemand auf deiner Karte auf „Kontakt hinterlassen" tippt, erscheint er hier.
-          </p>
+          <p className="font-semibold text-muted-foreground"><T text={"Noch keine Leads"} /></p>
+          <p className="text-sm text-muted-foreground max-w-xs"><T text={"Wenn jemand auf deiner Karte auf „Kontakt hinterlassen\" tippt, erscheint er hier."} /></p>
         </div>
       ) : filtered.length === 0 ? (
-        <p className="text-center text-muted-foreground py-12">Keine Ergebnisse für „{query}"</p>
+        <p className="text-center text-muted-foreground py-12"><T text={"Keine Ergebnisse für „"} />{query}"</p>
       ) : (
         <div className="space-y-3">
           {filtered.map((lead) => (

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -27,8 +29,7 @@ interface Props {
 function LockedBadge() {
   return (
     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-      <Lock className="h-3 w-3" /> Vom Admin gesperrt
-    </span>
+      <Lock className="h-3 w-3" /><T text={"Vom Admin gesperrt"} /></span>
   );
 }
 
@@ -40,7 +41,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Template */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Template</Label>
+          <Label className="text-base"><T text={"Template"} /></Label>
           {!policy.allowTemplateChange && <LockedBadge />}
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -56,8 +57,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
                 } ${locked ? "opacity-50 cursor-not-allowed" : ""}`}>
                 {planLocked && (
                   <span className="absolute top-2 right-2 text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-medium flex items-center gap-0.5">
-                    <Lock className="h-2.5 w-2.5" /> Pro
-                  </span>
+                    <Lock className="h-2.5 w-2.5" /><T text={"Pro"} /></span>
                 )}
                 <div className="h-8 w-8 rounded-lg mb-2" style={{ backgroundColor: t.preview }} />
                 <p className="text-sm font-medium">{t.name}</p>
@@ -71,14 +71,14 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Primary color */}
       <section className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Primärfarbe</Label>
+          <Label className="text-base"><T text={"Primärfarbe"} /></Label>
           {!policy.allowColorChange && <LockedBadge />}
         </div>
         {policy.allowColorChange ? (
           <>
             {hasBrandColors && (
               <div className="space-y-1.5">
-                <p className="text-xs text-muted-foreground">Markenfarben der Organisation</p>
+                <p className="text-xs text-muted-foreground"><T text={"Markenfarben der Organisation"} /></p>
                 <div className="flex flex-wrap gap-2">
                   {policy.brandColors.map((c) => (
                     <button key={c} type="button" title={c} onClick={() => update("primaryColor", c)}
@@ -109,8 +109,8 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Accent color */}
       <section className="space-y-2">
-        <Label className="text-base">Akzentfarbe <span className="text-xs font-normal text-muted-foreground">(optional)</span></Label>
-        <p className="text-xs text-muted-foreground">Zweite Farbe für Icons, Links und Buttons</p>
+        <Label className="text-base"><T text={"Akzentfarbe"} />{" "}<span className="text-xs font-normal text-muted-foreground"><T text={"(optional)"} /></span></Label>
+        <p className="text-xs text-muted-foreground"><T text={"Zweite Farbe für Icons, Links und Buttons"} /></p>
         <div className="flex items-center gap-3">
           <input type="color" value={card.accentColor ?? card.primaryColor ?? "#0F172A"}
             onChange={(e) => update("accentColor", e.target.value)}
@@ -119,14 +119,14 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
             className="font-mono w-32" placeholder="wie Primär" maxLength={7} />
           {card.accentColor && (
             <Button type="button" variant="ghost" size="sm" onClick={() => update("accentColor", null)}
-              className="text-muted-foreground">Zurücksetzen</Button>
+              className="text-muted-foreground"><T text={"Zurücksetzen"} /></Button>
           )}
         </div>
       </section>
 
       {/* Background */}
       <section className="space-y-3">
-        <Label className="text-base">Hintergrund</Label>
+        <Label className="text-base"><T text={"Hintergrund"} /></Label>
         <div className="grid grid-cols-3 gap-2">
           {BG_OPTIONS.map((b) => (
             <button key={b.value} type="button"
@@ -143,7 +143,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Shadow */}
       <section className="space-y-3">
-        <Label className="text-base">Kartenschatten</Label>
+        <Label className="text-base"><T text={"Kartenschatten"} /></Label>
         <div className="flex gap-2 flex-wrap">
           {SHADOW_OPTIONS.map((s) => (
             <button key={s.value} type="button"
@@ -160,7 +160,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Font */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Schriftart</Label>
+          <Label className="text-base"><T text={"Schriftart"} /></Label>
           {!policy.allowFontChange && <LockedBadge />}
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -183,7 +183,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       {/* Layout */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-base">Layout</Label>
+          <Label className="text-base"><T text={"Layout"} /></Label>
           {!policy.allowLayoutChange && <LockedBadge />}
         </div>
         <div className="space-y-2">
@@ -205,7 +205,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Rounded */}
       <section className="space-y-3">
-        <Label className="text-base">Eckenradius</Label>
+        <Label className="text-base"><T text={"Eckenradius"} /></Label>
         <div className="flex gap-2">
           {ROUNDED_OPTIONS.map((r) => (
             <button key={r.value} type="button"
@@ -221,7 +221,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Avatar border */}
       <section className="space-y-3">
-        <Label className="text-base">Avatar-Rahmen</Label>
+        <Label className="text-base"><T text={"Avatar-Rahmen"} /></Label>
         <div className="flex gap-2">
           {AVATAR_BORDER_OPTIONS.map((a) => (
             <button key={a.value} type="button"
@@ -237,7 +237,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
 
       {/* Social style */}
       <section className="space-y-3">
-        <Label className="text-base">Social-Stil</Label>
+        <Label className="text-base"><T text={"Social-Stil"} /></Label>
         <div className="space-y-2">
           {SOCIAL_STYLE_OPTIONS.map((s) => (
             <button key={s.value} type="button"
@@ -256,8 +256,8 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
       <section className="space-y-3 rounded-xl border border-border p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium">Firmenlogo</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Erscheint klein auf der Karte (oben rechts)</p>
+            <p className="text-sm font-medium"><T text={"Firmenlogo"} /></p>
+            <p className="text-xs text-muted-foreground mt-0.5"><T text={"Erscheint klein auf der Karte (oben rechts)"} /></p>
           </div>
           {!policy.canEditLogo && <LockedBadge />}
         </div>
@@ -267,7 +267,7 @@ export function DesignTab({ card, update, policy, allTemplates, allowedDomains, 
         ) : (
           card.logoUrl
             ? <img src={card.logoUrl} alt="Logo" className="h-10 w-auto max-w-[120px] object-contain opacity-60" />
-            : <p className="text-xs text-muted-foreground">Kein Logo gesetzt</p>
+            : <p className="text-xs text-muted-foreground"><T text={"Kein Logo gesetzt"} /></p>
         )}
       </section>
 

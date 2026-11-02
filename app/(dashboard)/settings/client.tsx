@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -158,15 +160,15 @@ export function SettingsClientPage({ user, org }: Props) {
   return (
     <div className="space-y-8 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-bold">Einstellungen</h1>
-        <p className="text-muted-foreground mt-1">Account und Organisations-Einstellungen</p>
+        <h1 className="text-2xl font-bold"><T text={"Einstellungen"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Account und Organisations-Einstellungen"} /></p>
       </div>
 
       {/* Account */}
       <Card>
         <CardHeader>
-          <CardTitle>Account</CardTitle>
-          <CardDescription>Deine persönlichen Informationen</CardDescription>
+          <CardTitle><T text={"Account"} /></CardTitle>
+          <CardDescription><T text={"Deine persönlichen Informationen"} /></CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-3">
@@ -178,7 +180,7 @@ export function SettingsClientPage({ user, org }: Props) {
           </div>
           <div className="border-t border-border pt-4 mt-4 space-y-4">
             <div className="space-y-2">
-              <p className="text-sm font-medium">Name ändern</p>
+              <p className="text-sm font-medium"><T text={"Name ändern"} /></p>
               <div className="flex gap-2">
                 <Input
                   value={newName}
@@ -193,7 +195,7 @@ export function SettingsClientPage({ user, org }: Props) {
               </div>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium">E-Mail-Adresse ändern</p>
+              <p className="text-sm font-medium"><T text={"E-Mail-Adresse ändern"} /></p>
               <div className="flex gap-2">
                 <Input
                   type="email"
@@ -224,11 +226,11 @@ export function SettingsClientPage({ user, org }: Props) {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Bell className="h-5 w-5 text-muted-foreground" />
-            <CardTitle className="text-base">Lead-Benachrichtigungen</CardTitle>
-            {notifSaved && <Badge variant="outline" className="ml-auto text-green-600 border-green-300">Gespeichert</Badge>}
-            {notifSaving && <Badge variant="outline" className="ml-auto">Wird gespeichert…</Badge>}
+            <CardTitle className="text-base"><T text={"Lead-Benachrichtigungen"} /></CardTitle>
+            {notifSaved && <Badge variant="outline" className="ml-auto text-green-600 border-green-300"><T text={"Gespeichert"} /></Badge>}
+            {notifSaving && <Badge variant="outline" className="ml-auto"><T text={"Wird gespeichert…"} /></Badge>}
           </div>
-          <CardDescription>Wie möchtest du benachrichtigt werden, wenn jemand auf deiner Karte Kontakt hinterlässt?</CardDescription>
+          <CardDescription><T text={"Wie möchtest du benachrichtigt werden, wenn jemand auf deiner Karte Kontakt hinterlässt?"} /></CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
@@ -321,10 +323,10 @@ export function SettingsClientPage({ user, org }: Props) {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Wallet className="h-5 w-5 text-muted-foreground" />
-            <CardTitle className="text-base">Apple & Google Wallet</CardTitle>
-            <Badge variant="outline" className="ml-auto">Demnächst</Badge>
+            <CardTitle className="text-base"><T text={"Apple & Google Wallet"} /></CardTitle>
+            <Badge variant="outline" className="ml-auto"><T text={"Demnächst"} /></Badge>
           </div>
-          <CardDescription>Karten direkt in Apple Wallet oder Google Wallet speichern. Diese Funktion wird bald verfügbar sein.</CardDescription>
+          <CardDescription><T text={"Karten direkt in Apple Wallet oder Google Wallet speichern. Diese Funktion wird bald verfügbar sein."} /></CardDescription>
         </CardHeader>
       </Card>
     </div>

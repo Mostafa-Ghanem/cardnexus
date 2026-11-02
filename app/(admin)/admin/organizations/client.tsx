@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -160,41 +162,41 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Organisationen</h1>
-          <p className="text-muted-foreground mt-1">{orgs.length} Organisationen</p>
+          <h1 className="text-2xl font-bold"><T text={"Organisationen"} /></h1>
+          <p className="text-muted-foreground mt-1">{orgs.length}{" "}<T text={"Organisationen"} /></p>
         </div>
 
         <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) resetForm(); }}>
           <DialogTrigger asChild>
-            <Button><Plus className="h-4 w-4" />Neue Organisation</Button>
+            <Button><Plus className="h-4 w-4" /><T text={"Neue Organisation"} /></Button>
           </DialogTrigger>
           <DialogContent>
-            <DialogHeader><DialogTitle>Organisation erstellen</DialogTitle></DialogHeader>
+            <DialogHeader><DialogTitle><T text={"Organisation erstellen"} /></DialogTitle></DialogHeader>
             <div className="space-y-4 pt-2">
               <div className="space-y-1.5">
-                <Label>Name *</Label>
+                <Label><T text={"Name *"} /></Label>
                 <Input placeholder="ACME GmbH" value={name} onChange={(e) => handleNameChange(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleCreate()} autoFocus />
               </div>
               <div className="space-y-1.5">
-                <Label>Slug (URL-Kürzel)</Label>
+                <Label><T text={"Slug (URL-Kürzel)"} /></Label>
                 <Input placeholder="acme-gmbh" value={slug} onChange={(e) => setSlugVal(e.target.value)} />
-                <p className="text-xs text-muted-foreground">Wird automatisch aus dem Namen generiert</p>
+                <p className="text-xs text-muted-foreground"><T text={"Wird automatisch aus dem Namen generiert"} /></p>
               </div>
               <div className="space-y-1.5">
-                <Label>Primärfarbe</Label>
+                <Label><T text={"Primärfarbe"} /></Label>
                 <div className="flex items-center gap-3">
                   <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="h-10 w-16 rounded-md border border-input cursor-pointer" />
                   <Input value={color} onChange={(e) => setColor(e.target.value)} className="font-mono w-32" maxLength={7} />
                 </div>
               </div>
               <div className="space-y-1.5">
-                <Label>Domain (optional)</Label>
+                <Label><T text={"Domain (optional)"} /></Label>
                 <Input placeholder="acme.de" value={domain} onChange={(e) => setDomain(e.target.value)} />
               </div>
               {error && <p className="text-sm text-destructive rounded-lg bg-destructive/10 px-3 py-2">{error}</p>}
               <div className="flex gap-2 pt-2">
                 <Button onClick={handleCreate} disabled={saving} className="flex-1">{saving ? "Wird erstellt…" : "Erstellen"}</Button>
-                <Button variant="outline" onClick={() => setOpen(false)}>Abbrechen</Button>
+                <Button variant="outline" onClick={() => setOpen(false)}><T text={"Abbrechen"} /></Button>
               </div>
             </div>
           </DialogContent>
@@ -204,32 +206,32 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
       {/* Edit dialog */}
       <Dialog open={!!editOrg} onOpenChange={(v) => { if (!v) setEditOrg(null); }}>
         <DialogContent>
-          <DialogHeader><DialogTitle>Organisation bearbeiten</DialogTitle></DialogHeader>
+          <DialogHeader><DialogTitle><T text={"Organisation bearbeiten"} /></DialogTitle></DialogHeader>
           <div className="space-y-4 pt-2">
             <div className="space-y-1.5">
-              <Label>Name *</Label>
+              <Label><T text={"Name *"} /></Label>
               <Input value={editName} onChange={(e) => setEditName(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleEdit()} autoFocus />
             </div>
             <div className="space-y-1.5">
-              <Label>Primärfarbe</Label>
+              <Label><T text={"Primärfarbe"} /></Label>
               <div className="flex items-center gap-3">
                 <input type="color" value={editColor} onChange={(e) => setEditColor(e.target.value)} className="h-10 w-16 rounded-md border border-input cursor-pointer" />
                 <Input value={editColor} onChange={(e) => setEditColor(e.target.value)} className="font-mono w-32" maxLength={7} />
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label>Domain (optional)</Label>
+              <Label><T text={"Domain (optional)"} /></Label>
               <Input placeholder="acme.de" value={editDomain} onChange={(e) => setEditDomain(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <Label>Administrator</Label>
+              <Label><T text={"Administrator"} /></Label>
               {editMembers.length === 0 ? (
-                <p className="text-xs text-muted-foreground">Keine Mitglieder in dieser Organisation.</p>
+                <p className="text-xs text-muted-foreground"><T text={"Keine Mitglieder in dieser Organisation."} /></p>
               ) : (
                 <Select value={editAdmin} onValueChange={setEditAdmin}>
                   <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="— Kein Admin —" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="__none__">— Kein Admin —</SelectItem>
+                    <SelectItem value="__none__"><T text={"— Kein Admin —"} /></SelectItem>
                     {editMembers.map((m) => (
                       <SelectItem key={m.id} value={m.id}>
                         {m.name}{m.role === "company_admin" ? " (aktuell)" : ""}
@@ -242,7 +244,7 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
             {editError && <p className="text-sm text-destructive rounded-lg bg-destructive/10 px-3 py-2">{editError}</p>}
             <div className="flex gap-2 pt-2">
               <Button onClick={handleEdit} disabled={editSaving} className="flex-1">{editSaving ? "Wird gespeichert…" : "Speichern"}</Button>
-              <Button variant="outline" onClick={() => setEditOrg(null)}>Abbrechen</Button>
+              <Button variant="outline" onClick={() => setEditOrg(null)}><T text={"Abbrechen"} /></Button>
             </div>
           </div>
         </DialogContent>
@@ -252,8 +254,8 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
       {orgs.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center rounded-2xl border-2 border-dashed border-border">
           <Building2 className="h-10 w-10 text-muted-foreground mb-3" />
-          <p className="text-muted-foreground font-medium">Noch keine Organisationen</p>
-          <p className="text-sm text-muted-foreground mt-1">Erstelle die erste Organisation</p>
+          <p className="text-muted-foreground font-medium"><T text={"Noch keine Organisationen"} /></p>
+          <p className="text-sm text-muted-foreground mt-1"><T text={"Erstelle die erste Organisation"} /></p>
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -277,8 +279,7 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1">
                     <Users className="h-3.5 w-3.5" />
-                    {org._count.users} Mitglieder
-                  </span>
+                    {org._count.users}<T text={"Mitglieder"} /></span>
                   <span>·</span>
                   <span>{formatDate(org.createdAt)}</span>
                 </div>
@@ -293,7 +294,7 @@ export function OrgAdminClient({ orgs: initial }: { orgs: Org[] }) {
               </div>
 
               {org.settings?.walletEnabled && (
-                <Badge variant="success" className="mt-3 text-xs">Wallet aktiv</Badge>
+                <Badge variant="success" className="mt-3 text-xs"><T text={"Wallet aktiv"} /></Badge>
               )}
             </div>
           ))}

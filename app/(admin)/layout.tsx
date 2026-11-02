@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
@@ -26,9 +27,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-6">
           <div className="flex items-center gap-2">
             <div className="flex h-7 w-7 items-center justify-center rounded bg-gray-900">
-              <span className="text-[10px] font-bold text-white">CN</span>
+              <span className="text-[10px] font-bold text-white"><T text={"CN"} /></span>
             </div>
-            <span className="text-sm font-semibold">Super Admin</span>
+            <span className="text-sm font-semibold"><T text={"Super Admin"} /></span>
           </div>
           <nav className="flex items-center gap-1 flex-1">
             {adminNav.map(({ href, label, icon: Icon }) => (
@@ -44,9 +45,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </nav>
           <Button asChild variant="outline" size="sm">
             <Link href="/dashboard">
-              <ArrowLeft className="h-3.5 w-3.5" />
-              Dashboard
-            </Link>
+              <ArrowLeft className="h-3.5 w-3.5" /><T text={"Dashboard"} /></Link>
           </Button>
         </div>
       </header>

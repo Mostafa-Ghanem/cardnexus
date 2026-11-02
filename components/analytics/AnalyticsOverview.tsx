@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useEffect, useState } from "react";
 import {
@@ -73,7 +75,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
   if (!data) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <p className="text-muted-foreground">Noch keine Karte erstellt.</p>
+        <p className="text-muted-foreground"><T text={"Noch keine Karte erstellt."} /></p>
       </div>
     );
   }
@@ -121,7 +123,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
       {/* Views chart */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Aufrufe ({days === 365 ? "1 Jahr" : `${days} Tage`})</CardTitle>
+          <CardTitle className="text-base"><T text={"Aufrufe ("} />{days === 365 ? "1 Jahr" : `${days} Tage`})</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={220}>
@@ -163,11 +165,11 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
       <div className="grid md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Geräte</CardTitle>
+            <CardTitle className="text-base"><T text={"Geräte"} /></CardTitle>
           </CardHeader>
           <CardContent>
             {data.deviceSplit.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Daten</p>
+              <p className="text-sm text-muted-foreground"><T text={"Noch keine Daten"} /></p>
             ) : (
               <div className="flex items-center gap-6">
                 <PieChart width={120} height={120}>
@@ -193,11 +195,11 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Quellen</CardTitle>
+            <CardTitle className="text-base"><T text={"Quellen"} /></CardTitle>
           </CardHeader>
           <CardContent>
             {data.topSources.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Daten</p>
+              <p className="text-sm text-muted-foreground"><T text={"Noch keine Daten"} /></p>
             ) : (
               <div className="space-y-3">
                 {data.topSources.map((s, i) => (
@@ -229,8 +231,8 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
             <div className="flex items-start gap-3">
               <ExternalLink className="h-5 w-5 text-muted-foreground mt-0.5" />
               <div>
-                <CardTitle className="text-base">Meistgeklickte Links</CardTitle>
-                <CardDescription>Top-10 Custom-Links und Social-Links nach Klickzahl.</CardDescription>
+                <CardTitle className="text-base"><T text={"Meistgeklickte Links"} /></CardTitle>
+                <CardDescription><T text={"Top-10 Custom-Links und Social-Links nach Klickzahl."} /></CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -263,30 +265,24 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
           <div className="flex items-start gap-3">
             <Megaphone className="h-5 w-5 text-muted-foreground mt-0.5" />
             <div>
-              <CardTitle className="text-base">UTM-Kampagnen</CardTitle>
-              <CardDescription>
-                Aufrufe gruppiert nach <code className="text-xs">utm_campaign</code>,
-                <code className="text-xs ml-1">utm_source</code> und
-                <code className="text-xs ml-1">utm_medium</code>. Jeder Link mit
-                UTM-Parametern erscheint hier — auch ohne eigenen Kampagnen-Eintrag.
-              </CardDescription>
+              <CardTitle className="text-base"><T text={"UTM-Kampagnen"} /></CardTitle>
+              <CardDescription><T text={"Aufrufe gruppiert nach"} /><code className="text-xs">utm_campaign</code>,
+                <code className="text-xs ml-1">utm_source</code><T text={"und"} /><code className="text-xs ml-1">utm_medium</code><T text={". Jeder Link mit UTM-Parametern erscheint hier — auch ohne eigenen Kampagnen-Eintrag."} /></CardDescription>
             </div>
           </div>
         </CardHeader>
         <CardContent>
           {data.utmCampaigns.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              Noch keine UTM-getaggten Aufrufe in diesem Zeitraum.
-            </p>
+            <p className="text-sm text-muted-foreground"><T text={"Noch keine UTM-getaggten Aufrufe in diesem Zeitraum."} /></p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-muted-foreground">
-                    <th className="pb-2 font-medium">Kampagne</th>
-                    <th className="pb-2 font-medium">Quelle</th>
-                    <th className="pb-2 font-medium">Medium</th>
-                    <th className="pb-2 font-medium text-right">Aufrufe</th>
+                    <th className="pb-2 font-medium"><T text={"Kampagne"} /></th>
+                    <th className="pb-2 font-medium"><T text={"Quelle"} /></th>
+                    <th className="pb-2 font-medium"><T text={"Medium"} /></th>
+                    <th className="pb-2 font-medium text-right"><T text={"Aufrufe"} /></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -312,11 +308,8 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
             <div className="flex items-start gap-3">
               <LinkIcon className="h-5 w-5 text-muted-foreground mt-0.5" />
               <div>
-                <CardTitle className="text-base">Benutzerdefinierte Kampagnen</CardTitle>
-                <CardDescription>
-                  Friendly-URLs unter <code className="text-xs">/p/&lt;slug&gt;</code>, hier mit
-                  Klicks aus dem Redirect-Counter.
-                </CardDescription>
+                <CardTitle className="text-base"><T text={"Benutzerdefinierte Kampagnen"} /></CardTitle>
+                <CardDescription><T text={"Friendly-URLs unter"} /><code className="text-xs">/p/&lt;slug&gt;</code><T text={", hier mit Klicks aus dem Redirect-Counter."} /></CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -331,7 +324,7 @@ export function AnalyticsOverview({ cards = [], initialCardId }: Props) {
                       <p className="text-xs text-muted-foreground font-mono truncate">/p/{c.urlSlug}</p>
                     </div>
                     {expired && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">abgelaufen</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700"><T text={"abgelaufen"} /></span>
                     )}
                     <span className="tabular-nums font-semibold">{c.views.toLocaleString("de-DE")}</span>
                   </li>

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -87,16 +89,11 @@ export function WebhooksCard() {
         <div className="flex items-start gap-3">
           <WebhookIcon className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div className="flex-1">
-            <CardTitle className="text-base">Webhooks</CardTitle>
-            <CardDescription>
-              Erhalte HTTP-POSTs in Echtzeit, wenn neue Leads über deine Karten kommen.
-              Signatur via <code className="text-xs">X-FreddieCard-Signature</code> (HMAC-SHA256).
-            </CardDescription>
+            <CardTitle className="text-base"><T text={"Webhooks"} /></CardTitle>
+            <CardDescription><T text={"Erhalte HTTP-POSTs in Echtzeit, wenn neue Leads über deine Karten kommen. Signatur via"} /><code className="text-xs">X-FreddieCard-Signature</code><T text={"(HMAC-SHA256)."} /></CardDescription>
           </div>
           <Button variant="outline" size="sm" onClick={() => setShowForm((v) => !v)}>
-            <Plus className="h-4 w-4" />
-            Neu
-          </Button>
+            <Plus className="h-4 w-4" /><T text={"Neu"} /></Button>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -104,31 +101,27 @@ export function WebhooksCard() {
           <form onSubmit={create} className="rounded-lg border border-border p-4 space-y-3 bg-muted/30">
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <Label htmlFor="wh-name">Name</Label>
+                <Label htmlFor="wh-name"><T text={"Name"} /></Label>
                 <Input id="wh-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="z.B. Slack Notifier" />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="wh-url">Endpoint-URL</Label>
+                <Label htmlFor="wh-url"><T text={"Endpoint-URL"} /></Label>
                 <Input id="wh-url" required type="url" placeholder="https://…" value={url} onChange={(e) => setUrl(e.target.value)} />
               </div>
             </div>
             {err && <p className="text-sm text-destructive">{err}</p>}
             <div className="flex gap-2">
               <Button type="submit" size="sm" disabled={busy}>
-                {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-                Anlegen
-              </Button>
-              <Button type="button" size="sm" variant="ghost" onClick={() => setShowForm(false)}>
-                Abbrechen
-              </Button>
+                {busy && <Loader2 className="h-4 w-4 animate-spin" />}<T text={"Anlegen"} /></Button>
+              <Button type="button" size="sm" variant="ghost" onClick={() => setShowForm(false)}><T text={"Abbrechen"} /></Button>
             </div>
           </form>
         )}
 
         {loading ? (
-          <div className="text-sm text-muted-foreground">Lädt…</div>
+          <div className="text-sm text-muted-foreground"><T text={"Lädt…"} /></div>
         ) : items.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Noch keine Webhooks angelegt.</p>
+          <p className="text-sm text-muted-foreground"><T text={"Noch keine Webhooks angelegt."} /></p>
         ) : (
           <ul className="divide-y divide-border rounded-lg border border-border">
             {items.map((w) => (
@@ -137,9 +130,9 @@ export function WebhooksCard() {
                   <div className="flex items-center gap-2">
                     <span className="font-medium truncate">{w.name}</span>
                     {w.active ? (
-                      <Badge variant="success" className="text-xs">Aktiv</Badge>
+                      <Badge variant="success" className="text-xs"><T text={"Aktiv"} /></Badge>
                     ) : (
-                      <Badge variant="secondary" className="text-xs">Pausiert</Badge>
+                      <Badge variant="secondary" className="text-xs"><T text={"Pausiert"} /></Badge>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground truncate">{w.url}</p>
@@ -230,40 +223,29 @@ export function ApiKeysCard() {
         <div className="flex items-start gap-3">
           <KeyRound className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div className="flex-1">
-            <CardTitle className="text-base">API-Keys</CardTitle>
-            <CardDescription>
-              Authentifiziere externe Skripte über die HTTP-API. Keys sind nur bei der
-              Erstellung sichtbar.
-            </CardDescription>
+            <CardTitle className="text-base"><T text={"API-Keys"} /></CardTitle>
+            <CardDescription><T text={"Authentifiziere externe Skripte über die HTTP-API. Keys sind nur bei der Erstellung sichtbar."} /></CardDescription>
           </div>
           <Button variant="outline" size="sm" onClick={() => setShowForm((v) => !v)}>
-            <Plus className="h-4 w-4" />
-            Neu
-          </Button>
+            <Plus className="h-4 w-4" /><T text={"Neu"} /></Button>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
         {showForm && (
           <form onSubmit={create} className="rounded-lg border border-border p-4 bg-muted/30 flex gap-2 items-end">
             <div className="flex-1 space-y-1.5">
-              <Label htmlFor="ak-name">Name</Label>
+              <Label htmlFor="ak-name"><T text={"Name"} /></Label>
               <Input id="ak-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="z.B. CI Pipeline" />
             </div>
             <Button type="submit" size="sm" disabled={busy}>
-              {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-              Anlegen
-            </Button>
-            <Button type="button" size="sm" variant="ghost" onClick={() => setShowForm(false)}>
-              Abbrechen
-            </Button>
+              {busy && <Loader2 className="h-4 w-4 animate-spin" />}<T text={"Anlegen"} /></Button>
+            <Button type="button" size="sm" variant="ghost" onClick={() => setShowForm(false)}><T text={"Abbrechen"} /></Button>
           </form>
         )}
 
         {revealed?.key && (
           <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 space-y-2">
-            <p className="text-sm font-semibold text-amber-900">
-              Notiere diesen Key jetzt — er wird nicht erneut angezeigt:
-            </p>
+            <p className="text-sm font-semibold text-amber-900"><T text={"Notiere diesen Key jetzt — er wird nicht erneut angezeigt:"} /></p>
             <div className="flex gap-2 items-center">
               <code className="flex-1 rounded bg-white dark:bg-gray-900 px-3 py-2 font-mono text-sm break-all border border-amber-200">
                 {revealed.key}
@@ -273,16 +255,14 @@ export function ApiKeysCard() {
                 {copied ? "Kopiert" : "Kopieren"}
               </Button>
             </div>
-            <Button type="button" size="sm" variant="ghost" onClick={() => setRevealed(null)}>
-              Schließen
-            </Button>
+            <Button type="button" size="sm" variant="ghost" onClick={() => setRevealed(null)}><T text={"Schließen"} /></Button>
           </div>
         )}
 
         {loading ? (
-          <div className="text-sm text-muted-foreground">Lädt…</div>
+          <div className="text-sm text-muted-foreground"><T text={"Lädt…"} /></div>
         ) : items.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Noch keine API-Keys angelegt.</p>
+          <p className="text-sm text-muted-foreground"><T text={"Noch keine API-Keys angelegt."} /></p>
         ) : (
           <ul className="divide-y divide-border rounded-lg border border-border">
             {items.map((k) => (
@@ -292,8 +272,7 @@ export function ApiKeysCard() {
                   <p className="text-xs text-muted-foreground font-mono">
                     {k.prefix}…
                     {k.lastUsedAt && (
-                      <span className="ml-2">
-                        zuletzt verwendet: {new Date(k.lastUsedAt).toLocaleDateString("de-DE")}
+                      <span className="ml-2"><T text={"zuletzt verwendet:"} />{new Date(k.lastUsedAt).toLocaleDateString("de-DE")}
                       </span>
                     )}
                   </p>
@@ -336,25 +315,23 @@ export function ReferralsCard() {
         <div className="flex items-start gap-3">
           <Users className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div>
-            <CardTitle className="text-base">Empfehlungen</CardTitle>
-            <CardDescription>
-              Teile deinen persönlichen Link und werbe andere Nutzer an.
-            </CardDescription>
+            <CardTitle className="text-base"><T text={"Empfehlungen"} /></CardTitle>
+            <CardDescription><T text={"Teile deinen persönlichen Link und werbe andere Nutzer an."} /></CardDescription>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         {!data ? (
-          <p className="text-sm text-muted-foreground">Lädt…</p>
+          <p className="text-sm text-muted-foreground"><T text={"Lädt…"} /></p>
         ) : (
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-3 max-w-sm">
               <div className="rounded-lg border border-border p-3">
-                <p className="text-xs text-muted-foreground">Dein Code</p>
+                <p className="text-xs text-muted-foreground"><T text={"Dein Code"} /></p>
                 <p className="font-mono font-semibold">{data.code}</p>
               </div>
               <div className="rounded-lg border border-border p-3">
-                <p className="text-xs text-muted-foreground">Geworben</p>
+                <p className="text-xs text-muted-foreground"><T text={"Geworben"} /></p>
                 <p className="font-semibold">{data.signupCount}</p>
               </div>
             </div>

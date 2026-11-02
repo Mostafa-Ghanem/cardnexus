@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -88,10 +89,9 @@ export default async function OrgAnalyticsPage() {
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold">Team Analytics</h1>
+          <h1 className="text-2xl font-bold"><T text={"Team Analytics"} /></h1>
           <p className="text-muted-foreground mt-1">
-            {org?.name} · {cards.length} Karten · letzte 30 Tage
-          </p>
+            {org?.name} · {cards.length}<T text={"Karten · letzte 30 Tage"} /></p>
         </div>
       </div>
 

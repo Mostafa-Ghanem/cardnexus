@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -38,13 +40,11 @@ export function CardPasswordGate({ slug }: Props) {
           <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
             <Lock className="h-5 w-5 text-gray-600 dark:text-gray-400" />
           </div>
-          <h1 className="text-lg font-semibold">Geschützte Karte</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Diese Karte ist passwortgeschützt. Bitte gib das Passwort ein.
-          </p>
+          <h1 className="text-lg font-semibold"><T text={"Geschützte Karte"} /></h1>
+          <p className="text-sm text-muted-foreground mt-1"><T text={"Diese Karte ist passwortgeschützt. Bitte gib das Passwort ein."} /></p>
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="card-pw">Passwort</Label>
+          <Label htmlFor="card-pw"><T text={"Passwort"} /></Label>
           <Input
             id="card-pw"
             type="password"

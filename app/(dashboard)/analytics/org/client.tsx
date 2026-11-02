@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -61,7 +63,7 @@ export function OrgAnalyticsClient({
       {/* 30-day chart */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Aufrufe – letzte 30 Tage</CardTitle>
+          <CardTitle className="text-base"><T text={"Aufrufe – letzte 30 Tage"} /></CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={220}>
@@ -89,11 +91,11 @@ export function OrgAnalyticsClient({
         {/* Top cards by views */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Top-Karten nach Aufrufen</CardTitle>
+            <CardTitle className="text-base"><T text={"Top-Karten nach Aufrufen"} /></CardTitle>
           </CardHeader>
           <CardContent>
             {topCards.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Daten.</p>
+              <p className="text-sm text-muted-foreground"><T text={"Noch keine Daten."} /></p>
             ) : (
               <div className="space-y-2">
                 {topCards.map((c) => (
@@ -120,11 +122,11 @@ export function OrgAnalyticsClient({
         {/* Top cards by leads */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Top-Karten nach Leads</CardTitle>
+            <CardTitle className="text-base"><T text={"Top-Karten nach Leads"} /></CardTitle>
           </CardHeader>
           <CardContent>
             {topCardsByLeads.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Noch keine Leads.</p>
+              <p className="text-sm text-muted-foreground"><T text={"Noch keine Leads."} /></p>
             ) : (
               <div className="space-y-2">
                 {topCardsByLeads.map((c) => (

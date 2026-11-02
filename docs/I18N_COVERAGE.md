@@ -1,0 +1,221 @@
+# Internationalization coverage
+
+Generated from the German source; legal documents and user content are excluded.
+
+- Source UI files: 96
+- Unique UI strings: 748
+- JSX text: 566
+- Attribute strings: 88
+- UI object properties: 134
+- Strings missing either Arabic or English: 651
+- JSX text wrapped in this run: 0
+
+## Pending translations (first 200)
+
+- -Header. — app/(dashboard)/custom-domain/page.tsx
+- -Plan — components/plan/UpgradePrompt.tsx
+- – Digitale Visitenkarten — app/(admin)/admin/settings/client.tsx
+- — Kein Admin — — app/(admin)/admin/organizations/client.tsx
+- — Keine — — app/(admin)/admin/users/client.tsx
+- , hier mit Klicks aus dem Redirect-Counter. — components/analytics/AnalyticsOverview.tsx
+- , um die Reihenfolge zu ändern. — components/card/CardEditor.tsx
+- . Jeder Link mit UTM-Parametern erscheint hier — auch ohne eigenen Kampagnen-Eintrag. — components/analytics/AnalyticsOverview.tsx
+- . Optionale Felder: — app/(dashboard)/team/import/client.tsx
+- „Digitale Visitenkarte"-Button — app/(dashboard)/card/signature/client.tsx
+- (bis — app/(dashboard)/upgrade/page.tsx
+- (HMAC-SHA256). — components/settings/IntegrationsCards.tsx
+- (Ich) — app/(admin)/admin/users/client.tsx
+- (kein Foto hinterlegt) — app/(dashboard)/card/signature/client.tsx
+- (Mobil) — components/card/templates/Classic.tsx
+- (oder — app/(dashboard)/team/import/client.tsx
+- (optional) — app/(dashboard)/settings/OrgSettingsCards.tsx
+- (Pro) — components/card/CardEditor.tsx
+- (vCard) — components/card/CardEditor.tsx
+- (z.B. rechtlicher Hinweis) — app/(dashboard)/card/signature/client.tsx
+- &copy; — app/page.tsx
+- &ldquo; — components/card/templates/Retro.tsx
+- &rdquo; — components/card/templates/Retro.tsx
+- © 2025 Meine Firma. Alle Rechte vorbehalten. — app/(admin)/admin/settings/client.tsx
+- ← Zurück — app/(admin)/admin/access-log/client.tsx
+- ✓ Zahlung erfolgreich! Dein Plan wurde aktualisiert. — app/(dashboard)/upgrade/page.tsx
+- €/Monat bei Jahreszahlung — app/pricing/page.tsx
+- 2FA aktivieren — components/settings/SecurityCard.tsx
+- 2FA aktiviert ✓ — components/settings/SecurityCard.tsx
+- 2FA deaktivieren — components/settings/SecurityCard.tsx
+- A-Eintrag — app/(dashboard)/custom-domain/page.tsx
+- abgelaufen — components/analytics/AnalyticsOverview.tsx
+- Abgelaufen — app/(dashboard)/campaigns/client.tsx
+- Ablaufdatum (optional) — app/(dashboard)/campaigns/client.tsx
+- Ablaufdatum setzen — app/(admin)/admin/users/client.tsx
+- Ablehnen — app/(dashboard)/team/client.tsx
+- Ablehnungsgrund (optional) — app/(dashboard)/team/client.tsx
+- Abteilungsname z.B. Marketing — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Abteilungsregeln — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Access Log — app/(admin)/admin/access-log/client.tsx
+- Account — app/(dashboard)/settings/client.tsx
+- Account endgültig löschen — components/settings/AccountActions.tsx
+- Account löschen — components/settings/AccountActions.tsx
+- Account und Organisations-Einstellungen — app/(dashboard)/settings/client.tsx
+- Account wirklich löschen? — components/settings/AccountActions.tsx
+- ACME GmbH — app/(admin)/admin/organizations/client.tsx
+- acme-gmbh — app/(admin)/admin/organizations/client.tsx
+- acme.de — app/(admin)/admin/organizations/client.tsx
+- Admin — app/(admin)/admin/page.tsx
+- Administrator — app/(admin)/admin/organizations/client.tsx
+- Adr — components/card/templates/Retro.tsx
+- Adresse — components/card/CardEditor.tsx
+- Aktionen — app/(admin)/admin/users/client.tsx
+- Aktiv — components/settings/IntegrationsCards.tsx
+- Aktivieren — components/settings/SecurityCard.tsx
+- Aktualisiert — app/(dashboard)/team/import/client.tsx
+- Aktuell — app/(dashboard)/upgrade/page.tsx
+- Aktuell: — app/(dashboard)/upgrade/page.tsx
+- Aktueller Plan — app/(dashboard)/upgrade/UpgradeButtons.tsx
+- Aktuelles Passwort — components/settings/AccountActions.tsx
+- Aktuelles Passwort falsch oder neues Passwort zu schwach. — components/settings/AccountActions.tsx
+- Akzentfarbe — app/(dashboard)/card/signature/client.tsx
+- Alle Benutzer — app/(admin)/admin/users/page.tsx
+- Alle Karten — app/(admin)/admin/cards/[slug]/page.tsx
+- Alle Pläne inkl. DSGVO-konformer Datenspeicherung in Deutschland. — app/page.tsx
+- Als Klartext kopieren — app/(dashboard)/card/signature/client.tsx
+- Als Standard — components/card/CardSwitcher.tsx
+- Als Super-Admin verwaltest du alle Nutzer und Organisationen im Admin-Panel. Das Team-Tab ist für Nutzer innerhalb einer Organisation gedacht. — app/(dashboard)/team/page.tsx
+- Amazon: NFC-Tags (NTAG213) — app/(dashboard)/nfc/page.tsx
+- An: — app/(dashboard)/card/signature/client.tsx
+- Analytics — app/(dashboard)/analytics/page.tsx
+- Analytics ansehen — app/(dashboard)/dashboard/page.tsx
+- Andere Sessions wurden abgemeldet. — components/settings/AccountActions.tsx
+- Änderung abgelehnt — components/card/ApprovalBanner.tsx
+- Änderungen aktiv — Browser-Tab neu laden zum Prüfen — app/(admin)/admin/settings/client.tsx
+- Android: — app/(dashboard)/nfc/page.tsx
+- Anlegen — components/settings/IntegrationsCards.tsx
+- Anleitung für deinen E-Mail-Client — app/(dashboard)/card/signature/client.tsx
+- anpassen. — app/(dashboard)/team/CreateOrgForm.tsx
+- Ansehen — app/(dashboard)/team/client.tsx
+- Anwendungs-URL — app/(admin)/admin/settings/client.tsx
+- Anwendungsname — app/(admin)/admin/settings/client.tsx
+- API-Keys — components/settings/IntegrationsCards.tsx
+- App installieren — app/(dashboard)/nfc/page.tsx
+- App offnen und "Schreiben" / "Write" auswahlen — app/(dashboard)/nfc/page.tsx
+- Apple & Google Wallet — app/(dashboard)/settings/client.tsx
+- Apple Mail — app/(dashboard)/card/signature/client.tsx
+- Auf "Schreiben" tippen und Tag ans Handy halten — app/(dashboard)/nfc/page.tsx
+- Auf Business upgraden — app/(dashboard)/team/page.tsx
+- auf den Server dieser Plattform: — app/(dashboard)/custom-domain/page.tsx
+- auf die IP-Adresse des Servers. — app/(dashboard)/custom-domain/page.tsx
+- Aufruf — app/(admin)/admin/access-log/client.tsx
+- Aufrufe – letzte 30 Tage — app/(dashboard)/analytics/org/client.tsx
+- Aufrufe ( — components/analytics/AnalyticsOverview.tsx
+- Aufrufe gesamt — app/(dashboard)/analytics/org/client.tsx
+- Aufrufe gruppiert nach — components/analytics/AnalyticsOverview.tsx
+- Aufrufe letzte 30 Tage — app/(dashboard)/dashboard/page.tsx
+- Aufrufe letzte 7 Tage — app/(dashboard)/dashboard/page.tsx
+- Authentifiziere externe Skripte über die HTTP-API. Keys sind nur bei der Erstellung sichtbar. — components/settings/IntegrationsCards.tsx
+- Avatar — components/card/CardEditor.tsx
+- Avatar hochladen — components/card/CardEditor.tsx
+- Avatar-Rahmen — components/card/editor/DesignTab.tsx
+- Backup-Codes — components/settings/SecurityCard.tsx
+- Basierend auf — app/(admin)/admin/page.tsx
+- Basis-URL der Anwendung. Wird in QR-Codes, vCards und Einladungslinks verwendet. — app/(admin)/admin/settings/client.tsx
+- Beim nächsten Login wirst du zusätzlich nach einem Code aus deiner Authenticator-App gefragt. — components/settings/SecurityCard.tsx
+- Beispiel-Karten-URL: — app/(admin)/admin/settings/client.tsx
+- Beispiel: karte.meinefirma.de — app/(dashboard)/custom-domain/page.tsx
+- Benutzer — app/(admin)/admin/users/client.tsx
+- Benutzer einladen — components/team/InviteModal.tsx
+- Benutzer gesamt — app/(admin)/admin/page.tsx
+- Benutzer löschen — app/(admin)/admin/users/client.tsx
+- Benutzer verwalten — app/(admin)/admin/users/page.tsx
+- Benutzerdefinierte Kampagnen — components/analytics/AnalyticsOverview.tsx
+- Bereit loszulegen? — app/page.tsx
+- Bestätige durch Eingabe des aktuellen Codes — components/settings/SecurityCard.tsx
+- Betr.: — app/(dashboard)/card/signature/client.tsx
+- Betriebssystem — components/analytics/AnalyticsTech.tsx
+- Bette deine digitale Karte per iFrame direkt auf deiner Website ein. — app/(dashboard)/widget/client.tsx
+- Bewahre deine Backup-Codes sicher auf. Du kannst sie verwenden, falls du dein Gerät verlierst. — components/settings/SecurityCard.tsx
+- Bezahlend — app/(admin)/admin/page.tsx
+- bis — app/(dashboard)/campaigns/client.tsx
+- Bitte überarbeite deine Karte und speichere erneut. — components/card/ApprovalBanner.tsx
+- Breadcrumb — components/layout/PageHeader.tsx
+- Breite (px) — app/(dashboard)/widget/client.tsx
+- Browser — components/analytics/AnalyticsTech.tsx
+- Browser / OS — app/(admin)/admin/access-log/client.tsx
+- Build: — app/(admin)/admin/page.tsx
+- Bulk CSV-Import (Team) — app/pricing/page.tsx
+- Business — app/(admin)/admin/users/client.tsx
+- Business × — app/(admin)/admin/page.tsx
+- Business-Plan — app/(dashboard)/team/page.tsx
+- Business-Plan buchen — app/(dashboard)/team/page.tsx
+- Caddy (empfohlen — HTTPS automatisch): — app/(dashboard)/custom-domain/page.tsx
+- CardNexus — app/(admin)/admin/settings/client.tsx
+- CardNexus erkennt automatisch Anfragen über deine Domain und leitet sie an die richtige Karte weiter — vorausgesetzt, der Reverse Proxy sendet den korrekten — app/(dashboard)/custom-domain/page.tsx
+- CardNexus. Alle Rechte vorbehalten. — app/page.tsx
+- Changelog — app/(admin)/admin/page.tsx
+- CN — app/(admin)/layout.tsx
+- CNAME — app/(dashboard)/custom-domain/page.tsx
+- CNAME-Eintrag — app/(dashboard)/custom-domain/page.tsx
+- Cover hochladen — components/card/CardEditor.tsx
+- Cover-Bild — components/card/CardEditor.tsx
+- CSV Export — app/(dashboard)/leads/client.tsx
+- CSV importieren — app/(dashboard)/team/client.tsx
+- CSV-Datei hierher ziehen oder klicken — app/(dashboard)/team/import/client.tsx
+- CSV-Format — app/(dashboard)/team/import/client.tsx
+- CSV-Import — app/(dashboard)/team/import/page.tsx
+- Custom Domains — app/(admin)/admin/settings/client.tsx
+- Damit HTTPS funktioniert, muss der Reverse Proxy (z. B. Caddy) die Domain akzeptieren und an CardNexus weiterleiten. — app/(dashboard)/custom-domain/page.tsx
+- Dark — app/(dashboard)/card/signature/client.tsx
+- Das Team-Verzeichnis ist ab dem — app/(dashboard)/team/page.tsx
+- Daten als JSON herunterladen — components/settings/AccountActions.tsx
+- Daten exportieren — components/settings/AccountActions.tsx
+- Datensatz hinzufugen &rarr; URL/URI — app/(dashboard)/nfc/page.tsx
+- Datenschutz — app/page.tsx
+- Deaktivieren — components/settings/SecurityCard.tsx
+- Dein Code — components/settings/IntegrationsCards.tsx
+- Dein Name — app/c/[slug]/client.tsx
+- Deine Karten — app/(dashboard)/dashboard/page.tsx
+- Deine Karten-URL (auf NFC-Tag schreiben): — app/(dashboard)/nfc/page.tsx
+- Deine Karten-URL einfugen (siehe oben) — app/(dashboard)/nfc/page.tsx
+- Deine letzte Änderung wird von einem Administrator geprüft. Die Karte bleibt bis zur Freigabe in ihrem bisherigen Zustand sichtbar. — components/card/ApprovalBanner.tsx
+- Deine persönlichen Informationen — app/(dashboard)/settings/client.tsx
+- deine@email.de — app/c/[slug]/client.tsx
+- deines Karteneditors ein. Deine QR-Codes, NFC-Links und Kampagnen-URLs verwenden dann automatisch diese Domain. — app/(dashboard)/custom-domain/page.tsx
+- Demnächst — app/(dashboard)/settings/client.tsx
+- Demo — app/page.tsx
+- Der alte Link wird automatisch weitergeleitet. Speichere die Karte um die Änderung zu übernehmen. — components/card/CardEditor.tsx
+- Der Business-Plan für — app/(dashboard)/team/page.tsx
+- Der Import aktualisiert bestehende Mitglieder (gleiche E-Mail in der Org). Neue E-Mails werden als „nicht gefunden" markiert — nutze dafür Einladungen. — app/(dashboard)/team/import/client.tsx
+- Design → Karten-Domain — app/(dashboard)/custom-domain/page.tsx
+- Design-Vorgaben — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Die Organisation — app/(dashboard)/team/page.tsx
+- Die smarte digitale Visitenkarte für Professionals und Teams. — app/page.tsx
+- Diese Aktion kann — components/settings/AccountActions.tsx
+- Diese Domains können Nutzer und Organisationen für ihre Karten auswählen. — app/(admin)/admin/settings/client.tsx
+- Diese Farben stehen Mitgliedern zur schnellen Auswahl bereit. Leer = freie Farbwahl. — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Diese Karte existiert nicht oder ist nicht öffentlich. — app/not-found.tsx
+- Diese Karte ist nicht mehr verfügbar. — app/c/[slug]/page.tsx
+- Diese Karte ist passwortgeschützt. Bitte gib das Passwort ein. — app/c/[slug]/PasswordGate.tsx
+- Diese Werte werden beim CSV-Import als Standardwerte für neue Karten verwendet. — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Diese Werte werden für neue Mitglieder-Karten als Standard gesetzt. — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Diesem Gerät 30 Tage vertrauen — app/(auth)/login/2fa/page.tsx
+- Digitale Karten — app/(admin)/admin/page.tsx
+- Direktlink — app/(dashboard)/widget/client.tsx
+- Display — app/(dashboard)/settings/OrgSettingsCards.tsx
+- DNS-Eintrag setzen — app/(dashboard)/custom-domain/page.tsx
+- Domain (optional) — app/(admin)/admin/organizations/client.tsx
+- Domain einrichten – CardNexus — app/(dashboard)/custom-domain/page.tsx
+- Domain in den Karteneinstellungen eintragen — app/(dashboard)/custom-domain/page.tsx
+- Domain kaufen oder auswählen — app/(dashboard)/custom-domain/page.tsx
+- Du bekommst bei jedem neuen Lead eine E-Mail. — app/(dashboard)/settings/client.tsx
+- Du wirst automatisch zum Organisations-Admin. Design-Vorgaben kannst du danach unter — app/(dashboard)/team/CreateOrgForm.tsx
+- Dunkler Hintergrund — app/(dashboard)/card/signature/client.tsx
+- E-Mail-Adresse — components/team/InviteModal.tsx
+- E-Mail-Adresse ändern — app/(dashboard)/settings/client.tsx
+- E-Mail-Signatur — app/(dashboard)/card/signature/page.tsx
+- Eckenradius — components/card/editor/DesignTab.tsx
+- Eigene Domain (Pro) — components/card/editor/DomainSection.tsx
+
+## Editorial review notes
+
+- Review pricing currency, privacy compliance and Saudi legal requirements.
+- Client-side dynamic data and user-entered profile fields must never be machine translated.
+- Test mixed numbers, phone, emails and URLs on RTL.
+- Missing values deliberately fall back to the German source; do not claim 100% translated.

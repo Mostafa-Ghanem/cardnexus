@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -155,17 +157,14 @@ export function TeamClientPage({
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Team</h1>
+          <h1 className="text-2xl font-bold"><T text={"Team"} /></h1>
           <p className="text-muted-foreground mt-1">
-            {orgName ? `${orgName} · ` : ""}{memberCount} Mitglieder
-          </p>
+            {orgName ? `${orgName} · ` : ""}{memberCount}<T text={"Mitglieder"} /></p>
         </div>
         <div className="flex items-center gap-2">
           {canImport && canManage && (
             <Link href="/team/import" className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors">
-              <Upload className="h-3.5 w-3.5" />
-              CSV importieren
-            </Link>
+              <Upload className="h-3.5 w-3.5" /><T text={"CSV importieren"} /></Link>
           )}
           {canManage && <InviteModal onInvited={() => router.refresh()} />}
         </div>
@@ -179,7 +178,7 @@ export function TeamClientPage({
               <Globe className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <p className="font-semibold text-sm">Öffentliches Team-Verzeichnis</p>
+              <p className="font-semibold text-sm"><T text={"Öffentliches Team-Verzeichnis"} /></p>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {dirEnabled
                   ? "Aktiv — alle Mitglieder mit öffentlicher Karte sind sichtbar"
@@ -196,9 +195,7 @@ export function TeamClientPage({
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
-                <ExternalLink className="h-3.5 w-3.5" />
-                Ansehen
-              </a>
+                <ExternalLink className="h-3.5 w-3.5" /><T text={"Ansehen"} /></a>
             )}
             {canManage && (
               <button
@@ -239,10 +236,10 @@ export function TeamClientPage({
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/40">
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Mitglied</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Rolle</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Karte</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Im Verzeichnis</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Mitglied"} /></th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell"><T text={"Rolle"} /></th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Karte"} /></th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Im Verzeichnis"} /></th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -266,7 +263,7 @@ export function TeamClientPage({
                         {u.card.slug}
                       </a>
                     ) : (
-                      <span className="text-xs text-muted-foreground/50">Keine Karte</span>
+                      <span className="text-xs text-muted-foreground/50"><T text={"Keine Karte"} /></span>
                     )}
                   </td>
                   <td className="px-4 py-3">
@@ -279,8 +276,8 @@ export function TeamClientPage({
                         title={u.card.showInTeamDirectory ? "Aus Verzeichnis entfernen" : "Im Verzeichnis anzeigen"}
                       >
                         {u.card.showInTeamDirectory
-                          ? <><Eye className="h-4 w-4" /> Sichtbar</>
-                          : <><EyeOff className="h-4 w-4" /> Versteckt</>}
+                          ? <><Eye className="h-4 w-4" />{" "}<T text={"Sichtbar"} /></>
+                          : <><EyeOff className="h-4 w-4" />{" "}<T text={"Versteckt"} /></>}
                       </button>
                     ) : (
                       <span className="text-xs text-muted-foreground/40">—</span>
@@ -318,9 +315,7 @@ export function TeamClientPage({
       {canManage && pendingCards.length > 0 && (
         <div>
           <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Clock className="h-5 w-5 text-amber-500" />
-            Karten zur Freigabe
-            <span className="ml-1 text-sm font-normal text-muted-foreground">({pendingCards.length})</span>
+            <Clock className="h-5 w-5 text-amber-500" /><T text={"Karten zur Freigabe"} /><span className="ml-1 text-sm font-normal text-muted-foreground">({pendingCards.length})</span>
           </h2>
           <div className="rounded-xl border border-amber-200 bg-amber-50/50 overflow-hidden divide-y divide-amber-100">
             {pendingCards.map((c) => (
@@ -339,18 +334,14 @@ export function TeamClientPage({
                       disabled={approvingCard === c.slug}
                       onClick={() => approveCard(c.slug, "approved")}
                     >
-                      <CheckCircle className="h-4 w-4" />
-                      Freigeben
-                    </Button>
+                      <CheckCircle className="h-4 w-4" /><T text={"Freigeben"} /></Button>
                     <Button
                       size="sm" variant="outline"
                       className="text-red-700 border-red-300 hover:bg-red-50"
                       disabled={approvingCard === c.slug}
                       onClick={() => approveCard(c.slug, "rejected")}
                     >
-                      <XCircle className="h-4 w-4" />
-                      Ablehnen
-                    </Button>
+                      <XCircle className="h-4 w-4" /><T text={"Ablehnen"} /></Button>
                   </div>
                 </div>
                 <div className="mt-2">
@@ -371,15 +362,15 @@ export function TeamClientPage({
       {/* Pending invitations */}
       {canManage && invitations.length > 0 && (
         <div>
-          <h2 className="text-lg font-semibold mb-3">Offene Einladungen</h2>
+          <h2 className="text-lg font-semibold mb-3"><T text={"Offene Einladungen"} /></h2>
           <div className="rounded-xl border border-border overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/40">
-                  <th className="text-left px-4 py-3 font-medium text-muted-foreground">E-Mail</th>
-                  <th className="text-left px-4 py-3 font-medium text-muted-foreground">Rolle</th>
-                  <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Eingeladen</th>
-                  <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Läuft ab</th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"E-Mail"} /></th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Rolle"} /></th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell"><T text={"Eingeladen"} /></th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell"><T text={"Läuft ab"} /></th>
                   <th className="px-4 py-3" />
                 </tr>
               </thead>

@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -39,10 +40,8 @@ export default async function CampaignsPage() {
   return (
     <div className="max-w-4xl space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">UTM-Kampagnen</h1>
-        <p className="text-muted-foreground mt-1">
-          Erstelle individuelle Links fur Events, Messen oder Kampagnen &mdash; mit separater Klick-Statistik.
-        </p>
+        <h1 className="text-2xl font-bold"><T text={"UTM-Kampagnen"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Erstelle individuelle Links fur Events, Messen oder Kampagnen &mdash; mit separater Klick-Statistik."} /></p>
       </div>
 
       {!hasCampaigns ? (

@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -63,7 +64,7 @@ export default async function DashboardPage() {
     <div className="space-y-8">
       {/* Greeting */}
       <div>
-        <h1 className="text-2xl font-bold text-foreground">Hallo, {firstName} 👋</h1>
+        <h1 className="text-2xl font-bold text-foreground"><T text={"Hallo,"} />{" "}{firstName} 👋</h1>
         <p className="text-muted-foreground mt-1">
           {cards.length > 0 ? `Du hast ${cards.length} Karte${cards.length > 1 ? "n" : ""}.` : "Erstelle jetzt deine erste digitale Visitenkarte."}
         </p>
@@ -75,12 +76,10 @@ export default async function DashboardPage() {
           <div className="mx-auto h-12 w-12 rounded-full bg-muted flex items-center justify-center mb-4">
             <Plus className="h-6 w-6 text-muted-foreground" />
           </div>
-          <h2 className="text-lg font-semibold mb-2">Keine Karte vorhanden</h2>
-          <p className="text-sm text-muted-foreground mb-6">Erstelle jetzt deine digitale Visitenkarte in wenigen Minuten.</p>
+          <h2 className="text-lg font-semibold mb-2"><T text={"Keine Karte vorhanden"} /></h2>
+          <p className="text-sm text-muted-foreground mb-6"><T text={"Erstelle jetzt deine digitale Visitenkarte in wenigen Minuten."} /></p>
           <Button asChild>
-            <Link href="/card">
-              Karte erstellen
-              <ArrowRight className="h-4 w-4" />
+            <Link href="/card"><T text={"Karte erstellen"} /><ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -90,12 +89,10 @@ export default async function DashboardPage() {
       {cards.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-semibold">Deine Karten</h2>
+            <h2 className="text-base font-semibold"><T text={"Deine Karten"} /></h2>
             <Button asChild variant="outline" size="sm">
               <Link href="/card">
-                <Plus className="h-4 w-4" />
-                Neue Karte
-              </Link>
+                <Plus className="h-4 w-4" /><T text={"Neue Karte"} /></Link>
             </Button>
           </div>
 
@@ -119,7 +116,7 @@ export default async function DashboardPage() {
                     <div className="flex items-center gap-2">
                       <span className="font-medium truncate">{c.name ?? c.slug}</span>
                       {c.isDefault && (
-                        <Badge variant="outline" className="text-xs shrink-0">Standard</Badge>
+                        <Badge variant="outline" className="text-xs shrink-0"><T text={"Standard"} /></Badge>
                       )}
                       <Badge variant={c.isPublic ? "success" : "outline"} className="text-xs shrink-0">
                         {c.isPublic ? "Öffentlich" : "Privat"}
@@ -153,7 +150,7 @@ export default async function DashboardPage() {
                       title="Karte bearbeiten"
                     >
                       <Pencil className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">Bearbeiten</span>
+                      <span className="hidden sm:inline"><T text={"Bearbeiten"} /></span>
                     </Link>
                     <Link
                       href={`/analytics?cardId=${c.id}`}
@@ -161,7 +158,7 @@ export default async function DashboardPage() {
                       title="Analytics ansehen"
                     >
                       <BarChart2 className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">Analytics</span>
+                      <span className="hidden sm:inline"><T text={"Analytics"} /></span>
                     </Link>
                   </div>
                 </div>
@@ -176,7 +173,7 @@ export default async function DashboardPage() {
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Karte teilen</CardTitle>
+              <CardTitle className="text-base"><T text={"Karte teilen"} /></CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               {/* Prefer custom domain, then app URL derived from request headers */}
@@ -187,10 +184,10 @@ export default async function DashboardPage() {
                   </div>
                   <div className="flex gap-2">
                     <Button asChild variant="outline" size="sm" className="flex-1">
-                      <Link href={cardUrl} target="_blank">Öffnen</Link>
+                      <Link href={cardUrl} target="_blank"><T text={"Öffnen"} /></Link>
                     </Button>
                     <Button asChild variant="outline" size="sm" className="flex-1">
-                      <Link href={`/api/vcard/${defaultCard.slug}`}>vCard</Link>
+                      <Link href={`/api/vcard/${defaultCard.slug}`}><T text={"vCard"} /></Link>
                     </Button>
                   </div>
                 </>
@@ -204,7 +201,7 @@ export default async function DashboardPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Live-Aufrufe</CardTitle>
+              <CardTitle className="text-base"><T text={"Live-Aufrufe"} /></CardTitle>
             </CardHeader>
             <CardContent className="pt-2">
               <LiveViews initialViews={defaultCard.totalViews} cardSlug={defaultCard.slug} />

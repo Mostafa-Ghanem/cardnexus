@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -27,10 +28,8 @@ export default async function SignaturePage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-2xl font-bold">E-Mail-Signatur</h1>
-        <p className="text-muted-foreground mt-1">
-          Kopiere deinen HTML-Code direkt in Outlook, Gmail oder Apple Mail.
-        </p>
+        <h1 className="text-2xl font-bold"><T text={"E-Mail-Signatur"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Kopiere deinen HTML-Code direkt in Outlook, Gmail oder Apple Mail."} /></p>
       </div>
       <SignatureClient card={cards[0]} allCards={cards} />
     </div>

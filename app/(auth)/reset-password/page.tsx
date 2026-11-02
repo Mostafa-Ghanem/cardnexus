@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -45,13 +47,13 @@ function ResetForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Neues Passwort setzen</CardTitle>
-        <CardDescription>Wähle ein sicheres Passwort mit mindestens 8 Zeichen.</CardDescription>
+        <CardTitle><T text={"Neues Passwort setzen"} /></CardTitle>
+        <CardDescription><T text={"Wähle ein sicheres Passwort mit mindestens 8 Zeichen."} /></CardDescription>
       </CardHeader>
       <form onSubmit={submit}>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="pw">Neues Passwort</Label>
+            <Label htmlFor="pw"><T text={"Neues Passwort"} /></Label>
             <Input
               id="pw" type="password" required autoComplete="new-password"
               minLength={8} value={password}
@@ -59,7 +61,7 @@ function ResetForm() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="pw2">Passwort wiederholen</Label>
+            <Label htmlFor="pw2"><T text={"Passwort wiederholen"} /></Label>
             <Input
               id="pw2" type="password" required autoComplete="new-password"
               minLength={8} value={confirm}
@@ -73,7 +75,7 @@ function ResetForm() {
             {loading ? "Speichern…" : "Passwort speichern"}
           </Button>
           <p className="text-sm text-muted-foreground text-center">
-            <Link href="/login" className="hover:underline">Zurück zum Login</Link>
+            <Link href="/login" className="hover:underline"><T text={"Zurück zum Login"} /></Link>
           </p>
         </CardFooter>
       </form>

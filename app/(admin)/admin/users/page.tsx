@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { db } from "@/lib/db";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
@@ -37,7 +38,7 @@ export default async function AdminUsersPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Alle Benutzer</h1>
+        <h1 className="text-2xl font-bold"><T text={"Alle Benutzer"} /></h1>
         <p className="text-muted-foreground mt-1">
           {search
             ? `${users.length} Treffer für „${search}" (${total} gesamt)`

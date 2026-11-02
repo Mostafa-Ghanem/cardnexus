@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -64,9 +66,7 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
             target="_blank"
             className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ExternalLink className="h-4 w-4" />
-            Karte ansehen
-          </Link>
+            <ExternalLink className="h-4 w-4" /><T text={"Karte ansehen"} /></Link>
         )}
 
         <DropdownMenu>
@@ -97,17 +97,15 @@ export function Header({ user, cardSlug, appName, orgName, logoUrl }: HeaderProp
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/settings">Einstellungen</Link>
+              <Link href="/settings"><T text={"Einstellungen"} /></Link>
             </DropdownMenuItem>
             {cardSlug && (
               <DropdownMenuItem asChild>
-                <Link href={`/c/${cardSlug}`} target="_blank">Karte ansehen</Link>
+                <Link href={`/c/${cardSlug}`} target="_blank"><T text={"Karte ansehen"} /></Link>
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
-              Abmelden
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut} className="text-destructive"><T text={"Abmelden"} /></DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, shadowClass, avatarBorderStyle } from "../CardPreview";
@@ -73,7 +74,7 @@ export function BoldTemplate({ card }: { card: Partial<CardData> }) {
             <p className="text-xs text-gray-300 mt-0.5">{card.department}</p>
           )}
           {!card.title && !card.company && (
-            <p className="text-sm font-semibold text-gray-300">Berufsbezeichnung</p>
+            <p className="text-sm font-semibold text-gray-300"><T text={"Berufsbezeichnung"} /></p>
           )}
         </div>
 

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -68,9 +70,7 @@ export function UpgradeButtons({
   if (isCurrent) {
     return (
       <div className="space-y-2">
-        <Button variant="outline" className="w-full" disabled>
-          Aktueller Plan
-        </Button>
+        <Button variant="outline" className="w-full" disabled><T text={"Aktueller Plan"} /></Button>
         {hasStripe && (
           <Button
             variant="ghost"
@@ -86,18 +86,13 @@ export function UpgradeButtons({
           </Button>
         )}
         {hasPaypal && (
-          <p className="text-xs text-muted-foreground text-center">
-            PayPal-Abo über{" "}
+          <p className="text-xs text-muted-foreground text-center"><T text={"PayPal-Abo über"} />{" "}
             <a
               href="https://www.paypal.com/myaccount/autopay"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-foreground"
-            >
-              paypal.com/myaccount/autopay
-            </a>{" "}
-            kündigen.
-          </p>
+            ><T text={"paypal.com/myaccount/autopay"} /></a>{" "}<T text={"kündigen."} /></p>
         )}
       </div>
     );
@@ -107,9 +102,7 @@ export function UpgradeButtons({
   if (!stripeConfigured && !paypalConfigured) {
     return (
       <Button asChild variant="outline" className="w-full">
-        <a href={`mailto:sales@cardnexus.app?subject=Upgrade zu ${planId}`}>
-          Per E-Mail anfragen
-        </a>
+        <a href={`mailto:sales@cardnexus.app?subject=Upgrade zu ${planId}`}><T text={"Per E-Mail anfragen"} /></a>
       </Button>
     );
   }
@@ -142,8 +135,8 @@ export function UpgradeButtons({
           ) : (
             <>
               {/* PayPal logo color */}
-              <span className="text-[#003087] font-extrabold">Pay</span>
-              <span className="text-[#009cde] font-extrabold">Pal</span>
+              <span className="text-[#003087] font-extrabold"><T text={"Pay"} /></span>
+              <span className="text-[#009cde] font-extrabold"><T text={"Pal"} /></span>
             </>
           )}
         </Button>

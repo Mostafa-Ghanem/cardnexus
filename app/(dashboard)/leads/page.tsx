@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -26,10 +27,8 @@ export default async function LeadsPage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-2xl font-bold">Leads</h1>
-        <p className="text-muted-foreground mt-1">
-          Personen, die ihren Kontakt auf deiner Karte hinterlassen haben.
-        </p>
+        <h1 className="text-2xl font-bold"><T text={"Leads"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Personen, die ihren Kontakt auf deiner Karte hinterlassen haben."} /></p>
       </div>
       <LeadsClient leads={leads} hasCard={!!card} />
     </div>

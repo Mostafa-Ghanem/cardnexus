@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, shadowClass, avatarBorderStyle } from "../CardPreview";
@@ -119,7 +120,7 @@ export function WaveTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR" className="h-10 w-10" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <p className="text-xs text-gray-400"><T text={"Scan für digitale Karte"} /></p>
           </div>
         )}
       </div>

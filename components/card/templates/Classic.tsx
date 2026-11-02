@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { Phone, Mail, Globe, MapPin, Linkedin, Twitter, Instagram, Github, Youtube } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, radiusInnerClass, shadowClass, cardBgStyle, avatarBorderStyle } from "../CardPreview";
@@ -79,8 +80,7 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
           {card.mobile && (
             <a href={`tel:${card.mobile}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors">
               <ContactIcon icon={Phone} accent={accent} />
-              {card.mobile} (Mobil)
-            </a>
+              {card.mobile}<T text={"(Mobil)"} /></a>
           )}
           {card.email && (
             <a href={`mailto:${card.email}`} className="flex items-center gap-3 text-sm text-gray-600 hover:text-gray-900 transition-colors">
@@ -126,7 +126,7 @@ export function ClassicTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <p className="text-xs text-gray-400"><T text={"Scan für digitale Karte"} /></p>
           </div>
         )}
       </div>

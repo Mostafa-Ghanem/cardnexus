@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import type { Campaign } from "@/types";
@@ -65,9 +67,7 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
 
   if (!hasCard) {
     return (
-      <div className="text-center py-16 text-muted-foreground">
-        Erstelle zuerst deine Visitenkarte, um Kampagnen zu verwenden.
-      </div>
+      <div className="text-center py-16 text-muted-foreground"><T text={"Erstelle zuerst deine Visitenkarte, um Kampagnen zu verwenden."} /></div>
     );
   }
 
@@ -75,10 +75,10 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
     <div className="space-y-6">
       {/* Create form */}
       <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
-        <p className="font-semibold text-sm">Neue Kampagne erstellen</p>
+        <p className="font-semibold text-sm"><T text={"Neue Kampagne erstellen"} /></p>
         <div className="grid sm:grid-cols-2 gap-3">
           <div>
-            <Label htmlFor="camp-name">Name</Label>
+            <Label htmlFor="camp-name"><T text={"Name"} /></Label>
             <Input
               id="camp-name"
               value={name}
@@ -89,7 +89,7 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
             />
           </div>
           <div>
-            <Label htmlFor="camp-exp">Ablaufdatum (optional)</Label>
+            <Label htmlFor="camp-exp"><T text={"Ablaufdatum (optional)"} /></Label>
             <Input
               id="camp-exp"
               type="datetime-local"
@@ -100,16 +100,12 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
           </div>
         </div>
         <Button onClick={create} disabled={creating || !name.trim()}>
-          <Plus className="h-4 w-4" />
-          Kampagne erstellen
-        </Button>
+          <Plus className="h-4 w-4" /><T text={"Kampagne erstellen"} /></Button>
       </div>
 
       {/* List */}
       {campaigns.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground text-sm border-2 border-dashed rounded-2xl">
-          Noch keine Kampagnen. Erstelle deinen ersten Link oben.
-        </div>
+        <div className="text-center py-12 text-muted-foreground text-sm border-2 border-dashed rounded-2xl"><T text={"Noch keine Kampagnen. Erstelle deinen ersten Link oben."} /></div>
       ) : (
         <div className="space-y-3">
           {campaigns.map((c) => {
@@ -121,21 +117,17 @@ export function CampaignsClient({ campaigns: init, cardSlug, baseUrl, hasCard }:
                   <div className="flex items-center gap-2">
                     <p className="font-medium text-sm truncate">{c.name}</p>
                     {expired && (
-                      <span className="text-[10px] bg-destructive/10 text-destructive px-1.5 py-0.5 rounded font-medium">
-                        Abgelaufen
-                      </span>
+                      <span className="text-[10px] bg-destructive/10 text-destructive px-1.5 py-0.5 rounded font-medium"><T text={"Abgelaufen"} /></span>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground font-mono truncate mt-0.5">{url}</p>
                   <div className="flex items-center gap-3 mt-1.5">
                     <span className="flex items-center gap-1 text-xs text-muted-foreground">
                       <BarChart2 className="h-3 w-3" />
-                      {c.views} Klicks
-                    </span>
+                      {c.views}<T text={"Klicks"} /></span>
                     {c.expiresAt && (
                       <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Clock className="h-3 w-3" />
-                        bis {new Date(c.expiresAt).toLocaleDateString("de-DE")}
+                        <Clock className="h-3 w-3" /><T text={"bis"} />{new Date(c.expiresAt).toLocaleDateString("de-DE")}
                       </span>
                     )}
                   </div>

@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, shadowClass, avatarBorderStyle } from "../CardPreview";
@@ -87,7 +88,7 @@ export function RetroTemplate({ card }: { card: Partial<CardData> }) {
 
         {/* Bio */}
         {card.bio && (
-          <p className="text-xs text-stone-500 text-center mb-6 leading-relaxed italic">&ldquo;{card.bio}&rdquo;</p>
+          <p className="text-xs text-stone-500 text-center mb-6 leading-relaxed italic"><T text={"&ldquo;"} />{card.bio}<T text={"&rdquo;"} /></p>
         )}
 
         {/* Contact — two-column grid style */}

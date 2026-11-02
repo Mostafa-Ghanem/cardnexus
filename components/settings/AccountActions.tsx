@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -61,17 +63,15 @@ function PasswordCard() {
         <div className="flex items-start gap-3">
           <Lock className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div>
-            <CardTitle className="text-base">Passwort ändern</CardTitle>
-            <CardDescription>
-              Setze ein neues Passwort. Andere aktive Sessions werden abgemeldet.
-            </CardDescription>
+            <CardTitle className="text-base"><T text={"Passwort ändern"} /></CardTitle>
+            <CardDescription><T text={"Setze ein neues Passwort. Andere aktive Sessions werden abgemeldet."} /></CardDescription>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={submit} className="space-y-3 max-w-sm">
           <div className="space-y-1.5">
-            <Label htmlFor="current-pw">Aktuelles Passwort</Label>
+            <Label htmlFor="current-pw"><T text={"Aktuelles Passwort"} /></Label>
             <Input
               id="current-pw"
               type="password"
@@ -82,7 +82,7 @@ function PasswordCard() {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="new-pw">Neues Passwort</Label>
+            <Label htmlFor="new-pw"><T text={"Neues Passwort"} /></Label>
             <Input
               id="new-pw"
               type="password"
@@ -94,9 +94,7 @@ function PasswordCard() {
             />
           </div>
           <Button type="submit" size="sm" disabled={busy || !current || next.length < 8}>
-            {busy && <Loader2 className="h-4 w-4 animate-spin" />}
-            Passwort ändern
-          </Button>
+            {busy && <Loader2 className="h-4 w-4 animate-spin" />}<T text={"Passwort ändern"} /></Button>
         </form>
       </CardContent>
     </Card>
@@ -136,18 +134,14 @@ function DataExportCard() {
         <div className="flex items-start gap-3">
           <Download className="h-5 w-5 text-muted-foreground mt-0.5" />
           <div>
-            <CardTitle className="text-base">Daten exportieren</CardTitle>
-            <CardDescription>
-              Lade alle deine personenbezogenen Daten als JSON herunter (DSGVO Art. 15 &amp; 20).
-            </CardDescription>
+            <CardTitle className="text-base"><T text={"Daten exportieren"} /></CardTitle>
+            <CardDescription><T text={"Lade alle deine personenbezogenen Daten als JSON herunter (DSGVO Art. 15 & 20)."} /></CardDescription>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         <Button variant="outline" size="sm" onClick={downloadExport} disabled={busy}>
-          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
-          Daten als JSON herunterladen
-        </Button>
+          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}<T text={"Daten als JSON herunterladen"} /></Button>
       </CardContent>
     </Card>
   );
@@ -179,11 +173,8 @@ function DeleteAccountCard() {
         <div className="flex items-start gap-3">
           <Trash2 className="h-5 w-5 text-destructive mt-0.5" />
           <div>
-            <CardTitle className="text-base text-destructive">Account löschen</CardTitle>
-            <CardDescription>
-              Entfernt deinen Account und alle zugehörigen Daten unwiderruflich
-              (Karten, Leads, Webhooks, API-Keys).
-            </CardDescription>
+            <CardTitle className="text-base text-destructive"><T text={"Account löschen"} /></CardTitle>
+            <CardDescription><T text={"Entfernt deinen Account und alle zugehörigen Daten unwiderruflich (Karten, Leads, Webhooks, API-Keys)."} /></CardDescription>
           </div>
         </div>
       </CardHeader>
@@ -191,23 +182,15 @@ function DeleteAccountCard() {
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant="destructive" size="sm">
-              <Trash2 className="h-4 w-4" />
-              Account endgültig löschen
-            </Button>
+              <Trash2 className="h-4 w-4" /><T text={"Account endgültig löschen"} /></Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Account wirklich löschen?</AlertDialogTitle>
-              <AlertDialogDescription>
-                Diese Aktion kann <strong>nicht rückgängig</strong> gemacht werden. Alle
-                deine Karten, Leads, Analytics, Webhooks und API-Keys werden
-                unwiderruflich gelöscht.
-              </AlertDialogDescription>
+              <AlertDialogTitle><T text={"Account wirklich löschen?"} /></AlertDialogTitle>
+              <AlertDialogDescription><T text={"Diese Aktion kann"} /><strong><T text={"nicht rückgängig"} /></strong><T text={"gemacht werden. Alle deine Karten, Leads, Analytics, Webhooks und API-Keys werden unwiderruflich gelöscht."} /></AlertDialogDescription>
             </AlertDialogHeader>
             <div className="space-y-1.5">
-              <Label htmlFor="confirm">
-                Tippe <code className="px-1 py-0.5 rounded bg-muted text-xs">{REQUIRED}</code> zur Bestätigung
-              </Label>
+              <Label htmlFor="confirm"><T text={"Tippe"} /><code className="px-1 py-0.5 rounded bg-muted text-xs">{REQUIRED}</code><T text={"zur Bestätigung"} /></Label>
               <Input
                 id="confirm"
                 value={confirm}
@@ -217,15 +200,13 @@ function DeleteAccountCard() {
               />
             </div>
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={() => setConfirm("")}>Abbrechen</AlertDialogCancel>
+              <AlertDialogCancel onClick={() => setConfirm("")}><T text={"Abbrechen"} /></AlertDialogCancel>
               <AlertDialogAction
                 disabled={busy || confirm !== REQUIRED}
                 onClick={(e) => { e.preventDefault(); void performDelete(); }}
                 className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               >
-                {busy && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
-                Endgültig löschen
-              </AlertDialogAction>
+                {busy && <Loader2 className="h-4 w-4 animate-spin mr-1" />}<T text={"Endgültig löschen"} /></AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

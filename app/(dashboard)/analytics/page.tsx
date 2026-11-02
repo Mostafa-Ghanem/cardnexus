@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -39,9 +40,7 @@ export default async function AnalyticsPage({
             href="/analytics/org"
             className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors shrink-0"
           >
-            <Users className="h-4 w-4" />
-            Team Analytics
-          </Link>
+            <Users className="h-4 w-4" /><T text={"Team Analytics"} /></Link>
         )}
       </div>
       <AnalyticsOverview cards={cards} initialCardId={validCardId} />

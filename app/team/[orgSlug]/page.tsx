@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import type { Metadata } from "next";
@@ -81,7 +82,7 @@ export default async function PublicTeamPage({ params }: Props) {
       <div className="max-w-5xl mx-auto px-6 py-10">
         {members.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
-            <p className="text-lg font-medium">Keine öffentlichen Karten vorhanden.</p>
+            <p className="text-lg font-medium"><T text={"Keine öffentlichen Karten vorhanden."} /></p>
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -94,9 +95,8 @@ export default async function PublicTeamPage({ params }: Props) {
 
       {/* Footer */}
       <div className="text-center pb-8">
-        <p className="text-xs text-gray-400">
-          Erstellt mit{" "}
-          <a href="/" className="hover:text-gray-600 transition-colors font-medium">CardNexus</a>
+        <p className="text-xs text-gray-400"><T text={"Erstellt mit"} />{" "}
+          <a href="/" className="hover:text-gray-600 transition-colors font-medium"><T text={"CardNexus"} /></a>
         </p>
       </div>
     </div>
@@ -184,9 +184,7 @@ function MemberCard({
       </div>
 
       <div className="px-5 py-3 border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/50">
-        <span className="text-xs font-medium text-primary group-hover:underline">
-          Karte ansehen →
-        </span>
+        <span className="text-xs font-medium text-primary group-hover:underline"><T text={"Karte ansehen →"} /></span>
       </div>
     </Link>
   );

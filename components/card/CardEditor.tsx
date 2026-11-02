@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -126,42 +128,42 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
       <div className="flex-1 min-w-0">
         <Tabs defaultValue="profile">
           <TabsList className="mb-6 flex-wrap h-auto gap-1">
-            <TabsTrigger value="profile">Profil</TabsTrigger>
-            <TabsTrigger value="media">Bilder</TabsTrigger>
-            <TabsTrigger value="contact">Kontakt</TabsTrigger>
-            <TabsTrigger value="social">Social</TabsTrigger>
-            <TabsTrigger value="design">Design</TabsTrigger>
-            <TabsTrigger value="links">Links</TabsTrigger>
+            <TabsTrigger value="profile"><T text={"Profil"} /></TabsTrigger>
+            <TabsTrigger value="media"><T text={"Bilder"} /></TabsTrigger>
+            <TabsTrigger value="contact"><T text={"Kontakt"} /></TabsTrigger>
+            <TabsTrigger value="social"><T text={"Social"} /></TabsTrigger>
+            <TabsTrigger value="design"><T text={"Design"} /></TabsTrigger>
+            <TabsTrigger value="links"><T text={"Links"} /></TabsTrigger>
           </TabsList>
 
           {/* Profile */}
           <TabsContent value="profile" className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Vorname</Label>
+                <Label><T text={"Vorname"} /></Label>
                 <Input value={card.firstName ?? ""} onChange={(e) => update("firstName", e.target.value || null)} placeholder="Max" />
               </div>
               <div className="space-y-1.5">
-                <Label>Nachname</Label>
+                <Label><T text={"Nachname"} /></Label>
                 <Input value={card.lastName ?? ""} onChange={(e) => update("lastName", e.target.value || null)} placeholder="Mustermann" />
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label>Berufsbezeichnung</Label>
+              <Label><T text={"Berufsbezeichnung"} /></Label>
               <Input value={card.title ?? ""} onChange={(e) => update("title", e.target.value || null)} placeholder="Senior Developer" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Unternehmen</Label>
+                <Label><T text={"Unternehmen"} /></Label>
                 <Input value={card.company ?? ""} onChange={(e) => update("company", e.target.value || null)} placeholder="ACME GmbH" />
               </div>
               <div className="space-y-1.5">
-                <Label>Abteilung</Label>
+                <Label><T text={"Abteilung"} /></Label>
                 <Input value={card.department ?? ""} onChange={(e) => update("department", e.target.value || null)} placeholder="Engineering" />
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label>Kurzbeschreibung</Label>
+              <Label><T text={"Kurzbeschreibung"} /></Label>
               <Textarea value={card.bio ?? ""} onChange={(e) => update("bio", e.target.value || null)}
                 placeholder="Kurze Beschreibung über dich…" maxLength={500} />
               <p className="text-xs text-muted-foreground text-right">{(card.bio ?? "").length}/500</p>
@@ -169,11 +171,11 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Pronomen</Label>
+                <Label><T text={"Pronomen"} /></Label>
                 <Input value={card.pronouns ?? ""} onChange={(e) => update("pronouns", e.target.value || null)} placeholder="er/ihm, she/her…" />
               </div>
               <div className="space-y-1.5">
-                <Label>Geschlecht <span className="text-xs font-normal text-muted-foreground">(vCard)</span></Label>
+                <Label><T text={"Geschlecht"} />{" "}<span className="text-xs font-normal text-muted-foreground"><T text={"(vCard)"} /></span></Label>
                 <select
                   value={card.gender ?? ""}
                   onChange={(e) => update("gender", e.target.value || null)}
@@ -189,13 +191,13 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             </div>
 
             <div className="space-y-1.5">
-              <Label>Geburtstag</Label>
+              <Label><T text={"Geburtstag"} /></Label>
               <Input value={card.birthday ?? ""} onChange={(e) => update("birthday", e.target.value || null)} type="date" />
             </div>
 
             {!isNew && card.slug && (
               <div className="space-y-1.5 pt-2 border-t border-border">
-                <Label htmlFor="slug-field">Karten-URL (Slug)</Label>
+                <Label htmlFor="slug-field"><T text={"Karten-URL (Slug)"} /></Label>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground shrink-0">/c/</span>
                   <Input
@@ -206,9 +208,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                     placeholder="mein-slug"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Der alte Link wird automatisch weitergeleitet. Speichere die Karte um die Änderung zu übernehmen.
-                </p>
+                <p className="text-xs text-muted-foreground"><T text={"Der alte Link wird automatisch weitergeleitet. Speichere die Karte um die Änderung zu übernehmen."} /></p>
               </div>
             )}
           </TabsContent>
@@ -216,13 +216,13 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
           {/* Media */}
           <TabsContent value="media" className="space-y-6">
             <div className="space-y-2">
-              <Label>Avatar</Label>
-              <p className="text-xs text-muted-foreground">Profilbild. Empfohlen: quadratisch, mind. 200×200 px.</p>
+              <Label><T text={"Avatar"} /></Label>
+              <p className="text-xs text-muted-foreground"><T text={"Profilbild. Empfohlen: quadratisch, mind. 200×200 px."} /></p>
               <ImageUpload value={card.avatarUrl} onChange={(url) => update("avatarUrl", url)} label="Avatar hochladen" shape="circle" />
             </div>
             <div className="space-y-2">
-              <Label>Cover-Bild</Label>
-              <p className="text-xs text-muted-foreground">Hintergrundbild für das Modern-Template. Empfohlen: 800×300 px.</p>
+              <Label><T text={"Cover-Bild"} /></Label>
+              <p className="text-xs text-muted-foreground"><T text={"Hintergrundbild für das Modern-Template. Empfohlen: 800×300 px."} /></p>
               <ImageUpload value={card.coverUrl} onChange={(url) => update("coverUrl", url)} label="Cover hochladen" shape="wide" className="h-28" />
             </div>
           </TabsContent>
@@ -231,34 +231,34 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
           <TabsContent value="contact" className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Telefon (Büro)</Label>
+                <Label><T text={"Telefon (Büro)"} /></Label>
                 <Input value={card.phone ?? ""} onChange={(e) => update("phone", e.target.value || null)} placeholder="+49 89 1234567" type="tel" />
               </div>
               <div className="space-y-1.5">
-                <Label>Mobil</Label>
+                <Label><T text={"Mobil"} /></Label>
                 <Input value={card.mobile ?? ""} onChange={(e) => update("mobile", e.target.value || null)} placeholder="+49 170 1234567" type="tel" />
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label>Fax</Label>
+              <Label><T text={"Fax"} /></Label>
               <Input value={card.fax ?? ""} onChange={(e) => update("fax", e.target.value || null)} placeholder="+49 89 1234568" type="tel" />
             </div>
             <div className="space-y-1.5">
-              <Label>E-Mail</Label>
+              <Label><T text={"E-Mail"} /></Label>
               <Input value={card.email ?? ""} onChange={(e) => update("email", e.target.value || null)} placeholder="max@example.com" type="email" />
             </div>
             <div className="space-y-1.5">
-              <Label>Website</Label>
+              <Label><T text={"Website"} /></Label>
               <Input value={card.website ?? ""} onChange={(e) => update("website", e.target.value || null)} placeholder="https://example.com" type="url" />
             </div>
             <div className="space-y-1.5">
-              <Label>Adresse</Label>
+              <Label><T text={"Adresse"} /></Label>
               <Input value={card.address ?? ""} onChange={(e) => update("address", e.target.value || null)} placeholder="Musterstraße 1, 80331 München" />
             </div>
             <div className="space-y-1.5">
-              <Label>Terminbuchungs-Link <span className="text-xs font-normal text-muted-foreground">(Pro)</span></Label>
+              <Label><T text={"Terminbuchungs-Link"} />{" "}<span className="text-xs font-normal text-muted-foreground"><T text={"(Pro)"} /></span></Label>
               <Input value={card.bookingUrl ?? ""} onChange={(e) => update("bookingUrl", e.target.value || null)} placeholder="https://calendly.com/..." type="url" />
-              <p className="text-xs text-muted-foreground">Wird als Button auf deiner Karte angezeigt.</p>
+              <p className="text-xs text-muted-foreground"><T text={"Wird als Button auf deiner Karte angezeigt."} /></p>
             </div>
           </TabsContent>
 
@@ -283,10 +283,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
 
           {/* Custom Links — reorderable via drag handle */}
           <TabsContent value="links" className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Eigene Links werden als Buttons auf der Karte angezeigt (max. 5).
-              Ziehe am Griff <GripVertical className="inline h-3.5 w-3.5 align-text-bottom" />, um die Reihenfolge zu ändern.
-            </p>
+            <p className="text-sm text-muted-foreground"><T text={"Eigene Links werden als Buttons auf der Karte angezeigt (max. 5). Ziehe am Griff"} /><GripVertical className="inline h-3.5 w-3.5 align-text-bottom" /><T text={", um die Reihenfolge zu ändern."} /></p>
             <ul className="space-y-2">
               {(card.customLinks ?? []).map((link, i) => (
                 <li
@@ -355,8 +352,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             </ul>
             {(card.customLinks ?? []).length < 5 && (
               <Button type="button" variant="outline" size="sm" onClick={addLink}>
-                <Plus className="h-4 w-4" /> Link hinzufügen
-              </Button>
+                <Plus className="h-4 w-4" /><T text={"Link hinzufügen"} /></Button>
             )}
           </TabsContent>
         </Tabs>
@@ -365,7 +361,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
           <p className="mt-4 rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive border border-destructive/20">{error}</p>
         )}
         {success && (
-          <p className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700 border border-emerald-200">Gespeichert ✓</p>
+          <p className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700 border border-emerald-200"><T text={"Gespeichert ✓"} /></p>
         )}
 
         <div className="flex items-center gap-3 mt-6 pt-6 border-t border-border">
@@ -374,13 +370,12 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             {saving ? "Wird gespeichert…" : "Speichern"}
           </Button>
           <Button type="button" variant="outline" onClick={() => setShowPreview(!showPreview)} className="lg:hidden">
-            <Eye className="h-4 w-4" /> Vorschau
-          </Button>
+            <Eye className="h-4 w-4" /><T text={"Vorschau"} /></Button>
         </div>
       </div>
 
       <div className={`lg:w-80 lg:sticky lg:top-4 lg:self-start ${showPreview ? "" : "hidden lg:block"}`}>
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-4">Live-Vorschau</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-4"><T text={"Live-Vorschau"} /></p>
         <CardPreview card={card} scale={0.85} />
       </div>
     </div>

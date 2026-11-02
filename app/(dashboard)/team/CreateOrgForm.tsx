@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -47,7 +49,7 @@ export function CreateOrgForm() {
   return (
     <form onSubmit={submit} className="space-y-4 text-left">
       <div className="space-y-1.5">
-        <Label>Name der Organisation</Label>
+        <Label><T text={"Name der Organisation"} /></Label>
         <Input
           value={name}
           onChange={(e) => handleName(e.target.value)}
@@ -56,7 +58,7 @@ export function CreateOrgForm() {
         />
       </div>
       <div className="space-y-1.5">
-        <Label>URL-Kürzel (Slug)</Label>
+        <Label><T text={"URL-Kürzel (Slug)"} /></Label>
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground shrink-0">/team/</span>
           <Input
@@ -66,12 +68,12 @@ export function CreateOrgForm() {
             className="font-mono"
           />
         </div>
-        <p className="text-xs text-muted-foreground">Öffentliche URL des Team-Verzeichnisses</p>
+        <p className="text-xs text-muted-foreground"><T text={"Öffentliche URL des Team-Verzeichnisses"} /></p>
       </div>
       <div className="flex items-center justify-between gap-4">
         <div>
-          <Label>Akzentfarbe</Label>
-          <p className="text-xs text-muted-foreground mt-0.5">Primärfarbe für Karten deiner Mitglieder</p>
+          <Label><T text={"Akzentfarbe"} /></Label>
+          <p className="text-xs text-muted-foreground mt-0.5"><T text={"Primärfarbe für Karten deiner Mitglieder"} /></p>
         </div>
         <input
           type="color"
@@ -87,15 +89,12 @@ export function CreateOrgForm() {
 
       <Button type="submit" className="w-full" disabled={loading || !name.trim()}>
         {loading
-          ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird erstellt…</>
-          : <><Building2 className="h-4 w-4" /> Organisation erstellen</>}
+          ? <><Loader2 className="h-4 w-4 animate-spin" />{" "}<T text={"Wird erstellt…"} /></>
+          : <><Building2 className="h-4 w-4" />{" "}<T text={"Organisation erstellen"} /></>}
       </Button>
 
-      <p className="text-xs text-center text-muted-foreground">
-        Du wirst automatisch zum Organisations-Admin.
-        Design-Vorgaben kannst du danach unter{" "}
-        <a href="/settings" className="underline hover:text-foreground">Einstellungen</a> anpassen.
-      </p>
+      <p className="text-xs text-center text-muted-foreground"><T text={"Du wirst automatisch zum Organisations-Admin. Design-Vorgaben kannst du danach unter"} />{" "}
+        <a href="/settings" className="underline hover:text-foreground"><T text={"Einstellungen"} /></a><T text={"anpassen."} /></p>
     </form>
   );
 }

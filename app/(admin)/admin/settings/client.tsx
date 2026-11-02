@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -60,10 +62,8 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
   return (
     <div className="space-y-8 max-w-2xl">
       <div>
-        <h1 className="text-2xl font-bold">Plattform-Einstellungen</h1>
-        <p className="text-muted-foreground mt-1">
-          Name, URL, Favicon und Branding der gesamten Anwendung
-        </p>
+        <h1 className="text-2xl font-bold"><T text={"Plattform-Einstellungen"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Name, URL, Favicon und Branding der gesamten Anwendung"} /></p>
       </div>
 
       {/* App Identity */}
@@ -71,15 +71,13 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Type className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Anwendungsname</CardTitle>
+            <CardTitle className="text-base"><T text={"Anwendungsname"} /></CardTitle>
           </div>
-          <CardDescription>
-            Wird in Browser-Tab, Sidebar, E-Mails und überall als Produktname angezeigt.
-          </CardDescription>
+          <CardDescription><T text={"Wird in Browser-Tab, Sidebar, E-Mails und überall als Produktname angezeigt."} /></CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-1.5">
-            <Label htmlFor="appName">Name</Label>
+            <Label htmlFor="appName"><T text={"Name"} /></Label>
             <Input
               id="appName"
               value={s.appName}
@@ -87,8 +85,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               placeholder="CardNexus"
               maxLength={64}
             />
-            <p className="text-xs text-muted-foreground">
-              Vorschau Browser-Tab: <span className="font-mono">{s.appName} – Digitale Visitenkarten</span>
+            <p className="text-xs text-muted-foreground"><T text={"Vorschau Browser-Tab:"} /><span className="font-mono">{s.appName}{" "}<T text={"– Digitale Visitenkarten"} /></span>
             </p>
           </div>
         </CardContent>
@@ -99,15 +96,13 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Globe className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Anwendungs-URL</CardTitle>
+            <CardTitle className="text-base"><T text={"Anwendungs-URL"} /></CardTitle>
           </div>
-          <CardDescription>
-            Basis-URL der Anwendung. Wird in QR-Codes, vCards und Einladungslinks verwendet.
-          </CardDescription>
+          <CardDescription><T text={"Basis-URL der Anwendung. Wird in QR-Codes, vCards und Einladungslinks verwendet."} /></CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-1.5">
-            <Label htmlFor="appUrl">URL</Label>
+            <Label htmlFor="appUrl"><T text={"URL"} /></Label>
             <Input
               id="appUrl"
               value={s.appUrl}
@@ -115,8 +110,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               placeholder="https://meinedomain.de"
               type="url"
             />
-            <p className="text-xs text-muted-foreground">
-              Beispiel-Karten-URL: <span className="font-mono">{s.appUrl.replace(/\/$/, "")}/c/max-mustermann</span>
+            <p className="text-xs text-muted-foreground"><T text={"Beispiel-Karten-URL:"} /><span className="font-mono">{s.appUrl.replace(/\/$/, "")}/c/max-mustermann</span>
             </p>
           </div>
         </CardContent>
@@ -127,18 +121,14 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Image className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Favicon & Logo</CardTitle>
+            <CardTitle className="text-base"><T text={"Favicon & Logo"} /></CardTitle>
           </div>
-          <CardDescription>
-            Favicon erscheint im Browser-Tab. Logo erscheint in der Sidebar statt der Initialen.
-          </CardDescription>
+          <CardDescription><T text={"Favicon erscheint im Browser-Tab. Logo erscheint in der Sidebar statt der Initialen."} /></CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label>Favicon</Label>
-            <p className="text-xs text-muted-foreground">
-              Empfohlen: quadratisch, mind. 32×32 px (PNG, ICO, SVG).
-            </p>
+            <Label><T text={"Favicon"} /></Label>
+            <p className="text-xs text-muted-foreground"><T text={"Empfohlen: quadratisch, mind. 32×32 px (PNG, ICO, SVG)."} /></p>
             <div className="flex items-start gap-4">
               <ImageUpload
                 value={s.faviconUrl}
@@ -149,7 +139,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               {s.faviconUrl && (
                 <div className="flex items-center gap-3 p-3 rounded-lg border border-border bg-muted/30">
                   <div className="text-xs text-muted-foreground">
-                    <p className="font-medium text-foreground mb-1">Vorschau</p>
+                    <p className="font-medium text-foreground mb-1"><T text={"Vorschau"} /></p>
                     <div className="flex items-center gap-2">
                       <img src={s.faviconUrl} alt="Favicon" className="h-4 w-4 object-cover" />
                       <span className="font-mono">{s.appName}</span>
@@ -161,10 +151,8 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
           </div>
 
           <div className="space-y-2">
-            <Label>Sidebar-Logo</Label>
-            <p className="text-xs text-muted-foreground">
-              Ersetzt die Buchstaben-Initialen in der Sidebar. Empfohlen: quadratisch, 64×64 px.
-            </p>
+            <Label><T text={"Sidebar-Logo"} /></Label>
+            <p className="text-xs text-muted-foreground"><T text={"Ersetzt die Buchstaben-Initialen in der Sidebar. Empfohlen: quadratisch, 64×64 px."} /></p>
             <ImageUpload
               value={s.logoUrl}
               onChange={(url) => update("logoUrl", url)}
@@ -180,12 +168,12 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Palette className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Sonstiges</CardTitle>
+            <CardTitle className="text-base"><T text={"Sonstiges"} /></CardTitle>
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="supportEmail">Support-E-Mail</Label>
+            <Label htmlFor="supportEmail"><T text={"Support-E-Mail"} /></Label>
             <Input
               id="supportEmail"
               value={s.supportEmail ?? ""}
@@ -195,7 +183,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="footerText">Footer-Text</Label>
+            <Label htmlFor="footerText"><T text={"Footer-Text"} /></Label>
             <Input
               id="footerText"
               value={s.footerText ?? ""}
@@ -212,11 +200,9 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
         <CardHeader>
           <div className="flex items-center gap-2">
             <Globe className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-base">Custom Domains</CardTitle>
+            <CardTitle className="text-base"><T text={"Custom Domains"} /></CardTitle>
           </div>
-          <CardDescription>
-            Diese Domains können Nutzer und Organisationen für ihre Karten auswählen.
-          </CardDescription>
+          <CardDescription><T text={"Diese Domains können Nutzer und Organisationen für ihre Karten auswählen."} /></CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-2">
@@ -230,7 +216,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               </span>
             ))}
             {domains.length === 0 && (
-              <p className="text-sm text-muted-foreground">Noch keine Domains hinzugefügt.</p>
+              <p className="text-sm text-muted-foreground"><T text={"Noch keine Domains hinzugefügt."} /></p>
             )}
           </div>
           <div className="flex gap-2">
@@ -242,8 +228,7 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
               className="flex-1"
             />
             <Button type="button" variant="outline" size="sm" onClick={addDomain}>
-              <Plus className="h-4 w-4" /> Hinzufügen
-            </Button>
+              <Plus className="h-4 w-4" /><T text={"Hinzufügen"} /></Button>
           </div>
         </CardContent>
       </Card>
@@ -258,15 +243,13 @@ export function AdminSettingsClient({ settings: initial }: { settings: PlatformS
       <div className="flex items-center gap-3">
         <Button onClick={save} disabled={saving}>
           {saved ? (
-            <><Check className="h-4 w-4" /> Gespeichert</>
+            <><Check className="h-4 w-4" />{" "}<T text={"Gespeichert"} /></>
           ) : (
             <><Save className="h-4 w-4" /> {saving ? "Wird gespeichert…" : "Einstellungen speichern"}</>
           )}
         </Button>
         {saved && (
-          <p className="text-sm text-muted-foreground">
-            Änderungen aktiv — Browser-Tab neu laden zum Prüfen
-          </p>
+          <p className="text-sm text-muted-foreground"><T text={"Änderungen aktiv — Browser-Tab neu laden zum Prüfen"} /></p>
         )}
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import Link from "next/link";
 import { Lock, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -34,12 +35,10 @@ export function UpgradePrompt({ feature, requiredPlan = "pro", compact }: Props)
       </div>
       <div>
         <p className="font-semibold text-sm">{feature}</p>
-        <p className="text-xs text-muted-foreground mt-1">
-          Verfügbar ab dem {PLAN_LABELS[requiredPlan]}-Plan
-        </p>
+        <p className="text-xs text-muted-foreground mt-1"><T text={"Verfügbar ab dem"} />{PLAN_LABELS[requiredPlan]}<T text={"-Plan"} /></p>
       </div>
       <Button asChild size="sm">
-        <Link href="/upgrade">Jetzt upgraden</Link>
+        <Link href="/upgrade"><T text={"Jetzt upgraden"} /></Link>
       </Button>
     </div>
   );

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -75,22 +77,17 @@ export function ImportClient() {
       <div className="rounded-xl border border-border bg-muted/30 p-5 space-y-3">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-medium text-sm">CSV-Format</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Pflichtfelder: <code className="bg-muted px-1 rounded">firstname</code> (oder <code className="bg-muted px-1 rounded">vorname</code>),{" "}
-              <code className="bg-muted px-1 rounded">email</code>. Optionale Felder:{" "}
+            <p className="font-medium text-sm"><T text={"CSV-Format"} /></p>
+            <p className="text-xs text-muted-foreground mt-1"><T text={"Pflichtfelder:"} /><code className="bg-muted px-1 rounded">firstname</code>{" "}<T text={"(oder"} />{" "}<code className="bg-muted px-1 rounded">vorname</code>),{" "}
+              <code className="bg-muted px-1 rounded">email</code><T text={". Optionale Felder:"} />{" "}
               <code className="bg-muted px-1 rounded">lastname</code>, <code className="bg-muted px-1 rounded">title</code>,{" "}
               <code className="bg-muted px-1 rounded">company</code>, <code className="bg-muted px-1 rounded">phone</code>,{" "}
               <code className="bg-muted px-1 rounded">mobile</code>, <code className="bg-muted px-1 rounded">department</code>.
             </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Der Import aktualisiert bestehende Mitglieder (gleiche E-Mail in der Org). Neue E-Mails werden als „nicht gefunden" markiert — nutze dafür Einladungen.
-            </p>
+            <p className="text-xs text-muted-foreground mt-1"><T text={"Der Import aktualisiert bestehende Mitglieder (gleiche E-Mail in der Org). Neue E-Mails werden als „nicht gefunden\" markiert — nutze dafür Einladungen."} /></p>
           </div>
           <Button variant="outline" size="sm" onClick={downloadExample} className="shrink-0">
-            <Download className="h-3.5 w-3.5" />
-            Vorlage
-          </Button>
+            <Download className="h-3.5 w-3.5" /><T text={"Vorlage"} /></Button>
         </div>
         <pre className="text-[10px] font-mono bg-muted rounded-lg p-3 overflow-x-auto text-muted-foreground leading-relaxed">
           {EXAMPLE_CSV}
@@ -119,12 +116,12 @@ export function ImportClient() {
           <div className="flex flex-col items-center gap-2">
             <FileText className="h-10 w-10 text-primary" />
             <p className="font-medium">{file.name}</p>
-            <p className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(1)} KB</p>
+            <p className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(1)}{" "}<T text={"KB"} /></p>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-2 text-muted-foreground">
             <Upload className="h-10 w-10" />
-            <p className="font-medium text-sm">CSV-Datei hierher ziehen oder klicken</p>
+            <p className="font-medium text-sm"><T text={"CSV-Datei hierher ziehen oder klicken"} /></p>
           </div>
         )}
       </div>
@@ -139,8 +136,8 @@ export function ImportClient() {
       {file && !results && (
         <Button onClick={upload} disabled={loading} className="w-full" size="lg">
           {loading
-            ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird importiert…</>
-            : <><Upload className="h-4 w-4" /> Import starten</>}
+            ? <><Loader2 className="h-4 w-4 animate-spin" />{" "}<T text={"Wird importiert…"} /></>
+            : <><Upload className="h-4 w-4" />{" "}<T text={"Import starten"} /></>}
         </Button>
       )}
 
@@ -164,9 +161,9 @@ export function ImportClient() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/40">
-                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground">E-Mail</th>
-                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground">Status</th>
-                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground">Hinweis</th>
+                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground"><T text={"E-Mail"} /></th>
+                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground"><T text={"Status"} /></th>
+                  <th className="text-left px-4 py-2.5 font-medium text-muted-foreground"><T text={"Hinweis"} /></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -190,9 +187,7 @@ export function ImportClient() {
             </table>
           </div>
 
-          <Button variant="outline" className="w-full" onClick={() => { setFile(null); setResults(null); if (fileRef.current) fileRef.current.value = ""; }}>
-            Weiteren Import starten
-          </Button>
+          <Button variant="outline" className="w-full" onClick={() => { setFile(null); setResults(null); if (fileRef.current) fileRef.current.value = ""; }}><T text={"Weiteren Import starten"} /></Button>
         </div>
       )}
     </div>

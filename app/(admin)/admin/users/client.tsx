@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useState, useCallback, useTransition } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
@@ -151,13 +153,13 @@ export function AdminUsersClient({
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border !bg-muted/40">
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Benutzer</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Organisation</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Rolle</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground">Plan</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Karte</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Seit</th>
-              <th className="text-right px-4 py-3 font-medium text-muted-foreground">Aktionen</th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Benutzer"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell"><T text={"Organisation"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Rolle"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground"><T text={"Plan"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell"><T text={"Karte"} /></th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell"><T text={"Seit"} /></th>
+              <th className="text-right px-4 py-3 font-medium text-muted-foreground"><T text={"Aktionen"} /></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -173,8 +175,8 @@ export function AdminUsersClient({
                     <div>
                       <p className="font-medium flex items-center gap-1.5">
                         {user.name}
-                        {user.id === currentUserId && <span className="text-muted-foreground text-xs">(Ich)</span>}
-                        {user.bannedAt && <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium">Gesperrt</span>}
+                        {user.id === currentUserId && <span className="text-muted-foreground text-xs"><T text={"(Ich)"} /></span>}
+                        {user.bannedAt && <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium"><T text={"Gesperrt"} /></span>}
                       </p>
                       <p className="text-xs text-muted-foreground">{user.email}</p>
                     </div>
@@ -188,7 +190,7 @@ export function AdminUsersClient({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="__none__">— Keine —</SelectItem>
+                      <SelectItem value="__none__"><T text={"— Keine —"} /></SelectItem>
                       {orgs.map((o) => (
                         <SelectItem key={o.id} value={o.id}>{o.name}</SelectItem>
                       ))}
@@ -203,10 +205,10 @@ export function AdminUsersClient({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="super_admin">Super Admin</SelectItem>
-                      <SelectItem value="company_admin">Admin</SelectItem>
-                      <SelectItem value="team_leader">Team Leader</SelectItem>
-                      <SelectItem value="member">Mitglied</SelectItem>
+                      <SelectItem value="super_admin"><T text={"Super Admin"} /></SelectItem>
+                      <SelectItem value="company_admin"><T text={"Admin"} /></SelectItem>
+                      <SelectItem value="team_leader"><T text={"Team Leader"} /></SelectItem>
+                      <SelectItem value="member"><T text={"Mitglied"} /></SelectItem>
                     </SelectContent>
                   </Select>
                 </td>
@@ -222,9 +224,9 @@ export function AdminUsersClient({
                         </div>
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="free">Free</SelectItem>
-                        <SelectItem value="pro">Pro</SelectItem>
-                        <SelectItem value="business">Business</SelectItem>
+                        <SelectItem value="free"><T text={"Free"} /></SelectItem>
+                        <SelectItem value="pro"><T text={"Pro"} /></SelectItem>
+                        <SelectItem value="business"><T text={"Business"} /></SelectItem>
                       </SelectContent>
                     </Select>
 
@@ -323,13 +325,12 @@ export function AdminUsersClient({
     <AlertDialog open={pendingDelete !== null} onOpenChange={(open) => !open && setPendingDelete(null)}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Benutzer löschen</AlertDialogTitle>
+          <AlertDialogTitle><T text={"Benutzer löschen"} /></AlertDialogTitle>
           <AlertDialogDescription>
-            <strong>{pendingDelete?.name}</strong> wird unwiderruflich gelöscht — inklusive aller Karten, Analytics und Leads. Diese Aktion kann nicht rückgängig gemacht werden.
-          </AlertDialogDescription>
+            <strong>{pendingDelete?.name}</strong><T text={"wird unwiderruflich gelöscht — inklusive aller Karten, Analytics und Leads. Diese Aktion kann nicht rückgängig gemacht werden."} /></AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={deleting}>Abbrechen</AlertDialogCancel>
+          <AlertDialogCancel disabled={deleting}><T text={"Abbrechen"} /></AlertDialogCancel>
           <AlertDialogAction
             onClick={confirmDelete}
             disabled={deleting}

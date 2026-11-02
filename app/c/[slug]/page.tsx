@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
@@ -75,8 +76,8 @@ export default async function PublicCardPage({ params, searchParams }: Props) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50 dark:bg-gray-950">
         <div className="max-w-sm text-center space-y-2">
-          <h1 className="text-2xl font-semibold">Karte abgelaufen</h1>
-          <p className="text-muted-foreground">Diese Karte ist nicht mehr verfügbar.</p>
+          <h1 className="text-2xl font-semibold"><T text={"Karte abgelaufen"} /></h1>
+          <p className="text-muted-foreground"><T text={"Diese Karte ist nicht mehr verfügbar."} /></p>
         </div>
       </div>
     );

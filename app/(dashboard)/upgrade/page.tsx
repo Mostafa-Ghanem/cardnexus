@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -53,36 +54,26 @@ export default async function UpgradePage({
           href="/dashboard"
           className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          Zurück zum Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold">Plan upgraden</h1>
-        <p className="text-muted-foreground mt-1">
-          Aktuell:{" "}
+          <ArrowLeft className="h-3.5 w-3.5" /><T text={"Zurück zum Dashboard"} /></Link>
+        <h1 className="text-2xl font-bold"><T text={"Plan upgraden"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Aktuell:"} />{" "}
           <span className="font-semibold capitalize">{currentPlan}</span>
           {dbUser?.planExpiresAt && (
-            <span className="text-xs ml-2 text-muted-foreground">
-              (bis {new Date(dbUser.planExpiresAt).toLocaleDateString("de-DE")})
+            <span className="text-xs ml-2 text-muted-foreground"><T text={"(bis"} />{new Date(dbUser.planExpiresAt).toLocaleDateString("de-DE")})
             </span>
           )}
         </p>
       </div>
 
       {sp.success && (
-        <div className="rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-3 text-sm text-emerald-700">
-          ✓ Zahlung erfolgreich! Dein Plan wurde aktualisiert.
-        </div>
+        <div className="rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-3 text-sm text-emerald-700"><T text={"✓ Zahlung erfolgreich! Dein Plan wurde aktualisiert."} /></div>
       )}
       {sp.canceled && (
-        <div className="rounded-xl bg-muted border border-border px-4 py-3 text-sm text-muted-foreground">
-          Vorgang abgebrochen.
-        </div>
+        <div className="rounded-xl bg-muted border border-border px-4 py-3 text-sm text-muted-foreground"><T text={"Vorgang abgebrochen."} /></div>
       )}
 
       {!stripeReady && !paypalReady && (
-        <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-700">
-          Kein Zahlungsanbieter konfiguriert. Bitte Stripe- oder PayPal-Umgebungsvariablen setzen.
-        </div>
+        <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-700"><T text={"Kein Zahlungsanbieter konfiguriert. Bitte Stripe- oder PayPal-Umgebungsvariablen setzen."} /></div>
       )}
 
       <div className="grid sm:grid-cols-2 gap-4">
@@ -102,9 +93,7 @@ export default async function UpgradePage({
                   <Zap className="h-4 w-4 text-primary" />
                   <span className="font-bold text-lg">{plan.name}</span>
                   {isCurrent && (
-                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
-                      Aktuell
-                    </span>
+                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium"><T text={"Aktuell"} /></span>
                   )}
                 </div>
                 <div className="mt-2">
@@ -142,14 +131,11 @@ export default async function UpgradePage({
         })}
       </div>
 
-      <p className="text-sm text-muted-foreground text-center">
-        Fragen?{" "}
+      <p className="text-sm text-muted-foreground text-center"><T text={"Fragen?"} />{" "}
         <a
           href="mailto:sales@cardnexus.app"
           className="underline hover:text-foreground transition-colors"
-        >
-          sales@cardnexus.app
-        </a>
+        ><T text={"sales@cardnexus.app"} /></a>
       </p>
     </div>
   );

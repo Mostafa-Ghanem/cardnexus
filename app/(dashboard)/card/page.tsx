@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -76,7 +77,7 @@ export default async function CardPage({
     <div className="space-y-8 max-w-5xl">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold">Meine Karte</h1>
+          <h1 className="text-2xl font-bold"><T text={"Meine Karte"} /></h1>
           <p className="text-muted-foreground mt-1">
             {activeCard
               ? "Bearbeite deine digitale Visitenkarte."
@@ -90,9 +91,7 @@ export default async function CardPage({
               href={`/analytics?cardId=${activeCard.id}`}
               className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
             >
-              <BarChart2 className="h-4 w-4" />
-              Analytics
-            </Link>
+              <BarChart2 className="h-4 w-4" /><T text={"Analytics"} /></Link>
           )}
           {cards.length > 0 && (
             <CardSwitcher
@@ -120,7 +119,7 @@ export default async function CardPage({
 
       {activeCard && (
         <div className="border-t border-border pt-8">
-          <h2 className="text-lg font-semibold mb-4">QR-Code</h2>
+          <h2 className="text-lg font-semibold mb-4"><T text={"QR-Code"} /></h2>
           <QRCodeDisplay slug={activeCard.slug} color={activeCard.primaryColor} />
         </div>
       )}

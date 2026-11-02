@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, shadowClass, avatarBorderStyle } from "../CardPreview";
@@ -118,7 +119,7 @@ export function CorporateTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-5 pt-5 border-t border-gray-100 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12" />
-            <p className="text-xs text-gray-400">Scan für digitale Karte</p>
+            <p className="text-xs text-gray-400"><T text={"Scan für digitale Karte"} /></p>
           </div>
         )}
       </div>

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useEffect, useState } from "react";
 import { CardPreview } from "@/components/card/CardPreview";
@@ -193,25 +195,21 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           style={{ backgroundColor: card.primaryColor, borderColor: card.primaryColor }}
         >
           {downloading
-            ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird vorbereitet…</>
-            : <><Download className="h-4 w-4" /> Kontakt speichern</>
+            ? <><Loader2 className="h-4 w-4 animate-spin" />{" "}<T text={"Wird vorbereitet…"} /></>
+            : <><Download className="h-4 w-4" />{" "}<T text={"Kontakt speichern"} /></>
           }
         </Button>
 
         {card.bookingUrl && (
           <Button asChild className="w-full" size="lg" style={{ backgroundColor: card.primaryColor }}>
             <a href={card.bookingUrl} target="_blank" rel="noopener noreferrer">
-              <CalendarDays className="h-4 w-4" />
-              Termin buchen
-            </a>
+              <CalendarDays className="h-4 w-4" /><T text={"Termin buchen"} /></a>
           </Button>
         )}
 
         {showLeadForm && (
           <Button variant="outline" className="w-full" size="lg" onClick={() => setShowLead(true)}>
-            <UserPlus className="h-4 w-4" />
-            Kontakt hinterlassen
-          </Button>
+            <UserPlus className="h-4 w-4" /><T text={"Kontakt hinterlassen"} /></Button>
         )}
 
         <div className={`grid gap-2 ${card.hideShareButton ? "grid-cols-1" : "grid-cols-2"}`}>
@@ -222,28 +220,22 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
             </Button>
           )}
           <Button variant="outline" onClick={() => setShowQR(!showQR)}>
-            <QrCode className="h-4 w-4" />
-            QR-Code
-          </Button>
+            <QrCode className="h-4 w-4" /><T text={"QR-Code"} /></Button>
         </div>
 
         {!card.hideShareButton && (
           <div className="grid grid-cols-2 gap-2">
             <Button variant="outline" onClick={shareViaWhatsApp}>
-              <MessageCircle className="h-4 w-4" />
-              WhatsApp
-            </Button>
+              <MessageCircle className="h-4 w-4" /><T text={"WhatsApp"} /></Button>
             <Button variant="outline" onClick={shareViaEmail}>
-              <Mail className="h-4 w-4" />
-              E-Mail
-            </Button>
+              <Mail className="h-4 w-4" /><T text={"E-Mail"} /></Button>
           </div>
         )}
 
         <Button variant="outline" className="w-full" onClick={saveToWallet} disabled={walletLoading}>
           {walletLoading
-            ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird geladen…</>
-            : <><Wallet className="h-4 w-4" /> In Wallet speichern</>
+            ? <><Loader2 className="h-4 w-4 animate-spin" />{" "}<T text={"Wird geladen…"} /></>
+            : <><Wallet className="h-4 w-4" />{" "}<T text={"In Wallet speichern"} /></>
           }
         </Button>
       </div>
@@ -259,7 +251,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold">QR-Code</h3>
+              <h3 className="font-semibold"><T text={"QR-Code"} /></h3>
               <button onClick={() => setShowQR(false)} className="text-muted-foreground hover:text-foreground">
                 <X className="h-4 w-4" />
               </button>
@@ -276,9 +268,8 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
 
       {/* Powered by — only for free plan */}
       {showBadge && (
-        <p className="mt-8 text-xs text-gray-400 dark:text-gray-500">
-          Erstellt mit{" "}
-          <a href="/" className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors font-medium">CardNexus</a>
+        <p className="mt-8 text-xs text-gray-400 dark:text-gray-500"><T text={"Erstellt mit"} />{" "}
+          <a href="/" className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors font-medium"><T text={"CardNexus"} /></a>
         </p>
       )}
     </div>
@@ -334,10 +325,9 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h3 className="font-bold text-lg">Kontakt hinterlassen</h3>
+            <h3 className="font-bold text-lg"><T text={"Kontakt hinterlassen"} /></h3>
             <p className="text-sm text-muted-foreground mt-0.5">
-              {ownerName} erhält deine Daten
-            </p>
+              {ownerName}<T text={"erhält deine Daten"} /></p>
           </div>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground p-1 rounded-lg hover:bg-accent transition-colors">
             <X className="h-5 w-5" />
@@ -347,16 +337,15 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
         {success ? (
           <div className="flex flex-col items-center py-6 text-center gap-3">
             <CheckCircle2 className="h-12 w-12" style={{ color: card.primaryColor }} />
-            <p className="font-semibold">Vielen Dank!</p>
+            <p className="font-semibold"><T text={"Vielen Dank!"} /></p>
             <p className="text-sm text-muted-foreground">
-              {ownerName} wurde benachrichtigt.
-            </p>
-            <Button variant="outline" className="mt-2" onClick={onClose}>Schließen</Button>
+              {ownerName}<T text={"wurde benachrichtigt."} /></p>
+            <Button variant="outline" className="mt-2" onClick={onClose}><T text={"Schließen"} /></Button>
           </div>
         ) : (
           <form onSubmit={submit} className="space-y-4">
             <div>
-              <Label htmlFor="lead-name">Name *</Label>
+              <Label htmlFor="lead-name"><T text={"Name *"} /></Label>
               <Input
                 id="lead-name"
                 value={form.name}
@@ -367,7 +356,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
               />
             </div>
             <div>
-              <Label htmlFor="lead-email">E-Mail</Label>
+              <Label htmlFor="lead-email"><T text={"E-Mail"} /></Label>
               <Input
                 id="lead-email"
                 type="email"
@@ -378,7 +367,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
               />
             </div>
             <div>
-              <Label htmlFor="lead-phone">Telefon</Label>
+              <Label htmlFor="lead-phone"><T text={"Telefon"} /></Label>
               <Input
                 id="lead-phone"
                 type="tel"
@@ -389,7 +378,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
               />
             </div>
             <div>
-              <Label htmlFor="lead-message">Nachricht</Label>
+              <Label htmlFor="lead-message"><T text={"Nachricht"} /></Label>
               <textarea
                 id="lead-message"
                 value={form.message}
@@ -409,7 +398,7 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
               style={{ backgroundColor: card.primaryColor }}
             >
               {loading
-                ? <><Loader2 className="h-4 w-4 animate-spin" /> Wird gesendet…</>
+                ? <><Loader2 className="h-4 w-4 animate-spin" />{" "}<T text={"Wird gesendet…"} /></>
                 : "Kontakt senden"}
             </Button>
           </form>

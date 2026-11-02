@@ -48,22 +48,20 @@ export default function LandingPage() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-900">
-                <span className="text-xs font-bold text-white">CN</span>
+                <span className="text-xs font-bold text-white"><T text={"CN"} /></span>
               </div>
-              <span className="font-semibold">CardNexus</span>
+              <span className="font-semibold"><T text={"CardNexus"} /></span>
             </div>
             <div className="hidden md:flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400">
-              <a href="#features" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Features</a>
-              <a href="#how"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">So funktioniert es</a>
-              <a href="#pricing"  className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Preise</a>
-              <a href="#faq"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">FAQ</a>
+              <a href="#features" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"><T text={"Features"} /></a>
+              <a href="#how"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"><T text={"So funktioniert es"} /></a>
+              <a href="#pricing"  className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"><T text={"Preise"} /></a>
+              <a href="#faq"      className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"><T text={"FAQ"} /></a>
             </div>
             <div className="flex items-center gap-2">
-              <Link href="/login" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors hidden sm:block">
-                Anmelden
-              </Link>
+              <Link href="/login" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors hidden sm:block"><T text={"Anmelden"} /></Link>
               <Button asChild size="sm">
-                <Link href="/register">Kostenlos starten</Link>
+                <Link href="/register"><T text={"Kostenlos starten"} /></Link>
               </Button>
             </div>
           </div>
@@ -73,26 +71,18 @@ export default function LandingPage() {
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-950 px-4 py-1.5 text-sm text-gray-600 dark:text-gray-400 mb-8">
-          <Zap className="h-3.5 w-3.5 text-amber-500" />
-          Digitale Visitenkarte der nächsten Generation
-        </div>
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6">
-          Deine Karte.
-          <br />
-          <span className="text-gray-400">In Sekunden geteilt.</span>
+          <Zap className="h-3.5 w-3.5 text-amber-500" /><T text={"Digitale Visitenkarte der nächsten Generation"} /></div>
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6"><T text={"Deine Karte."} /><br />
+          <span className="text-gray-400"><T text={"In Sekunden geteilt."} /></span>
         </h1>
-        <p className="mx-auto max-w-2xl text-xl text-gray-500 dark:text-gray-400 mb-10 leading-relaxed">
-          Erstelle deine digitale Visitenkarte, teile sie per NFC, QR-Code oder Link – und behalte den Überblick mit Analytics, Lead Capture und Team-Verwaltung.
-        </p>
+        <p className="mx-auto max-w-2xl text-xl text-gray-500 dark:text-gray-400 mb-10 leading-relaxed"><T text={"Erstelle deine digitale Visitenkarte, teile sie per NFC, QR-Code oder Link – und behalte den Überblick mit Analytics, Lead Capture und Team-Verwaltung."} /></p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button asChild size="lg">
-            <Link href="/register">
-              Jetzt kostenlos starten
-              <ArrowRight className="h-4 w-4" />
+            <Link href="/register"><T text={"Jetzt kostenlos starten"} /><ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link href="/c/demo">Live-Demo ansehen</Link>
+            <Link href="/c/demo"><T text={"Live-Demo ansehen"} /></Link>
           </Button>
         </div>
 
@@ -102,11 +92,11 @@ export default function LandingPage() {
             <div className="h-1.5 bg-gray-900" />
             <div className="p-8">
               <div className="flex items-start gap-4 mb-5">
-                <div className="h-16 w-16 rounded-full bg-gray-900 flex items-center justify-center text-white font-bold text-lg shrink-0">MH</div>
+                <div className="h-16 w-16 rounded-full bg-gray-900 flex items-center justify-center text-white font-bold text-lg shrink-0"><T text={"MH"} /></div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900">Max Hoffmann</h3>
-                  <p className="text-sm font-medium text-gray-500">Head of Product</p>
-                  <p className="text-sm text-gray-400">TechCorp GmbH</p>
+                  <h3 className="text-lg font-bold text-gray-900"><T text={"Max Hoffmann"} /></h3>
+                  <p className="text-sm font-medium text-gray-500"><T text={"Head of Product"} /></p>
+                  <p className="text-sm text-gray-400"><T text={"TechCorp GmbH"} /></p>
                 </div>
               </div>
               <div className="space-y-2 text-sm text-gray-600">
@@ -129,8 +119,8 @@ export default function LandingPage() {
       <section id="how" className="bg-gray-50 dark:bg-gray-950 py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">So funktioniert es</h2>
-            <p className="text-gray-500 dark:text-gray-400">In drei Schritten zur fertigen Karte.</p>
+            <h2 className="text-3xl font-bold mb-3"><T text={"So funktioniert es"} /></h2>
+            <p className="text-gray-500 dark:text-gray-400"><T text={"In drei Schritten zur fertigen Karte."} /></p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map(({ n, title, desc }) => (
@@ -148,8 +138,8 @@ export default function LandingPage() {
       <section id="features" className="py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">Alles was du brauchst</h2>
-            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Von der persönlichen Karte bis zur unternehmensweiten Lösung.</p>
+            <h2 className="text-3xl font-bold mb-3"><T text={"Alles was du brauchst"} /></h2>
+            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto"><T text={"Von der persönlichen Karte bis zur unternehmensweiten Lösung."} /></p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map(({ icon: Icon, title, desc }) => (
@@ -169,8 +159,8 @@ export default function LandingPage() {
       <section id="pricing" className="bg-gray-50 dark:bg-gray-950 py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">Einfache Preise</h2>
-            <p className="text-gray-500 dark:text-gray-400">Kein Kleingedrucktes. Jederzeit kündbar.</p>
+            <h2 className="text-3xl font-bold mb-3"><T text={"Einfache Preise"} /></h2>
+            <p className="text-gray-500 dark:text-gray-400"><T text={"Kein Kleingedrucktes. Jederzeit kündbar."} /></p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {planList.map((plan) => {
@@ -183,9 +173,7 @@ export default function LandingPage() {
                   }`}
                 >
                   {featured && (
-                    <span className="text-xs font-semibold bg-white/20 text-white px-2.5 py-1 rounded-full self-start mb-3">
-                      Empfohlen
-                    </span>
+                    <span className="text-xs font-semibold bg-white/20 text-white px-2.5 py-1 rounded-full self-start mb-3"><T text={"Empfohlen"} /></span>
                   )}
                   <p className={`text-sm font-medium mb-1 ${featured ? "opacity-60" : "text-gray-500"}`}><T text={plan.description} /></p>
                   <h3 className="text-2xl font-bold mb-1">{plan.name}</h3>
@@ -208,9 +196,7 @@ export default function LandingPage() {
               );
             })}
           </div>
-          <p className="text-center text-sm text-gray-400 dark:text-gray-500 mt-8">
-            Alle Pläne inkl. DSGVO-konformer Datenspeicherung in Deutschland.
-          </p>
+          <p className="text-center text-sm text-gray-400 dark:text-gray-500 mt-8"><T text={"Alle Pläne inkl. DSGVO-konformer Datenspeicherung in Deutschland."} /></p>
         </div>
       </section>
 
@@ -218,7 +204,7 @@ export default function LandingPage() {
       <section id="faq" className="py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-3">Häufige Fragen</h2>
+            <h2 className="text-3xl font-bold mb-3"><T text={"Häufige Fragen"} /></h2>
           </div>
           <FaqSection />
         </div>
@@ -227,12 +213,10 @@ export default function LandingPage() {
       {/* ── CTA ─────────────────────────────────────────────────────────── */}
       <section className="bg-gray-900 py-20 text-center text-white">
         <div className="mx-auto max-w-2xl px-4">
-          <h2 className="text-3xl font-bold mb-4">Bereit loszulegen?</h2>
-          <p className="text-gray-400 mb-8">Kostenlos starten – keine Kreditkarte erforderlich.</p>
+          <h2 className="text-3xl font-bold mb-4"><T text={"Bereit loszulegen?"} /></h2>
+          <p className="text-gray-400 mb-8"><T text={"Kostenlos starten – keine Kreditkarte erforderlich."} /></p>
           <Button asChild size="lg" variant="secondary">
-            <Link href="/register">
-              Jetzt kostenlos registrieren
-              <ArrowRight className="h-4 w-4" />
+            <Link href="/register"><T text={"Jetzt kostenlos registrieren"} /><ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -245,34 +229,32 @@ export default function LandingPage() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <div className="flex h-7 w-7 items-center justify-center rounded bg-gray-900">
-                  <span className="text-[10px] font-bold text-white">CN</span>
+                  <span className="text-[10px] font-bold text-white"><T text={"CN"} /></span>
                 </div>
-                <span className="font-semibold text-gray-900 dark:text-gray-100">CardNexus</span>
+                <span className="font-semibold text-gray-900 dark:text-gray-100"><T text={"CardNexus"} /></span>
               </div>
-              <p className="text-sm text-gray-400 dark:text-gray-500 leading-relaxed">
-                Die smarte digitale Visitenkarte für Professionals und Teams.
-              </p>
+              <p className="text-sm text-gray-400 dark:text-gray-500 leading-relaxed"><T text={"Die smarte digitale Visitenkarte für Professionals und Teams."} /></p>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300">Produkt</p>
+              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300"><T text={"Produkt"} /></p>
               <ul className="space-y-2 text-sm text-gray-400 dark:text-gray-500">
-                <li><a href="#features"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Features</a></li>
-                <li><a href="#pricing"   className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Preise</a></li>
-                <li><Link href="/c/demo" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Demo</Link></li>
-                <li><Link href="/login"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Anmelden</Link></li>
+                <li><a href="#features"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"><T text={"Features"} /></a></li>
+                <li><a href="#pricing"   className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"><T text={"Preise"} /></a></li>
+                <li><Link href="/c/demo" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"><T text={"Demo"} /></Link></li>
+                <li><Link href="/login"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"><T text={"Anmelden"} /></Link></li>
               </ul>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300">Rechtliches</p>
+              <p className="font-semibold text-sm mb-3 text-gray-700 dark:text-gray-300"><T text={"Rechtliches"} /></p>
               <ul className="space-y-2 text-sm text-gray-400 dark:text-gray-500">
-                <li><Link href="/impressum"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Impressum</Link></li>
-                <li><Link href="/datenschutz" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Datenschutz</Link></li>
+                <li><Link href="/impressum"  className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"><T text={"Impressum"} /></Link></li>
+                <li><Link href="/datenschutz" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"><T text={"Datenschutz"} /></Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-100 dark:border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-400 dark:text-gray-500">
-            <p>&copy; {new Date().getFullYear()} CardNexus. Alle Rechte vorbehalten.</p>
-            <p>Made in Germany 🇩🇪</p>
+            <p><T text={"&copy;"} />{" "}{new Date().getFullYear()}{" "}<T text={"CardNexus. Alle Rechte vorbehalten."} /></p>
+            <p><T text={"Made in Germany 🇩🇪"} /></p>
           </div>
         </div>
       </footer>

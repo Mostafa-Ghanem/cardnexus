@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { db } from "@/lib/db";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Building2, CreditCard, Activity, TrendingUp } from "lucide-react";
@@ -40,8 +41,8 @@ export default async function AdminPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">Plattform-Übersicht</h1>
-        <p className="text-muted-foreground mt-1">Globale Statistiken für alle Organisationen</p>
+        <h1 className="text-2xl font-bold"><T text={"Plattform-Übersicht"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Globale Statistiken für alle Organisationen"} /></p>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -66,7 +67,7 @@ export default async function AdminPage() {
       <div className="grid sm:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Plan-Verteilung</CardTitle>
+            <CardTitle className="text-base"><T text={"Plan-Verteilung"} /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {[
@@ -95,25 +96,24 @@ export default async function AdminPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Umsatz-Schätzung</CardTitle>
+            <CardTitle className="text-base"><T text={"Umsatz-Schätzung"} /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <p className="text-sm text-muted-foreground">MRR (geschätzt)</p>
+              <p className="text-sm text-muted-foreground"><T text={"MRR (geschätzt)"} /></p>
               <p className="text-3xl font-bold mt-1">
                 {mrrEst.toLocaleString("de-DE", { style: "currency", currency: "EUR" })}
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Basierend auf {proCount} Pro × {PLANS.pro.monthlyPrice} € + {businessCount} Business × {PLANS.business.monthlyPrice} €
+              <p className="text-xs text-muted-foreground mt-1"><T text={"Basierend auf"} />{proCount}{" "}<T text={"Pro ×"} />{" "}{PLANS.pro.monthlyPrice} € + {businessCount}{" "}<T text={"Business ×"} />{" "}{PLANS.business.monthlyPrice} €
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3 pt-1">
               <div className="rounded-lg bg-muted p-3">
-                <p className="text-xs text-muted-foreground">Organisationen</p>
+                <p className="text-xs text-muted-foreground"><T text={"Organisationen"} /></p>
                 <p className="text-xl font-bold mt-0.5">{orgCount.toLocaleString("de-DE")}</p>
               </div>
               <div className="rounded-lg bg-muted p-3">
-                <p className="text-xs text-muted-foreground">Bezahlend</p>
+                <p className="text-xs text-muted-foreground"><T text={"Bezahlend"} /></p>
                 <p className="text-xl font-bold mt-0.5">{(proCount + businessCount).toLocaleString("de-DE")}</p>
               </div>
             </div>
@@ -123,13 +123,13 @@ export default async function AdminPage() {
 
       {/* Build info */}
       <div className="text-xs text-muted-foreground flex gap-4 mt-2">
-        <span>Version: {process.env.NEXT_PUBLIC_APP_VERSION ?? "dev"}</span>
-        <span>Build: {process.env.NEXT_PUBLIC_BUILD_TIME ? new Date(process.env.NEXT_PUBLIC_BUILD_TIME).toLocaleString("de-DE") : "lokal"}</span>
+        <span><T text={"Version:"} />{" "}{process.env.NEXT_PUBLIC_APP_VERSION ?? "dev"}</span>
+        <span><T text={"Build:"} />{" "}{process.env.NEXT_PUBLIC_BUILD_TIME ? new Date(process.env.NEXT_PUBLIC_BUILD_TIME).toLocaleString("de-DE") : "lokal"}</span>
       </div>
 
       {/* Changelog */}
       <div className="mt-8">
-        <h2 className="text-lg font-semibold mb-4">Changelog</h2>
+        <h2 className="text-lg font-semibold mb-4"><T text={"Changelog"} /></h2>
         <div className="space-y-4">
           {CHANGELOG.map((entry) => (
             <div key={entry.version} className="bg-card border border-border rounded-xl p-4">

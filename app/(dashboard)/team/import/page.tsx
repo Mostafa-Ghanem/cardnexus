@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -26,10 +27,8 @@ export default async function ImportPage() {
   return (
     <div className="space-y-8 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-bold">CSV-Import</h1>
-        <p className="text-muted-foreground mt-1">
-          Importiere Mitglieder und befülle deren Visitenkarten aus einer CSV-Datei.
-        </p>
+        <h1 className="text-2xl font-bold"><T text={"CSV-Import"} /></h1>
+        <p className="text-muted-foreground mt-1"><T text={"Importiere Mitglieder und befülle deren Visitenkarten aus einer CSV-Datei."} /></p>
       </div>
       <ImportClient />
     </div>

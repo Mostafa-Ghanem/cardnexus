@@ -137,9 +137,7 @@ export function SidebarNav({
               : "text-amber-600 hover:bg-amber-50 hover:text-amber-700 dark:text-amber-400 dark:hover:bg-amber-950"
           )}
         >
-          <Zap className="h-4 w-4 shrink-0" />
-          Upgrade
-        </Link>
+          <Zap className="h-4 w-4 shrink-0" /><T text={"Upgrade"} /></Link>
 
         {userRole === "super_admin" && (
           <Link
@@ -152,9 +150,7 @@ export function SidebarNav({
                 : "text-muted-foreground hover:bg-accent hover:text-foreground"
             )}
           >
-            <Shield className="h-4 w-4 shrink-0" />
-            Super Admin
-          </Link>
+            <Shield className="h-4 w-4 shrink-0" /><T text={"Super Admin"} /></Link>
         )}
       </nav>
 
@@ -164,9 +160,7 @@ export function SidebarNav({
           onClick={handleSignOut}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
         >
-          <LogOut className="h-4 w-4 shrink-0" />
-          Abmelden
-        </button>
+          <LogOut className="h-4 w-4 shrink-0" /><T text={"Abmelden"} /></button>
       </div>
     </aside>
   );

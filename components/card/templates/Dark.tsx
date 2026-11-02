@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n/I18nProvider";
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import type { CardData } from "@/types";
 import { fontClass, radiusClass, shadowClass, avatarBorderStyle } from "../CardPreview";
@@ -115,7 +116,7 @@ export function DarkTemplate({ card }: { card: Partial<CardData> }) {
         {card.showQrOnCard && card.slug && (
           <div className="mt-4 flex items-center gap-3">
             <img src={`/api/qr/${card.slug}`} alt="QR Code" className="h-12 w-12 invert opacity-70" />
-            <p className="text-xs text-gray-500">Scan für digitale Karte</p>
+            <p className="text-xs text-gray-500"><T text={"Scan für digitale Karte"} /></p>
           </div>
         )}
       </div>

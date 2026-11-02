@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { useEffect, useState } from "react";
 import type { CardData } from "@/types";
@@ -100,7 +102,7 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
         {/* Card selector */}
         {cards.length > 1 && (
           <div className="space-y-1.5">
-            <Label>Karte</Label>
+            <Label><T text={"Karte"} /></Label>
             <select
               value={activeCardId}
               onChange={(e) => setActiveCardId(e.target.value)}
@@ -115,7 +117,7 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
 
         {/* Style picker */}
         <div className="space-y-2">
-          <p className="text-sm font-medium">Stil wählen</p>
+          <p className="text-sm font-medium"><T text={"Stil wählen"} /></p>
           <div className="grid grid-cols-2 gap-2">
             {STYLES.map((s) => (
               <button
@@ -137,10 +139,10 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
 
         {/* Options */}
         <div className="space-y-3 p-4 rounded-xl border border-border bg-muted/20">
-          <p className="text-sm font-medium">Optionen</p>
+          <p className="text-sm font-medium"><T text={"Optionen"} /></p>
 
           <div className="flex items-center justify-between gap-4">
-            <Label className="text-sm font-normal">Akzentfarbe</Label>
+            <Label className="text-sm font-normal"><T text={"Akzentfarbe"} /></Label>
             <input
               type="color"
               value={color}
@@ -150,25 +152,23 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
           </div>
 
           <div className="flex items-center justify-between">
-            <Label className="text-sm font-normal">
-              Profilfoto{!card.avatarUrl && <span className="text-xs text-muted-foreground ml-1">(kein Foto hinterlegt)</span>}
+            <Label className="text-sm font-normal"><T text={"Profilfoto"} />{!card.avatarUrl && <span className="text-xs text-muted-foreground ml-1"><T text={"(kein Foto hinterlegt)"} /></span>}
             </Label>
             <Switch checked={showAvatar} onCheckedChange={setShowAvatar} disabled={!card.avatarUrl} />
           </div>
 
           <div className="flex items-center justify-between">
-            <Label className="text-sm font-normal">Social-Links</Label>
+            <Label className="text-sm font-normal"><T text={"Social-Links"} /></Label>
             <Switch checked={showSocials} onCheckedChange={setShowSocials} />
           </div>
 
           <div className="flex items-center justify-between">
-            <Label className="text-sm font-normal">„Digitale Visitenkarte"-Button</Label>
+            <Label className="text-sm font-normal"><T text={"„Digitale Visitenkarte\"-Button"} /></Label>
             <Switch checked={showCardLink} onCheckedChange={setShowCardLink} />
           </div>
 
           <div className="space-y-1">
-            <Label className="text-sm font-normal">
-              Fußzeile <span className="text-xs text-muted-foreground">(z.B. rechtlicher Hinweis)</span>
+            <Label className="text-sm font-normal"><T text={"Fußzeile"} /><span className="text-xs text-muted-foreground"><T text={"(z.B. rechtlicher Hinweis)"} /></span>
             </Label>
             <Textarea
               value={footerText}
@@ -184,19 +184,19 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
         <div className="space-y-2">
           <Button onClick={copy} className="w-full" size="lg">
             {copied
-              ? <><Check className="h-4 w-4" /> HTML kopiert!</>
-              : <><Copy className="h-4 w-4" /> HTML-Code kopieren</>}
+              ? <><Check className="h-4 w-4" />{" "}<T text={"HTML kopiert!"} /></>
+              : <><Copy className="h-4 w-4" />{" "}<T text={"HTML-Code kopieren"} /></>}
           </Button>
           <Button onClick={copyPlain} variant="outline" className="w-full">
             {copiedTxt
-              ? <><Check className="h-4 w-4" /> Klartext kopiert!</>
-              : <><Copy className="h-4 w-4" /> Als Klartext kopieren</>}
+              ? <><Check className="h-4 w-4" />{" "}<T text={"Klartext kopiert!"} /></>
+              : <><Copy className="h-4 w-4" />{" "}<T text={"Als Klartext kopieren"} /></>}
           </Button>
         </div>
 
         {/* Client guides */}
         <div className="space-y-2">
-          <p className="text-sm font-medium">Anleitung für deinen E-Mail-Client</p>
+          <p className="text-sm font-medium"><T text={"Anleitung für deinen E-Mail-Client"} /></p>
           {Object.entries(GUIDES).map(([key, g]) => (
             <div key={key} className="border border-border rounded-xl overflow-hidden">
               <button
@@ -220,7 +220,7 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
 
       {/* ── Preview ── */}
       <div className="space-y-3">
-        <p className="text-sm font-medium">Vorschau</p>
+        <p className="text-sm font-medium"><T text={"Vorschau"} /></p>
         <div className="border border-border rounded-xl bg-white overflow-hidden">
           <div className="border-b border-gray-100 px-4 py-3 bg-gray-50 space-y-1">
             {[
@@ -235,15 +235,13 @@ export function SignatureClient({ card: initialCard, allCards = [] }: Props) {
             ))}
           </div>
           <div className="px-4 py-4">
-            <p className="text-sm text-gray-400 mb-6">Hallo,<br /><br />…<br /><br />Mit freundlichen Grüßen</p>
+            <p className="text-sm text-gray-400 mb-6"><T text={"Hallo,"} /><br /><br />…<br /><br /><T text={"Mit freundlichen Grüßen"} /></p>
             <div dangerouslySetInnerHTML={{ __html: html }} />
           </div>
         </div>
 
         <details className="group">
-          <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground transition-colors select-none">
-            HTML-Code anzeigen
-          </summary>
+          <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground transition-colors select-none"><T text={"HTML-Code anzeigen"} /></summary>
           <pre className="mt-2 p-3 rounded-lg bg-muted text-[10px] font-mono overflow-x-auto whitespace-pre-wrap break-all leading-relaxed text-muted-foreground">
             {html}
           </pre>

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Globe, MapPin, Link as LinkIcon, Languages } from "lucide-react";
@@ -18,7 +20,7 @@ function BarList({ items, labelKey, countKey }: {
   countKey: string;
 }) {
   const max = (items[0]?.[countKey] as number) ?? 1;
-  if (items.length === 0) return <p className="text-sm text-muted-foreground">Noch keine Daten</p>;
+  if (items.length === 0) return <p className="text-sm text-muted-foreground"><T text={"Noch keine Daten"} /></p>;
   return (
     <div className="space-y-2.5">
       {items.map((item, i) => (
@@ -67,9 +69,7 @@ export function AnalyticsGeo({ topCountries, topCities, topReferrers, topLanguag
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Globe className="h-4 w-4 text-muted-foreground" />
-                  Länder
-                </CardTitle>
+                  <Globe className="h-4 w-4 text-muted-foreground" /><T text={"Länder"} /></CardTitle>
               </CardHeader>
               <CardContent>
                 <BarList items={countriesFormatted} labelKey="country" countKey="count" />
@@ -80,9 +80,7 @@ export function AnalyticsGeo({ topCountries, topCities, topReferrers, topLanguag
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground" />
-                  Städte
-                </CardTitle>
+                  <MapPin className="h-4 w-4 text-muted-foreground" /><T text={"Städte"} /></CardTitle>
               </CardHeader>
               <CardContent>
                 <BarList items={topCities} labelKey="city" countKey="count" />
@@ -99,9 +97,7 @@ export function AnalyticsGeo({ topCountries, topCities, topReferrers, topLanguag
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <LinkIcon className="h-4 w-4 text-muted-foreground" />
-                  Referrer
-                </CardTitle>
+                  <LinkIcon className="h-4 w-4 text-muted-foreground" /><T text={"Referrer"} /></CardTitle>
               </CardHeader>
               <CardContent>
                 <BarList items={topReferrers} labelKey="referrer" countKey="count" />
@@ -112,9 +108,7 @@ export function AnalyticsGeo({ topCountries, topCities, topReferrers, topLanguag
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Languages className="h-4 w-4 text-muted-foreground" />
-                  Sprachen
-                </CardTitle>
+                  <Languages className="h-4 w-4 text-muted-foreground" /><T text={"Sprachen"} /></CardTitle>
               </CardHeader>
               <CardContent>
                 <BarList items={languagesFormatted} labelKey="language" countKey="count" />

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/i18n/I18nProvider";
+
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PieChart, Pie, Cell } from "recharts";
@@ -9,7 +11,7 @@ const BROWSER_COLORS = ["#6366F1", "#8B5CF6", "#EC4899", "#F43F5E", "#F59E0B", "
 const OS_COLORS     = ["#0F172A", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#10B981", "#6366F1"];
 
 function PieLegend({ items, colors }: { items: { label: string; count: number }[]; colors: string[] }) {
-  if (items.length === 0) return <p className="text-sm text-muted-foreground">Noch keine Daten</p>;
+  if (items.length === 0) return <p className="text-sm text-muted-foreground"><T text={"Noch keine Daten"} /></p>;
   const pieData = items.map((i) => ({ name: i.label, value: i.count }));
   return (
     <div className="flex items-center gap-6">
@@ -43,9 +45,7 @@ export function AnalyticsTech({ browserSplit, osSplit }: Props) {
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
-            <Monitor className="h-4 w-4 text-muted-foreground" />
-            Browser
-          </CardTitle>
+            <Monitor className="h-4 w-4 text-muted-foreground" /><T text={"Browser"} /></CardTitle>
         </CardHeader>
         <CardContent>
           <PieLegend
@@ -57,9 +57,7 @@ export function AnalyticsTech({ browserSplit, osSplit }: Props) {
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
-            <Cpu className="h-4 w-4 text-muted-foreground" />
-            Betriebssystem
-          </CardTitle>
+            <Cpu className="h-4 w-4 text-muted-foreground" /><T text={"Betriebssystem"} /></CardTitle>
         </CardHeader>
         <CardContent>
           <PieLegend
