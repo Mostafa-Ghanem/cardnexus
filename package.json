@@ -13,7 +13,11 @@
     "db:migration:local": "wrangler d1 migrations apply cardnexus-d1 --local",
     "db:migration:remote": "wrangler d1 migrations apply cardnexus-d1 --remote",
     "lint": "eslint app components lib --ext .ts,.tsx",
-    "deploy:dry-run": "npm run build && wrangler deploy --dry-run"
+    "deploy:dry-run": "npm run build && wrangler deploy --dry-run",
+    "i18n:extract": "node scripts/i18n/sync.mjs extract",
+    "i18n:translate": "node scripts/i18n/translate.mjs",
+    "i18n:apply": "node scripts/i18n/sync.mjs apply",
+    "i18n:review": "node scripts/i18n/sync.mjs review"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
