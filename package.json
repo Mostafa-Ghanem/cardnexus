@@ -6,14 +6,14 @@
     "dev": "vite dev",
     "build": "prisma generate && vite build",
     "preview": "vite preview",
-    "deploy": "prisma generate && npx @vinext/cloudflare deploy",
+    "deploy": "npm run build && wrangler deploy",
     "check": "prisma validate && tsc --noEmit && eslint app components lib --ext .ts,.tsx",
     "db:generate": "prisma generate",
     "db:migration:generate": "node scripts/export-d1-migration.mjs",
     "db:migration:local": "wrangler d1 migrations apply cardnexus-d1 --local",
     "db:migration:remote": "wrangler d1 migrations apply cardnexus-d1 --remote",
-    "db:bootstrap-admin": "tsx scripts/bootstrap-admin.ts",
-    "lint": "eslint app components lib --ext .ts,.tsx"
+    "lint": "eslint app components lib --ext .ts,.tsx",
+    "deploy:dry-run": "npm run build && wrangler deploy --dry-run"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
