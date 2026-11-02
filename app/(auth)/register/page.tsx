@@ -9,9 +9,11 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { signUp } from "@/lib/auth-client";
 import { Suspense } from "react";
+import { useI18n } from "@/components/i18n/I18nProvider";
 
 function RegisterForm() {
   const router = useRouter();
+  const { t } = useI18n();
   const searchParams = useSearchParams();
   const inviteToken = searchParams.get("invite");
 
@@ -29,7 +31,7 @@ function RegisterForm() {
     const result = await signUp.email({ name, email, password });
 
     if (result.error) {
-      setError(result.error.message ?? "Registrierung fehlgeschlagen.");
+      setError(t(result.error.message ?? "Registrierung fehlgeschlagen."));
       setLoading(false);
       return;
     }
@@ -55,8 +57,8 @@ function RegisterForm() {
         <CardTitle>Account erstellen</CardTitle>
         <CardDescription>
           {inviteToken
-            ? "Du wurdest eingeladen. Erstelle deinen Account."
-            : "Starte kostenlos mit deiner digitalen Visitenkarte."}
+            ? t("Du wurdest eingeladen. Erstelle deinen Account.")
+            : t("Starte kostenlos mit deiner digitalen Visitenkarte.")}
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
@@ -89,7 +91,7 @@ function RegisterForm() {
             <Input
               id="password"
               type="password"
-              placeholder="Mindestens 8 Zeichen"
+              placeholder={t("Mindestens 8 Zeichen")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -101,7 +103,7 @@ function RegisterForm() {
         </CardContent>
         <CardFooter className="flex flex-col gap-3">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Wird erstellt…" : "Account erstellen"}
+            {t(loading ? "Wird erstellt…" : "Account erstellen")}
           </Button>
           <p className="text-sm text-muted-foreground text-center">
             Bereits registriert?{" "}
