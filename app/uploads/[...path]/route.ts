@@ -1,43 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFile } from "fs/promises";
-import { join, extname, basename } from "path";
+import { getImage, isR2Configured } from "@/lib/r2";
 
 const MIME: Record<string, string> = {
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".png": "image/png",
-  ".webp": "image/webp",
-  ".gif": "image/gif",
-  ".svg": "image/svg+xml",
+  jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png",
+  webp: "image/webp", gif: "image/gif",
 };
 
 export async function GET(
-  _req: NextRequest,
-  { params }: { params: Promise<{ path: string[] }> }
+  _request: NextRequest,
+  { params }: { params: Promise<{ path: string[] }> },
 ) {
-  const { path: segments } = await params;
-
-  // Sanitise: reject path traversal attempts
-  const safe = segments.every((s) => !s.includes("..") && !s.startsWith("/"));
-  if (!safe) return new NextResponse("Forbidden", { status: 403 });
-
-  const filename = segments[segments.length - 1];
-  const filePath = join(process.cwd(), "public", "uploads", ...segments);
-
+  const { path } = await params;
+  if (path.length !== 1) return new NextResponse("Not Found", { status: 404 });
+  const key = path[0];
+  if (!/^[a-zA-Z0-9_-]{1,140}\.(?:jpg|jpeg|png|webp|gif)$/.test(key)) {
+    return new NextResponse("Not Found", { status: 404 });
+  }
+  if (!isR2Configured()) return new NextResponse("Storage unavailable", { status: 503 });
   try {
-    const data = await readFile(filePath);
-    const ext = extname(filename).toLowerCase();
-    const contentType = MIME[ext] ?? "application/octet-stream";
-
-    return new NextResponse(data, {
+    const bytes = await getImage(key);
+    if (!bytes) return new NextResponse("Not Found", { status: 404 });
+    const type = key.split(".").pop()!.toLowerCase();
+    return new NextResponse(bytes, {
       status: 200,
       headers: {
-        "Content-Type": contentType,
-        "Cache-Control": "public, max-age=31536000, immutable",
-        "Content-Disposition": `inline; filename="${basename(filename)}"`,
+        "Content-Type": MIME[type],
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "public, max-age=86400, s-maxage=86400",
+        "Content-Disposition": "inline",
       },
     });
-  } catch {
-    return new NextResponse("Not Found", { status: 404 });
+  } catch (error) {
+    console.error("R2 image read failed:", error);
+    return new NextResponse("Storage unavailable", { status: 502 });
   }
 }

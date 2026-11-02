@@ -3,19 +3,17 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { twoFactor } from "better-auth/plugins";
 import { db } from "./db";
 
-// Internal URL for server-side fetches (DB access, session validation).
-// Never use the public HTTPS URL here — inside Docker the container can't
-// reach the external TLS endpoint, which causes ERR_SSL_WRONG_VERSION_NUMBER.
-const internalUrl = `http://localhost:${process.env.PORT ?? 3000}`;
-
-// Public URL (may be https://domain.com) — used for trusted origins and
-// deciding whether to force Secure cookies.
-const publicUrl = process.env.APP_URL ?? process.env.BETTER_AUTH_URL ?? internalUrl;
+// Hostinger can assign its own internal process port. Auth must expose the
+// actual HTTPS origin rather than a hard-coded localhost:3000 address.
+const publicUrl =
+  process.env.BETTER_AUTH_URL ??
+  process.env.APP_URL ??
+  "http://localhost:3000";
 
 export const auth = betterAuth({
-  baseURL: internalUrl,
+  baseURL: publicUrl,
   database: prismaAdapter(db, {
-    provider: "sqlite",
+    provider: "mysql",
   }),
   advanced: {
     // Force Secure cookie flag when the public-facing URL is HTTPS.
@@ -40,7 +38,7 @@ export const auth = betterAuth({
     },
   },
   trustedOrigins: [
-    process.env.BETTER_AUTH_URL ?? "http://localhost:3000",
+    publicUrl,
     process.env.APP_URL ?? "",
     process.env.NEXT_PUBLIC_APP_URL ?? "",
   ].filter(Boolean),
@@ -50,10 +48,12 @@ export const auth = betterAuth({
         type: "string",
         defaultValue: "member",
         required: false,
+        input: false,
       },
       organizationId: {
         type: "string",
         required: false,
+        input: false,
       },
       // Subscription plan — set by server/webhooks only, never by client
       plan: {
