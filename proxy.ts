@@ -64,7 +64,7 @@ export async function proxy(request: NextRequest) {
       request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
       request.headers.get("x-real-ip") ??
       "anon";
-    if (!rateLimit({ key: `auth:${ip}`, max: 10, windowMs: 60_000 })) {
+    if (!(await rateLimit({ key: `auth:${ip}`, max: 10, windowMs: 60_000 }))) {
       return new NextResponse(
         JSON.stringify({ error: "Zu viele Anmeldeversuche. Bitte in 1 Minute erneut versuchen." }),
         { status: 429, headers: { "Content-Type": "application/json", "Retry-After": "60" } }
