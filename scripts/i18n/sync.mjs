@@ -86,8 +86,18 @@ function scan(file, apply) {
       }
     } else if (ts.isJsxAttribute(node)) {
       const name = node.name.getText(ast);
-      if (attributeNames.has(name) && node.initializer && ts.isStringLiteral(node.initializer)) {
-        record(node.initializer.text, file, "attribute:" + name, line);
+      if (attributeNames.has(name) && node.initializer) {
+        if (ts.isStringLiteral(node.initializer)) {
+          record(node.initializer.text, file, "attribute:" + name, line);
+        } else if (ts.isJsxExpression(node.initializer) &&
+                   node.initializer.expression &&
+                   ts.isCallExpression(node.initializer.expression) &&
+                   node.initializer.expression.expression.getText(ast) === "tI18n" &&
+                   node.initializer.expression.arguments.length === 1 &&
+                   ts.isStringLiteral(node.initializer.expression.arguments[0])) {
+          // Count an already localized attribute from its source argument.
+          record(node.initializer.expression.arguments[0].text, file, "attribute:" + name, line);
+        }
       }
     } else if (ts.isPropertyAssignment(node)) {
       const name = node.name.getText(ast).replace(/^['"]|['"]$/g, "");
