@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { signOut } from "@/lib/auth-client";
+import { T } from "@/components/i18n/I18nProvider";
+import { useI18n } from "@/components/i18n/I18nProvider";
 
 interface NavSection {
   label: string;
@@ -57,6 +59,7 @@ export function SidebarNav({
 }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const { locale } = useI18n();
 
   async function handleSignOut() {
     await signOut();
@@ -69,7 +72,7 @@ export function SidebarNav({
   }
 
   return (
-    <aside className={cn("flex h-full w-60 flex-col border-r border-border bg-card", className)}>
+    <aside className={cn("flex h-full w-60 flex-col border-e border-border bg-card", className)}>
       {/* Logo */}
       <div className="flex h-16 items-center gap-2 border-b border-border px-6 shrink-0">
         {logoUrl ? (
@@ -92,11 +95,11 @@ export function SidebarNav({
       )}
 
       {/* Navigation */}
-      <nav aria-label="Hauptnavigation" className="flex-1 space-y-4 p-3 overflow-y-auto">
+      <nav aria-label={locale === "ar-SA" ? "التنقل الرئيسي" : locale === "en" ? "Main navigation" : "Hauptnavigation"} className="flex-1 space-y-4 p-3 overflow-y-auto">
         {sections.map((section) => (
           <div key={section.label}>
             <p className="px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70 mb-1">
-              {section.label}
+              <T text={section.label} />
             </p>
             <div className="space-y-0.5">
               {section.items.map(({ href, label, icon: Icon, indented }) => {
@@ -112,11 +115,11 @@ export function SidebarNav({
                       active
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:bg-accent hover:text-foreground",
-                      indented && "pl-8"
+                      indented && "ps-8"
                     )}
                   >
                     <Icon className="h-4 w-4 shrink-0" />
-                    {label}
+                    <T text={label} />
                   </Link>
                 );
               })}
