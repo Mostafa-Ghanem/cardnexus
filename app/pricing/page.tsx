@@ -3,6 +3,7 @@ import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PLANS, FREE_TEMPLATES } from "@/lib/plans";
 import type { Plan } from "@/lib/plans";
+import { T } from "@/components/i18n/I18nProvider";
 
 export const metadata = { title: "Preise – CardNexus" };
 
@@ -69,7 +70,7 @@ export default function PricingPage() {
                       oder {plan.yearlyPrice} €/Monat bei Jahreszahlung
                     </p>
                   )}
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{plan.description}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-2"><T text={plan.description} /></p>
                 </div>
 
                 <Button
@@ -91,9 +92,9 @@ export default function PricingPage() {
                           ? <Check className="h-4 w-4 text-green-500 shrink-0" />
                           : <X className="h-4 w-4 text-gray-300 shrink-0" />}
                         <span className={enabled ? "text-gray-700 dark:text-gray-300" : "text-gray-400 dark:text-gray-500"}>
-                          {row.label}
+                          <T text={row.label} />
                           {row.note && planId === "free" && (
-                            <span className="text-xs text-muted-foreground ml-1">({row.note})</span>
+                            <span className="text-xs text-muted-foreground ml-1">(<T text={row.note} />)</span>
                           )}
                         </span>
                       </li>
