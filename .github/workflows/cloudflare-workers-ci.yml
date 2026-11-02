@@ -47,6 +47,8 @@ jobs:
         run: npm run lint
       - name: Build Cloudflare Worker using vinext
         run: npm run build
+      - name: Verify Wrangler deployment artifact without publishing
+        run: npx wrangler deploy --dry-run
       - name: HTTP smoke test using local Workerd preview
         shell: bash
         run: |
