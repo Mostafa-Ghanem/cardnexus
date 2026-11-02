@@ -79,3 +79,25 @@
 ::-webkit-scrollbar-track { @apply bg-transparent; }
 ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
 ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground; }
+
+
+/* Locale-aware typography and bidi. Keep phone/email/URLs LTR in Arabic UI. */
+html[lang="ar-SA"] body {
+  font-family: "IBM Plex Sans Arabic", "Noto Sans Arabic", Tahoma, sans-serif;
+}
+html:not([lang="ar-SA"]) body {
+  font-family: Inter, system-ui, sans-serif;
+}
+[dir="rtl"] { text-align: start; }
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="url"],
+[dir="rtl"] input[type="number"],
+[dir="rtl"] .bidi-ltr,
+[dir="rtl"] code {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+[dir="rtl"] .rtl-flip-icon { transform: scaleX(-1); }
+[dir="rtl"] .rtl-scroll { direction: rtl; }
