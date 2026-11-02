@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     }
 
     const ip = clientIp(req);
-    if (!rateLimit({ key: `lead:${ip}:${data.cardId}`, max: 3, windowMs: 60 * 60_000 })) {
+    if (!(await rateLimit({ key: `lead:${ip}:${data.cardId}`, max: 3, windowMs: 60 * 60_000 }))) {
       return NextResponse.json(
         { error: "Zu viele Anfragen — bitte später erneut versuchen." },
         { status: 429 }
