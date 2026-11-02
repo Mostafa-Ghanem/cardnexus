@@ -4,6 +4,7 @@ on:
   push:
     branches: ["feature/i18n-ar-sa-en-rtl"]
     paths:
+      - "messages/**"
       - "scripts/i18n/**"
       - "app/**"
       - "components/**"
@@ -47,8 +48,14 @@ jobs:
         run: npm run i18n:translate
       - name: Apply JSX localization codemod
         run: npm run i18n:apply
+      - name: Translate form placeholders and accessibility labels
+        run: npm run i18n:attrs
       - name: Report coverage
         run: npm run i18n:review
+      - name: Require all inventoried UI strings have both languages
+        run: |
+          node --input-type=module -e 'import fs from "node:fs"; const src=JSON.parse(fs.readFileSync("messages/source.json")); const ar=JSON.parse(fs.readFileSync("messages/ar-SA.json")); const en=JSON.parse(fs.readFileSync("messages/en.json")); const missing=src.filter(x=>!ar[x.text]||!en[x.text]); if(missing.length){console.error("Untranslated UI source strings:",missing.length);process.exit(1)} console.log("All",src.length,"source strings covered in both dictionaries.");'
+
       - name: Check TypeScript
         run: |
           npx prisma generate
@@ -59,6 +66,32 @@ jobs:
         run: npm run build
       - name: Check Worker packaging
         run: npx wrangler deploy --dry-run
+      - name: Verify locale and RTL/LTR SSR in Workerd
+        shell: bash
+        run: |
+          npx wrangler d1 migrations apply cardnexus-d1 --local
+          cat > .dev.vars <<EOF
+          APP_URL=http://localhost:8787
+          BETTER_AUTH_URL=http://localhost:8787
+          BETTER_AUTH_SECRET=ci-long-safe-secret-not-production-123456789
+          EOF
+          npm run preview -- --host 127.0.0.1 --port 8787 > /tmp/i18n-workerd.log 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for i in $(seq 1 35); do
+            if curl -sSf http://127.0.0.1:8787/ -o /tmp/ar-page.html; then ready=true; break; fi
+            sleep 2
+          done
+          if [ "$ready" != true ]; then tail -n 120 /tmp/i18n-workerd.log; exit 1; fi
+          grep -Fq 'lang="ar-SA"' /tmp/ar-page.html
+          grep -Fq 'dir="rtl"' /tmp/ar-page.html
+          curl -sSf -H 'Cookie: cn_locale=en' http://127.0.0.1:8787/ -o /tmp/en-page.html
+          grep -Fq 'lang="en"' /tmp/en-page.html
+          grep -Fq 'dir="ltr"' /tmp/en-page.html
+          curl -sSf -H 'Cookie: cn_locale=de' http://127.0.0.1:8787/ -o /tmp/de-page.html
+          grep -Fq 'lang="de"' /tmp/de-page.html
+          echo "Workerd SSR locale ar-SA RTL, en LTR and de LTR passed."
       - name: Commit catalogs, wrapped copy and coverage report
         if: success() && github.event_name == 'push'
         shell: bash
