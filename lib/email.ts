@@ -1,4 +1,4 @@
-import { env } from "cloudflare:workers";
+import { bindings as env } from "./cloudflare-bindings";
 
 // Workers cannot establish an SMTP socket; use Brevo transactional HTTPS API.
 // Never log API keys or user content. Sender domain must be verified in Brevo.
