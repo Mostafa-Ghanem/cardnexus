@@ -6,7 +6,11 @@
  */
 export function csvField(v: unknown): string {
   let s = v == null ? "" : String(v);
-  if (/^[=+\-@\t\r]/.test(s)) {
+  // International phone numbers ("+9665…") are harmless but would otherwise get a
+  // visible ' prefix. An invisible LRM mark keeps them as text in Excel instead.
+  if (/^\+[\d ]{6,20}$/.test(s)) {
+    s = `\u200E${s}`;
+  } else if (/^[=+\-@\t\r]/.test(s)) {
     s = `'${s}`;
   }
   if (s.includes(",") || s.includes('"') || s.includes("\n") || s.includes("\r")) {

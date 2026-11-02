@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import type { CardData } from "@/types";
 import { X, Loader2, CheckCircle2, ChevronDown } from "lucide-react";
 import { normalizeDigits } from "@/lib/utils";
+import { Turnstile, turnstileSiteKey } from "@/components/ui/turnstile";
 
 const STORAGE_KEY = "lead_visitor_v1";
 
@@ -31,7 +32,8 @@ function saveVisitor(v: Visitor) {
  * device so a second card takes one tap. Message is optional and collapsed.
  */
 export function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "", website: "" });
+  const [captcha, setCaptcha] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -59,13 +61,14 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
     if (!name) { setError("من فضلك اكتب اسمك."); return; }
     if (!phone && !email) { setError("أضف رقم الجوال أو البريد الإلكتروني حتى نتمكن من التواصل معك."); return; }
     if (phone && phone.replace(/\D/g, "").length < 7) { setError("رقم الجوال غير مكتمل."); return; }
+    if (turnstileSiteKey && !captcha) { setError("انتظر لحظة حتى يكتمل التحقق ثم أعد المحاولة."); return; }
     setError(null);
     setLoading(true);
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cardId: card.id, name, phone, email, message: form.message.trim() }),
+        body: JSON.stringify({ cardId: card.id, name, phone, email, message: form.message.trim(), website: form.website, turnstileToken: captcha || undefined }),
       });
       if (!res.ok) {
         const j = await res.json().catch(() => ({}));
@@ -115,7 +118,7 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
             <Button variant="outline" size="lg" className="mt-2 w-full" onClick={onClose}>إغلاق</Button>
           </div>
         ) : (
-          <form onSubmit={submit} className="space-y-3" noValidate>
+          <form onSubmit={submit} className="relative space-y-3" noValidate>
             <div>
               <Label htmlFor="lead-name">الاسم *</Label>
               <Input
@@ -181,6 +184,14 @@ export function LeadModal({ card, onClose }: { card: CardData; onClose: () => vo
                 <ChevronDown className="h-4 w-4" /> إضافة رسالة
               </button>
             )}
+
+            {/* Honeypot: invisible to people, tempting for bots */}
+            <div aria-hidden="true" className="absolute -start-[9999px] h-0 w-0 overflow-hidden">
+              <label htmlFor="lead-website">Website</label>
+              <input id="lead-website" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
+            </div>
+
+            <Turnstile onToken={setCaptcha} />
 
             {error && <p className="text-sm text-destructive" role="alert">{error}</p>}
 

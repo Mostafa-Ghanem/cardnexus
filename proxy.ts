@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "./lib/auth";
 import { rateLimit } from "./lib/rate-limit";
+import { rawClientIp } from "./lib/client-ip";
 
 // ─── Custom domain detection ──────────────────────────────────────────────────
 
@@ -62,10 +63,7 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/api/auth/sign-in") ||
     pathname.startsWith("/api/auth/sign-up")
   ) {
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
-      request.headers.get("x-real-ip") ??
-      "anon";
+    const ip = rawClientIp(request.headers) || "anon";
     if (!rateLimit({ key: `auth:${ip}`, max: 10, windowMs: 60_000 })) {
       return new NextResponse(
         JSON.stringify({ error: "محاولات دخول كثيرة. حاول مرة أخرى بعد دقيقة." }),

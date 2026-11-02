@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { z } from "zod";
+import { translationsInput } from "@/lib/card-i18n";
 
 // Shared auth guard – super_admin only
 async function requireAdmin() {
@@ -54,6 +55,8 @@ const updateSchema = z.object({
   avatarBorder: z.enum(["none", "ring", "glow"]).optional(),
   cardBackground: z.enum(["white", "tinted", "gradient"]).optional(),
   logoUrl: urlOrPath.optional().nullable(),
+  whatsapp: z.string().max(50).optional().nullable(),
+  translations: translationsInput,
 });
 
 function emptyToNull<T extends Record<string, unknown>>(obj: T): T {

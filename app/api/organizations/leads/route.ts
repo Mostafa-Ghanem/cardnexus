@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { canManageOrganization } from "@/lib/utils";
+import { LEAD_STATUS_LABELS, isLeadStatus } from "@/lib/lead-status";
 import { buildCsv } from "@/lib/csv";
 
 export async function GET(request: NextRequest) {
@@ -42,7 +43,7 @@ export async function GET(request: NextRequest) {
     });
 
     const csv = buildCsv(
-      ["التاريخ", "الاسم", "البريد الإلكتروني", "الهاتف", "الرسالة", "البطاقة", "عضو"],
+      ["التاريخ", "الاسم", "البريد الإلكتروني", "الهاتف", "الرسالة", "البطاقة", "عضو", "الحالة"],
       leads.map((l) => {
         const card = cardMap.get(l.cardId);
         const memberName = card ? (userNameMap.get(card.userId) ?? "") : "";
@@ -50,6 +51,7 @@ export async function GET(request: NextRequest) {
           l.createdAt.toLocaleDateString("ar-u-nu-latn"),
           l.name, l.email, l.phone, l.message,
           card?.name ?? "", memberName,
+          LEAD_STATUS_LABELS[isLeadStatus(l.status) ? l.status : "new"],
         ];
       })
     );

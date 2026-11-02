@@ -66,3 +66,20 @@ export function normalizeDigits(value: string): string {
     .replace(/[٠-٩]/g, (d) => String(d.charCodeAt(0) - 0x0660))
     .replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 0x06f0));
 }
+
+/**
+ * Digits for a wa.me link, or null when WhatsApp can't route the number.
+ * International formats (+966…, 00966…) always work. Local numbers (05…) are
+ * converted only when NEXT_PUBLIC_DEFAULT_COUNTRY_CODE is set (e.g. 966, 20).
+ */
+export function whatsappDigits(raw: string | null | undefined): string | null {
+  if (!raw) return null;
+  const s = normalizeDigits(raw).replace(/[\s\-().]/g, "");
+  const cc = (process.env.NEXT_PUBLIC_DEFAULT_COUNTRY_CODE ?? "").replace(/\D/g, "");
+  let digits: string;
+  if (s.startsWith("+")) digits = s.slice(1);
+  else if (s.startsWith("00")) digits = s.slice(2);
+  else if (cc && /^0\d{6,14}$/.test(s)) digits = cc + s.slice(1);
+  else return null;
+  return /^\d{8,15}$/.test(digits) ? digits : null;
+}

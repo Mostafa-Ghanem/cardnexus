@@ -34,16 +34,16 @@ export async function fireWebhooks(cardId: string, event: string, payload: objec
 
         const reqHeaders: Record<string, string> = {
           "Content-Type": "application/json",
-          "User-Agent":   "FreddieCard-Webhook/1.0",
-          "X-FreddieCard-Timestamp": timestamp,
-          "X-FreddieCard-Event":     event,
-          "X-FreddieCard-Delivery":  cryptoRandomId(),
+          "User-Agent":   "CardWebhook/1.0",
+          "X-Webhook-Timestamp": timestamp,
+          "X-Webhook-Event":     event,
+          "X-Webhook-Delivery":  cryptoRandomId(),
         };
 
         if (wh.secret) {
           const signed = `${timestamp}.${body}`;
           const sig = createHmac("sha256", wh.secret).update(signed).digest("hex");
-          reqHeaders["X-FreddieCard-Signature"] = `t=${timestamp},v1=${sig}`;
+          reqHeaders["X-Webhook-Signature"] = `t=${timestamp},v1=${sig}`;
         }
 
         await fetch(wh.url, {

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build --webpack",
+    "build": "prisma generate && node scripts/db-additive-migrate.cjs && next build --webpack",
+    "db:additive-migrate": "node scripts/db-additive-migrate.cjs",
     "start": "next start",
     "lint": "eslint app components lib --ext .ts,.tsx",
     "db:push": "prisma db push",
@@ -14,7 +15,9 @@
     "db:migrate": "prisma migrate deploy",
     "db:bootstrap-admin": "tsx scripts/bootstrap-admin.ts",
     "db:smoke": "tsx scripts/mysql-smoke.ts",
-    "build:hostinger:init": "node scripts/check-initial-setup.cjs && prisma db push --skip-generate && npm run build"
+    "build:hostinger:init": "node scripts/check-initial-setup.cjs && prisma db push --skip-generate && npm run build",
+    "test:e2e": "node tests/e2e/api.mjs",
+    "test:e2e:mobile": "node tests/e2e/mobile.cjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",

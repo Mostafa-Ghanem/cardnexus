@@ -7,8 +7,20 @@ import { Button } from "@/components/ui/button";
 import type { CardData } from "@/types";
 import { Download, Share2, QrCode, Wallet, X, Loader2, UserPlus, CalendarDays, Mail, MessageCircle } from "lucide-react";
 import { LeadModal } from "./LeadModal";
+import { whatsappDigits } from "@/lib/utils";
+import { hasEnglish, localizeCard, type CardLang } from "@/lib/card-i18n";
 
 const WALLET_ENABLED = process.env.NEXT_PUBLIC_WALLET_ENABLED === "true";
+
+/** Button labels for the visitor's chosen card language. */
+const UI = {
+  ar: { preparing: "جارٍ التجهيز…", save: "حفظ جهة الاتصال", whatsapp: "راسلني واتساب", book: "احجز موعدًا",
+        lead: "اترك بياناتك للتواصل", copied: "تم النسخ!", share: "مشاركة", qr: "رمز QR",
+        shareWa: "شارك بواتساب", email: "البريد", wallet: "حفظ في المحفظة" },
+  en: { preparing: "Preparing…", save: "Save contact", whatsapp: "Message me on WhatsApp", book: "Book a meeting",
+        lead: "Leave your details", copied: "Copied!", share: "Share", qr: "QR code",
+        shareWa: "Share on WhatsApp", email: "Email", wallet: "Save to Wallet" },
+} as const;
 
 interface Props {
   card: CardData;
@@ -19,6 +31,7 @@ interface Props {
 }
 
 interface TrackOpts {
+  linkLabel?: string;
   source?: string;
   utmSource?: string;
   utmMedium?: string;
@@ -52,6 +65,28 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
   const [shared, setShared] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [walletLoading, setWalletLoading] = useState(false);
+  const bilingual = hasEnglish(card.translations);
+  const [lang, setLang] = useState<CardLang>("ar");
+  const shown = localizeCard(card, lang);
+  const waNumber = whatsappDigits(card.whatsapp) ?? whatsappDigits(card.mobile);
+  const T = UI[lang];
+
+  // Open the English version for ?lang=en or non-Arabic browsers.
+  useEffect(() => {
+    if (!bilingual) return;
+    const q = new URLSearchParams(window.location.search).get("lang");
+    if (q === "en" || (!q && !navigator.language.toLowerCase().startsWith("ar"))) setLang("en");
+  }, [bilingual]);
+
+  function openWhatsApp() {
+    if (!waNumber) return;
+    const name = [card.firstName, card.lastName].filter(Boolean).join(" ");
+    const text = lang === "en"
+      ? `Hello ${shown.firstName ?? ""}, I got your digital business card.`
+      : `مرحبًا ${name}، وصلتني بطاقتك الرقمية وأود التواصل معك.`;
+    track(card.slug, "link_click", { linkLabel: "whatsapp", source });
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  }
 
   // Track view once on mount (deduplicated per session per card slug)
   useEffect(() => {
@@ -183,11 +218,30 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center py-6 sm:py-8 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
       {/* Card */}
       <div className="w-full max-w-sm">
-        <CardPreview card={card} />
+        {bilingual && (
+          <div className="mb-3 flex justify-center">
+            <div className="inline-flex rounded-full border border-border bg-white dark:bg-gray-900 p-1 text-xs font-medium" role="group" aria-label="اللغة">
+              {(["ar", "en"] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  aria-pressed={lang === l}
+                  className={`rounded-full px-3 py-1 transition-colors ${lang === l ? "text-white" : "text-muted-foreground"}`}
+                  style={lang === l ? { backgroundColor: card.primaryColor } : undefined}
+                >
+                  {l === "ar" ? "عربي" : "English"}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        <div dir={lang === "en" ? "ltr" : "rtl"} lang={lang}>
+          <CardPreview card={shown} />
+        </div>
       </div>
 
       {/* Action buttons */}
-      <div className="mt-6 w-full max-w-sm flex flex-col gap-2">
+      <div className="mt-6 w-full max-w-sm flex flex-col gap-2" dir={lang === "en" ? "ltr" : "rtl"}>
         <Button
           onClick={downloadVCard}
           className="w-full font-semibold shadow-sm"
@@ -196,16 +250,27 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           style={{ backgroundColor: card.primaryColor, borderColor: card.primaryColor }}
         >
           {downloading
-            ? <><Loader2 className="h-4 w-4 animate-spin" /> جارٍ التجهيز…</>
-            : <><Download className="h-4 w-4" /> حفظ جهة الاتصال</>
+            ? <><Loader2 className="h-4 w-4 animate-spin" /> {T.preparing}</>
+            : <><Download className="h-4 w-4" /> {T.save}</>
           }
         </Button>
+
+        {waNumber && (
+          <Button
+            onClick={openWhatsApp}
+            className="w-full font-semibold bg-[#25D366] hover:bg-[#1ebe5b] text-white"
+            size="lg"
+          >
+            <MessageCircle className="h-4 w-4" />
+            {T.whatsapp}
+          </Button>
+        )}
 
         {card.bookingUrl && (
           <Button asChild className="w-full" size="lg" style={{ backgroundColor: card.primaryColor }}>
             <a href={card.bookingUrl} target="_blank" rel="noopener noreferrer">
               <CalendarDays className="h-4 w-4" />
-              احجز موعدًا
+              {T.book}
             </a>
           </Button>
         )}
@@ -219,7 +284,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
             style={{ borderColor: card.primaryColor, color: card.primaryColor }}
           >
             <UserPlus className="h-4 w-4" />
-            اترك بياناتك للتواصل
+            {T.lead}
           </Button>
         )}
 
@@ -227,12 +292,12 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           {!card.hideShareButton && (
             <Button variant="outline" onClick={handleShare}>
               <Share2 className="h-4 w-4" />
-              {shared ? "تم النسخ!" : "مشاركة"}
+              {shared ? T.copied : T.share}
             </Button>
           )}
           <Button variant="outline" onClick={() => setShowQR(!showQR)}>
             <QrCode className="h-4 w-4" />
-            رمز QR
+            {T.qr}
           </Button>
         </div>
 
@@ -240,11 +305,11 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
           <div className="grid grid-cols-2 gap-2">
             <Button variant="outline" onClick={shareViaWhatsApp}>
               <MessageCircle className="h-4 w-4" />
-              WhatsApp
+              {T.shareWa}
             </Button>
             <Button variant="outline" onClick={shareViaEmail}>
               <Mail className="h-4 w-4" />
-              البريد
+              {T.email}
             </Button>
           </div>
         )}
@@ -253,7 +318,7 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
         <Button variant="outline" className="w-full" onClick={saveToWallet} disabled={walletLoading}>
           {walletLoading
             ? <><Loader2 className="h-4 w-4 animate-spin" /> جارٍ التحميل…</>
-            : <><Wallet className="h-4 w-4" /> حفظ في المحفظة</>
+            : <><Wallet className="h-4 w-4" /> {T.wallet}</>
           }
         </Button>
         )}

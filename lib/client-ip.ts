@@ -5,11 +5,22 @@
  * full addresses (DSGVO-friendly).
  */
 export function clientIp(req: { headers: Headers | { get(name: string): string | null } }): string {
-  const h = req.headers;
-  const xff = h.get("x-forwarded-for")?.split(",")[0]?.trim();
-  const real = h.get("x-real-ip")?.trim();
-  const raw = xff || real || "";
-  return anonymizeIp(raw);
+  return anonymizeIp(rawClientIp(req.headers));
+}
+
+/**
+ * Real client IP behind the hosting reverse proxy.
+ *
+ * SECURITY: the LEFT-most X-Forwarded-For entry is whatever the client sent and
+ * can be spoofed to bypass rate limits. Each trusted proxy appends the address
+ * it received the connection from, so we count TRUSTED_PROXY_HOPS entries from
+ * the RIGHT (default 1 = one reverse proxy in front of Node, as on Hostinger).
+ */
+export function rawClientIp(h: Headers | { get(name: string): string | null }): string {
+  const hops = Math.max(1, parseInt(process.env.TRUSTED_PROXY_HOPS ?? "1", 10) || 1);
+  const xff = (h.get("x-forwarded-for") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  if (xff.length > 0) return xff[Math.max(0, xff.length - hops)];
+  return h.get("x-real-ip")?.trim() ?? "";
 }
 
 /** Truncate IPv4 to /24 ("192.168.1.0") and IPv6 to /48. */

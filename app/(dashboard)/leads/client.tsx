@@ -1,58 +1,86 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Lead } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Mail, Phone, MessageSquare, Trash2, Download,
-  Search, UserCheck, CreditCard,
-} from "lucide-react";
+import { Download, Search, UserCheck, CreditCard } from "lucide-react";
+import { toast } from "sonner";
+import { buildCsv } from "@/lib/csv";
+import { LEAD_STATUSES, LEAD_STATUS_LABELS, isLeadStatus, type LeadStatus } from "@/lib/lead-status";
+import { LeadCard } from "./LeadCard";
 
 interface Props {
   leads: Lead[];
   hasCard: boolean;
 }
 
+type Filter = "all" | LeadStatus;
+
 export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
   const [leads, setLeads] = useState(initialLeads);
   const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState<Filter>("all");
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  const filtered = leads.filter(
-    (l) =>
-      l.name.toLowerCase().includes(query.toLowerCase()) ||
-      (l.email ?? "").toLowerCase().includes(query.toLowerCase()) ||
-      (l.phone ?? "").includes(query)
+  const statusOf = (l: Lead): LeadStatus => (isLeadStatus(l.status) ? l.status : "new");
+
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { all: leads.length };
+    for (const s of LEAD_STATUSES) c[s] = 0;
+    for (const l of leads) c[statusOf(l)]++;
+    return c;
+  }, [leads]);
+
+  const q = query.trim().toLowerCase();
+  const filtered = leads.filter((l) =>
+    (filter === "all" || statusOf(l) === filter) &&
+    (!q || l.name.toLowerCase().includes(q) || (l.email ?? "").toLowerCase().includes(q) ||
+      (l.phone ?? "").includes(q) || (l.note ?? "").toLowerCase().includes(q))
   );
 
   async function deleteLead(id: string) {
     setDeletingId(id);
     try {
-      await fetch("/api/leads/my", {
+      const res = await fetch("/api/leads/my", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
-      setLeads((prev) => prev.filter((l) => l.id !== id));
+      if (res.ok) setLeads((prev) => prev.filter((l) => l.id !== id));
+      else toast.error("تعذّر الحذف");
     } finally {
       setDeletingId(null);
     }
   }
 
+  async function updateLead(id: string, patch: Partial<Pick<Lead, "status" | "note">>): Promise<boolean> {
+    const before = leads;
+    setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, ...patch } : l)));
+    const res = await fetch("/api/leads/my", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, ...patch }),
+    }).catch(() => null);
+    if (!res?.ok) {
+      setLeads(before);
+      toast.error("تعذّر الحفظ");
+      return false;
+    }
+    return true;
+  }
+
   function exportCsv() {
-    const header = "الاسم,البريد الإلكتروني,الجوال,الرسالة,التاريخ";
-    const rows = leads.map((l) =>
-      [
-        `"${l.name}"`,
-        `"${l.email ?? ""}"`,
-        `"${l.phone ?? ""}"`,
-        `"${(l.message ?? "").replace(/"/g, '""')}"`,
+    // buildCsv neutralises spreadsheet formulas typed by visitors (CSV injection)
+    // and adds a UTF-8 BOM so Excel shows Arabic correctly.
+    const csv = buildCsv(
+      ["الاسم", "البريد الإلكتروني", "الجوال", "الرسالة", "الحالة", "ملاحظة", "التاريخ"],
+      filtered.map((l) => [
+        l.name, l.email, l.phone, l.message, LEAD_STATUS_LABELS[statusOf(l)], l.note,
         new Date(l.createdAt).toLocaleDateString("ar-u-nu-latn"),
-      ].join(",")
+      ])
     );
-    const csv = [header, ...rows].join("\n");
-    const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -66,150 +94,70 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
       <div className="flex flex-col items-center justify-center py-20 text-center gap-3">
         <CreditCard className="h-12 w-12 text-muted-foreground/40" />
         <p className="font-semibold text-muted-foreground">لم تنشئ بطاقة بعد</p>
-        <p className="text-sm text-muted-foreground">
-          أنشئ بطاقتك أولًا لتبدأ في جمع العملاء المحتملين.
-        </p>
-        <Button asChild variant="outline" className="mt-2">
-          <a href="/card">إنشاء بطاقة</a>
-        </Button>
+        <p className="text-sm text-muted-foreground">أنشئ بطاقتك أولًا لتبدأ في جمع العملاء المحتملين.</p>
+        <Button asChild variant="outline" className="mt-2"><a href="/card">إنشاء بطاقة</a></Button>
       </div>
     );
   }
 
+  const chips: Filter[] = ["all", ...LEAD_STATUSES];
+
   return (
     <div className="space-y-4">
-      {/* Stats + actions bar */}
       <div className="flex items-center gap-3 flex-wrap">
         <div className="flex items-center gap-2 bg-primary/5 rounded-lg px-4 py-2.5">
           <UserCheck className="h-4 w-4 text-primary" />
           <span className="font-semibold text-sm">{leads.length}</span>
-          <span className="text-sm text-muted-foreground">
-            {leads.length === 1 ? "عميل محتمل" : "عملاء محتملون"}
-          </span>
+          <span className="text-sm text-muted-foreground">{leads.length === 1 ? "عميل محتمل" : "عملاء محتملون"}</span>
         </div>
-
         <div className="flex-1 min-w-[200px] relative">
           <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="بحث…"
-            className="ps-9"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+          <Input placeholder="بحث بالاسم أو الجوال أو الملاحظة…" className="ps-9" value={query} onChange={(e) => setQuery(e.target.value)} />
         </div>
-
         {leads.length > 0 && (
           <Button variant="outline" size="sm" onClick={exportCsv}>
-            <Download className="h-4 w-4" />
-            تصدير CSV
+            <Download className="h-4 w-4" /> تصدير CSV
           </Button>
         )}
       </div>
 
-      {/* Empty state */}
+      {leads.length > 0 && (
+        <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+          {chips.map((c) => (
+            <button
+              key={c}
+              onClick={() => setFilter(c)}
+              className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                filter === c ? "border-primary bg-primary text-primary-foreground" : "border-border hover:bg-accent"
+              }`}
+            >
+              {c === "all" ? "الكل" : LEAD_STATUS_LABELS[c]} <span className="opacity-70">({counts[c] ?? 0})</span>
+            </button>
+          ))}
+        </div>
+      )}
+
       {leads.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center gap-3 border-2 border-dashed rounded-2xl">
           <UserCheck className="h-12 w-12 text-muted-foreground/40" />
           <p className="font-semibold text-muted-foreground">لا يوجد عملاء محتملون بعد</p>
-          <p className="text-sm text-muted-foreground max-w-xs">
-            عندما يضغط أحد على «اترك بياناتك للتواصل» في بطاقتك سيظهر هنا.
-          </p>
+          <p className="text-sm text-muted-foreground max-w-xs">عندما يضغط أحد على «اترك بياناتك للتواصل» في بطاقتك سيظهر هنا.</p>
         </div>
       ) : filtered.length === 0 ? (
-        <p className="text-center text-muted-foreground py-12">لا توجد نتائج لـ «{query}»</p>
+        <p className="text-center text-muted-foreground py-12">لا توجد نتائج مطابقة.</p>
       ) : (
         <div className="space-y-3">
           {filtered.map((lead) => (
             <LeadCard
               key={lead.id}
               lead={lead}
-              onDelete={() => deleteLead(lead.id)}
               deleting={deletingId === lead.id}
+              onDelete={() => deleteLead(lead.id)}
+              onUpdate={(patch) => updateLead(lead.id, patch)}
             />
           ))}
         </div>
       )}
-    </div>
-  );
-}
-
-function LeadCard({
-  lead, onDelete, deleting,
-}: {
-  lead: Lead; onDelete: () => void; deleting: boolean;
-}) {
-  const [showFull, setShowFull] = useState(false);
-  const date = new Date(lead.createdAt);
-
-  return (
-    <div className="bg-card border border-border rounded-xl p-4 flex gap-4 items-start">
-      {/* Avatar */}
-      <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 font-semibold text-primary text-sm">
-        {lead.name.charAt(0).toUpperCase()}
-      </div>
-
-      {/* Info */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-start justify-between gap-2 flex-wrap">
-          <p className="font-semibold text-sm">{lead.name}</p>
-          <span className="text-xs text-muted-foreground whitespace-nowrap">
-            {date.toLocaleDateString("ar-u-nu-latn", { day: "2-digit", month: "short", year: "numeric" })}{" "}
-            {date.toLocaleTimeString("ar-u-nu-latn", { hour: "2-digit", minute: "2-digit" })}
-          </span>
-        </div>
-
-        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5">
-          {lead.email && (
-            <a href={`mailto:${lead.email}`} dir="ltr" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
-              <Mail className="h-3 w-3" />
-              {lead.email}
-            </a>
-          )}
-          {lead.phone && (
-            <>
-              <a href={`tel:${lead.phone}`} dir="ltr" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
-                <Phone className="h-3 w-3" />
-                {lead.phone}
-              </a>
-              <a
-                href={`https://wa.me/${lead.phone.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-medium text-emerald-600 hover:underline"
-              >
-                واتساب
-              </a>
-            </>
-          )}
-        </div>
-
-        {lead.message && (
-          <div className="mt-2">
-            <button
-              className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setShowFull((v) => !v)}
-            >
-              <MessageSquare className="h-3 w-3" />
-              {showFull ? "إخفاء الرسالة" : "عرض الرسالة"}
-            </button>
-            {showFull && (
-              <p className="mt-1.5 text-sm bg-muted rounded-lg px-3 py-2 text-muted-foreground leading-relaxed">
-                {lead.message}
-              </p>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Delete */}
-      <button
-        onClick={onDelete}
-        disabled={deleting}
-        className="text-muted-foreground hover:text-destructive transition-colors p-1 rounded hover:bg-destructive/10 shrink-0"
-        title="حذف"
-      >
-        <Trash2 className="h-4 w-4" />
-      </button>
     </div>
   );
 }

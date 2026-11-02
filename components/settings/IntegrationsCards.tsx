@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { GoogleSheetsGuide } from "./GoogleSheetsGuide";
 import { Badge } from "@/components/ui/badge";
 import {
   Webhook as WebhookIcon, KeyRound, Users, Copy, Check, Trash2, Loader2,
@@ -90,7 +91,7 @@ export function WebhooksCard() {
             <CardTitle className="text-base">Webhooks</CardTitle>
             <CardDescription>
               استقبل طلبات HTTP POST فورًا عند وصول عملاء محتملين جدد من بطاقاتك.
-              التوقيع عبر <code className="text-xs">X-FreddieCard-Signature</code> (HMAC-SHA256).
+              التوقيع عبر <code className="text-xs">X-Webhook-Signature</code> (HMAC-SHA256).
             </CardDescription>
           </div>
           <Button variant="outline" size="sm" onClick={() => setShowForm((v) => !v)}>
@@ -100,6 +101,7 @@ export function WebhooksCard() {
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
+        <GoogleSheetsGuide />
         {showForm && (
           <form onSubmit={create} className="rounded-lg border border-border p-4 space-y-3 bg-muted/30">
             <div className="grid sm:grid-cols-2 gap-3">
@@ -232,8 +234,10 @@ export function ApiKeysCard() {
           <div className="flex-1">
             <CardTitle className="text-base">مفاتيح API</CardTitle>
             <CardDescription>
-              استخدم المفاتيح لربط أنظمة خارجية عبر HTTP API. المفتاح يظهر مرة واحدة فقط
-              عند إنشائه.
+              اقرأ عملاءك المحتملين من أي نظام خارجي (CRM، Zapier، Make). المفتاح يظهر مرة واحدة فقط عند إنشائه.
+              <code dir="ltr" className="mt-2 block rounded bg-muted px-2 py-1 text-[11px] text-start">
+                GET /api/v1/leads?since=…&amp;status=new<br />Authorization: Bearer fk_…
+              </code>
             </CardDescription>
           </div>
           <Button variant="outline" size="sm" onClick={() => setShowForm((v) => !v)}>
@@ -293,7 +297,7 @@ export function ApiKeysCard() {
                     {k.prefix}…
                     {k.lastUsedAt && (
                       <span className="ms-2">
-                        zuletzt verwendet: {new Date(k.lastUsedAt).toLocaleDateString("ar-u-nu-latn")}
+                        آخر استخدام: {new Date(k.lastUsedAt).toLocaleDateString("ar-u-nu-latn")}
                       </span>
                     )}
                   </p>

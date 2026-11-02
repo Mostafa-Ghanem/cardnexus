@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - "develop/hostinger-saas"
+      - "release/**"
+      - "feature/**"
   pull_request:
     branches:
       - "develop/hostinger-saas"
+      - "release/**"
 
 concurrency:
   group: hostinger-mysql-${{ github.ref }}
@@ -42,6 +45,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # needed to read the previous schema for the migration test
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -50,8 +55,16 @@ jobs:
         run: npm ci
       - name: Validate Prisma schema
         run: npx prisma validate
-      - name: Prepare test database
-        run: npx prisma db push --skip-generate
+      - name: Prepare test database with the PREVIOUS schema (like production)
+        run: |
+          git show 671b6dc:prisma/schema.prisma > /tmp/old-schema.prisma
+          npx prisma db push --skip-generate --schema /tmp/old-schema.prisma
+      - name: Add-only migration brings it to the current schema
+        run: |
+          npx prisma generate
+          node scripts/db-additive-migrate.cjs
+          node scripts/db-additive-migrate.cjs
+          npx prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --exit-code
       - name: Generate Prisma Client
         run: npx prisma generate
       - name: Exercise secure admin bootstrap
@@ -93,3 +106,12 @@ jobs:
           dashboard_code="$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/dashboard)"
           test "$dashboard_code" = "307" || test "$dashboard_code" = "302"
           echo "Public pages respond and unauthenticated dashboard is redirected."
+          kill "$app_pid" >/dev/null 2>&1 || true
+      - name: End-to-end API checks
+        shell: bash
+        run: |
+          npm run start > /tmp/cardnexus-e2e.log 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" >/dev/null 2>&1 || true' EXIT
+          for i in $(seq 1 35); do curl --silent --fail http://localhost:3000/ -o /dev/null && break; sleep 1; done
+          BASE_URL=http://localhost:3000 node tests/e2e/api.mjs || { tail -50 /tmp/cardnexus-e2e.log; exit 1; }

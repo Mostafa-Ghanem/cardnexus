@@ -11,6 +11,8 @@ import { ImageUpload } from "@/components/ui/image-upload";
 import { CardPreview } from "./CardPreview";
 import { DesignTab } from "./editor/DesignTab";
 import type { CardData, CustomLink, DesignPolicy } from "@/types";
+import { EnglishTab } from "./editor/EnglishTab";
+import { whatsappDigits } from "@/lib/utils";
 import { Plus, Trash2, Save, Eye, GripVertical } from "lucide-react";
 import { toast } from "@/components/ui/sonner";
 
@@ -146,6 +148,7 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
             <TabsTrigger value="social">السوشيال</TabsTrigger>
             <TabsTrigger value="design">التصميم</TabsTrigger>
             <TabsTrigger value="links">الروابط</TabsTrigger>
+            <TabsTrigger value="english">English</TabsTrigger>
           </TabsList>
 
           {/* Profile */}
@@ -252,6 +255,15 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                 <Label>الجوال</Label>
                 <Input value={card.mobile ?? ""} onChange={(e) => update("mobile", e.target.value || null)} placeholder="+966 50 123 4567" type="tel" inputMode="tel" autoComplete="tel" />
               </div>
+            </div>
+            <div className="space-y-1.5">
+              <Label>واتساب</Label>
+              <Input value={card.whatsapp ?? ""} onChange={(e) => update("whatsapp", e.target.value || null)} placeholder="+966 50 123 4567" type="tel" inputMode="tel" dir="ltr" />
+              <p className={`text-xs ${card.whatsapp && !whatsappDigits(card.whatsapp) ? "text-destructive" : "text-muted-foreground"}`}>
+                {card.whatsapp && !whatsappDigits(card.whatsapp)
+                  ? "اكتب الرقم بالصيغة الدولية مع مفتاح الدولة، مثل ‎+966501234567"
+                  : "يظهر زر «راسلني واتساب» على بطاقتك. إذا تركته فارغًا نستخدم رقم الجوال (بالصيغة الدولية)."}
+              </p>
             </div>
             <div className="space-y-1.5">
               <Label>فاكس</Label>
@@ -372,6 +384,9 @@ export function CardEditor({ initialCard, isNew = false, policy = OPEN_POLICY, s
                 <Plus className="h-4 w-4" /> إضافة رابط
               </Button>
             )}
+          </TabsContent>
+          <TabsContent value="english">
+            <EnglishTab value={card.translations ?? null} onChange={(v) => update("translations", v)} />
           </TabsContent>
         </Tabs>
 

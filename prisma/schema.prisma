@@ -36,6 +36,8 @@ model user {
 
   // Lead notification preference
   leadNotification String @default("off") // off | instant | daily
+  // Telegram chat that receives instant lead alerts (linked via the bot).
+  telegramChatId   String?
 
   // Referral
   referralCode  String?  @unique
@@ -67,6 +69,8 @@ model twoFactor {
   secret      String
   backupCodes String @db.Text
   verified    Boolean @default(true)
+  // Required by better-auth 1.6.22 (counts wrong TOTP codes). Added additively.
+  failedVerificationCount Int @default(0)
 
   @@index([secret])
   @@index([userId])
@@ -238,6 +242,11 @@ model Card {
   // Directory
   showInTeamDirectory Boolean @default(true)
 
+  // WhatsApp number for the "message me" button (falls back to mobile)
+  whatsapp    String?
+  // Second-language version, JSON: {"en": {firstName,lastName,title,company,department,bio,address}}
+  translations String? @db.Text
+
   // Booking
   bookingUrl  String? @db.Text // appointment booking URL (Cal.com, Calendly, etc.)
 
@@ -293,6 +302,10 @@ model Lead {
   phone     String?
   message   String? @db.Text
   createdAt DateTime @default(now())
+
+  // Follow-up pipeline: new | contacted | interested | won | lost
+  status    String   @default("new")
+  note      String?  @db.Text
 
   @@index([cardId])
 }

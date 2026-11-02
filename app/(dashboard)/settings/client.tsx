@@ -14,6 +14,7 @@ import {
 } from "./OrgSettingsCards";
 import { SecurityCard } from "@/components/settings/SecurityCard";
 import { AccountActions } from "@/components/settings/AccountActions";
+import { TelegramCard } from "@/components/settings/TelegramCard";
 import { WebhooksCard, ApiKeysCard, ReferralsCard } from "@/components/settings/IntegrationsCards";
 
 interface OrgSettings {
@@ -218,6 +219,9 @@ export function SettingsClientPage({ user, org }: Props) {
 
       {/* Account actions (password, delete, export) */}
       <AccountActions />
+
+      {/* Instant lead alerts on Telegram (hidden when no bot configured) */}
+      <TelegramCard />
 
       {/* Lead notifications */}
       <Card>

@@ -41,6 +41,7 @@ RUN mkdir -p /tmp/builddb && \
     cp /tmp/builddb/app.db /app/prisma/base.db
 
 ENV DATABASE_URL="file:/tmp/builddb/app.db"
+ENV SKIP_DB_MIGRATIONS=true
 RUN --mount=type=cache,id=nextjs,target=/app/.next/cache \
     npm run build
 

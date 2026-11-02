@@ -65,6 +65,9 @@ export interface CardData {
   showQrOnCard?: boolean;
   showInTeamDirectory?: boolean;
   bookingUrl?: string | null;
+  whatsapp?: string | null;
+  /** JSON string, see lib/card-i18n.ts */
+  translations?: string | null;
   shadowStyle?: string | null;
   socialStyle?: string | null;
   avatarBorder?: string | null;
@@ -258,6 +261,8 @@ export interface Lead {
   phone?: string | null;
   message?: string | null;
   createdAt: string; // ISO string after serialization
+  status?: string;
+  note?: string | null;
 }
 
 export interface ApiResponse<T = unknown> {

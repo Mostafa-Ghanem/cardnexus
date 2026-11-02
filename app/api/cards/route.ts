@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { headers } from "next/headers";
 import { nanoid } from "nanoid";
 import { z } from "zod";
+import { translationsInput } from "@/lib/card-i18n";
 import { hashPassword } from "@/lib/password-hash";
 import { getPlanFeatures, effectivePlan } from "@/lib/plans";
 
@@ -86,6 +87,8 @@ const CardPatch = z.object({
 
   // booking
   bookingUrl:          z.string().max(500).optional().nullable(),
+  whatsapp:            z.string().max(50).optional().nullable(),
+  translations:        translationsInput,
 
   // expiry & password protection
   expiresAt:           z.string().datetime().optional().nullable(),

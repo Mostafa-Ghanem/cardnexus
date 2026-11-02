@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { whatsappDigits } from "@/lib/utils";
 
 // ── Transport ──────────────────────────────────────────────────────────────
 function createTransport() {
@@ -192,7 +193,7 @@ export async function sendLeadNotificationEmail({
 }) {
   const rows = [
     leadEmail ? `<tr><td style="color:#6b7280;padding:4px 0;width:80px;">البريد الإلكتروني</td><td style="padding:4px 0;"><a href="mailto:${esc(leadEmail)}" style="color:#0f172a;">${esc(leadEmail)}</a></td></tr>` : "",
-    leadPhone ? `<tr><td style="color:#6b7280;padding:4px 0;">الجوال</td><td style="padding:4px 0;" dir="ltr"><a href="tel:${esc(leadPhone)}" style="color:#0f172a;">${esc(leadPhone)}</a> · <a href="https://wa.me/${esc(leadPhone.replace(/\D/g, ""))}" style="color:#16a34a;">WhatsApp</a></td></tr>` : "",
+    leadPhone ? `<tr><td style="color:#6b7280;padding:4px 0;">الجوال</td><td style="padding:4px 0;" dir="ltr"><a href="tel:${esc(leadPhone)}" style="color:#0f172a;">${esc(leadPhone)}</a>${whatsappDigits(leadPhone) ? ` · <a href="https://wa.me/${whatsappDigits(leadPhone)}" style="color:#16a34a;">WhatsApp</a>` : ""}</td></tr>` : "",
     leadMessage ? `<tr><td style="color:#6b7280;padding:4px 0;vertical-align:top;">الرسالة</td><td style="padding:4px 0;">${esc(leadMessage)}</td></tr>` : "",
   ].filter(Boolean).join("");
 

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { LEAD_STATUS_LABELS, isLeadStatus } from "@/lib/lead-status";
 import { buildCsv } from "@/lib/csv";
 
 export async function GET() {
@@ -22,7 +23,7 @@ export async function GET() {
   });
 
   const csv = buildCsv(
-    ["التاريخ", "الاسم", "البريد الإلكتروني", "الهاتف", "الرسالة", "البطاقة"],
+    ["التاريخ", "الاسم", "البريد الإلكتروني", "الهاتف", "الرسالة", "البطاقة", "الحالة", "ملاحظة"],
     leads.map((l) => [
       l.createdAt.toLocaleDateString("ar-u-nu-latn"),
       l.name,
@@ -30,6 +31,8 @@ export async function GET() {
       l.phone,
       l.message,
       cardNameMap.get(l.cardId) ?? "",
+      LEAD_STATUS_LABELS[isLeadStatus(l.status) ? l.status : "new"],
+      l.note,
     ])
   );
 

@@ -27,17 +27,28 @@ export async function GET(request: NextRequest) {
   const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "20"), 100);
   const search = url.searchParams.get("search") ?? "";
 
+  // SECURITY: only super admins see everyone; org managers see their own org.
+  // Never let an empty organizationId turn into "no filter" (that leaked all users).
+  if (!isSuperAdmin(role) && (!canManageOrganization(role) || !orgId)) {
+    return NextResponse.json({ error: "ليست لديك صلاحية" }, { status: 403 });
+  }
+
   const orgFilter = url.searchParams.get("organizationId");
   const where = isSuperAdmin(role)
     ? orgFilter
       ? { organizationId: orgFilter }
       : search ? { OR: [{ name: { contains: search } }, { email: { contains: search } }] } : {}
-    : { organizationId: orgId ?? undefined };
+    : { organizationId: orgId as string };
 
   const [users, total] = await Promise.all([
     db.user.findMany({
       where,
-      include: { cards: { orderBy: [{ isDefault: "desc" }], take: 1, select: { slug: true, isPublic: true } } },
+      // Explicit allow-list: never return billing IDs or other internal fields.
+      select: {
+        id: true, name: true, email: true, image: true, role: true, plan: true,
+        planExpiresAt: true, bannedAt: true, organizationId: true, createdAt: true,
+        cards: { orderBy: [{ isDefault: "desc" }], take: 1, select: { slug: true, isPublic: true } },
+      },
       skip: (page - 1) * limit,
       take: limit,
       orderBy: { createdAt: "desc" },
@@ -103,6 +114,10 @@ export async function PATCH(request: NextRequest) {
       planExpiresAt: data.planExpiresAt ? new Date(data.planExpiresAt) : data.planExpiresAt,
       bannedAt: data.bannedAt ? new Date(data.bannedAt) : data.bannedAt,
     },
+    select: {
+      id: true, name: true, email: true, role: true, plan: true,
+      planExpiresAt: true, bannedAt: true, organizationId: true,
+    },
   });
 
   // Immediately kill all active sessions when banning a user
@@ -166,10 +181,7 @@ export async function DELETE(request: NextRequest) {
     await db.user.delete({ where: { id: userId } });
   } catch (e) {
     console.error("[DELETE /api/users] db.user.delete failed:", e);
-    return NextResponse.json(
-      { error: e instanceof Error ? e.message : String(e) },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "تعذّر حذف المستخدم" }, { status: 500 });
   }
 
   auditLog("user.delete", session.user.id, {

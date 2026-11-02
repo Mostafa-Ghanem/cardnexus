@@ -88,7 +88,7 @@ export const auth = betterAuth({
     // TOTP-based 2FA. The plugin manages /two-factor/* endpoints,
     // a `twoFactor` table and the `user.twoFactorEnabled` field.
     twoFactor({
-      issuer: process.env.APP_NAME ?? "FreddieCard",
+      issuer: process.env.APP_NAME ?? process.env.NEXT_PUBLIC_APP_NAME ?? "CardNexus",
       // Force the user to verify a TOTP code before enabling 2FA —
       // protects against typos in the authenticator setup.
       skipVerificationOnEnable: false,
