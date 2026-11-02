@@ -69,3 +69,24 @@ jobs:
         run: npm run lint
       - name: Next.js webpack production build
         run: npm run build
+      - name: Smoke test Next.js HTTP routes
+        shell: bash
+        run: |
+          npm run start > /tmp/cardnexus-app.log 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" >/dev/null 2>&1 || true' EXIT
+          ready=false
+          for i in $(seq 1 35); do
+            if curl --silent --fail http://127.0.0.1:3000/ --output /dev/null; then
+              ready=true
+              break
+            fi
+            sleep 1
+          done
+          if [ "$ready" != true ]; then
+            cat /tmp/cardnexus-app.log
+            exit 1
+          fi
+          curl --fail --silent http://127.0.0.1:3000/login --output /dev/null
+          curl --fail --silent http://127.0.0.1:3000/register --output /dev/null
+          echo "Home, login and register pages responded successfully."
