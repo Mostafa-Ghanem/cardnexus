@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { betterFetch } from "@better-fetch/fetch";
-import type { Session } from "./lib/auth";
+import { auth } from "./lib/auth";
 import { rateLimit } from "./lib/rate-limit";
 
 // ─── Custom domain detection ──────────────────────────────────────────────────
@@ -89,13 +88,9 @@ export async function proxy(request: NextRequest) {
   const isAuth   = AUTH_PATHS.some((p) => pathname.startsWith(p));
   const isAdmin  = ADMIN_PATHS.some((p) => pathname.startsWith(p));
 
-  // Always use the internal URL so we don't get ERR_SSL_WRONG_VERSION_NUMBER
-  // when the container tries to fetch itself through the external TLS proxy.
-  const internalBase = `http://localhost:${process.env.PORT ?? 3000}`;
-  const { data: session } = await betterFetch<Session>("/api/auth/get-session", {
-    baseURL: internalBase,
-    headers: { cookie: request.headers.get("cookie") ?? "" },
-  });
+  // Call Better Auth directly: Hostinger's Node process port is not fixed,
+  // and a server-side HTTP fetch to localhost:3000 fails in managed hosting.
+  const session = await auth.api.getSession({ headers: request.headers });
 
   const isAuthenticated = !!session?.user;
 
