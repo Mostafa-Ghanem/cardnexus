@@ -7,86 +7,26 @@ Generated from the German source; legal documents and user content are excluded.
 - JSX text: 566
 - Attribute strings: 88
 - UI object properties: 134
-- Strings missing either Arabic or English: 651
+- Strings missing either Arabic or English: 591
 - JSX text wrapped in this run: 0
 
 ## Pending translations (first 200)
 
-- -Header. — app/(dashboard)/custom-domain/page.tsx
-- -Plan — components/plan/UpgradePrompt.tsx
-- – Digitale Visitenkarten — app/(admin)/admin/settings/client.tsx
-- — Kein Admin — — app/(admin)/admin/organizations/client.tsx
-- — Keine — — app/(admin)/admin/users/client.tsx
-- , hier mit Klicks aus dem Redirect-Counter. — components/analytics/AnalyticsOverview.tsx
-- , um die Reihenfolge zu ändern. — components/card/CardEditor.tsx
-- . Jeder Link mit UTM-Parametern erscheint hier — auch ohne eigenen Kampagnen-Eintrag. — components/analytics/AnalyticsOverview.tsx
-- . Optionale Felder: — app/(dashboard)/team/import/client.tsx
-- „Digitale Visitenkarte"-Button — app/(dashboard)/card/signature/client.tsx
-- (bis — app/(dashboard)/upgrade/page.tsx
-- (HMAC-SHA256). — components/settings/IntegrationsCards.tsx
-- (Ich) — app/(admin)/admin/users/client.tsx
-- (kein Foto hinterlegt) — app/(dashboard)/card/signature/client.tsx
-- (Mobil) — components/card/templates/Classic.tsx
-- (oder — app/(dashboard)/team/import/client.tsx
-- (optional) — app/(dashboard)/settings/OrgSettingsCards.tsx
-- (Pro) — components/card/CardEditor.tsx
-- (vCard) — components/card/CardEditor.tsx
-- (z.B. rechtlicher Hinweis) — app/(dashboard)/card/signature/client.tsx
-- &copy; — app/page.tsx
-- &ldquo; — components/card/templates/Retro.tsx
-- &rdquo; — components/card/templates/Retro.tsx
 - © 2025 Meine Firma. Alle Rechte vorbehalten. — app/(admin)/admin/settings/client.tsx
-- ← Zurück — app/(admin)/admin/access-log/client.tsx
-- ✓ Zahlung erfolgreich! Dein Plan wurde aktualisiert. — app/(dashboard)/upgrade/page.tsx
-- €/Monat bei Jahreszahlung — app/pricing/page.tsx
-- 2FA aktivieren — components/settings/SecurityCard.tsx
-- 2FA aktiviert ✓ — components/settings/SecurityCard.tsx
-- 2FA deaktivieren — components/settings/SecurityCard.tsx
-- A-Eintrag — app/(dashboard)/custom-domain/page.tsx
-- abgelaufen — components/analytics/AnalyticsOverview.tsx
-- Abgelaufen — app/(dashboard)/campaigns/client.tsx
-- Ablaufdatum (optional) — app/(dashboard)/campaigns/client.tsx
 - Ablaufdatum setzen — app/(admin)/admin/users/client.tsx
-- Ablehnen — app/(dashboard)/team/client.tsx
 - Ablehnungsgrund (optional) — app/(dashboard)/team/client.tsx
 - Abteilungsname z.B. Marketing — app/(dashboard)/settings/OrgSettingsCards.tsx
-- Abteilungsregeln — app/(dashboard)/settings/OrgSettingsCards.tsx
-- Access Log — app/(admin)/admin/access-log/client.tsx
-- Account — app/(dashboard)/settings/client.tsx
-- Account endgültig löschen — components/settings/AccountActions.tsx
-- Account löschen — components/settings/AccountActions.tsx
-- Account und Organisations-Einstellungen — app/(dashboard)/settings/client.tsx
-- Account wirklich löschen? — components/settings/AccountActions.tsx
 - ACME GmbH — app/(admin)/admin/organizations/client.tsx
 - acme-gmbh — app/(admin)/admin/organizations/client.tsx
 - acme.de — app/(admin)/admin/organizations/client.tsx
-- Admin — app/(admin)/admin/page.tsx
-- Administrator — app/(admin)/admin/organizations/client.tsx
 - Adr — components/card/templates/Retro.tsx
-- Adresse — components/card/CardEditor.tsx
-- Aktionen — app/(admin)/admin/users/client.tsx
-- Aktiv — components/settings/IntegrationsCards.tsx
-- Aktivieren — components/settings/SecurityCard.tsx
 - Aktualisiert — app/(dashboard)/team/import/client.tsx
-- Aktuell — app/(dashboard)/upgrade/page.tsx
-- Aktuell: — app/(dashboard)/upgrade/page.tsx
-- Aktueller Plan — app/(dashboard)/upgrade/UpgradeButtons.tsx
-- Aktuelles Passwort — components/settings/AccountActions.tsx
 - Aktuelles Passwort falsch oder neues Passwort zu schwach. — components/settings/AccountActions.tsx
-- Akzentfarbe — app/(dashboard)/card/signature/client.tsx
-- Alle Benutzer — app/(admin)/admin/users/page.tsx
-- Alle Karten — app/(admin)/admin/cards/[slug]/page.tsx
-- Alle Pläne inkl. DSGVO-konformer Datenspeicherung in Deutschland. — app/page.tsx
-- Als Klartext kopieren — app/(dashboard)/card/signature/client.tsx
 - Als Standard — components/card/CardSwitcher.tsx
-- Als Super-Admin verwaltest du alle Nutzer und Organisationen im Admin-Panel. Das Team-Tab ist für Nutzer innerhalb einer Organisation gedacht. — app/(dashboard)/team/page.tsx
 - Amazon: NFC-Tags (NTAG213) — app/(dashboard)/nfc/page.tsx
 - An: — app/(dashboard)/card/signature/client.tsx
-- Analytics — app/(dashboard)/analytics/page.tsx
 - Analytics ansehen — app/(dashboard)/dashboard/page.tsx
 - Andere Sessions wurden abgemeldet. — components/settings/AccountActions.tsx
-- Änderung abgelehnt — components/card/ApprovalBanner.tsx
-- Änderungen aktiv — Browser-Tab neu laden zum Prüfen — app/(admin)/admin/settings/client.tsx
 - Android: — app/(dashboard)/nfc/page.tsx
 - Anlegen — components/settings/IntegrationsCards.tsx
 - Anleitung für deinen E-Mail-Client — app/(dashboard)/card/signature/client.tsx
@@ -212,6 +152,66 @@ Generated from the German source; legal documents and user content are excluded.
 - E-Mail-Signatur — app/(dashboard)/card/signature/page.tsx
 - Eckenradius — components/card/editor/DesignTab.tsx
 - Eigene Domain (Pro) — components/card/editor/DomainSection.tsx
+- Eigene Domain einrichten — app/(dashboard)/custom-domain/page.tsx
+- Eigene Links werden als Buttons auf der Karte angezeigt (max. 5). Ziehe am Griff — components/card/CardEditor.tsx
+- Eingefroren seit — app/(dashboard)/team/page.tsx
+- Eingeladen — app/(dashboard)/team/client.tsx
+- Einladen — components/team/InviteModal.tsx
+- Einladung erstellt! — components/team/InviteModal.tsx
+- Einmal täglich – nur wenn neue Leads vorliegen. — app/(dashboard)/settings/client.tsx
+- Einträge — app/(admin)/admin/access-log/client.tsx
+- Empfehlungen — components/settings/IntegrationsCards.tsx
+- Empfohlen: quadratisch, mind. 32×32 px (PNG, ICO, SVG). — app/(admin)/admin/settings/client.tsx
+- Empfohlene NFC-Tag Quellen — app/(dashboard)/nfc/page.tsx
+- Endgültig löschen — components/settings/AccountActions.tsx
+- Endpoint-URL — components/settings/IntegrationsCards.tsx
+- Engineering — components/card/CardEditor.tsx
+- Entfernt deinen Account und alle zugehörigen Daten unwiderruflich (Karten, Leads, Webhooks, API-Keys). — components/settings/AccountActions.tsx
+- Entsperren — app/(admin)/admin/users/client.tsx
+- er/ihm, she/her… — components/card/CardEditor.tsx
+- erhält deine Daten — app/c/[slug]/client.tsx
+- Erhalte HTTP-POSTs in Echtzeit, wenn neue Leads über deine Karten kommen. Signatur via — components/settings/IntegrationsCards.tsx
+- Erscheint klein auf der Karte (oben rechts) — components/card/editor/DesignTab.tsx
+- Ersetzt die Buchstaben-Initialen in der Sidebar. Empfohlen: quadratisch, 64×64 px. — app/(admin)/admin/settings/client.tsx
+- Erstelle deine Organisation — app/(dashboard)/team/page.tsx
+- Erstelle die erste Organisation — app/(admin)/admin/organizations/client.tsx
+- Erstelle individuelle Links fur Events, Messen oder Kampagnen &mdash; mit separater Klick-Statistik. — app/(dashboard)/campaigns/page.tsx
+- Erstelle jetzt deine digitale Visitenkarte in wenigen Minuten. — app/(dashboard)/dashboard/page.tsx
+- Erstelle zuerst deine Visitenkarte, um Kampagnen zu verwenden. — app/(dashboard)/campaigns/client.tsx
+- Erstelle zuerst deine Visitenkarte, um Leads zu sammeln. — app/(dashboard)/leads/client.tsx
+- Erstellt — app/(dashboard)/team/import/client.tsx
+- Erstellt mit — app/c/[slug]/client.tsx
+- Event — app/(admin)/admin/access-log/client.tsx
+- Event-Einladungslinks — app/pricing/page.tsx
+- Events (30d) — app/(admin)/admin/page.tsx
+- existiert, wurde gerade eine E-Mail mit einem Reset-Link an diese Adresse versendet. Bitte schau auch im Spam-Ordner nach. — app/(auth)/forgot-password/page.tsx
+- Falls ein Account zu — app/(auth)/forgot-password/page.tsx
+- Farbbalken + Kontakt — app/(dashboard)/card/signature/client.tsx
+- Farbe — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Farbiger Headerstreifen — app/(dashboard)/card/signature/client.tsx
+- Farbwahl — app/(dashboard)/settings/OrgSettingsCards.tsx
+- Favicon — app/(admin)/admin/settings/client.tsx
+- Favicon & Logo — app/(admin)/admin/settings/client.tsx
+- Favicon erscheint im Browser-Tab. Logo erscheint in der Sidebar statt der Initialen. — app/(admin)/admin/settings/client.tsx
+- Favicon hochladen — app/(admin)/admin/settings/client.tsx
+- Fax — components/card/CardEditor.tsx
+- Firmenlogo — components/card/editor/DesignTab.tsx
+- Footer-Text — app/(admin)/admin/settings/client.tsx
+- Foto + Social-Links — app/(dashboard)/card/signature/client.tsx
+- Fragen? — app/(dashboard)/upgrade/page.tsx
+- Free — app/(admin)/admin/users/client.tsx
+- Free: 4 Templates — app/pricing/page.tsx
+- Freigeben — app/(dashboard)/team/client.tsx
+- Friendly-URLs unter — components/analytics/AnalyticsOverview.tsx
+- Für eine Root-Domain (ohne Subdomain) nutze stattdessen einen — app/(dashboard)/custom-domain/page.tsx
+- Fußzeile — app/(dashboard)/card/signature/client.tsx
+- Geburtstag — components/card/CardEditor.tsx
+- gemacht werden. Alle deine Karten, Leads, Analytics, Webhooks und API-Keys werden unwiderruflich gelöscht. — components/settings/AccountActions.tsx
+- Gerät — app/(admin)/admin/access-log/client.tsx
+- Geräte — components/analytics/AnalyticsOverview.tsx
+- Geschlecht — components/card/CardEditor.tsx
+- Geschützte Karte — app/c/[slug]/PasswordGate.tsx
+- Gespeichert — app/(admin)/admin/settings/client.tsx
 
 ## Editorial review notes
 
