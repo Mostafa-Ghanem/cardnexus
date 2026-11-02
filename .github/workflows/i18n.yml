@@ -1,0 +1,73 @@
+name: Saudi Arabic and English localization
+
+on:
+  push:
+    branches: ["feature/i18n-ar-sa-en-rtl"]
+    paths:
+      - "scripts/i18n/**"
+      - "messages/**"
+      - "app/**"
+      - "components/**"
+      - "lib/i18n/**"
+      - "package.json"
+      - ".github/workflows/i18n.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: cardnexus-i18n-\${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  models: read
+
+jobs:
+  translate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      DATABASE_URL: file:./dev.db
+      BETTER_AUTH_SECRET: ci-long-safe-secret-not-production-123456789
+      APP_URL: http://localhost:8787
+      BETTER_AUTH_URL: http://localhost:8787
+      NEXT_PUBLIC_APP_URL: http://localhost:8787
+      GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      MAX_TRANSLATIONS_PER_RUN: "160"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Extract user-visible source strings
+        run: npm run i18n:extract
+      - name: Translate missing values using GitHub Models
+        run: npm run i18n:translate
+      - name: Apply JSX localization codemod
+        run: npm run i18n:apply
+      - name: Report coverage
+        run: npm run i18n:review
+      - name: Check TypeScript
+        run: |
+          npx prisma generate
+          npx tsc --noEmit
+      - name: Check ESLint
+        run: npm run lint
+      - name: Build Cloudflare Workers application
+        run: npm run build
+      - name: Check Worker packaging
+        run: npx wrangler deploy --dry-run
+      - name: Commit catalogs, wrapped copy and coverage report
+        if: success() && github.event_name == 'push'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app components messages docs/I18N_COVERAGE.md
+          if ! git diff --cached --quiet; then
+            git commit -m "i18n: generate localized UI [skip ci]"
+            git push origin HEAD:feature/i18n-ar-sa-en-rtl
+          fi
