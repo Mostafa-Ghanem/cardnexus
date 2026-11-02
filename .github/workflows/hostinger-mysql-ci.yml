@@ -51,6 +51,15 @@ jobs:
         run: npx prisma db push --skip-generate
       - name: Generate Prisma Client
         run: npx prisma generate
+      - name: Exercise secure admin bootstrap
+        env:
+          BOOTSTRAP_ADMIN_EMAIL: integration@example.invalid
+          BOOTSTRAP_ADMIN_PASSWORD: ci-only-long-example-password
+        run: npm run db:bootstrap-admin
+      - name: Test MySQL card and lead roundtrip
+        env:
+          RUN_MYSQL_SMOKE: ci
+        run: npm run db:smoke
       - name: Check TypeScript
         run: npx tsc --noEmit
       - name: Lint
