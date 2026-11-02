@@ -46,7 +46,7 @@ async function translate(locale, originals) {
         "Content-Type": "application/json",
         "X-GitHub-Api-Version": "2022-11-28",
       },
-      body: JSON.stringify({ model, messages, temperature: 0.1, max_tokens: 7000 }),
+      body: JSON.stringify({ model, messages, temperature: 0.1, max_tokens: 7000, response_format: { type: "json_object" } }),
       signal: AbortSignal.timeout(90000),
     });
     if (response.status === 429 || response.status >= 500) {
@@ -63,7 +63,15 @@ async function translate(locale, originals) {
     const fence = String.fromCharCode(96).repeat(3);
     const cleaned = raw.trim().startsWith(fence) ?
       raw.trim().slice(raw.trim().indexOf("\n")+1).replace(new RegExp(fence + "\\s*$"),"") : raw;
-    const parsed = JSON.parse(cleaned);
+    let parsed;
+    try {
+      parsed = JSON.parse(cleaned);
+    } catch {
+      const start = cleaned.indexOf("{");
+      const end = cleaned.lastIndexOf("}");
+      if (start < 0 || end < start) throw new Error("Model did not return JSON; prefix=" + cleaned.slice(0, 60));
+      parsed = JSON.parse(cleaned.slice(start, end + 1));
+    }
     if (!Array.isArray(parsed.translations) || parsed.translations.length !== originals.length) {
       throw new Error("Array length mismatch: refused translation");
     }
