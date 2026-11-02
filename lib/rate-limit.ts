@@ -1,4 +1,4 @@
-import { env } from "cloudflare:workers";
+import { bindings as env } from "./cloudflare-bindings";
 
 // Per-isolate in-memory Maps do not enforce rate limits across Cloudflare
 // colos or restarts. A single atomic UPSERT/RETURNING enforces a shared limit.
