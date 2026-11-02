@@ -8,9 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { signIn } from "@/lib/auth-client";
+import { useI18n } from "@/components/i18n/I18nProvider";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { t } = useI18n();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -24,7 +26,7 @@ export default function LoginPage() {
     const result = await signIn.email({ email, password });
 
     if (result.error) {
-      setError("E-Mail oder Passwort falsch.");
+      setError(t("E-Mail oder Passwort falsch."));
       setLoading(false);
       return;
     }
@@ -73,7 +75,7 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter className="flex flex-col gap-3">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Anmelden…" : "Anmelden"}
+            {t(loading ? "Anmelden…" : "Anmelden")}
           </Button>
           <Link
             href="/forgot-password"
