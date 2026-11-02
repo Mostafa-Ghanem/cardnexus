@@ -1,9 +1,10 @@
 generator client {
   provider = "prisma-client-js"
+  engineType = "client"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -14,7 +15,7 @@ model user {
   name          String
   email         String    @unique
   emailVerified Boolean
-  image         String? @db.Text
+  image         String?
   createdAt     DateTime
   updatedAt     DateTime
 
@@ -65,7 +66,7 @@ model twoFactor {
   userId      String
   user        user   @relation(fields: [userId], references: [id], onDelete: Cascade)
   secret      String
-  backupCodes String @db.Text
+  backupCodes String
   verified    Boolean @default(true)
 
   @@index([secret])
@@ -80,7 +81,7 @@ model session {
   token     String   @unique
   expiresAt DateTime
   ipAddress String?
-  userAgent String? @db.Text
+  userAgent String?
   createdAt DateTime
   updatedAt DateTime
 
@@ -93,9 +94,9 @@ model account {
   user                 user      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accountId            String
   providerId           String
-  accessToken          String? @db.Text
-  refreshToken         String? @db.Text
-  idToken              String? @db.Text
+  accessToken          String?
+  refreshToken         String?
+  idToken              String?
   accessTokenExpiresAt DateTime?
   refreshTokenExpiresAt DateTime?
   scope                String?
@@ -110,7 +111,7 @@ model account {
 model verification {
   id         String   @id
   identifier String
-  value      String @db.Text
+  value      String
   expiresAt  DateTime
   createdAt  DateTime
   updatedAt  DateTime
@@ -147,7 +148,7 @@ model OrganizationSettings {
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   // Branding defaults
-  cardFooterText      String? @db.Text
+  cardFooterText      String?
   defaultTemplate     String  @default("classic")
   defaultFontFamily   String  @default("inter")
   defaultLayoutStyle  String  @default("standard")
@@ -160,21 +161,21 @@ model OrganizationSettings {
   allowMemberLayoutChange   Boolean @default(true)
 
   // Brand kit: JSON string[] of hex colors the org endorses
-  brandColors String? @db.Text // e.g. '["#0F172A","#2563EB","#16A34A"]'
+  brandColors String? // e.g. '["#0F172A","#2563EB","#16A34A"]'
 
   // Per-department overrides: JSON Record<deptName, DeptPolicy>
   // DeptPolicy: { allowTemplateChange?, allowColorChange?, allowFontChange?, allowLayoutChange? }
-  departmentPolicies String? @db.Text
+  departmentPolicies String?
 
   // Features
   walletEnabled          Boolean @default(false)
   analyticsEnabled       Boolean @default(true)
   leadCaptureEnabled     Boolean @default(false)
   teamDirectoryEnabled   Boolean @default(true)
-  templateCardData       String? @db.Text // JSON: default card values for new members
+  templateCardData       String? // JSON: default card values for new members
 
   // Integrations
-  webhookUrl             String? @db.Text // legacy single webhook URL (kept for simplicity)
+  webhookUrl             String? // legacy single webhook URL (kept for simplicity)
   managerApproval        Boolean  @default(false)
 }
 
@@ -193,8 +194,8 @@ model Card {
   title      String?
   company    String?
   department String?
-  bio        String? @db.Text
-  avatarUrl  String? @db.Text
+  bio        String?
+  avatarUrl  String?
   pronouns   String?  // e.g. "er/ihm", "she/her", "they/them"
   gender     String?  // vCard 4.0 GENDER: M | F | O | N | U or free text
   birthday   String?  // ISO date YYYY-MM-DD
@@ -204,19 +205,19 @@ model Card {
   mobile  String?
   fax     String?
   email   String?
-  website String? @db.Text
-  address String? @db.Text
+  website String?
+  address String?
 
   // Social
-  linkedin  String? @db.Text
-  xing      String? @db.Text
-  twitter   String? @db.Text
-  instagram String? @db.Text
-  github    String? @db.Text
-  youtube   String? @db.Text
+  linkedin  String?
+  xing      String?
+  twitter   String?
+  instagram String?
+  github    String?
+  youtube   String?
 
   // Custom links (JSON array: [{label, url}])
-  customLinks String @db.Text // Card create endpoints always supply "[]" (portable across MySQL/MariaDB)
+  customLinks String @default("[]")
 
   // Appearance
   templateId     String  @default("classic")
@@ -226,20 +227,20 @@ model Card {
   layoutStyle    String  @default("standard") // standard | centered | compact
   roundedStyle   String  @default("default")  // default | sharp | pill
   showQrOnCard   Boolean @default(false)
-  coverUrl       String? @db.Text
+  coverUrl       String?
 
   // Extended appearance
   shadowStyle    String  @default("md")      // none | sm | md | lg | xl
   socialStyle    String  @default("icons")   // icons | outline | minimal
   avatarBorder   String  @default("none")    // none | ring | glow
   cardBackground String  @default("white")   // white | tinted | gradient
-  logoUrl        String? @db.Text // org logo (admin-controlled) or personal logo
+  logoUrl        String? // org logo (admin-controlled) or personal logo
 
   // Directory
   showInTeamDirectory Boolean @default(true)
 
   // Booking
-  bookingUrl  String? @db.Text // appointment booking URL (Cal.com, Calendly, etc.)
+  bookingUrl  String? // appointment booking URL (Cal.com, Calendly, etc.)
 
   // Visibility
   hideShareButton Boolean @default(false)
@@ -291,7 +292,7 @@ model Lead {
   name      String
   email     String?
   phone     String?
-  message   String? @db.Text
+  message   String?
   createdAt DateTime @default(now())
 
   @@index([cardId])
@@ -315,7 +316,7 @@ model CardAnalytic {
   device    String?  // mobile | desktop | tablet
   browser   String?  // Chrome | Firefox | Safari | Edge | ...
   os        String?  // Windows | macOS | iOS | Android | Linux | ...
-  referrer  String? @db.Text // document.referrer domain
+  referrer  String? // document.referrer domain
   language  String?  // Accept-Language primary tag
 
   // UTM/campaign attribution. Captured on `view` events whenever the visitor
@@ -349,12 +350,12 @@ model PlatformSettings {
   id             String  @id @default("main")
   appName        String  @default("FreddieCard")
   appUrl         String  @default("http://localhost:3000")
-  faviconUrl     String? @db.Text
-  logoUrl        String? @db.Text
+  faviconUrl     String?
+  logoUrl        String?
   primaryColor   String  @default("#0F172A")
   supportEmail   String?
   footerText     String?
-  allowedDomains String? @db.Text // JSON array of allowed domain strings
+  allowedDomains String? // JSON array of allowed domain strings
 }
 
 model Notification {
