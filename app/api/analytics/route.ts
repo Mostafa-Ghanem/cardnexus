@@ -8,6 +8,7 @@ import { clientIp } from "@/lib/client-ip";
 import { rateLimit } from "@/lib/rate-limit";
 import { parseBrowser, parseOs, parseLanguage, parseReferrerDomain } from "@/lib/ua-parser";
 import { z } from "zod";
+import { waitUntil } from "cloudflare:workers";
 
 function isBot(ua: string): boolean {
   return /bot|crawl|spider|slurp|mediapartners|facebookexternalhit|twitterbot|whatsapp|linkedinbot|embedly|quora|pinterest|lighthouse|headlesschrome|prerender|wget|curl/i.test(ua);
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
 
   // Anti-spam: 60 events / 60s per anonymized IP. Stops accidental loops &
   // simple flooding without affecting normal users.
-  if (!rateLimit({ key: `track:${ip || "anon"}`, max: 60, windowMs: 60_000 })) {
+  if (!(await rateLimit({ key: `track:${ip || "anon"}`, max: 60, windowMs: 60_000 }))) {
     return NextResponse.json({ error: "rate limited" }, { status: 429 });
   }
 
@@ -55,13 +56,10 @@ export async function POST(request: NextRequest) {
 
   const userAgent = request.headers.get("user-agent") ?? "";
   if (isBot(userAgent)) return NextResponse.json({ ok: true });
-  let geo: { country?: string; city?: string } | null = null;
-  if (ip) {
-    try {
-      const geoip = await import("geoip-lite");
-      geo = geoip.default.lookup(ip);
-    } catch { /* geoip unavailable — skip */ }
-  }
+  // Workers cannot load geoip-lite's filesystem database; Cloudflare
+  // populates CF-IPCountry when request geo metadata is available.
+  const country = request.headers.get("cf-ipcountry");
+  const city = request.headers.get("cf-ipcity");
 
   await db.cardAnalytic.create({
     data: {
@@ -73,8 +71,8 @@ export async function POST(request: NextRequest) {
       utmMedium,
       utmCampaign,
       ip,
-      country:  geo?.country ?? null,
-      city:     geo?.city ?? null,
+      country:  country ?? null,
+      city:     city ?? null,
       device:   getDeviceType(userAgent),
       browser:  parseBrowser(userAgent),
       os:       parseOs(userAgent),
@@ -89,7 +87,7 @@ export async function POST(request: NextRequest) {
       data: { totalViews: { increment: 1 } },
     });
     if (updated.count > 0) {
-      checkMilestone(cardSlug).catch(() => {});
+      waitUntil(checkMilestone(cardSlug).catch((e) => console.error("Milestone update failed", e)));
     }
   }
 

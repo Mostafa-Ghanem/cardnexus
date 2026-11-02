@@ -1,5 +1,9 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output = "../generated/prisma"
+  engineType = "client"
+  runtime = "workerd"
+  moduleFormat = "esm"
 }
 
 datasource db {
@@ -174,7 +178,7 @@ model OrganizationSettings {
   templateCardData       String? // JSON: default card values for new members
 
   // Integrations
-  webhookUrl             String?  // legacy single webhook URL (kept for simplicity)
+  webhookUrl             String? // legacy single webhook URL (kept for simplicity)
   managerApproval        Boolean  @default(false)
 }
 
@@ -233,13 +237,13 @@ model Card {
   socialStyle    String  @default("icons")   // icons | outline | minimal
   avatarBorder   String  @default("none")    // none | ring | glow
   cardBackground String  @default("white")   // white | tinted | gradient
-  logoUrl        String?                     // org logo (admin-controlled) or personal logo
+  logoUrl        String? // org logo (admin-controlled) or personal logo
 
   // Directory
   showInTeamDirectory Boolean @default(true)
 
   // Booking
-  bookingUrl  String?  // appointment booking URL (Cal.com, Calendly, etc.)
+  bookingUrl  String? // appointment booking URL (Cal.com, Calendly, etc.)
 
   // Visibility
   hideShareButton Boolean @default(false)
@@ -315,7 +319,7 @@ model CardAnalytic {
   device    String?  // mobile | desktop | tablet
   browser   String?  // Chrome | Firefox | Safari | Edge | ...
   os        String?  // Windows | macOS | iOS | Android | Linux | ...
-  referrer  String?  // document.referrer domain
+  referrer  String? // document.referrer domain
   language  String?  // Accept-Language primary tag
 
   // UTM/campaign attribution. Captured on `view` events whenever the visitor
@@ -428,4 +432,11 @@ model Invitation {
 
   @@index([token])
   @@index([email])
+}
+
+model RateLimitBucket {
+  id        String @id
+  count     Int    @default(0)
+  expiresAt Int
+  @@index([expiresAt])
 }

@@ -6,6 +6,7 @@ import { rateLimit } from "@/lib/rate-limit";
 import { clientIp } from "@/lib/client-ip";
 import { canUseFeature, effectivePlan } from "@/lib/plans";
 import { z } from "zod";
+import { waitUntil } from "cloudflare:workers";
 
 const schema = z.object({
   cardId:  z.string().min(1),
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
     }
 
     const ip = clientIp(req);
-    if (!rateLimit({ key: `lead:${ip}:${data.cardId}`, max: 3, windowMs: 60 * 60_000 })) {
+    if (!(await rateLimit({ key: `lead:${ip}:${data.cardId}`, max: 3, windowMs: 60 * 60_000 }))) {
       return NextResponse.json(
         { error: "Zu viele Anfragen — bitte später erneut versuchen." },
         { status: 429 }
@@ -56,12 +57,12 @@ export async function POST(req: NextRequest) {
     });
 
     // Fire webhooks (non-blocking)
-    fireWebhooks(data.cardId, "lead", lead).catch(() => {});
+    waitUntil(fireWebhooks(data.cardId, "lead", lead).catch((e) => console.error("Lead webhook error", e)));
 
     // Send instant email notification if enabled (non-blocking)
     if (card.user.leadNotification === "instant" && card.user.email) {
       const appUrl = process.env.APP_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-      sendLeadNotificationEmail({
+      waitUntil(sendLeadNotificationEmail({
         to: card.user.email,
         ownerName: card.user.name ?? "",
         leadName: data.name,
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
         leadMessage: data.message || null,
         cardName: card.name,
         dashboardUrl: `${appUrl}/leads`,
-      }).catch(() => {});
+      }).catch((e) => console.error("Lead email error", e)));
     }
 
     return NextResponse.json({ success: true, id: lead.id });
