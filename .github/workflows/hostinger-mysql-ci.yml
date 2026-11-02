@@ -3,11 +3,14 @@ name: Hostinger MySQL checks
 on:
   push:
     branches:
-      - "feature/hostinger-mysql-foundation"
       - "develop/hostinger-saas"
   pull_request:
     branches:
       - "develop/hostinger-saas"
+
+concurrency:
+  group: hostinger-mysql-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
