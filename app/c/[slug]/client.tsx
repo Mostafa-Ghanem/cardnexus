@@ -280,8 +280,31 @@ export function PublicCardView({ card, source, showBadge = true, showLeadForm = 
 // ── Lead Capture Modal ──────────────────────────────────────────────────────
 
 function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
-  const tI18n = useI18n().t;
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const { locale } = useI18n();
+  const labels = locale === "ar-SA" ? {
+    heading: "اترك بيانات التواصل", subtitle: "سيتم إرسال بياناتك إلى",
+    name: "الاسم", email: "البريد الإلكتروني (اختياري)", phone: "رقم الجوال",
+    contact: "أدخل رقم الجوال أو البريد الإلكتروني على الأقل",
+    message: "إضافة رسالة (اختياري)", send: "إرسال بياناتي",
+    sending: "جارٍ الإرسال…", done: "تم إرسال بياناتك", thanks: "شكرًا لك!",
+    close: "إغلاق", privacy: "سيُرسل طلبك إلى صاحب البطاقة للتواصل معك.",
+  } : locale === "en" ? {
+    heading: "Share your contact details", subtitle: "Your details will be sent to",
+    name: "Name", email: "Email (optional)", phone: "Mobile number",
+    contact: "Enter at least your phone number or email",
+    message: "Add a message (optional)", send: "Send contact details",
+    sending: "Sending…", done: "Your details were sent", thanks: "Thank you!",
+    close: "Close", privacy: "Your details will be shared with the card owner for follow-up.",
+  } : {
+    heading: "Kontakt hinterlassen", subtitle: "Deine Angaben erhält",
+    name: "Name", email: "E-Mail (optional)", phone: "Telefon",
+    contact: "Telefonnummer oder E-Mail eingeben",
+    message: "Nachricht hinzufügen (optional)", send: "Kontakt senden",
+    sending: "Wird gesendet…", done: "Deine Daten wurden übermittelt",
+    thanks: "Vielen Dank!", close: "Schließen",
+    privacy: "Deine Kontaktdaten werden zur Rückmeldung an die Person weitergegeben.",
+  };
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "", website: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -292,7 +315,8 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim()) { setError("Name ist erforderlich."); return; }
+    if (!form.name.trim()) { setError(labels.name); return; }
+    if (!form.phone.trim() && !form.email.trim()) { setError(labels.contact); return; }
     setError(null);
     setLoading(true);
     try {
@@ -327,9 +351,9 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h3 className="font-bold text-lg"><T text={"Kontakt hinterlassen"} /></h3>
+            <h3 className="font-bold text-lg">{labels.heading}</h3>
             <p className="text-sm text-muted-foreground mt-0.5">
-              {ownerName}<T text={"erhält deine Daten"} /></p>
+              {labels.subtitle} <bdi>{ownerName}</bdi></p>
           </div>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground p-1 rounded-lg hover:bg-accent transition-colors">
             <X className="h-5 w-5" />
@@ -339,59 +363,74 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
         {success ? (
           <div className="flex flex-col items-center py-6 text-center gap-3">
             <CheckCircle2 className="h-12 w-12" style={{ color: card.primaryColor }} />
-            <p className="font-semibold"><T text={"Vielen Dank!"} /></p>
+            <p className="font-semibold">{labels.thanks}</p>
             <p className="text-sm text-muted-foreground">
-              {ownerName}<T text={"wurde benachrichtigt."} /></p>
-            <Button variant="outline" className="mt-2" onClick={onClose}><T text={"Schließen"} /></Button>
+              {labels.done}</p>
+            <Button variant="outline" className="mt-2" onClick={onClose}>{labels.close}</Button>
           </div>
         ) : (
           <form onSubmit={submit} className="space-y-4">
             <div>
-              <Label htmlFor="lead-name"><T text={"Name *"} /></Label>
+              <Label htmlFor="lead-name">{labels.name} *</Label>
               <Input
                 id="lead-name"
+                name="name"
+                autoComplete="name"
                 value={form.name}
                 onChange={(e) => set("name", e.target.value)}
-                placeholder={tI18n("Dein Name")}
+                placeholder={locale === "ar-SA" ? "الاسم الكامل" : locale === "en" ? "Your name" : "Dein Name"}
                 className="mt-1"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="lead-email"><T text={"E-Mail"} /></Label>
+              <Label htmlFor="lead-email">{labels.email}</Label>
               <Input
                 id="lead-email"
+                name="email"
                 type="email"
+                autoComplete="email"
+                dir="ltr"
                 value={form.email}
                 onChange={(e) => set("email", e.target.value)}
-                placeholder={tI18n("deine@email.de")}
+                placeholder="name@example.com"
                 className="mt-1"
               />
             </div>
             <div>
-              <Label htmlFor="lead-phone"><T text={"Telefon"} /></Label>
+              <Label htmlFor="lead-phone">{labels.phone}</Label>
               <Input
                 id="lead-phone"
+                name="tel"
                 type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                dir="ltr"
                 value={form.phone}
                 onChange={(e) => set("phone", e.target.value)}
-                placeholder={tI18n("+49 ...")}
+                placeholder="+966 5X XXX XXXX"
                 className="mt-1"
               />
             </div>
-            <div>
-              <Label htmlFor="lead-message"><T text={"Nachricht"} /></Label>
+            <details className="group rounded-lg border border-border px-3 py-2">
+              <summary className="cursor-pointer text-sm font-medium">{labels.message}</summary>
               <textarea
                 id="lead-message"
                 value={form.message}
                 onChange={(e) => set("message", e.target.value)}
-                placeholder={tI18n("Optionale Nachricht...")}
+                placeholder={labels.message}
                 rows={3}
                 className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-none"
               />
+            </details>
+            {/* Honeypot is invisible to people, but commonly filled by bots. */}
+            <div aria-hidden="true" className="absolute -left-[9999px]" tabIndex={-1}>
+              <label htmlFor="lead-website">Website</label>
+              <input id="lead-website" name="website" type="text" value={form.website}
+                tabIndex={-1} autoComplete="off" onChange={(e) => set("website", e.target.value)} />
             </div>
-
-            {error && <p className="text-sm text-destructive">{error}</p>}
+            {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+            <p className="text-xs text-muted-foreground">{labels.privacy}</p>
 
             <Button
               type="submit"
@@ -400,8 +439,8 @@ function LeadModal({ card, onClose }: { card: CardData; onClose: () => void }) {
               style={{ backgroundColor: card.primaryColor }}
             >
               {loading
-                ? <><Loader2 className="h-4 w-4 animate-spin" />{" "}<T text={"Wird gesendet…"} /></>
-                : "Kontakt senden"}
+                ? <><Loader2 className="h-4 w-4 animate-spin" />{" "}{labels.sending}</>
+                : labels.send}
             </Button>
           </form>
         )}
