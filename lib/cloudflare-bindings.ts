@@ -25,5 +25,7 @@ export interface CloudflareBindings {
   BREVO_API_KEY?: string;
   EMAIL_FROM?: string;
   EMAIL_FROM_NAME?: string;
+  TURNSTILE_SECRET_KEY?: string;
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY?: string;
 }
 export const bindings = env as unknown as CloudflareBindings;
