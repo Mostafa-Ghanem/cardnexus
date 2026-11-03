@@ -7,7 +7,7 @@ import { clientIp } from "@/lib/client-ip";
 import { normalizeContactPhone, hasContactDetails } from "@/lib/lead-validation";
 import { verifyTurnstile } from "@/lib/turnstile";
 import { bindings as env } from "@/lib/cloudflare-bindings";
-import { canUseFeature, effectivePlan } from "@/lib/plans";
+import { canUseFeature, effectivePlan, getPlanFeatures } from "@/lib/plans";
 import { z } from "zod";
 import { waitUntil } from "cloudflare:workers";
 
@@ -50,6 +50,20 @@ export async function POST(req: NextRequest) {
 
     // Honeypot check does not expose why bots were rejected.
     if (data.website) return NextResponse.json({ success: true });
+
+    // Free users can validate demand, with a predictable monthly usage cap.
+    // Count confirmed lead submissions only; spam requests never count.
+    const monthlyLimit = getPlanFeatures(ownerPlan).maxLeadsPerMonth;
+    if (Number.isFinite(monthlyLimit)) {
+      const now = new Date();
+      const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+      const count = await db.lead.count({
+        where: { cardId: data.cardId, createdAt: { gte: monthStart } },
+      });
+      if (count >= monthlyLimit) {
+        return NextResponse.json({ error: "Monthly lead limit reached", upgradeRequired: true }, { status: 403 });
+      }
+    }
 
     const ip = clientIp(req);
     const trustedIp = req.headers.get("cf-connecting-ip") ?? undefined;
