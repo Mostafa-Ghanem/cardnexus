@@ -297,6 +297,9 @@ model Lead {
   phone     String?
   message   String?
   createdAt DateTime @default(now())
+  // Lead follow-up pipeline, private to the card owner.
+  status    String   @default("new")
+  note      String?
 
   @@index([cardId])
 }

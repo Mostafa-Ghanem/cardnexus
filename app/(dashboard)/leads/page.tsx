@@ -11,17 +11,17 @@ export default async function LeadsPage() {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session!.user as { id: string };
 
-  const card = await db.card.findFirst({
-    where: { userId: user.id, isDefault: true },
-    select: { id: true, slug: true },
+  const cards = await db.card.findMany({
+    where: { userId: user.id },
+    select: { id: true },
   });
-
-  const leads: Lead[] = card
+  const cardIds = cards.map(card => card.id);
+  const leads: Lead[] = cardIds.length
     ? (await db.lead.findMany({
-        where: { cardId: card.id },
+        where: { cardId: { in: cardIds } },
         orderBy: { createdAt: "desc" },
         take: 500,
-      })).map((l) => ({ ...l, createdAt: l.createdAt.toISOString() }))
+      })).map(lead => ({ ...lead, createdAt: lead.createdAt.toISOString() }))
     : [];
 
   return (
@@ -30,7 +30,7 @@ export default async function LeadsPage() {
         <h1 className="text-2xl font-bold"><T text={"Leads"} /></h1>
         <p className="text-muted-foreground mt-1"><T text={"Personen, die ihren Kontakt auf deiner Karte hinterlassen haben."} /></p>
       </div>
-      <LeadsClient leads={leads} hasCard={!!card} />
+      <LeadsClient leads={leads} hasCard={cards.length > 0} />
     </div>
   );
 }
