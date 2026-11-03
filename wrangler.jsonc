@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "cardnexus-visual-preview-20261103",
+  "name": "cardnexus-v4-review-20261103",
   "main": "./worker/index.ts",
   "compatibility_date": "2026-11-01",
   "compatibility_flags": [
@@ -12,28 +12,26 @@
     "enabled": true
   },
   "triggers": {
-    "crons": [
-      "17 3 * * *"
-    ]
+    "crons": []
   },
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "cardnexus-visual-preview-20261103-db",
-      "database_id": "d668c796-c3aa-4eb3-9524-5432cb7f84b4",
+      "database_name": "cardnexus-v4-review-20261103-db",
+      "database_id": "52bc1490-0a0d-4ea1-a23a-07815af1ee1a",
       "migrations_dir": "migrations"
     }
   ],
   "r2_buckets": [
     {
       "binding": "IMAGES",
-      "bucket_name": "cardnexus-visual-preview-20261103-media"
+      "bucket_name": "cardnexus-v4-review-20261103-media"
     }
   ],
   "vars": {
-    "APP_URL": "https://cardnexus-visual-preview-20261103.mosstafaghanem.workers.dev",
-    "BETTER_AUTH_URL": "https://cardnexus-visual-preview-20261103.mosstafaghanem.workers.dev",
-    "NEXT_PUBLIC_APP_URL": "https://cardnexus-visual-preview-20261103.mosstafaghanem.workers.dev",
-    "APP_NAME": "CardNexus Preview"
+    "APP_URL": "https://cardnexus-v4-review-20261103.mosstafaghanem.workers.dev",
+    "BETTER_AUTH_URL": "https://cardnexus-v4-review-20261103.mosstafaghanem.workers.dev",
+    "NEXT_PUBLIC_APP_URL": "https://cardnexus-v4-review-20261103.mosstafaghanem.workers.dev",
+    "APP_NAME": "CardNexus V4 Review"
   }
 }
