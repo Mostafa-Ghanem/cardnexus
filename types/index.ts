@@ -257,6 +257,8 @@ export interface Lead {
   email?: string | null;
   phone?: string | null;
   message?: string | null;
+  status?: string; // new | contacted | interested | won | lost
+  note?: string | null; // private to card owner
   createdAt: string; // ISO string after serialization
 }
 
