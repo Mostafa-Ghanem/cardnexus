@@ -6,6 +6,7 @@ import { resolveDesignPolicy } from "@/lib/design-policy";
 import { getPlatformSettings } from "@/lib/platform";
 import { canUseFeature, effectivePlan, getPlanFeatures } from "@/lib/plans";
 import { CardEditor } from "@/components/card/CardEditor";
+import { OnboardingWizard } from "@/components/card/OnboardingWizard";
 import { QRCodeDisplay } from "@/components/card/QRCodeDisplay";
 import { CardSwitcher } from "@/components/card/CardSwitcher";
 import { ApprovalBanner } from "@/components/card/ApprovalBanner";
@@ -18,7 +19,7 @@ export const metadata = { title: "Meine Karte" };
 export default async function CardPage({
   searchParams,
 }: {
-  searchParams: Promise<{ card?: string }>;
+  searchParams: Promise<{ card?: string; advanced?: string }>;
 }) {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session!.user as {
@@ -29,7 +30,7 @@ export default async function CardPage({
     planExpiresAt?: Date;
   };
 
-  const { card: cardIdParam } = await searchParams;
+  const { card: cardIdParam, advanced } = await searchParams;
 
   const [rawCards, orgSettings, platformSettings] = await Promise.all([
     db.card.findMany({
@@ -64,6 +65,13 @@ export default async function CardPage({
     cards.find((c) => c.isDefault) ??
     cards[0] ??
     null;
+
+  // New individual users get a guided first card experience. Organizations
+  // retain the full editor to respect locked templates and approval policies.
+  if (!activeCard && !user.organizationId && advanced !== "1") {
+    const profile = session!.user as { name?: string; email?: string };
+    return <OnboardingWizard userName={profile.name ?? ""} userEmail={profile.email ?? ""} userPlan={user.plan ?? "free"} />;
+  }
 
   const basePolicy = resolveDesignPolicy(orgSettings, activeCard?.department);
   const canEditLogo =

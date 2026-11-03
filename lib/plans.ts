@@ -16,6 +16,7 @@ export interface PlanFeatures {
   analyticsRetention: number;   // Days of analytics history
   teamDirectory: boolean;       // Team directory & member management
   leadCapture: boolean;         // Lead capture form on public card
+  maxLeadsPerMonth: number;     // Limit unique submitted leads (Infinity for paid)
 }
 
 export interface PlanDefinition {
@@ -50,7 +51,8 @@ export const PLANS: Record<Plan, PlanDefinition> = {
       milestoneNotifications: false,
       analyticsRetention: 30,
       teamDirectory: false,
-      leadCapture: false,
+      leadCapture: true,
+      maxLeadsPerMonth: 10,
     },
   },
   pro: {
@@ -76,6 +78,7 @@ export const PLANS: Record<Plan, PlanDefinition> = {
       analyticsRetention: 365,
       teamDirectory: false,
       leadCapture: true,
+      maxLeadsPerMonth: Infinity,
     },
   },
   business: {
@@ -100,6 +103,7 @@ export const PLANS: Record<Plan, PlanDefinition> = {
       analyticsRetention: 730,
       teamDirectory: true,
       leadCapture: true,
+      maxLeadsPerMonth: Infinity,
     },
   },
 };
