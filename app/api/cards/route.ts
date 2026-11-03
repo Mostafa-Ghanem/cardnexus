@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { nanoid } from "nanoid";
 import { z } from "zod";
 import { hashPassword } from "@/lib/password-hash";
+import { normalizeContactPhone } from "@/lib/lead-validation";
 import { getPlanFeatures, effectivePlan } from "@/lib/plans";
 
 function parseLinks(raw: string | null | unknown) {
@@ -25,6 +26,13 @@ const CardCreate = z.object({
   lastName:     z.string().max(80).optional(),
   templateId:   z.string().max(40).optional(),
   primaryColor: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+  // One-step onboarding: persist contact + business details atomically,
+  // avoiding partially created cards if a subsequent PATCH fails.
+  title:        z.string().trim().max(120).optional(),
+  company:      z.string().trim().max(120).optional(),
+  mobile:       z.string().trim().max(40).optional(),
+  email:        z.union([z.literal(""), z.string().trim().email()]).optional(),
+  logoUrl:      z.string().max(500).nullable().optional(),
   fontFamily:   z.string().max(20).optional(),
   layoutStyle:  z.string().max(20).optional(),
 });
@@ -157,6 +165,11 @@ export async function POST(req: NextRequest) {
           isPublic:     body.isPublic ?? true,
           firstName:    body.firstName ?? "",
           lastName:     body.lastName ?? "",
+          title:        body.title || null,
+          company:      body.company || null,
+          mobile:       body.mobile ? normalizeContactPhone(body.mobile) : null,
+          email:        body.email || null,
+          logoUrl:      body.logoUrl || null,
           templateId:   body.templateId ?? "classic",
           primaryColor: body.primaryColor ?? "#0F172A",
           fontFamily:   body.fontFamily ?? "inter",
