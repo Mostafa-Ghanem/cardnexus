@@ -23,7 +23,7 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
   const [deletingId,setDeletingId] = useState<string|null>(null);
   const [view,setView] = useState<"list"|"board">("list");
   const [error,setError] = useState("");
-  useEffect(()=>{try{if(localStorage.getItem("cardnexus_leads_view")==="board")setView("board");}catch{}},[]);
+  useEffect(()=>{try{if(localStorage.getItem("cardnexus_leads_view")==="board")setView("board");}catch { /* Browser storage may be unavailable in private mode. */ }},[]);
   const copy = locale === "ar-SA" ? {
     search:"ابحث بالاسم أو الجوال أو الملاحظات…",list:"قائمة",board:"لوحة",all:"الكل",
     export:"تصدير CSV",empty:"لا يوجد عملاء محتملون بعد",noResults:"لا توجد نتائج مطابقة.",
@@ -53,7 +53,7 @@ export function LeadsClient({ leads: initialLeads, hasCard }: Props) {
     [lead.name,lead.email||"",lead.phone||"",lead.note||""].some(v=>v.toLowerCase().includes(q)));
   const filtered = allMatching.filter(lead=>filter==="all" || statusOf(lead)===filter);
   function switchView(next: "list"|"board"){
-    setView(next);try{localStorage.setItem("cardnexus_leads_view",next);}catch{}
+    setView(next);try{localStorage.setItem("cardnexus_leads_view",next);}catch { /* Browser storage may be unavailable in private mode. */ }
   }
   async function updateLead(id: string, patch: Patch): Promise<boolean> {
     const original=leads.find(l=>l.id===id);
