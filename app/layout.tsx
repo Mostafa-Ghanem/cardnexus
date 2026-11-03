@@ -18,6 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await selectedLocale();
 
   return {
+    // Public demo only; keep preview pages out of search indices.
+    robots: { index: false, follow: false, nocache: true },
     title: {
       default: `${s.appName} – ${locale === "ar-SA" ? "بطاقات أعمال رقمية" : locale === "en" ? "Digital business cards" : "Digitale Visitenkarten"}`,
       template: `%s | ${s.appName}`,
