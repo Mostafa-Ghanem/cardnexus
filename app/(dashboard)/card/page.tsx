@@ -12,7 +12,7 @@ import { CardSwitcher } from "@/components/card/CardSwitcher";
 import { ApprovalBanner } from "@/components/card/ApprovalBanner";
 import type { CardData } from "@/types";
 import Link from "next/link";
-import { BarChart2 } from "lucide-react";
+import { BarChart2, Palette } from "lucide-react";
 
 export const metadata = { title: "Meine Karte" };
 
@@ -129,6 +129,12 @@ export default async function CardPage({
         <div className="border-t border-border pt-8">
           <h2 className="text-lg font-semibold mb-4"><T text={"QR-Code"} /></h2>
           <QRCodeDisplay slug={activeCard.slug} color={activeCard.primaryColor} />
+          <div className="mt-4 flex justify-center">
+            <Link href={`/card/qr?card=${activeCard.id}`}
+              className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm hover:bg-accent">
+              <Palette className="h-4 w-4" /><T text={"QR-Code gestalten"} />
+            </Link>
+          </div>
         </div>
       )}
     </div>
