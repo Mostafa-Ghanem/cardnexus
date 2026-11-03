@@ -23,21 +23,36 @@ export async function GET(request: NextRequest) {
   const role = (session.user as { role?: string }).role ?? "member";
   const orgId = (session.user as { organizationId?: string }).organizationId;
   const url = new URL(request.url);
-  const page = parseInt(url.searchParams.get("page") ?? "1");
-  const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "20"), 100);
-  const search = url.searchParams.get("search") ?? "";
-
+  // Reject missing organization scope. undefined would leak all users.
+  if (!isSuperAdmin(role) && (!canManageOrganization(role) || !orgId)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+  const safePositive = (value: string | null, fallback: number) => {
+    const n = Number(value);
+    return Number.isSafeInteger(n) && n > 0 ? n : fallback;
+  };
+  const page = Math.min(safePositive(url.searchParams.get("page"), 1), 100000);
+  const limit = Math.min(safePositive(url.searchParams.get("limit"), 20), 100);
+  const search = (url.searchParams.get("search") ?? "").slice(0, 100);
+  const searchWhere = search ? {
+    OR: [{ name: { contains: search } }, { email: { contains: search } }],
+  } : {};
   const orgFilter = url.searchParams.get("organizationId");
   const where = isSuperAdmin(role)
-    ? orgFilter
-      ? { organizationId: orgFilter }
-      : search ? { OR: [{ name: { contains: search } }, { email: { contains: search } }] } : {}
-    : { organizationId: orgId ?? undefined };
+    ? { ...(orgFilter ? { organizationId: orgFilter } : {}), ...searchWhere }
+    : { organizationId: orgId!, ...searchWhere };
 
   const [users, total] = await Promise.all([
     db.user.findMany({
       where,
-      include: { cards: { orderBy: [{ isDefault: "desc" }], take: 1, select: { slug: true, isPublic: true } } },
+      // Return only the fields used by the users table, never auth secrets,
+      // billing tokens, referral codes, or other private attributes.
+      select: {
+        id: true, name: true, email: true, image: true,
+        role: true, plan: true, planExpiresAt: true,
+        bannedAt: true, organizationId: true, createdAt: true,
+        cards: { orderBy: [{ isDefault: "desc" }], take: 1, select: { slug: true, isPublic: true } },
+      },
       skip: (page - 1) * limit,
       take: limit,
       orderBy: { createdAt: "desc" },
@@ -53,7 +68,8 @@ export async function PATCH(request: NextRequest) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
-  if (!canManageOrganization(role)) {
+  const actorOrgId = (session.user as { organizationId?: string | null }).organizationId;
+  if (!canManageOrganization(role) || (!isSuperAdmin(role) && !actorOrgId)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -72,6 +88,7 @@ export async function PATCH(request: NextRequest) {
     if (data.bannedAt !== undefined) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     // company_admin must not be able to grant company_admin to others (only super_admin can).
     if (data.role === "company_admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (data.planExpiresAt !== undefined) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     // company_admin cannot move users between orgs.
     if (data.organizationId !== undefined) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -81,7 +98,7 @@ export async function PATCH(request: NextRequest) {
   // SECURITY: company_admin must only be able to mutate users from THEIR org.
   // Without this check, anybody with company_admin role could update arbitrary users.
   if (!isSuperAdmin(role)) {
-    const orgId = (session.user as { organizationId?: string }).organizationId;
+    const orgId = actorOrgId;
     const target = await db.user.findUnique({
       where: { id: userId },
       select: { organizationId: true, role: true },
@@ -102,6 +119,10 @@ export async function PATCH(request: NextRequest) {
       ...data,
       planExpiresAt: data.planExpiresAt ? new Date(data.planExpiresAt) : data.planExpiresAt,
       bannedAt: data.bannedAt ? new Date(data.bannedAt) : data.bannedAt,
+    },
+    select: {
+      id: true, name: true, email: true, role: true,
+      plan: true, planExpiresAt: true, bannedAt: true, organizationId: true,
     },
   });
 
@@ -131,18 +152,21 @@ export async function DELETE(request: NextRequest) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const role = (session.user as { role?: string }).role ?? "member";
-  if (!canManageOrganization(role)) {
+  const actorOrgId = (session.user as { organizationId?: string | null }).organizationId;
+  if (!canManageOrganization(role) || (!isSuperAdmin(role) && !actorOrgId)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const { userId } = await request.json();
+  const payload = z.object({ userId: z.string().min(1) }).safeParse(await request.json().catch(() => null));
+  if (!payload.success) return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+  const { userId } = payload.data;
   if (userId === session.user.id) {
     return NextResponse.json({ error: "Cannot delete yourself" }, { status: 400 });
   }
 
   // SECURITY: company_admin only allowed to delete users from THEIR org.
   if (!isSuperAdmin(role)) {
-    const orgId = (session.user as { organizationId?: string }).organizationId;
+    const orgId = actorOrgId;
     const target = await db.user.findUnique({
       where: { id: userId },
       select: { organizationId: true, role: true },
@@ -166,10 +190,7 @@ export async function DELETE(request: NextRequest) {
     await db.user.delete({ where: { id: userId } });
   } catch (e) {
     console.error("[DELETE /api/users] db.user.delete failed:", e);
-    return NextResponse.json(
-      { error: e instanceof Error ? e.message : String(e) },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Unable to delete user" }, { status: 500 });
   }
 
   auditLog("user.delete", session.user.id, {
